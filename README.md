@@ -4,10 +4,10 @@ A cef meta data validator
 
 The software is based on the rules provided by the latest Meta Data Dictionary (MDD) documentation.
 An Excel workbook containing the canonical data for the Keywords and Enumertor types has been
-derived from the MDDS documentation - and this is currenlty read by the software at startup 
+derived from the MDD documentation - and this is currenlty read by the software at startup 
 and then used to validate the cef/ceh files under test.
 
-https://docs.google.com/spreadsheets/d/1KSEQS-1ncG7tNt7PJRVbT_gGuFfyJfmWNHoKANsw5kI/pubhtml
+[Canonical MDD](https://docs.google.com/spreadsheets/d/1KSEQS-1ncG7tNt7PJRVbT_gGuFfyJfmWNHoKANsw5kI/pubhtml "Google Hosted Excel Workbook")
 
 
 # Status
