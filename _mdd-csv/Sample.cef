@@ -1,0 +1,375 @@
+!---- CAA MERGED CEF FILE (2012-11-03T17:05:36Z) ----
+FILE_NAME            = "C3_CP_EDI_EGD__20111009_000000_20111010_000000_V121103.cef"
+FILE_FORMAT_VERSION="CEF-2.0"
+!
+START_META = LOGICAL_FILE_ID
+  ENTRY      = "C3_CP_EDI_EGD__20111009_000000_20111010_000000_V121103"
+END_META = LOGICAL_FILE_ID
+!
+START_META = VERSION_NUMBER
+  ENTRY      = 121103
+END_META = VERSION_NUMBER
+!
+START_META   = DATASET_VERSION
+    ENTRY    = "Merged file, the dataset version for each segment follows:-"
+    ENTRY    = "2011-10-09T00:00:00Z/2011-10-10T00:00:00Z , C3_CP_EDI_EGD__20111009_V01"
+    ENTRY    = "  2.0"
+END_META     = DATASET_VERSION
+!
+START_META   = FILE_CAVEATS
+    ENTRY    = "CAA Merged File - $Id: cefmerge.c,v 1.27 2009/04/09 09:40:06 cperry Exp cperry $"
+    ENTRY    = "The file caveats for each segment follows:-"
+    ENTRY    = "2011-10-09T00:00:00Z/2011-10-10T00:00:00Z , C3_CP_EDI_EGD__20111009_V01"
+    ENTRY    = "  CAA_EDITOF_V1_04  2011-04-04T10:30:00Z"
+END_META     = FILE_CAVEATS
+!
+START_META = FILE_TIME_SPAN
+ VALUE_TYPE = ISO_TIME_RANGE
+  ENTRY      = 2011-10-09T00:00:00.000Z/2011-10-10T00:00:00.999Z
+END_META = FILE_TIME_SPAN
+!
+START_META = GENERATION_DATE
+ VALUE_TYPE = ISO_TIME
+  ENTRY      = 2012-11-03T17:05:36Z
+END_META = GENERATION_DATE
+!
+!
+! include EGD (DATASET) HEADER File for Cluster-3
+! with variable definitions, metadata_type and _version
+! START_CEFMERGE_INCLUDE = "C3_CH_EDI_EGD_DATASET.ceh"
+! EGD (DATASET) HEADER File for Cluster C3
+! TO BE WRITTEN into each EGD-file:  *.cef
+!include INSTRUMENT HEADER file and implicitly MISSION, OBS, EXP headers
+! START_CEFMERGE_INCLUDE = "C3_CH_EDI3_INST.ceh"
+!------------------- INSTR HEADER FILE EDI3 --------------------
+! INCLUDE OBSERVATORY and EXPERIMENT HEADER FILE
+!EXPERIMENT HEADER FILE contains MISSION HEADER
+! START_CEFMERGE_INCLUDE = "CL_CH_EDI_EXP.ceh"
+!------------------- EXPERIMENT HEADER FILE--------------------
+! INCLUDE MISSION HEADER FILE
+! START_CEFMERGE_INCLUDE = "CL_CH_MISSION.ceh"
+!
+!  CL_CH_MISSION.ceh
+!  Global mission metadata provided by the CAA.
+!
+!  Save to your own hard drive so this file can be
+!  included as CL_CH_MISSION.ceh in other cef files. 
+! 
+
+START_META = MISSION 
+    ENTRY  = "Cluster" 
+END_META   = MISSION 
+
+START_META     = MISSION_TIME_SPAN 
+    VALUE_TYPE = ISO_TIME_RANGE 
+    ENTRY      = 2000-08-16T12:39:00Z/2009-12-31T23:59:59Z
+END_META       = MISSION_TIME_SPAN 
+
+START_META = MISSION_AGENCY 
+    ENTRY  = "ESA" 
+END_META   = MISSION_AGENCY 
+
+START_META = MISSION_DESCRIPTION 
+    ENTRY  = "The aim of the Cluster mission is to study small-scale structures of the magnetosphere " 
+    ENTRY  = "and its environment in three dimensions. To achieve this, Cluster is constituted of four " 
+    ENTRY  = "identical spacecraft that will flight in a tetrahedral configuration. The separation distances " 
+    ENTRY  = "between the spacecraft will be varied between ~40 km and 10 000 km, according to the " 
+    ENTRY  = "key scientific regions." 
+END_META   = MISSION_DESCRIPTION 
+
+START_META = MISSION_KEY_PERSONNEL 
+    ENTRY  = "Philippe Escoubet>Philippe.Escoubet@esa.int >Cluster Project Scientist" 
+END_META   = MISSION_KEY_PERSONNEL 
+
+START_META = MISSION_REFERENCES 
+    ENTRY  = "The Cluster and Phoenix Missions>Cluster project and instrument teams>Space Sci. Rev. 79, Nos. 1-2, 1997"
+END_META   =  MISSION_REFERENCES 
+
+START_META = MISSION_REGION 
+    ENTRY  = "Solar_Wind" 
+    ENTRY  = "Bow_Shock" 
+    ENTRY  = "Magnetosheath" 
+    ENTRY  = "Magnetopause" 
+    ENTRY  = "Magnetosphere" 
+    ENTRY  = "Magnetotail" 
+    ENTRY  = "Polar_Cap"
+    ENTRY  = "Auroral_Region" 
+    ENTRY  = "Cusp" 
+    ENTRY  = "Radiation_Belt" 
+    ENTRY  = "Plasmasphere" 
+END_META   = MISSION_REGION 
+
+START_META = MISSION_CAVEATS 
+ ENTRY = "*CL" 
+END_META = MISSION_CAVEATS
+
+! END_CEFMERGE_INCLUDE = "CL_CH_MISSION.ceh"
+!
+START_META = EXPERIMENT
+   ENTRY = "EDI"
+END_META = EXPERIMENT
+!
+START_META = EXPERIMENT_DESCRIPTION
+   ENTRY = "Electron Drift Instrument"
+   ENTRY = "Electric field measured by the drift velocity "
+   ENTRY = "of monoenergetic artificial electron beams "
+   ENTRY = "injected perpendicularly to the ambient magnetic field"
+END_META = EXPERIMENT_DESCRIPTION
+!
+START_META = INVESTIGATOR_COORDINATES
+   ENTRY = "Goetz Paschmann>PI>goetz.paschmann@mpe.mpg.de"  
+   ENTRY = "Roy Torbert>PI>roy.torbert@unh.edu" 
+   ENTRY = "Jack Quinn>CoPI>jmquinn@bu.edu"
+END_META = INVESTIGATOR_COORDINATES
+!
+START_META = EXPERIMENT_REFERENCES
+   ENTRY = "*CL_CD_EDI_CAAICD"
+   ENTRY = "*CL_CD_EDI_USERMAN"
+   ENTRY = "AnnGeo_FirstResults.pdf"
+   ENTRY = "AnnGeo_JQuinn1669.pdf"
+   ENTRY = "http://www.mpe.mpg.de/CLUSTER/EDI-Pages/edi_page.html"
+END_META = EXPERIMENT_REFERENCES
+!
+START_META= EXPERIMENT_KEY_PERSONNEL
+   ENTRY = "Edita Georgescu>Archive Scientist>eg@mps.mpg.de"
+   ENTRY = "Hans Vaith>Experiment Engineer>hans.vaith@unh.edu"
+   ENTRY = "Mark Chutter>Software Engineer>mark.chutter@unh.edu"
+   ENTRY = "Pamela Puhl-Quinn>Software Engineer>pamela.puhlquinn@aer.com"
+END_META = EXPERIMENT_KEY_PERSONNEL
+!
+START_META = EXPERIMENT_CAVEATS
+   ENTRY = "EDI experiment is operated in 2 modes 'Electric Field'"   
+   ENTRY = "and 'Ambient Electron' mode, see CaveatList files for"   
+   ENTRY = "specific time intervals"
+   ENTRY = ""
+   ENTRY = "Large data gaps may occur due to: "
+   ENTRY = "- highly variable magnetic and/or electric fields"
+   ENTRY = "- high ambient electron fluxes"
+   ENTRY = "- radiation induced hardware failures"
+   ENTRY = ""
+   ENTRY = "Smaller data gaps occur in MCP calibration mode or "
+   ENTRY = "at regularly scheduled BM3 dumps"
+   ENTRY = ""
+   ENTRY = "Data availability in 'Electric field' mode is documented"
+   ENTRY = "in the QSTAT files with 10 min resolution"
+   ENTRY = ""  
+END_META = EXPERIMENT_CAVEATS
+
+
+! END_CEFMERGE_INCLUDE = "CL_CH_EDI_EXP.ceh"
+! START_CEFMERGE_INCLUDE = "C3_CH_OBS.ceh"
+!
+!  C3_CH_OBS.ceh
+!  Global Cluster3 metadata provided by the CAA.
+!
+! Save to your own hard drive so this file can be
+! included as C3_CH_OBS.ceh in other cef files. 
+! 
+
+START_META     = OBSERVATORY
+    ENTRY      = "Cluster-3"
+END_META       = OBSERVATORY
+
+START_META     = OBSERVATORY_CAVEATS
+    ENTRY      = "*C3_CQ"
+END_META       = OBSERVATORY_CAVEATS
+
+START_META     = OBSERVATORY_DESCRIPTION  
+    ENTRY      = "Cluster-3 (Samba)"
+    ENTRY      = "Launched: 16 Jul 2000"
+    ENTRY      = "ESA Number: 3"
+    ENTRY      = "COSPAR ID: 2000-041A"
+    ENTRY      = "USSPACECOM catalogue number: 26410"
+    ENTRY      = "CSDS Code: C3"
+    ENTRY      = "ESOC FD code: S3"
+    ENTRY      = "ESA Flight Model Number: FM7"
+END_META       = OBSERVATORY_DESCRIPTION 
+
+START_META      = OBSERVATORY_TIME_SPAN
+    VALUE_TYPE  = ISO_TIME_RANGE
+    ENTRY       = 2000-07-16T12:39:00Z/2009-12-31T23:59:59Z 
+END_META        = OBSERVATORY_TIME_SPAN
+
+START_META    = OBSERVATORY_REGION 
+    ENTRY     = "Solar_Wind" 
+    ENTRY     = "Bow_Shock" 
+    ENTRY     = "Magnetosheath" 
+    ENTRY     = "Magnetopause" 
+    ENTRY     = "Magnetosphere" 
+    ENTRY     = "Magnetotail" 
+    ENTRY     = "Polar_Cap" 
+    ENTRY     = "Auroral_Region" 
+    ENTRY     = "Cusp" 
+    ENTRY     = "Radiation_Belt" 
+    ENTRY     = "Plasmasphere" 
+END_META      = OBSERVATORY_REGION
+
+! END_CEFMERGE_INCLUDE = "C3_CH_OBS.ceh"
+!
+START_META = INSTRUMENT_NAME
+   ENTRY = "EDI3"
+END_META = INSTRUMENT_NAME
+!
+START_META = INSTRUMENT_DESCRIPTION
+   ENTRY = "EDI Experiment on Cluster C3"
+END_META = INSTRUMENT_DESCRIPTION
+!
+START_META = INSTRUMENT_TYPE
+   ENTRY = "Electron_Drift"
+END_META = INSTRUMENT_TYPE
+!
+START_META = MEASUREMENT_TYPE
+   ENTRY = "Electric_Field"
+END_META = MEASUREMENT_TYPE
+!
+START_META =INSTRUMENT_CAVEATS 
+   ENTRY = " "
+END_META = INSTRUMENT_CAVEATS 
+
+! END_CEFMERGE_INCLUDE = "C3_CH_EDI3_INST.ceh"
+!
+START_META = DATASET_ID
+   ENTRY = "C3_CP_EDI_EGD"
+END_META = DATASET_ID
+!
+START_META = DATA_TYPE
+   ENTRY = "CP>CAA Parameter"
+END_META = DATA_TYPE
+!
+START_META = DATASET_TITLE
+   ENTRY = "Electron Gyrotime Data"
+END_META = DATASET_TITLE
+!
+START_META = DATASET_DESCRIPTION
+   ENTRY = "This dataset contains measurements of the gyro-time of emitted "
+   ENTRY = "electrons from the EDI experiment on the Cluster C3 spacecraft"
+   ENTRY = "The kinetic energy of the emitted electrons is: 1. or 0.5 keV (kine_flag=0,1) "
+END_META = DATASET_DESCRIPTION
+!
+START_META = CONTACT_COORDINATES
+   ENTRY = "EditaGeorgescu>Archive Scientist>eg@mps.mpg.de"
+END_META = CONTACT_COORDINATES
+!
+START_META = PROCESSING_LEVEL
+   ENTRY ="Auxiliary"
+END_META = PROCESSING_LEVEL
+!
+START_META = TIME_RESOLUTION
+   ENTRY = 0.015625
+END_META = TIME_RESOLUTION
+!
+START_META = MAX_TIME_RESOLUTION
+   ENTRY = 0.015625
+END_META = MAX_TIME_RESOLUTION
+!
+START_META = MIN_TIME_RESOLUTION
+   ENTRY = 1.e31
+END_META = MIN_TIME_RESOLUTION
+!
+START_META = DATASET_CAVEATS
+  ENTRY = "No regularly spaced time series!"
+  ENTRY = "MAX_TIME_RESOLUTION is given for burst mode"
+  ENTRY = "MIN_TIME_RESOLUTION is set to fill_value"
+  ENTRY = "Time_tags are the registered UT at electron detection"
+  ENTRY = "To convert gyrotime microseconds to B in nT use for"
+  ENTRY = "kine_flag=0: 35793.785"
+  ENTRY = "kine_flag=1: 35758.831"
+  ENTRY = ""
+END_META = DATASET_CAVEATS
+!
+START_META = ACKNOWLEDGEMENT
+  ENTRY="Please acknowledge the EDI team and ESA Cluster Active Archive"
+  ENTRY=" when using this data"
+END_META = ACKNOWLEDGEMENT
+!
+START_META     =   METADATA_TYPE
+   ENTRY  =   "CAA"
+END_META  =   METADATA_TYPE
+!
+START_META     =   METADATA_VERSION
+   ENTRY  =   "2.0"
+END_META  =   METADATA_VERSION
+!
+START_META     =   FILE_TYPE
+   ENTRY  =   "cef"
+END_META  =   FILE_TYPE
+!
+!
+start_variable = time_tags__C3_CP_EDI_EGD
+   PARAMETER_TYPE  = "Support_Data"
+   CATDESC  = "Time Tag"
+   UNITS = "s"
+   SI_CONVERSION  = "1.0>s"
+   FIELDNAM = "Universal Time"
+   FILLVAL = 9999-12-31T23:59:59.999999Z
+   SIGNIFICANT_DIGITS =27 
+   LABLAXIS = "UT"
+   VALUE_TYPE = ISO_TIME
+   DELTA_PLUS = 0.244e-6
+   DELTA_MINUS = 0.244e-6
+ end_variable = time_tags__C3_CP_EDI_EGD
+!
+start_variable = tof__C3_CP_EDI_EGD
+   PARAMETER_TYPE  = "Data"
+   ENTITY = "Electron"
+   PROPERTY = "Time-of-Flight"
+   CATDESC  = "electron gyration time"
+   VALUE_TYPE = FLOAT
+   FIELDNAM = "Time-of-Flight"
+   FILLVAL = 0.000 
+   SIGNIFICANT_DIGITS = 10
+   QUALITY = "2"
+   LABLAXIS = "tof"
+   SI_CONVERSION = "1.0e-6>s"
+   UNITS ="microseconds"
+   DEPEND_0 = time_tags__C3_CP_EDI_EGD
+end_variable =  tof__C3_CP_EDI_EGD
+!
+start_variable = sigma_tof__C3_CP_EDI_EGD
+   PARAMETER_TYPE = "Data"
+   ENTITY = "Electron"
+   PROPERTY = "Time-of-Flight"
+   CATDESC  = "electron gyration time standard deviation"
+   VALUE_TYPE = FLOAT
+   FIELDNAM = "Time-of-Flight standard deviation"
+   FILLVAL = 0.000
+   SIGNIFICANT_DIGITS = 10
+   QUALITY = "2"
+   LABLAXIS = "sigma_tof"
+   SI_CONVERSION = "1.0e-6>s"
+   UNITS ="microseconds"
+   DEPEND_0 = time_tags__C3_CP_EDI_EGD
+end_variable = sigma_tof__C3_CP_EDI_EGD
+!
+start_variable = gdu_flag__C3_CP_EDI_EGD
+   PARAMETER_TYPE = "Support_Data"
+   ENTITY = "Electron"
+   PROPERTY = "Time-of-Flight"
+   CATDESC  = "Detector Unit"
+   VALUE_TYPE = INT
+   FIELDNAM = "Detector Unit"
+   FILLVAL =0
+   SIGNIFICANT_DIGITS = 1
+   LABLAXIS = "DU"
+   UNITS ="Unitless"
+   DEPEND_0 = time_tags__C3_CP_EDI_EGD
+end_variable = gdu_flag__C3_CP_EDI_EGD
+!
+start_variable = kine_flag__C3_CP_EDI_EGD
+   PARAMETER_TYPE = "Support_Data"
+   ENTITY = "Electron"
+   PROPERTY = "Time-of-Flight"
+   CATDESC  = "electron gyration time"
+   VALUE_TYPE = INT
+   FIELDNAM = "Kinetic Energy Flag"
+   FILLVAL = 9
+   SIGNIFICANT_DIGITS = 1
+   LABLAXIS = "KinEnFlag"
+   UNITS ="Unitless"
+   DEPEND_0 = time_tags__C3_CP_EDI_EGD
+end_variable = kine_flag__C3_CP_EDI_EGD
+
+! END_CEFMERGE_INCLUDE = "C3_CH_EDI_EGD_DATASET.ceh"
+!
+DATA_UNTIL=EOF
+!RECORDS= 0
