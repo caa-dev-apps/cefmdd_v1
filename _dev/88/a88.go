@@ -9,6 +9,8 @@ import (
     "io"
     "log"
     "strings"
+    "time"
+    "strconv"
 //x     "testing"
 )
 
@@ -120,7 +122,7 @@ func getKeywordType(s string)  (k KeywordType, err error) {
 type KeywordData struct {
     lo              string
     hi              string
-    keyword_type    KeywordType
+    kw_type         KeywordType
     
     scope           string
     table           string
@@ -168,35 +170,35 @@ func (kw *KeywordData) test_cardinality(kv *KeyVal) (err error) {
 
 
 // TODO NEED TO MOVE the FUNC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-func test_enumerated(v string) (err error) {
+func test_enumerated(kv *KeyVal) (err error) {
     return
 }
 
-func test_formatted(v string) (err error) {
+func test_formatted(kv *KeyVal) (err error) {
     return
 }
 
-func test_integer(v string) (err error) {
+func test_integer(kv *KeyVal) (err error) {
     return
 }
 
-func test_iso_time(v string) (err error) {
+func test_iso_time(kv *KeyVal) (err error) {
     return
 }
 
-func test_iso_time_range(v string) (err error) {
+func test_iso_time_range(kv *KeyVal) (err error) {
     return
 }
 
-func test_numerical(v string) (err error) {
+func test_numerical(kv *KeyVal) (err error) {
     return
 }
 
-func test_string(v string) (err error) {
+func test_string(kv *KeyVal) (err error) {
     return
 }
 
-func test_text(v string) (err error) {
+func test_text(kv *KeyVal) (err error) {
     return
 }
 
@@ -204,24 +206,24 @@ func test_text(v string) (err error) {
 func (kw *KeywordData) test_value_type(kv *KeyVal) (err error) {
 
     for _, v := range kv.val {
-        switch kw.keyword_type {
+        switch kw.kw_type {
             case ENUMERATED :
                 // TODO NEED ACCESS TO ENUM DATA
-                err = test_enumerated(v)
+                err = test_enumerated(kv)
             case FORMATTED :
-                err = test_formatted(v)
+                err = test_formatted(kv)
             case INTEGER :
-                err = test_integer(v)
+                err = test_integer(kv)
             case ISO_TIME :
-                err = test_iso_time(v)
+                err = test_iso_time(kv)
             case ISO_TIME_RANGE :
-                err = test_iso_time_range(v)
+                err = test_iso_time_range(kv)
             case NUMERICAL :
-                err = test_numerical(v)
+                err = test_numerical(kv)
             case STRING :
-                err = test_string(v)
+                err = test_string(kv)
             case TEXT :
-                err = test_text(v)
+                err = test_text(kv)
             default :
         }
         
@@ -269,7 +271,7 @@ func NewMddData_Base(i_path_keywords, i_path_enums string) *MddData {
         }
         
         //x fmt.Println(r[0], r[1], r[2], r[3])
-        mdd_data.add_keyword(r[0], &KeywordData{ lo : r[1], hi : r[2],  keyword_type : l_keywordType,    scope : r[4],  table : r[4],  comment : r[5] })
+        mdd_data.add_keyword(r[0], &KeywordData{ lo : r[1], hi : r[2],  kw_type : l_keywordType,    scope : r[4],  table : r[4],  comment : r[5] })
     }
     
     //x fmt.Println("\n________________________________________\n")
@@ -354,7 +356,8 @@ func (d *MddData) test_input(kv *KeyVal) (err error) {
 
     //- keyword_presence
     //- cardinality (lo, hi)
-    //- keyword_type
+    //- kw_type
+    //- check if already registered
     
     l_kw_data, present := d.m_keywords[kv.key]
     if present == false {
@@ -399,31 +402,31 @@ func NewMddData() *MddData {
      
 }
 
-///////////////////////////////////////////////////////////////////////////////
-//
-
-func main() {
-    
-    fmt.Println("Hello, World!")
-    
-    mdd_data := NewMddData()
-    
-    //x mdd_data.dump()
-    kv := &KeyVal{ key: "LOGICAL_FILE_ID", val: []string{"SOME_FILE_ID"}}
-
-    err := mdd_data.test_input(kv)
-    if err != nil {
-        log.Print(err)        
-    }
-    
-    err = mdd_data.test_input_kv1("LOGICAL_FILE_ID_1", "SOME_FILE_ID")
-    if err != nil {
-        log.Print(err)        
-    }
-    
-    err = mdd_data.test_input_kv2("LOGICAL_FILE_ID_2", []string{"SOME_FILE_ID"})
-    if err != nil {
-        log.Print(err)        
-    }
-    
-}
+//x ///////////////////////////////////////////////////////////////////////////////
+//x //
+//x 
+//x func main() {
+//x     
+//x     fmt.Println("Hello, World!")
+//x     
+//x     mdd_data := NewMddData()
+//x     
+//x     //x mdd_data.dump()
+//x     kv := &KeyVal{ key: "LOGICAL_FILE_ID", val: []string{"SOME_FILE_ID"}}
+//x 
+//x     err := mdd_data.test_input(kv)
+//x     if err != nil {
+//x         log.Print(err)        
+//x     }
+//x     
+//x     err = mdd_data.test_input_kv1("LOGICAL_FILE_ID_1", "SOME_FILE_ID")
+//x     if err != nil {
+//x         log.Print(err)        
+//x     }
+//x     
+//x     err = mdd_data.test_input_kv2("LOGICAL_FILE_ID_2", []string{"SOME_FILE_ID"})
+//x     if err != nil {
+//x         log.Print(err)        
+//x     }
+//x     
+//x }

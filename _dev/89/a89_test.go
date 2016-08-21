@@ -4,7 +4,7 @@ import (
 //x     "bufio"
 //x     "encoding/csv"
 //x     "os"
-//x     "errors"
+//x      "errors"
      "fmt"
 //x     "io"
      "log"
@@ -38,15 +38,15 @@ func Test0001(t *testing.T) {
     
     mdd_data := NewMddData()
                            
-    err = mdd_data.test_input_kv1("LOGICAL_FILE_ID_1", "SOME_FILE_ID")
+    err := mdd_data.test_input_kv1("LOGICAL_FILE_ID", "SOME_FILE_ID")
     if err != nil {
         log.Print(err)        
     }
     
-    err = mdd_data.test_input_kv2("LOGICAL_FILE_ID_2", []string{"SOME_FILE_ID"})
-    if err != nil {
-        log.Print(err)        
-    }
+//x     err = mdd_data.test_input_kv2("LOGICAL_FILE_ID_2", []string{"SOME_FILE_ID"})
+//x     if err != nil {
+//x         log.Print(err)        
+//x     }
     
 }
 
