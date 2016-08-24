@@ -9,8 +9,6 @@ import (
     "io"
     "log"
     "strings"
-    "time"
-    "strconv"
 //x     "testing"
 )
 
@@ -97,26 +95,6 @@ const (
     TEXT               
 )
 
-func getKeywordType(s string)  (k KeywordType, err error) {
-    
-    s = strings.ToLower(s)
-
-    switch s {
-        case "enumerated" :     k = ENUMERATED
-        case "formatted" :      k = FORMATTED
-        case "integer" :        k = INTEGER
-        case "iso_time" :       k = ISO_TIME
-        case "iso_time_range" : k = ISO_TIME_RANGE
-        case "numerical" :      k = NUMERICAL
-        case "string" :         k = STRING
-        case "text" :           k = TEXT    
-        default : 
-            err = errors.New("Error: unknown Keyword value type: [" + s + "]")
-    }
-    
-    return
-}
-
 // ------------------------------------
 
 type KeywordData struct {
@@ -127,6 +105,8 @@ type KeywordData struct {
     scope           string
     table           string
     comment         string
+    
+    kw_type_parser  func(s string) (err error)
 }
 
 func (kw *KeywordData) is_range(lo, hi string) (bool) {
@@ -168,65 +148,16 @@ func (kw *KeywordData) test_cardinality(kv *KeyVal) (err error) {
     return 
 }
 
+///////////////////////////////////////////////////////////////////////////////
+//
 
-// TODO NEED TO MOVE the FUNC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-func test_enumerated(kv *KeyVal) (err error) {
-    return
-}
-
-func test_formatted(kv *KeyVal) (err error) {
-    return
-}
-
-func test_integer(kv *KeyVal) (err error) {
-    return
-}
-
-func test_iso_time(kv *KeyVal) (err error) {
-    return
-}
-
-func test_iso_time_range(kv *KeyVal) (err error) {
-    return
-}
-
-func test_numerical(kv *KeyVal) (err error) {
-    return
-}
-
-func test_string(kv *KeyVal) (err error) {
-    return
-}
-
-func test_text(kv *KeyVal) (err error) {
-    return
-}
-
-
-func (kw *KeywordData) test_value_type(kv *KeyVal) (err error) {
+func (kw *KeywordData) parse_value_type(kv *KeyVal) (err error) {
 
     for _, v := range kv.val {
-        switch kw.kw_type {
-            case ENUMERATED :
-                // TODO NEED ACCESS TO ENUM DATA
-                err = test_enumerated(kv)
-            case FORMATTED :
-                err = test_formatted(kv)
-            case INTEGER :
-                err = test_integer(kv)
-            case ISO_TIME :
-                err = test_iso_time(kv)
-            case ISO_TIME_RANGE :
-                err = test_iso_time_range(kv)
-            case NUMERICAL :
-                err = test_numerical(kv)
-            case STRING :
-                err = test_string(kv)
-            case TEXT :
-                err = test_text(kv)
-            default :
-        }
         
+        fmt.Printf("-----> %s %p", v, kw.kw_type_parser)
+        
+        err = kw.kw_type_parser(v)
         if err != nil {
             return
         }
@@ -235,35 +166,36 @@ func (kw *KeywordData) test_value_type(kv *KeyVal) (err error) {
     return 
 }
 
-
 type EnumData struct {
     description     string
     additional      string
 }
 
 type MddData struct {
-    m_keywords map[string]KeywordData
-    m_enums map[string]map[string]EnumData
+    m_keywords map[string]*KeywordData
+    m_enums map[string]map[string]*EnumData
 }
 
 func NewMddData_Base(i_path_keywords, i_path_enums string) *MddData {
     
-    wd, err := os.Getwd()
-    if err != nil {
-        return nil
+    //x wd, err := os.Getwd()
+    //x if err != nil {
+    //x     return nil
+    //x }
+    
+    mdd_data := &MddData{ m_keywords: make(map[string]*KeywordData), 
+                          m_enums: make(map[string]map[string]*EnumData) }
+
+    // read Enums
+    for r := range read_csv(i_path_enums) {
+        //x fmt.Println(r[0], r[1])
+        mdd_data.add_enum(r[0], r[1], &EnumData{description: r[2], additional: r[2]})
     }
-    
-    fmt.Println("_________________________________")
-    fmt.Println("Current Working Directory = " + wd)
-    
-    
-    mdd_data := &MddData{ m_keywords: make(map[string]KeywordData), 
-                          m_enums: make(map[string]map[string]EnumData) }
-    
-    //x for r := range read_csv("C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Tables.csv") {
+
+    // read Keywords
     for r := range read_csv(i_path_keywords) {
         
-        l_keywordType, err := getKeywordType(r[3])
+        l_keywordType, l_kw_type_parser, err := mdd_data.getKeywordType(r[0], r[3])
         
         if err != nil {
             log.Fatal(err)
@@ -271,20 +203,38 @@ func NewMddData_Base(i_path_keywords, i_path_enums string) *MddData {
         }
         
         //x fmt.Println(r[0], r[1], r[2], r[3])
-        mdd_data.add_keyword(r[0], &KeywordData{ lo : r[1], hi : r[2],  kw_type : l_keywordType,    scope : r[4],  table : r[4],  comment : r[5] })
+        mdd_data.add_keyword(r[0], &KeywordData{ lo : r[1], 
+                                                 hi : r[2],  
+                                                 kw_type : l_keywordType,    
+                                                 scope : r[4],  
+                                                 table : r[4],  
+                                                 comment : r[5],
+                                                 kw_type_parser : l_kw_type_parser,
+                                                 })
     }
     
-    //x fmt.Println("\n________________________________________\n")
-    //x for r := range read_csv("C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Enums.csv") {
-    for r := range read_csv(i_path_enums) {
-        //x fmt.Println(r[0], r[1])
-        mdd_data.add_enum(r[0], r[1], &EnumData{description: r[2], additional: r[2]})
-    }
-
     return mdd_data
-    //x mdd_data.dump()
 }
 
+func (d *MddData) getKeywordType(i_kw, i_kw_type string)  (k KeywordType, f func(string) (error ), err error) {
+    
+    s := strings.ToLower(i_kw_type)
+
+    switch s {
+        case "enumerated" :     k = ENUMERATED;           f, err =  d.init_enum_parser(i_kw)
+        case "formatted" :      k = FORMATTED;            f = formatted_parser
+        case "integer" :        k = INTEGER;              f = integer_parser
+        case "iso_time" :       k = ISO_TIME;             f = iso_time_parser
+        case "iso_time_range" : k = ISO_TIME_RANGE;       f = iso_time_range_parser
+        case "numerical" :      k = NUMERICAL;            f = numerical_parser
+        case "string" :         k = STRING;               f = string_parser
+        case "text" :           k = TEXT;                 f = text_parser
+        default : 
+            err = errors.New("Error: unknown Keyword value type: [" + i_kw_type + "]")
+    }
+    
+    return
+}
 
 func (d *MddData) add_enum(i_keyword, 
                            i_definition string, 
@@ -292,14 +242,15 @@ func (d *MddData) add_enum(i_keyword,
 
     _, present := d.m_enums[i_keyword]
     if present == false {
-        d.m_enums[i_keyword] = make(map[string]EnumData)
+        d.m_enums[i_keyword] = make(map[string]*EnumData)
+        fmt.Println("New Enum: " + i_keyword)
     }
 
     _, present = d.m_enums[i_keyword][i_definition]
     if present == true {
         return errors.New("Error: add_enum: keyword[definition] exists")
     } else {
-        d.m_enums[i_keyword][i_definition] = *i_enum_data
+        d.m_enums[i_keyword][i_definition] = i_enum_data
     }
     
     return
@@ -310,7 +261,8 @@ func (d *MddData) add_keyword(i_keyword string,
 
     _, present := d.m_keywords[i_keyword]
     if present == false {
-        d.m_keywords[i_keyword] = *i_kw_data
+//x         d.m_keywords[i_keyword] = *i_kw_data
+        d.m_keywords[i_keyword] = i_kw_data
     } else {
         return errors.New("Error: add_keyword: keyword exists")
     }
@@ -318,6 +270,25 @@ func (d *MddData) add_keyword(i_keyword string,
     return
 }
 
+func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), err error) {
+    
+    enums, present := d.m_enums[i_keyword]
+    if present == false {
+        return nil, errors.New("Enum not found for KeyWord -> " + i_keyword)
+    }
+    
+    f =  func(v string) (e error) {
+        _, p := enums[v]
+        if p == false {
+            return errors.New("Enum value not found for KeyWord -> " + i_keyword + " value: " + v)
+        }
+        
+        return
+    }
+    
+    return
+}
+    
 func (d *MddData) dump() {
     fmt.Println(d.m_keywords)
     fmt.Println(d.m_enums)
@@ -325,20 +296,6 @@ func (d *MddData) dump() {
 
 /////////////////////////////////////////////////////////////////////////////// -------------------------------------------------------------------------------
 //
-
-//-  TODO
-//-     tests
-//-         lo - hi
-//-         type 
-
-//-         Enumerated KeywordType = iota
-//-         Formatted          
-//-         Integer            
-//-         ISO_TIME           
-//-         ISO_TIME_RANGE     
-//-         Numerical          
-//-         String             
-//-         Text    
 
 // keyword 
 
@@ -369,7 +326,7 @@ func (d *MddData) test_input(kv *KeyVal) (err error) {
         return 
     }
     
-    err = l_kw_data.test_value_type(kv)
+    err = l_kw_data.parse_value_type(kv)
     if err != nil {
         return 
     }
@@ -401,32 +358,3 @@ func NewMddData() *MddData {
                           "C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Enums.csv")
      
 }
-
-//x ///////////////////////////////////////////////////////////////////////////////
-//x //
-//x 
-//x func main() {
-//x     
-//x     fmt.Println("Hello, World!")
-//x     
-//x     mdd_data := NewMddData()
-//x     
-//x     //x mdd_data.dump()
-//x     kv := &KeyVal{ key: "LOGICAL_FILE_ID", val: []string{"SOME_FILE_ID"}}
-//x 
-//x     err := mdd_data.test_input(kv)
-//x     if err != nil {
-//x         log.Print(err)        
-//x     }
-//x     
-//x     err = mdd_data.test_input_kv1("LOGICAL_FILE_ID_1", "SOME_FILE_ID")
-//x     if err != nil {
-//x         log.Print(err)        
-//x     }
-//x     
-//x     err = mdd_data.test_input_kv2("LOGICAL_FILE_ID_2", []string{"SOME_FILE_ID"})
-//x     if err != nil {
-//x         log.Print(err)        
-//x     }
-//x     
-//x }
