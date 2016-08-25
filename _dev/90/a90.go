@@ -154,9 +154,6 @@ func (kw *KeywordData) test_cardinality(kv *KeyVal) (err error) {
 func (kw *KeywordData) parse_value_type(kv *KeyVal) (err error) {
 
     for _, v := range kv.val {
-        
-        fmt.Printf("-----> %s %p", v, kw.kw_type_parser)
-        
         err = kw.kw_type_parser(v)
         if err != nil {
             return
