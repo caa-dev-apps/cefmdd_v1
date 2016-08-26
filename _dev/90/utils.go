@@ -31,92 +31,89 @@ func fileExists(name string) (isReq bool, err error) {
 ///////////////////////////////////////////////////////////////////////////////
 //
 
-//x func enum_parser(v string, enums []string) (err error){ 
-//x 
-//x //x     for _, en := range kw.kw_enums {
-//x     for _, e := range enums {
-//x         if e == v {
-//x            return
-//x         }
-//x     }
-//x     
-//x     return errors.New("Parse ENUM: Error not found")     
-//x }
+
+func on_enum_not_found_error(i_keyword string) (err error) {
+    return errors.New("Parse Error: Enum keyword not found, " + i_keyword)     
+}
+
+
+func on_enum_parser_error(i_keyword, i_value string) (err error) {
+    return errors.New("Parse Error: Enum value not found, " + i_keyword + " -> " + i_value)     
+}
+
+
+
+func on_parser_error(i_parser, i_value string) (err error) {
+    return errors.New("Parse Error: " + i_parser + " -> " + i_value)     
+}
 
 func formatted_parser(v string) (err error) { 
-    fmt.Println("------- formatted_parser ---------> " + v)
-    // "---->---->------" or "---->----"
     
     fs := strings.Split(v, ">")
-    if len(fs) >= 2 {
-        return
+    if len(fs) < 2 {
+        return on_parser_error("Formatted", v)
     }
     
-    return errors.New("Parse FORMAT: Error")     
+    return 
 }
 
 func integer_parser(v string) (err error) { 
-    fmt.Println("------- integer_parser ---------> " + v)
     
-	_, err = strconv.ParseInt(v, 10, 64)
+	if _, err = strconv.ParseInt(v, 10, 64); err != nil {
+        return on_parser_error("Integer", v)
+    }
     
     return
 }
 
 func iso_time_parser(v string) (err error) { 
-    fmt.Println("------- iso_time_parser ---------> " + v)
     // "2012-04-11T15:57:15.012345678Z"
-    _, err = time.Parse(time.RFC3339Nano, v);
+    if _, err = time.Parse(time.RFC3339Nano, v); err != nil {
+        return on_parser_error("ISO Time", v)
+    }
 
     return 
 }
 
 func iso_time_range_parser(v string) (err error) { 
-    fmt.Println("------- iso_time_range_parser ---------> " + v)
     // "2011-10-09T00:00:00Z/2011-10-10T00:00:00Z"
     
     ts := strings.Split(v, "/")
     if len(ts) == 2 {
-        if err = iso_time_parser(ts[0]); err != nil {
-            return
+        if err = iso_time_parser(ts[0]); err == nil {
+            if err = iso_time_parser(ts[1]); err == nil {
+                return 
+            }
         }
-        
-        return iso_time_parser(ts[1]);
     }
     
-    return errors.New("Parse ISO_TIME_RANGE: Error")     
+    return on_parser_error("ISO Time Range", v)
 }
 
 func numerical_parser(v string) (err error) { 
-    fmt.Println("------- numerical_parser ---------> " + v)
 
-	_, err = strconv.ParseFloat(v, 64)
+	if _, err = strconv.ParseFloat(v, 64); err != nil {
+        return on_parser_error("Numerical", v)
+    }
     
     return
 }
 
 func string_parser(v string) (err error) { 
-    fmt.Println("------- string_parser ---------> " + v)
     
-    if len(v) > 0 {
-        return 
+    if len(v) == 0 {
+        return on_parser_error("String", v)
     }
     
-    return errors.New("Parse STRING: Empty") 
+    return 
 }
 
 func text_parser(v string) (err error) { 
-    fmt.Println("------- text_parser ---------> " + v)
 
-    if len(v) > 0 {
-        return 
+    if len(v) == 0 {
+        return on_parser_error("String", v)
     }
     
-    return errors.New("Parse TEXT: Empty") 
+    return 
 }
-
-
-
-
-
 

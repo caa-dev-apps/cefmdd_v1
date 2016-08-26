@@ -68,7 +68,6 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_err error) {
 				}
 				nestedLevel--
 			} else {
-				//x r_header.add_kv(&kv)
 				r_header.add_kv(&kv)
 				data_until = strings.EqualFold("DATA_UNTIL", kv.key)
 			}

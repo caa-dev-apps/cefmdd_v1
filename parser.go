@@ -58,8 +58,6 @@ func NewAttrs() *Attrs {
     return &Attrs{m_map: make(map[string][]string)}
 }
 
-
-//x func (m *Attrs) add_kv(kv *KeyVal) (err error) {
 func (m *Attrs) push_kv(kv *KeyVal) (err error) {
 
     val, is_present := m.m_map[kv.key]
@@ -259,6 +257,8 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 	default:
 		mooi_log(kv.key, kv.val[0])
 
+        // this is where to place the key - val tests //////////////////////////////////////////////
+        
         h.m_cur.push_kv(kv)
 	}
 

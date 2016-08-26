@@ -38,7 +38,7 @@ func state_str(s KVState) (str string) {
 	case B4_EQ:                 return "B4_EQ               "
 	case B4_VAL:                return "B4_VAL              "
 	case VAL_Q:                 return "VAL_Q               "
-	case VAL:                   return "VAL                 
+	case VAL:                   return "VAL                 "
 	case B4_NEXT:               return "B4_NEXT             "
 	case B4_NEXT_COMMENT:       return "B4_NEXT_COMMENT     "
 	case B4_EOL:                return "B4_EOL              "
@@ -59,7 +59,7 @@ func state_diag(ch rune, s1, s2 KVState) {
 
 type Line struct {
     tag         string     // typically filename
-    ln          int         // line number
+    ln          int        // line number
     line        string     // line contents
 }
 
