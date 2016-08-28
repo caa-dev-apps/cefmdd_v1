@@ -1,0 +1,464 @@
+Keyword,Definition,Description,Additional
+MISSION,Cluster,,
+MISSION,DoubleStar,,
+PARENT_MISSION,Cluster,Mission or project from which the data was collected:,
+MISSION_AGENCY,ESA,European Space Agency,
+MISSION_AGENCY,CNSA_and_ESA,,
+MISSION_REGION,Solar_Wind,,
+MISSION_REGION,Bow_Shock,,
+MISSION_REGION,Magnetosheath,,
+MISSION_REGION,Magnetopause,,
+MISSION_REGION,Magnetosphere,,
+MISSION_REGION,Magnetotail,,
+MISSION_REGION,Polar_Cap,,
+MISSION_REGION,Auroral_Region,,
+MISSION_REGION,Cusp,,
+MISSION_REGION,Radiation_Belt,,
+MISSION_REGION,Plasmasphere,,
+MISSION_REGION,Ionosphere,,
+MISSION_REGION,Thermosphere,,
+MISSION_REGION,Atmosphere,,
+OBSERVATORY,Cluster-1,spacecraft also known as rumba,
+OBSERVATORY,Cluster-2,idem salsa,
+OBSERVATORY,Cluster-3,idem samba,
+OBSERVATORY,Cluster-4,idem tango,
+OBSERVATORY,ESOC,"European Space Operations Centre, Darmstadt, Germany",
+OBSERVATORY,JSOC,"Cluster Joint Operations Centre, RAL, Chilton, UK Multiple",
+OBSERVATORY,DoubleStar-1,,
+OBSERVATORY,DoubleStar-2,,
+PARENT_OBSERVATORY,Cluster-1,spacecraft also known as rumba,
+PARENT_OBSERVATORY,Cluster-2,idem salsa,
+PARENT_OBSERVATORY,Cluster-3,idem samba,
+PARENT_OBSERVATORY,Cluster-4,idem tango,
+PARENT_OBSERVATORY,ESOC,"European Space Operations Centre, Darmstadt, Germany",
+PARENT_OBSERVATORY,JSOC,"Cluster Joint Operations Centre, RAL, Chilton, UK Multiple",
+PARENT_OBSERVATORY,DoubleStar-1,,
+PARENT_OBSERVATORY,DoubleStar-2,,
+OBSERVATORY_REGION,Solar_Wind,,
+OBSERVATORY_REGION,Bow_Shock,,
+OBSERVATORY_REGION,Magnetosheath,,
+OBSERVATORY_REGION,Magnetopause,,
+OBSERVATORY_REGION,Magnetosphere,,
+OBSERVATORY_REGION,Magnetotail,,
+OBSERVATORY_REGION,Polar_Cap,,
+OBSERVATORY_REGION,Auroral_Region,,
+OBSERVATORY_REGION,Cusp,,
+OBSERVATORY_REGION,Radiation_Belt,,
+OBSERVATORY_REGION,Plasmasphere,,
+OBSERVATORY_REGION,Ionosphere,,
+OBSERVATORY_REGION,Thermosphere,,
+OBSERVATORY_REGION,Atmosphere,,
+INSTRUMENT_TYPE,Antenna,,
+INSTRUMENT_TYPE,Auxiliary,,
+INSTRUMENT_TYPE,Channeltron,,
+INSTRUMENT_TYPE,Data_Processing_Unit,A unit which processes data aboard the spacecraft so as to reduce the telemetry downlink data rate,
+INSTRUMENT_TYPE,Double_Sphere,,
+INSTRUMENT_TYPE,Electron_Drift,,
+INSTRUMENT_TYPE,Electrostatic_Analyser,,
+INSTRUMENT_TYPE,Faraday_Cup,,
+INSTRUMENT_TYPE,Flux_Feedback,,
+INSTRUMENT_TYPE,HF_Radar,,
+INSTRUMENT_TYPE,Langmuir_Probe,,
+INSTRUMENT_TYPE,Waveform_Receiver,,
+INSTRUMENT_TYPE,Long_Wire,,
+INSTRUMENT_TYPE,Magnetometer,,
+INSTRUMENT_TYPE,Mass_Spectrometer,,
+INSTRUMENT_TYPE,Micro-channel_Plate,,
+INSTRUMENT_TYPE,Monopole,,
+INSTRUMENT_TYPE,Particle_Correlator,An instrument to auto-or cross-correlate time variations of a particle count rate,
+INSTRUMENT_TYPE,Quadrispherical_Analyser,,
+INSTRUMENT_TYPE,Resonance_Sounder,,
+INSTRUMENT_TYPE,Search_Coil,,
+INSTRUMENT_TYPE,Spacecraft_Potential_Control,,
+INSTRUMENT_TYPE,Spectral_Power_Receiver,,
+INSTRUMENT_TYPE,Solid_State_Detector,,
+INSTRUMENT_TYPE,Waveform_Receiver,,
+EXPERIMENT,ASPOC,Active Spacecraft POtential Control,Cluster
+EXPERIMENT,CIS,Cluster Ion Spectrometer,Cluster
+EXPERIMENT,DWP,Digital Wave Processor,Cluster
+EXPERIMENT,EDI,Electron Drift Instrument,Cluster
+EXPERIMENT,EFW,Electric Fields and Waves,Cluster
+EXPERIMENT,FGM,Fluxgate Magnetometer,Cluster
+EXPERIMENT,PEACE,Plasma Electron And Current Experiment,Cluster
+EXPERIMENT,RAPID,Research with Adaptive Particle Image Detectors,Cluster
+EXPERIMENT,STAFF,Spatio-Temporal Analysis of Field Fluctuations,Cluster
+EXPERIMENT,WBD,Wide Band Data,Cluster
+EXPERIMENT,WHISPER,Waves of HIgh frequency and Sounder for Probing the Electron density by Relaxation,Cluster
+EXPERIMENT,AUX,Auxiliary Parameters,Cluster
+EXPERIMENT,Multiple,Multiple is used for compound parameters; see Sect. 7.4.1,Cluster
+EXPERIMENT,HEED,,Double Star
+EXPERIMENT,HEPD,,Double Star
+EXPERIMENT,HIA,,Double Star
+EXPERIMENT,HID,,Double Star
+EXPERIMENT,LEFW,,Double Star
+EXPERIMENT,LEID,,Double Star
+EXPERIMENT,NUADU,,Double Star
+EXPERIMENT,STAFF-DWP,"For the Double Star mission, the STAFF and DWP instruments are considered as a single instrument. The STAFF-DWP (experiment) and STAFF-DWP-D1 (instrument) tags are recommended for all datasets from originating from the DWP or STAFF on Double Star TC1.",Double Star
+PARENT_EXPERIMENT,ASPOC,Active Spacecraft POtential Control,Cluster
+PARENT_EXPERIMENT,CIS,Cluster Ion Spectrometer,Cluster
+PARENT_EXPERIMENT,DWP,Digital Wave Processor,Cluster
+PARENT_EXPERIMENT,EDI,Electron Drift Instrument,Cluster
+PARENT_EXPERIMENT,EFW,Electric Fields and Waves,Cluster
+PARENT_EXPERIMENT,FGM,Fluxgate Magnetometer,Cluster
+PARENT_EXPERIMENT,PEACE,Plasma Electron And Current Experiment,Cluster
+PARENT_EXPERIMENT,RAPID,Research with Adaptive Particle Image Detectors,Cluster
+PARENT_EXPERIMENT,STAFF,Spatio-Temporal Analysis of Field Fluctuations,Cluster
+PARENT_EXPERIMENT,WBD,Wide Band Data,Cluster
+PARENT_EXPERIMENT,WHISPER,Waves of HIgh frequency and Sounder for Probing the Electron density by Relaxation,Cluster
+PARENT_EXPERIMENT,AUX,Auxiliary Parameters,Cluster
+PARENT_EXPERIMENT,Multiple,Multiple is used for compound parameters; see Sect. 7.4.1,Cluster
+PARENT_EXPERIMENT,HEED,,Double Star
+PARENT_EXPERIMENT,HEPD,,Double Star
+PARENT_EXPERIMENT,HIA,,Double Star
+PARENT_EXPERIMENT,HID,,Double Star
+PARENT_EXPERIMENT,LEFW,,Double Star
+PARENT_EXPERIMENT,LEID,,Double Star
+PARENT_EXPERIMENT,NUADU,,Double Star
+PARENT_EXPERIMENT,STAFF-DWP,"For the Double Star mission, the STAFF and DWP instruments are considered as a single instrument. The STAFF-DWP (experiment) and STAFF-DWP-D1 (instrument) tags are recommended for all datasets from originating from the DWP or STAFF on Double Star TC1.",Double Star
+INSTRUMENT_NAME,ASPOC1,,Cluster
+INSTRUMENT_NAME,ASPOC2,,Cluster
+INSTRUMENT_NAME,ASPOC3,,Cluster
+INSTRUMENT_NAME,ASPOC4,,Cluster
+INSTRUMENT_NAME,CIS1,,Cluster
+INSTRUMENT_NAME,CIS2,,Cluster
+INSTRUMENT_NAME,CIS3,,Cluster
+INSTRUMENT_NAME,CIS4,,Cluster
+INSTRUMENT_NAME,CIS-CODIF1,,Cluster
+INSTRUMENT_NAME,CIS-CODIF2,,Cluster
+INSTRUMENT_NAME,CIS-CODIF3,,Cluster
+INSTRUMENT_NAME,CIS-CODIF4,,Cluster
+INSTRUMENT_NAME,CIS-HIA1,,Cluster
+INSTRUMENT_NAME,CIS-HIA2,,Cluster
+INSTRUMENT_NAME,CIS-HIA3,,Cluster
+INSTRUMENT_NAME,CIS-HIA4,,Cluster
+INSTRUMENT_NAME,DWP1,,Cluster
+INSTRUMENT_NAME,DWP2,,Cluster
+INSTRUMENT_NAME,DWP3,,Cluster
+INSTRUMENT_NAME,DWP4,,Cluster
+INSTRUMENT_NAME,EDI1,,Cluster
+INSTRUMENT_NAME,EDI2,,Cluster
+INSTRUMENT_NAME,EDI3,,Cluster
+INSTRUMENT_NAME,EDI4,,Cluster
+INSTRUMENT_NAME,EFW1,,Cluster
+INSTRUMENT_NAME,EFW2,,Cluster
+INSTRUMENT_NAME,EFW3,,Cluster
+INSTRUMENT_NAME,EFW4,,Cluster
+INSTRUMENT_NAME,FGM1,,Cluster
+INSTRUMENT_NAME,FGM2,,Cluster
+INSTRUMENT_NAME,FGM3,,Cluster
+INSTRUMENT_NAME,FGM4,,Cluster
+INSTRUMENT_NAME,PEACE1,,Cluster
+INSTRUMENT_NAME,PEACE2,,Cluster
+INSTRUMENT_NAME,PEACE3,,Cluster
+INSTRUMENT_NAME,PEACE4,,Cluster
+INSTRUMENT_NAME,RAPID1,,Cluster
+INSTRUMENT_NAME,RAPID2,,Cluster
+INSTRUMENT_NAME,RAPID3,,Cluster
+INSTRUMENT_NAME,RAPID4,,Cluster
+INSTRUMENT_NAME,STAFF1,,Cluster
+INSTRUMENT_NAME,STAFF2,,Cluster
+INSTRUMENT_NAME,STAFF3,,Cluster
+INSTRUMENT_NAME,STAFF4,,Cluster
+INSTRUMENT_NAME,STAFF-SC1,,Cluster
+INSTRUMENT_NAME,STAFF-SC2,,Cluster
+INSTRUMENT_NAME,STAFF-SC3,,Cluster
+INSTRUMENT_NAME,STAFF-SC4,,Cluster
+INSTRUMENT_NAME,STAFF-SA1,,Cluster
+INSTRUMENT_NAME,STAFF-SA2,,Cluster
+INSTRUMENT_NAME,STAFF-SA3,,Cluster
+INSTRUMENT_NAME,STAFF-SA4,,Cluster
+INSTRUMENT_NAME,WBD1,,Cluster
+INSTRUMENT_NAME,WBD2,,Cluster
+INSTRUMENT_NAME,WBD3,,Cluster
+INSTRUMENT_NAME,WBD4,,Cluster
+INSTRUMENT_NAME,WHISPER1,,Cluster
+INSTRUMENT_NAME,WHISPER2,,Cluster
+INSTRUMENT_NAME,WHISPER3,,Cluster
+INSTRUMENT_NAME,WHISPER4,,Cluster
+INSTRUMENT_NAME,AUX1,,Cluster
+INSTRUMENT_NAME,AUX2,,Cluster
+INSTRUMENT_NAME,AUX3,,Cluster
+INSTRUMENT_NAME,AUX4,,Cluster
+INSTRUMENT_NAME,AUXC,,Cluster
+INSTRUMENT_NAME,Multiple,"Multiple (Multiple is used for compound para , see Sect. 7.4.1)",Cluster
+INSTRUMENT_NAME,ASPOC-D1,,Double Star
+INSTRUMENT_NAME,DWP-D1,,Double Star
+INSTRUMENT_NAME,FGM-D1,,Double Star
+INSTRUMENT_NAME,FGM-D2,,Double Star
+INSTRUMENT_NAME,HEED-D1,,Double Star
+INSTRUMENT_NAME,HEED-D2,,Double Star
+INSTRUMENT_NAME,HEPD-D1,,Double Star
+INSTRUMENT_NAME,HEPD-D2,,Double Star
+INSTRUMENT_NAME,HIA-D1,,Double Star
+INSTRUMENT_NAME,HID-D1,,Double Star
+INSTRUMENT_NAME,HID-D2,,Double Star
+INSTRUMENT_NAME,PEACE-D1,,Double Star
+INSTRUMENT_NAME,PEACE-D2,,Double Star
+INSTRUMENT_NAME,STAFF-D1,,Double Star
+INSTRUMENT_NAME,STAFF-DWP-D1,,Double Star
+INSTRUMENT_NAME,LEFW-D2,,Double Star
+INSTRUMENT_NAME,LEID-D2,,Double Star
+INSTRUMENT_NAME,NUADU-D2,,Double Star
+INSTRUMENT_NAME,AUX-D1,,Double Star
+INSTRUMENT_NAME,AUX-D2,,Double Star
+PARENT_INSTRUMENT,ASPOC1,,Cluster
+PARENT_INSTRUMENT,ASPOC2,,Cluster
+PARENT_INSTRUMENT,ASPOC3,,Cluster
+PARENT_INSTRUMENT,ASPOC4,,Cluster
+PARENT_INSTRUMENT,CIS1,,Cluster
+PARENT_INSTRUMENT,CIS2,,Cluster
+PARENT_INSTRUMENT,CIS3,,Cluster
+PARENT_INSTRUMENT,CIS4,,Cluster
+PARENT_INSTRUMENT,CIS-CODIF1,,Cluster
+PARENT_INSTRUMENT,CIS-CODIF2,,Cluster
+PARENT_INSTRUMENT,CIS-CODIF3,,Cluster
+PARENT_INSTRUMENT,CIS-CODIF4,,Cluster
+PARENT_INSTRUMENT,CIS-HIA1,,Cluster
+PARENT_INSTRUMENT,CIS-HIA2,,Cluster
+PARENT_INSTRUMENT,CIS-HIA3,,Cluster
+PARENT_INSTRUMENT,CIS-HIA4,,Cluster
+PARENT_INSTRUMENT,DWP1,,Cluster
+PARENT_INSTRUMENT,DWP2,,Cluster
+PARENT_INSTRUMENT,DWP3,,Cluster
+PARENT_INSTRUMENT,DWP4,,Cluster
+PARENT_INSTRUMENT,EDI1,,Cluster
+PARENT_INSTRUMENT,EDI2,,Cluster
+PARENT_INSTRUMENT,EDI3,,Cluster
+PARENT_INSTRUMENT,EDI4,,Cluster
+PARENT_INSTRUMENT,EFW1,,Cluster
+PARENT_INSTRUMENT,EFW2,,Cluster
+PARENT_INSTRUMENT,EFW3,,Cluster
+PARENT_INSTRUMENT,EFW4,,Cluster
+PARENT_INSTRUMENT,FGM1,,Cluster
+PARENT_INSTRUMENT,FGM2,,Cluster
+PARENT_INSTRUMENT,FGM3,,Cluster
+PARENT_INSTRUMENT,FGM4,,Cluster
+PARENT_INSTRUMENT,PEACE1,,Cluster
+PARENT_INSTRUMENT,PEACE2,,Cluster
+PARENT_INSTRUMENT,PEACE3,,Cluster
+PARENT_INSTRUMENT,PEACE4,,Cluster
+PARENT_INSTRUMENT,RAPID1,,Cluster
+PARENT_INSTRUMENT,RAPID2,,Cluster
+PARENT_INSTRUMENT,RAPID3,,Cluster
+PARENT_INSTRUMENT,RAPID4,,Cluster
+PARENT_INSTRUMENT,STAFF1,,Cluster
+PARENT_INSTRUMENT,STAFF2,,Cluster
+PARENT_INSTRUMENT,STAFF3,,Cluster
+PARENT_INSTRUMENT,STAFF4,,Cluster
+PARENT_INSTRUMENT,STAFF-SC1,,Cluster
+PARENT_INSTRUMENT,STAFF-SC2,,Cluster
+PARENT_INSTRUMENT,STAFF-SC3,,Cluster
+PARENT_INSTRUMENT,STAFF-SC4,,Cluster
+PARENT_INSTRUMENT,STAFF-SA1,,Cluster
+PARENT_INSTRUMENT,STAFF-SA2,,Cluster
+PARENT_INSTRUMENT,STAFF-SA3,,Cluster
+PARENT_INSTRUMENT,STAFF-SA4,,Cluster
+PARENT_INSTRUMENT,WBD1,,Cluster
+PARENT_INSTRUMENT,WBD2,,Cluster
+PARENT_INSTRUMENT,WBD3,,Cluster
+PARENT_INSTRUMENT,WBD4,,Cluster
+PARENT_INSTRUMENT,WHISPER1,,Cluster
+PARENT_INSTRUMENT,WHISPER2,,Cluster
+PARENT_INSTRUMENT,WHISPER3,,Cluster
+PARENT_INSTRUMENT,WHISPER4,,Cluster
+PARENT_INSTRUMENT,AUX1,,Cluster
+PARENT_INSTRUMENT,AUX2,,Cluster
+PARENT_INSTRUMENT,AUX3,,Cluster
+PARENT_INSTRUMENT,AUX4,,Cluster
+PARENT_INSTRUMENT,AUXC,,Cluster
+PARENT_INSTRUMENT,Multiple,"Multiple (Multiple is used for compound para , see Sect. 7.4.1)",Cluster
+PARENT_INSTRUMENT,ASPOC-D1,,Double Star
+PARENT_INSTRUMENT,DWP-D1,,Double Star
+PARENT_INSTRUMENT,FGM-D1,,Double Star
+PARENT_INSTRUMENT,FGM-D2,,Double Star
+PARENT_INSTRUMENT,HEED-D1,,Double Star
+PARENT_INSTRUMENT,HEED-D2,,Double Star
+PARENT_INSTRUMENT,HEPD-D1,,Double Star
+PARENT_INSTRUMENT,HEPD-D2,,Double Star
+PARENT_INSTRUMENT,HIA-D1,,Double Star
+PARENT_INSTRUMENT,HID-D1,,Double Star
+PARENT_INSTRUMENT,HID-D2,,Double Star
+PARENT_INSTRUMENT,PEACE-D1,,Double Star
+PARENT_INSTRUMENT,PEACE-D2,,Double Star
+PARENT_INSTRUMENT,STAFF-D1,,Double Star
+PARENT_INSTRUMENT,STAFF-DWP-D1,,Double Star
+PARENT_INSTRUMENT,LEFW-D2,,Double Star
+PARENT_INSTRUMENT,LEID-D2,,Double Star
+PARENT_INSTRUMENT,NUADU-D2,,Double Star
+PARENT_INSTRUMENT,AUX-D1,,Double Star
+PARENT_INSTRUMENT,AUX-D2,,Double Star
+MEASUREMENT_TYPE,Activity_Index,"An indication, derived from one or more measurements, of the level of activity of an object or region, such as sunspot number, F10.7 flux, Dst, or the Polar Cap Indices.",
+MEASUREMENT_TYPE,Electric_Field,Measurements of electric field vectors (sometimes not all components) as time series.,
+MEASUREMENT_TYPE,Electron_Drift,An active experiment to measure the electron drift velocity based on sensing the displacement of a weak beam of electrons after one gyration in the ambient magnetic field.,
+MEASUREMENT_TYPE,Emitted_Current,The current emitted by an electron gun or a device to control the spacecraft potential.,
+MEASUREMENT_TYPE,Energetic_Particles,"Measurements of fluxes particles at above thermal energies, including relativistic particles of solar and galactic origin. May give simple fluxes, but more complete distributions are some times possible. Composition measurements may also be made.",
+MEASUREMENT_TYPE,Instrument_Status,,
+MEASUREMENT_TYPE,Ion_Composition,"In situ measurements of the relative flux or density of (usually atomic) constituents of the space environment. May give simple fluxes, but full distribution functions are sometimes measured.",
+MEASUREMENT_TYPE,Magnetic_Field,Measurements of magnetic field vectors (sometimes not all components) as time series; can be space-or ground-based,
+MEASUREMENT_TYPE,Neutral_Atom_Images,Measurements of the quantity of ions of various particle species using the charge exchange of the ions with neutrals that then move freely from the source region to the detector.,
+MEASUREMENT_TYPE,Neutral_Gas,Measurements of neutral atomic and molecular components of the Earth and space environments.,
+MEASUREMENT_TYPE,Particle_Correlator,A particle instrument which correlates particle flux to help identify wave phenomena,
+MEASUREMENT_TYPE,Radio_and_Plasma_Waves,"Measurements of low-frequency electromagnetic waves in spectral bands; can be given by peak values or spectral densities, and may give polarization information.",
+MEASUREMENT_TYPE,Radio_Soundings,"Measurements of position, density and/or velocity of ionized constituents of the space environment using the active probing of the plasma by radio waves.",
+MEASUREMENT_TYPE,Spacecraft_Potential_Cont,An instrument to control the electric potential of a spacecraft with respect to the ambient plasma by emitting a variable current of positive ions.,
+MEASUREMENT_TYPE,Spacecraft_Status,,
+MEASUREMENT_TYPE,Status,"Ephemeris, attitude, housekeeping, engineering, or other properties of an observatory or spacecraft relevant to the functioning of the scientific measuring devices present.",
+MEASUREMENT_TYPE,Thermal_Plasma,"Measurements of the main thermal distributions of particles, typically electrons, protons, and/or alpha particles. Generally used to determine the main bulk properties of the plasma by moments or fits to distribution functions.",
+DATASET_ID,x,,
+DATA_TYPE,x,,
+PROCESSING_LEVEL,Raw,Data which has decommuted but not otherwise modified.,
+PROCESSING_LEVEL,Uncalibrated,"Data which has been pre-processed ready for calibration, but upon which no irreversible operation has been performed (no telemetry information lost).",
+PROCESSING_LEVEL,Calibrated,Data which is in known physical units described by the parameter SI CONVERSION. Particle flux rates (distribution functions) are in this category.,
+PROCESSING_LEVEL,Derived,"Parameters derived from the calibrated data, such as the plasma moments derived by integrating over the particle distribution function. Parameters derived using some physical model to interpret the data, for example the plasma density derived from either wave spectra or a Langmuir probe, are also in this category.",
+PROCESSING_LEVEL,Auxiliary,"Additional data which is not really part of the science dataset, but which is included because it is useful for the scientific analysis.",
+PARAMETER_TYPE,Data,A scientific parameter.,
+PARAMETER_TYPE,Support_Data,In formation needed to interpret the scientific parameter.,
+ENTITY,Aerosol,,
+ENTITY,Alpha,,
+ENTITY,Compound,"data from more than one experiment, see Sect. 7.4)",
+ENTITY,Dust,,
+ENTITY,Electric_Field,,
+ENTITY,Electron,,
+ENTITY,Helium+,,
+ENTITY,Instrument,,
+ENTITY,Ion_CNO,,
+ENTITY,Ion,,
+ENTITY,Magnetic_Field,,
+ENTITY,Molecule,,
+ENTITY,Neutral,,
+ENTITY,Observatory,,
+ENTITY,Oxygen+,,
+ENTITY,Other1,,
+ENTITY,Other2,,
+ENTITY,Particles,,
+ENTITY,Photon,these two are used for the Auxiliary Data,
+ENTITY,Proton,these two are used for the Auxiliary Data,
+PROPERTY,Charge_Density,,Particle-type
+PROPERTY,Coordinate_rotation,,Particle-type
+PROPERTY,Corrected_Particle_Count_Rate,The Raw Particle Count Rate corrected for the detector efficiency.,Particle-type
+PROPERTY,Current,,Particle-type
+PROPERTY,Differential_Energy_Flux,,Particle-type
+PROPERTY,Differential_Particle_Flux,"The number of particles, per unit area, per unit time, per unit solid angle, per unit of energy",Particle-type
+PROPERTY,Emitted_current,,Particle-type
+PROPERTY,Energy,,Particle-type
+PROPERTY,Heat_Flux,,Particle-type
+PROPERTY,Integral_Particle_Flux,"The number of particles, per unit area, per unit time, per unit solid angle, independent of their energy. This is the differential particle flux integrated over the complete energy range of the detector.",Particle-type
+PROPERTY,Mass_Density,,Particle-type
+PROPERTY,Mass_Flux,,Particle-type
+PROPERTY,Number_Density,,Particle-type
+PROPERTY,Particle_Energy_Flux,"This is the differential particle flux multiplied by the particle energy, and integrated over the detector energy range. It is typically expressed in units keV cm-2 s-1 sr-1 keV-1 which may seem somewhat strange (keV ... keV-1)",Particle-type
+PROPERTY,Phase_Space_Density,,Particle-type
+PROPERTY,Pressure,,Particle-type
+PROPERTY,Pressure_Tensor,,Particle-type
+PROPERTY,Raw_Particle_Count_Rate,The count rate expressed in particles per second.,Particle-type
+PROPERTY,Raw_Particle_Counts,"The number of particles counted during an interval long enough to provide a statistically significant result, whose duration is given by one of the DEPEND_i variables",Particle-type
+PROPERTY,Speed,,Particle-type
+PROPERTY,Status,"Used with ENTITY=""Spacecraft"" or ENTITY=""Instrument""",Particle-type
+PROPERTY,Temperature,,Particle-type
+PROPERTY,Time_Offset,,Particle-type
+PROPERTY,Time-of-flight,,Particle-type
+PROPERTY,Vector_Mass_Flux,,Particle-type
+PROPERTY,Velocity,,Particle-type
+PROPERTY,Component,,Field-type
+PROPERTY,Direction,,Field-type
+PROPERTY,Magnitude,,Field-type
+PROPERTY,Potential,,Field-type
+PROPERTY,Probe_Potential,,Field-type
+PROPERTY,Vector,,Field-type
+PROPERTY,Photon_Flux,,Optical
+FLUCTUATIONS,Waveform,(default value) it is the parameter itself which is provided.,
+FLUCTUATIONS,Bispectrum,,
+FLUCTUATIONS,Correlation,,
+FLUCTUATIONS,Covariance,,
+FLUCTUATIONS,Cross Correlation,,
+FLUCTUATIONS,Fluctuation_Level,"For a signal x which has been averaged, this is the rms value (x − x )2 > of the fluctuations1 with respect to the mean < value x =< x > during the averaging interval. It is an indicator of how much “information” has been lost during averaging, i.e., the amplitude of the fluctuations resolved by the instrument but not transmitted to the telemetry (see Sect. 7.10, page 24).",
+FLUCTUATIONS,Fourier_Cross_power-spectrum,,
+FLUCTUATIONS,Fourier_Cross-spectrum,,
+FLUCTUATIONS,Fourier_Power-spectrum,,
+FLUCTUATIONS,Fourier-spectrum,,
+FLUCTUATIONS,Mean_Square_Level,"The mean power spectral density over a wide range of frequencies obtained, for example, by averaging the power spectral density over a number of frequency channels, or by bandpass pre-detector filtering. Differs from the Fluctuation Level in that the spectral bandpass characteristic of the fluctuations is better known.",
+FLUCTUATIONS,Polarisation,,
+FLUCTUATIONS,Poynting_vector,,
+FLUCTUATIONS,Stokes_Parameters,,
+FLUCTUATIONS,Wavelet_Cross-power-spectrum,,
+FLUCTUATIONS,Wavelet_Cross-spectrum,,
+FLUCTUATIONS,Wavelet_Power-spectrum,,
+FLUCTUATIONS,Wavelet-spectrum,,
+COMPOUND,Plasma beta,,
+COMPOUND,Alfven velocity,,
+TENSOR_ORDER,0,a scalar quantity (the default value),
+TENSOR_ORDER,1,"vector (i.e., a tensor of order 1)",
+TENSOR_ORDER,2,tensor of order 2,
+TENSOR_ORDER,3,tensor of order 3,
+COORDINATE_SYSTEM,FAC,Field-Aligned Coordinates,
+COORDINATE_SYSTEM,GEI,Geocentric Equatorial Inertial,
+COORDINATE_SYSTEM,GEOC,Geographic (geocentric),
+COORDINATE_SYSTEM,GSE,Geocentric Solar Ecliptic,
+COORDINATE_SYSTEM,GSEQ,Geocentric Solar Equatorial,
+COORDINATE_SYSTEM,GSM,Geocentric Solar Magnetic,
+COORDINATE_SYSTEM,HAE,Heliospheric Aries Ecliptic,
+COORDINATE_SYSTEM,HEE,Heliospheric Earth Ecliptic,
+COORDINATE_SYSTEM,HEEQ,Heliospheric Earth Equatorial,
+COORDINATE_SYSTEM,ISR2,Inverted (about x-axis) SR2,
+COORDINATE_SYSTEM,MAGD,Geomagnetic (dipole),
+COORDINATE_SYSTEM,MFA,Magnetic Field-Aligned,
+COORDINATE_SYSTEM,SC,SpaceCraft (body-build) coordinates,
+COORDINATE_SYSTEM,SM,Solar Magnetic,
+COORDINATE_SYSTEM,SR2,Despun spacecraft (spin-reference) frame,
+COORDINATE_SYSTEM,Instrument,Instrument specific,
+COORDINATE_SYSTEM,Data,Data-derived,
+SI_CONVERSION,m,metre,
+SI_CONVERSION,N,newton,
+SI_CONVERSION,kg,kilogram,
+SI_CONVERSION,Pa,pascal,
+SI_CONVERSION,s,second,
+SI_CONVERSION,Hz,hertz,
+SI_CONVERSION,A,ampere,
+SI_CONVERSION,V,volt,
+SI_CONVERSION,K,kelvin,
+SI_CONVERSION,W,watt,
+SI_CONVERSION,rad,radian,
+SI_CONVERSION,J,joule,
+SI_CONVERSION,sr,steradian,
+SI_CONVERSION,C,coulomb,
+SI_CONVERSION,T,tesla,
+SI_CONVERSION,ohm,ohm,
+SI_CONVERSION,mho,mho (siemens),
+SI_CONVERSION,H,henry,
+SI_CONVERSION,F,farad,
+FRAME_ORIGIN,Observatory,,
+FRAME_VELOCITY,Observatory,,
+FRAME_VELOCITY,Inertial,,
+FRAME_VELOCITY,Earth_Corotating,,
+REPRESENTATION,x,,
+VALUE_TYPE,CHAR,,
+VALUE_TYPE,DOUBLE,,
+VALUE_TYPE,FLOAT,,
+VALUE_TYPE,INT,,
+VALUE_TYPE,ISO_TIME,,
+VALUE_TYPE,ISO_TIME_RANGE,,
+QUALITY,0,Not applicable or scientifically unusable data (e.g. due to incorrect instrument settings),
+QUALITY,1,"Data contain errors very likely (if used, discussion with the data provider is recommended)",
+QUALITY,2,"Data can have systematic errors, e.g. offsets (if used, discussion with the data provider is recommended)",
+QUALITY,3,Good for publication,
+QUALITY,4,Good for publication; data have been manually calibrated/confirmed or have received special treatment,
+SCALETYP,Linear,default,
+SCALETYP,Log,,
+DISPLAYTYPE,Time_Series,"A normal 2-D line plot, with the DEPEND_0 variable (which is normally time) plotted along the abscissa and the physical parameter plotted along the ordinate.",
+DISPLAYTYPE,Spectrogram,"A 3-D plot (spectrogram), in which the DEPEND_0 variable is plotted along the abscissa, the DEPEND_1 variable is plotted along the ordinate, and the physical parameter is represented by variations of colour, or shades of grey.",
+DISPLAYTYPE,Stack_Plot,"An ensemble of time series plots, for which each 2-D line plot has been offset in the ordinate direction by an amount which depends upon the DEPEND_1 variable. Successive line plots appeared to be “stacked” one above the other",
+FILE_TYPE,cdf,Common Data Format,
+FILE_TYPE,cef,Cluster Exchange Format,
+FILE_TYPE,txt,An ASCII text file,
+FILE_TYPE,ps,PostScript png,
+FILE_TYPE,gif,Graphical Interface Format,
+FILE_TYPE,jpg,Abbreviation for jpeg,
+FILE_TYPE,jpeg,Joint Photographic Experts Group format pdf Portable Document Format,
+FILE_TYPE,tex,A TEX or LATEX document source file,
+FILE_TYPE,doc,Microsoft Word document file tiff,
+METADATA_TYPE,CAA,Cluster Active Archive,
+METADATA_TYPE,CSDS,Cluster Science Data System metadata dictionary may be used for the CSDS products,
+TENSOR_FRAME,Instrument,,
+TENSOR_FRAME,MFA,,
+TARGET_SYSTEM,Other,,
+TARGET_SYSTEM,TENSOR_FRAME,can also take any value supported by TENSOR_FRAME,

@@ -175,18 +175,13 @@ type MddData struct {
 
 func NewMddData_Base(i_path_keywords, i_path_enums string) *MddData {
     
-    //x wd, err := os.Getwd()
-    //x if err != nil {
-    //x     return nil
-    //x }
-    
     mdd_data := &MddData{ m_keywords: make(map[string]*KeywordData), 
                           m_enums: make(map[string]map[string]*EnumData) }
 
     // read Enums
     for r := range read_csv(i_path_enums) {
         //x fmt.Println(r[0], r[1])
-        mdd_data.add_enum(r[0], r[1], &EnumData{description: r[2], additional: r[2]})
+        mdd_data.add_enum(r[0], r[1], &EnumData{description: r[2], additional: r[3]})
     }
 
     // read Keywords
@@ -243,6 +238,12 @@ func (d *MddData) add_enum(i_keyword,
         fmt.Println("New Enum: " + i_keyword)
     }
 
+    
+    if i_keyword == "PARAMETER_TYPE" {
+        fmt.Println("#+: ", i_keyword, i_definition)
+    }
+    
+    
     _, present = d.m_enums[i_keyword][i_definition]
     if present == true {
         return errors.New("Error: add_enum: keyword[definition] exists")
@@ -258,7 +259,6 @@ func (d *MddData) add_keyword(i_keyword string,
 
     _, present := d.m_keywords[i_keyword]
     if present == false {
-//x         d.m_keywords[i_keyword] = *i_kw_data
         d.m_keywords[i_keyword] = i_kw_data
     } else {
         return errors.New("Error: add_keyword: keyword exists")
@@ -275,7 +275,16 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
     }
     
     f =  func(v string) (e error) {
-        _, p := enums[v]
+        //x fmt.Printf("#?: [%s] [%s]\n", i_keyword, v)
+        v1 := strings.Trim(v, "\"'`")
+        
+        _, p := enums[v1]
+        
+        //x if i_keyword == "PARAMETER_TYPE" {
+        //x     fmt.Print("############ -> ")
+        //x     fmt.Println(enums[v1])
+        //x }
+        
         if p == false {
             return on_enum_parser_error(i_keyword, v)
         }

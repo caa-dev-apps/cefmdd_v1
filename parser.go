@@ -9,7 +9,7 @@ import (
     "strconv"
     
 //x 	"io/ioutil"
-//x 	"log"
+ 	"log"
 //x 	"net/http"    
 )
 
@@ -191,6 +191,32 @@ func (h *CefHeaderData) dump() (err error) {
 ///////////////////////////////////////////////////////////////////////////////
 //
 
+var (
+    s_mdd_data = NewMddData()
+)
+
+//i type KeyVal struct {
+//i 	key string
+//i 	val []string
+//i     
+//i     line Line       // 
+//i }
+
+func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
+
+    switch {
+        case kv.key == "ENTRY": return
+        default:
+    }
+
+    err = s_mdd_data.test_input(kv)
+    if err != nil {
+        log.Print(err)        
+    }   
+
+    return
+}
+
 func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 
 	switch {
@@ -258,52 +284,21 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 		mooi_log(kv.key, kv.val[0])
 
         // this is where to place the key - val tests //////////////////////////////////////////////
-        
         h.m_cur.push_kv(kv)
+        
+        h.check_mdd(kv)
+        
+//x         err := s_mdd_data.test_input(kv)
+//x         if err != nil {
+//x             log.Print(err)        
+//x         }        
+        
 	}
 
 	return err
 }
 
-
 func NewKV(k, v string) *KeyVal {
     return &KeyVal { key: k, val: []string{ v}}
 }
 
-
-func test_main() {
-
-    v1 := NewCefHeaderData()
-                         
-    v1.add_kv(NewKV("a1", "a1_v1"))
-    v1.add_kv(NewKV("a2", "a2_v1"))
-    
-    v1.add_kv(NewKV("START_META", "META_001"))
-        v1.add_kv(NewKV("m1a", "m1a_v1"))
-        v1.add_kv(NewKV("m1b", "m1b_v1"))
-    v1.add_kv(NewKV("END_META", "META_001"))
-    
-
-    v1.add_kv(NewKV("START_META", "META_002"))
-        v1.add_kv(NewKV("m2a", "m2a_v1"))
-        v1.add_kv(NewKV("m2b", "m2b_v1"))
-    v1.add_kv(NewKV("END_META", "META_002"))
-
-
-    v1.add_kv(NewKV("START_VARIABLE", "VAR_001"))
-        v1.add_kv(NewKV("v1a", "v1a_v1"))
-        v1.add_kv(NewKV("v1b", "v1b_v1"))
-        v1.add_kv(NewKV("v1c", "v1c_v1"))
-    v1.add_kv(NewKV("END_VARIABLE", "VAR_001"))
-    
-
-    v1.add_kv(NewKV("START_VARIABLE", "VAR_002"))
-        v1.add_kv(NewKV("v2a", "v2a_v1"))
-        v1.add_kv(NewKV("v2b", "v2b_v1"))
-        v1.add_kv(NewKV("v2c", "v2c_v1"))
-    v1.add_kv(NewKV("END_VARIABLE", "VAR_002"))
-
-    v1.dump()
-    
-    //x down_latest_csv()
-}

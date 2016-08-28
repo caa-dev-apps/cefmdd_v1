@@ -149,6 +149,10 @@ func Test_all_should_pass(t *testing.T) {
         { key: "LOGICAL_FILE_ID",             val: []string{ "ANY STRING" }},                                      //    1,      1,         String,            
         { key: "METADATA_VERSION",            val: []string{ "ANY TEXT" }},                                        //    0,      1,         Text,              
         { key: "SIGNIFICANT_DIGITS",          val: []string{ "12345678"}},                                         //    1,      1*,        Integer,           
+        
+        { key: "PARAMETER_TYPE",              val: []string{ "\"Support_Data\""}},                                 //    1,      1*,        Enumerated,    
+        { key: "PARAMETER_TYPE",              val: []string{ "Support_Data"}},                                 //    1,      1*,        Enumerated,    
+
     }
 
     for _, d := range l_test_data {

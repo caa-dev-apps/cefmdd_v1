@@ -1,16 +1,8 @@
 package main
 
 import (
-//x     "bufio"
-//x     "encoding/csv"
-//x     "os"
-//x      "errors"
-//x      "fmt"
-//x     "io"
      "log"
-//x     "strings"
      "testing"
-//x     "github.com/caa-dev-apps/cefmdd_v1/_dev"    
 )
 
 //- Keywords
@@ -138,7 +130,8 @@ var (
     mdd_data = NewMddData()
 )
 
-func Test_all_should_pass(t *testing.T) {
+
+func Test_mdd_all_should_pass(t *testing.T) {
 
     l_test_data := []KeyVal {
         { key: "MISSION_REGION",              val: []string{ "Magnetosheath"}},                                    //    1,      N,         Enumerated, 
@@ -149,6 +142,8 @@ func Test_all_should_pass(t *testing.T) {
         { key: "LOGICAL_FILE_ID",             val: []string{ "ANY STRING" }},                                      //    1,      1,         String,            
         { key: "METADATA_VERSION",            val: []string{ "ANY TEXT" }},                                        //    0,      1,         Text,              
         { key: "SIGNIFICANT_DIGITS",          val: []string{ "12345678"}},                                         //    1,      1*,        Integer,           
+                                                              
+        { key: "PARAMETER_TYPE",              val: []string{ "Support_Data"}},                                     //    1,      1*,        Integer,           
     }
 
     for _, d := range l_test_data {
@@ -159,7 +154,7 @@ func Test_all_should_pass(t *testing.T) {
     }
 }
 
-func Test_all_should_fail(t *testing.T) {
+func Test_mdd_all_should_fail(t *testing.T) {
 
     l_test_data := []KeyVal {
         { key: "MISSION_REGION",              val: []string{ "XMagnetosheath"}},                                    //    1,      N,         Enumerated, 
@@ -178,5 +173,30 @@ func Test_all_should_fail(t *testing.T) {
             log.Print(err)        
         }
     }
+}
+
+
+
+
+
+
+
+func Test_mdd_enums(t *testing.T) {
+
+    println("X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X ");
+
+    l_test_data := []KeyVal {
+        { key: "PARAMETER_TYPE",              val: []string{ "Support_Data"}},                                     //    1,      1*,        Integer,           
+    }
+
+    for _, d := range l_test_data {
+        err := mdd_data.test_input(&d)
+        if err != nil {
+            log.Print(err)        
+        }
+    }
+    
+    println("X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X ");
+    
 }
 

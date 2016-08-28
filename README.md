@@ -16,3 +16,20 @@ Under development
 
 # Installation
 go install github.com\caa-dev-apps\cefmdd_v1
+
+
+
+
+
+
+# TODO
+    parser.go 
+    func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) 
+        -> mdd
+        
+        
+        
+  PARAMETER_TYPE error nil
+  
+  
+go test -run name-of-test-pattern  
