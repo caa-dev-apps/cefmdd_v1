@@ -206,12 +206,16 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
 
     switch {
         case kv.key == "ENTRY": return
+        case kv.key == "FILLVAL": return        // multiple types - depends on var type
+        case kv.key == "SIZES": return          // type is FORMAT can be 1 or 1,2 for e.g.
         default:
     }
 
     err = s_mdd_data.test_input(kv)
     if err != nil {
-        log.Print(err)        
+        //x log.Print(err)        
+        log.Printf("%s  (Key = %s)", err.Error(), kv.key)        
+        //x log.Print(err)        
     }   
 
     return
