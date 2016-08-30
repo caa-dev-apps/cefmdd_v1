@@ -1,0 +1,44 @@
+
+
+KEYWORDS.csv
+============
+
+
+from:       UNITS                 1, 1         
+to:         UNITS                 1, N
+
+from:       SI_CONVERSION         1, 1         
+to:         SI_CONVERSION         1, N
+
+
+
+
+
+
+
+ENUMS.csv
+=========
+
+
+added:      SI_CONVERSION	     1.0>s	FIXME																							
+added:      SI_CONVERSION	1>unitless	FIXME																							
+
+
+
+
+
+
+
+
+ON HOLD
+=======
+
+
+    func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
+
+    switch {
+        case kv.key == "ENTRY": return          // check meta or valiable etx
+        case kv.key == "FILLVAL": return        // multiple types - depends on var type
+        case kv.key == "SIZES": return          // type is FORMAT can be 1 or 1,2 for e.g.
+        default:
+    }
