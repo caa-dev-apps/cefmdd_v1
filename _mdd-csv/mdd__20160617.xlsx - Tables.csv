@@ -89,3 +89,6 @@ FILE_SIZE                       ,1,1,Numerical          ,m,CAA        ,14,Float 
 METADATA_TYPE                   ,0,1,Enumerated         ,m,PI         ,14,,,
 METADATA_VERSION                ,0,1,Text               ,m,PI         ,14,,,
 FILE_CAVEATS                    ,0,1,String             ,m,PI         ,14,,,
+FILE_NAME                       ,1,1,String             ,g,XX         ,19,,,
+FILE_FORMAT_VERSION             ,1,1,String             ,g,XX         ,19,,,
+DATA_UNTIL                      ,1,1,String             ,g,XX         ,19,,,
