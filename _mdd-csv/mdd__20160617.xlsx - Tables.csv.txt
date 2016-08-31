@@ -58,9 +58,8 @@ COORDINATE_SYSTEM               ,?,1,Enumerated         ,v,PI         ,10,,IF TE
 FRAME_ORIGIN                    ,0,1,Enumerated         ,,PI         ,10,,,
 FRAME_VELOCITY                  ,0,1,Enumerated         ,v,PI         ,10,,,
 FRAME                           ,?,1,String             ,v,CAA        ,10,,IF TENSOR_ORDER > 0 THIS PARAM IS REQUIRED,
-REPRESENTATION                  ,?,1,Formatted          ,v,PI         ,10,Missing _i ? (ID>Short-name) enum1 > enum2  - both enumerated  ,IF TENSOR_ORDER > 0 THIS PARAM IS REQUIRED,
+REPRESENTATION_i                ,?,1,Formatted          ,v,PI         ,10,Missing _i ? (ID>Short-name) enum1 > enum2  - both enumerated  ,IF TENSOR_ORDER > 0 THIS PARAM IS REQUIRED,
 SIZES                           ,?,N       ,Formatted          ,v,PI         ,11,?? IS THIS RIGHT ?? (ID>Short-name) enum1 > enum2  - both enumerated,,
-DEPEND_0                        ,0,1,String             ,v,PI         ,11,"Not in quotes, it is the name of a parameter",,
 DEPEND_i                        ,0,1,String             ,v,PI         ,11,"_i range of acceptable numbers ; Not in quotes, name of a parameter",,"If DEPEND* points to a parameter in this dataset, that parameter must exist."
 DATA_TYPE??                            ,0,N       ,Formatted          ,v,PI         ,11,(ID>Short-name) enum1 > enum2  - both enumerated,,
 LABEL_i                         ,0,1,String             ,v,PI         ,11,_i range of acceptable numbers,,

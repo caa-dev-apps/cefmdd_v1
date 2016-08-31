@@ -211,6 +211,14 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
         default:
     }
 
+    
+    // todo
+    // DEPEND_i
+    // REPRESENTATION_i
+    // LABEL_i
+    
+    
+    
     err = s_mdd_data.test_input(kv)
     if err != nil {
         //x log.Print(err)        

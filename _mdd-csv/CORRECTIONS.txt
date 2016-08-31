@@ -11,7 +11,9 @@ from:       SI_CONVERSION         1, 1
 to:         SI_CONVERSION         1, N
 
 
-
+            DEPEND_i            // removed DEPEND_0
+            LABEL_i
+            REPRESENTATION_i
 
 
 
@@ -19,12 +21,9 @@ to:         SI_CONVERSION         1, N
 ENUMS.csv
 =========
 
-
 added:      SI_CONVERSION	     1.0>s	FIXME																							
 added:      SI_CONVERSION	1>unitless	FIXME																							
-
-
-
+added:      SI_CONVERSION	1>degree  	FIXME																							
 
 
 
