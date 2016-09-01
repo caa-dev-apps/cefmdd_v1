@@ -11,6 +11,8 @@ from:       SI_CONVERSION         1, 1
 to:         SI_CONVERSION         1, N
 
 
+
+patterns:
             DEPEND_i            // removed DEPEND_0
             LABEL_i
             REPRESENTATION_i

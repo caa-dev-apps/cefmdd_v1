@@ -7,7 +7,7 @@ import (
     "encoding/json"
     "os"
     "strconv"
-    
+    "regexp"
 //x 	"io/ioutil"
  	"log"
 //x 	"net/http"    
@@ -202,22 +202,30 @@ var (
 //i     line Line       // 
 //i }
 
+var (
+    REGX_REPRESENTATION_i, _ = regexp.Compile(`REPRESENTATION_([\d]+)`)
+    REGX_LABEL_i, _ = regexp.Compile(`LABEL_([\d]+)`)
+    REGX_DEPEND_i, _ = regexp.Compile(`DEPEND_([\d]+)`)
+)
+
 func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
 
     switch {
         case kv.key == "ENTRY": return
         case kv.key == "FILLVAL": return        // multiple types - depends on var type
         case kv.key == "SIZES": return          // type is FORMAT can be 1 or 1,2 for e.g.
+        
+        case REGX_REPRESENTATION_i.MatchString(kv.key):  kv.key = `REPRESENTATION_i`
+        case REGX_LABEL_i.MatchString(kv.key):           kv.key = `LABEL_i`
+        case REGX_DEPEND_i.MatchString(kv.key):          kv.key = `DEPEND_i`
+        
         default:
     }
 
-    
     // todo
     // DEPEND_i
     // REPRESENTATION_i
     // LABEL_i
-    
-    
     
     err = s_mdd_data.test_input(kv)
     if err != nil {
