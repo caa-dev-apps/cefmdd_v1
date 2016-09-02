@@ -18,6 +18,16 @@ patterns:
             REPRESENTATION_i
 
 
+from:       REPRESENTATION_i    formatted -> 0, 1
+            LABEL_i             string    -> 0, 1      
+            DEPEND_i            string    -> 0, 1
+            
+to:         REPRESENTATION_i    string    -> 0, N
+            LABEL_i             string    -> 0, N     
+            DEPEND_i            string    -> 0, N
+            
+         
+         
 
 
 ENUMS.csv

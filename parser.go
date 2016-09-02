@@ -208,16 +208,47 @@ var (
     REGX_DEPEND_i, _ = regexp.Compile(`DEPEND_([\d]+)`)
 )
 
+//x func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
+//x 
+//x     switch {
+//x         case kv.key == "ENTRY": return
+//x         case kv.key == "FILLVAL": return        // multiple types - depends on var type
+//x         case kv.key == "SIZES": return          // type is FORMAT can be 1 or 1,2 for e.g.
+//x         
+//x         case REGX_REPRESENTATION_i.MatchString(kv.key):  kv.key = `REPRESENTATION_i`
+//x         case REGX_LABEL_i.MatchString(kv.key):           kv.key = `LABEL_i`
+//x         case REGX_DEPEND_i.MatchString(kv.key):          kv.key = `DEPEND_i`
+//x         
+//x         default:
+//x     }
+//x 
+//x     // todo
+//x     // DEPEND_i
+//x     // REPRESENTATION_i
+//x     // LABEL_i
+//x     
+//x     err = s_mdd_data.test_input(kv)
+//x     if err != nil {
+//x         //x log.Print(err)        
+//x         log.Printf("%s  (Key = %s)", err.Error(), kv.key)        
+//x         //x log.Print(err)        
+//x     }   
+//x 
+//x     return
+//x }
+
 func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
+
+    l_kv := kv
 
     switch {
         case kv.key == "ENTRY": return
         case kv.key == "FILLVAL": return        // multiple types - depends on var type
         case kv.key == "SIZES": return          // type is FORMAT can be 1 or 1,2 for e.g.
         
-        case REGX_REPRESENTATION_i.MatchString(kv.key):  kv.key = `REPRESENTATION_i`
-        case REGX_LABEL_i.MatchString(kv.key):           kv.key = `LABEL_i`
-        case REGX_DEPEND_i.MatchString(kv.key):          kv.key = `DEPEND_i`
+        case REGX_REPRESENTATION_i.MatchString(kv.key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
+        case REGX_LABEL_i.MatchString(kv.key):           l_kv = kv.NewSwitchKey(`LABEL_i`)
+        case REGX_DEPEND_i.MatchString(kv.key):          l_kv = kv.NewSwitchKey(`DEPEND_i`)
         
         default:
     }
@@ -227,15 +258,17 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
     // REPRESENTATION_i
     // LABEL_i
     
-    err = s_mdd_data.test_input(kv)
+    err = s_mdd_data.test_input(l_kv)
     if err != nil {
         //x log.Print(err)        
-        log.Printf("%s  (Key = %s)", err.Error(), kv.key)        
+        //x log.Printf("%s  (Key = %s)", err.Error(), kv.key)        
+        log.Printf("%s  (KeyVal = %s)", err.Error(), kv)        
         //x log.Print(err)        
     }   
 
     return
 }
+
 
 func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 
