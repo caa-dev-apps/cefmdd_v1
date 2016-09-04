@@ -21,7 +21,6 @@ func (d *Diag) Printf(format string, a ...interface{}) {
     fmt.Fprintf(d.m_writer, format, a...)
 }
 
-
 func (d *Diag) Println(ss ...string) {
 
     for _, s := range ss {
@@ -39,27 +38,6 @@ func (d *Diag) PrintlnN(n int, ss ...string) {
 
     d.Println(ss...)
 }
-
-
-//x func (d *Diag) Println(a ...interface{}) {
-//x 
-//x     for _, s := range a {
-//x         fmt.Fprint(d.m_writer, s, "\t")
-//x     }
-//x     fmt.Fprintln(d.m_writer, "")
-//x     
-//x }
-//x 
-//x func (d *Diag) PrintlnN(n int, a ...interface{}) {
-//x 
-//x     for i:=0; i<n; i++ {
-//x         fmt.Fprint(d.m_writer, "", "\t")
-//x     }
-//x 
-//x     d.Println(a...)
-//x }
-
-
 
 func (d *Diag) Flush() {
     d.m_writer.Flush()

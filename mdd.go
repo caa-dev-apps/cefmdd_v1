@@ -129,7 +129,7 @@ func (kw *KeywordData) test_cardinality(kv *KeyVal) (err error) {
             if l != 1 {
                 err = errors.New("Error: Keyword cardinality(1,1) Actual " + ls + " - " + kv.key)
             }
-        case kw.is_range("1", "N") :
+        case kw.is_range("1", "N") :    
             if l == 0 {
                 err = errors.New("Error: Keyword cardinality(1,N) Actual " + ls + " - " + kv.key)
             }

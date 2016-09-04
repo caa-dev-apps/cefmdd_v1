@@ -184,9 +184,6 @@ func (h *CefHeaderData) dump() (err error) {
 	return err
 }
 
-//x func mooi_log(s1, s2 string) {
-//x     fmt.Println(s1, s2)
-//x }
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -195,47 +192,15 @@ var (
     s_mdd_data = NewMddData()
 )
 
-//i type KeyVal struct {
-//i 	key string
-//i 	val []string
-//i     
-//i     line Line       // 
-//i }
-
 var (
     REGX_REPRESENTATION_i, _ = regexp.Compile(`REPRESENTATION_([\d]+)`)
     REGX_LABEL_i, _ = regexp.Compile(`LABEL_([\d]+)`)
     REGX_DEPEND_i, _ = regexp.Compile(`DEPEND_([\d]+)`)
+    
+    s_diag = NewDiag()
 )
 
-//x func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
-//x 
-//x     switch {
-//x         case kv.key == "ENTRY": return
-//x         case kv.key == "FILLVAL": return        // multiple types - depends on var type
-//x         case kv.key == "SIZES": return          // type is FORMAT can be 1 or 1,2 for e.g.
-//x         
-//x         case REGX_REPRESENTATION_i.MatchString(kv.key):  kv.key = `REPRESENTATION_i`
-//x         case REGX_LABEL_i.MatchString(kv.key):           kv.key = `LABEL_i`
-//x         case REGX_DEPEND_i.MatchString(kv.key):          kv.key = `DEPEND_i`
-//x         
-//x         default:
-//x     }
-//x 
-//x     // todo
-//x     // DEPEND_i
-//x     // REPRESENTATION_i
-//x     // LABEL_i
-//x     
-//x     err = s_mdd_data.test_input(kv)
-//x     if err != nil {
-//x         //x log.Print(err)        
-//x         log.Printf("%s  (Key = %s)", err.Error(), kv.key)        
-//x         //x log.Print(err)        
-//x     }   
-//x 
-//x     return
-//x }
+
 
 func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
 
@@ -253,17 +218,16 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
         default:
     }
 
-    // todo
-    // DEPEND_i
-    // REPRESENTATION_i
-    // LABEL_i
-    
     err = s_mdd_data.test_input(l_kv)
     if err != nil {
         //x log.Print(err)        
         //x log.Printf("%s  (Key = %s)", err.Error(), kv.key)        
         log.Printf("%s  (KeyVal = %s)", err.Error(), kv)        
         //x log.Print(err)        
+        
+        //x s_diag.Printf("%s\t(KeyVal = %s)", err.Error(), kv)        
+        //x s_diag.Println("error", kv.key, kv.val[0], err.Error())
+        
     }   
 
     return
@@ -341,10 +305,7 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
         
         h.check_mdd(kv)
         
-//x         err := s_mdd_data.test_input(kv)
-//x         if err != nil {
-//x             log.Print(err)        
-//x         }        
+    
         
 	}
 
