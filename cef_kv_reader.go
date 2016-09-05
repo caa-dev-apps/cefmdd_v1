@@ -65,7 +65,7 @@ type Line struct {
 
 func (l Line) String() string {
 //x      return fmt.Sprintf("{ln: %d  tag: %s  line %s}", l.ln, l.tag, strings.TrimSpace(l.line))
-     return fmt.Sprintf("\n{\n  ln: %d \n  tag: %s \n  line %s\n}\n", l.ln, l.tag, strings.TrimSpace(l.line))
+     return fmt.Sprintf("ln: %d\n  tag: %s\n  line: %s\n", l.ln, l.tag, strings.TrimSpace(l.line))
 }
 
 
@@ -120,8 +120,8 @@ type KeyVal struct {
 }
 
 func (kv KeyVal) String() string {
-     //x return fmt.Sprintf("{key: %s  val: %s  line %s}", kv.key, kv.val, kv.line)
-     return fmt.Sprintf("\n{\n key: %s \n val: %s \n line: %s\n}\n", kv.key, kv.val, kv.line)
+     //x return fmt.Sprintf("\n{\n key: %s \n val: %s \n line: %s\n}\n", kv.key, kv.val, kv.line)
+     return fmt.Sprintf("key: %s\n  val: %s\n  line: %s\n", kv.key, kv.val, kv.line)
 }
 
 func (kv KeyVal) NewSwitchKey(k string) (*KeyVal) {

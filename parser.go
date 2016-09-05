@@ -207,9 +207,9 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
     l_kv := kv
 
     switch {
-        case kv.key == "ENTRY": return
-        case kv.key == "FILLVAL": return        // multiple types - depends on var type
-        case kv.key == "SIZES": return          // type is FORMAT can be 1 or 1,2 for e.g.
+        case kv.key == "ENTRY":     /* log.Println("ENTRY");   */ return
+        case kv.key == "FILLVAL":   /* log.Println("FILLVAL"); */ return        // multiple types - depends on var type
+        case kv.key == "SIZES":     /* log.Println("SIZES");   */return          // type is FORMAT can be 1 or 1,2 for e.g.
         
         case REGX_REPRESENTATION_i.MatchString(kv.key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
         case REGX_LABEL_i.MatchString(kv.key):           l_kv = kv.NewSwitchKey(`LABEL_i`)
@@ -220,19 +220,23 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
 
     err = s_mdd_data.test_input(l_kv)
     if err != nil {
-        //x log.Print(err)        
-        //x log.Printf("%s  (Key = %s)", err.Error(), kv.key)        
-        log.Printf("%s  (KeyVal = %s)", err.Error(), kv)        
-        //x log.Print(err)        
-        
-        //x s_diag.Printf("%s\t(KeyVal = %s)", err.Error(), kv)        
-        //x s_diag.Println("error", kv.key, kv.val[0], err.Error())
-        
+        // details - log.Printf("%s\n  %s\n", err.Error(), kv)        
+        // basic
+        log.Printf("%s\n", err.Error())        
     }   
 
     return
 }
 
+
+func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
+    
+    //x h.m_meta.m_map[h.m_name] = *h.m_cur
+
+    log.Printf("TODO:check_mdd_meta_etx: %s\n",h.m_name)
+    
+    return
+}
 
 func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 
@@ -273,6 +277,9 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 			}
             
             h.m_meta.m_map[h.m_name] = *h.m_cur
+            
+            h.check_mdd_meta_etx()
+            
             h.init()            
             
 		default:
@@ -290,6 +297,8 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
             
             h.m_vars.m_list = append(h.m_vars.m_list, *h.m_cur)
             h.m_vars.m_map[h.m_name] = *h.m_cur
+            
+            
             
             h.init()
                         
