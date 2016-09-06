@@ -27,6 +27,10 @@ to:         REPRESENTATION_i    string    -> 0, N
             DEPEND_i            string    -> 0, N
             
          
+
+from:       DATASET_ID,1,1,   Enumerated         ,m,CAA        ,7,,,
+to:         DATASET_ID,1,1,   string
+
          
 
 
@@ -38,6 +42,7 @@ added:      SI_CONVERSION	1>unitless	FIXME
 added:      SI_CONVERSION	1>degree  	FIXME																							
 
 
+removed:    DATASET_ID,x,,
 
 
 

@@ -128,6 +128,10 @@ func (kv KeyVal) NewSwitchKey(k string) (*KeyVal) {
     return &KeyVal{key: k, val: kv.val, line: kv.line}
 }
 
+func NewMetaKeyVal(k string, v []string) (*KeyVal) {
+    return &KeyVal{key: k, val: v}
+}
+
 
 func eachKeyVal(i_lines chan Line) chan KeyVal {
 	output := make(chan KeyVal, 16)

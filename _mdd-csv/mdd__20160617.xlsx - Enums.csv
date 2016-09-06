@@ -304,7 +304,6 @@ MEASUREMENT_TYPE,Spacecraft_Potential_Cont,An instrument to control the electric
 MEASUREMENT_TYPE,Spacecraft_Status,,
 MEASUREMENT_TYPE,Status,"Ephemeris, attitude, housekeeping, engineering, or other properties of an observatory or spacecraft relevant to the functioning of the scientific measuring devices present.",
 MEASUREMENT_TYPE,Thermal_Plasma,"Measurements of the main thermal distributions of particles, typically electrons, protons, and/or alpha particles. Generally used to determine the main bulk properties of the plasma by moments or fits to distribution functions.",
-DATASET_ID,x,,
 DATA_TYPE,x,,
 PROCESSING_LEVEL,Raw,Data which has decommuted but not otherwise modified.,
 PROCESSING_LEVEL,Uncalibrated,"Data which has been pre-processed ready for calibration, but upon which no irreversible operation has been performed (no telemetry information lost).",

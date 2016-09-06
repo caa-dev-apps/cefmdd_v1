@@ -72,7 +72,6 @@ func (m *Attrs) push_kv(kv *KeyVal) (err error) {
 	return err
 }
 
-
 type Meta struct {
     m_map map[string]Attrs
 }
@@ -209,7 +208,7 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
     switch {
         case kv.key == "ENTRY":     /* log.Println("ENTRY");   */ return
         case kv.key == "FILLVAL":   /* log.Println("FILLVAL"); */ return        // multiple types - depends on var type
-        case kv.key == "SIZES":     /* log.Println("SIZES");   */return          // type is FORMAT can be 1 or 1,2 for e.g.
+        case kv.key == "SIZES":     /* log.Println("SIZES");   */ return        // type is FORMAT can be 1 or 1,2 for e.g.
         
         case REGX_REPRESENTATION_i.MatchString(kv.key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
         case REGX_LABEL_i.MatchString(kv.key):           l_kv = kv.NewSwitchKey(`LABEL_i`)
@@ -231,9 +230,19 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
 
 func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
     
-    //x h.m_meta.m_map[h.m_name] = *h.m_cur
-
-    log.Printf("TODO:check_mdd_meta_etx: %s\n",h.m_name)
+    // log.Printf("TESTING %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
+        
+    l_kv := NewMetaKeyVal(h.m_name, h.m_cur.m_map[`ENTRY`])
+    
+    err = s_mdd_data.test_input(l_kv)
+    if err != nil {
+        // details - log.Printf("%s\n  %s\n", err.Error(), kv)        
+        // basic
+        log.Printf("%s\n", err.Error())        
+        //x log.Printf("\t\tTESTING %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
+        
+    }   
+    
     
     return
 }

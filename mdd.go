@@ -9,6 +9,7 @@ import (
     "io"
     "log"
     "strings"
+    "strconv"
 //x     "testing"
 )
 
@@ -117,7 +118,8 @@ func (kw *KeywordData) is_range(lo, hi string) (bool) {
 func (kw *KeywordData) test_cardinality(kv *KeyVal) (err error) {
     
     l := len(kv.val)
-    ls := string(l)
+    //x ls := string(l)
+    ls := strconv.Itoa(l)
     switch {
         case kw.is_range("0", "1") :
             if l > 1 {
@@ -127,6 +129,7 @@ func (kw *KeywordData) test_cardinality(kv *KeyVal) (err error) {
             // anything is good!
         case kw.is_range("1", "1") :
             if l != 1 {
+//x                 fmt.Printf("___________________________________ 0,1 %d \n", len(kv.val))
                 err = errors.New("Error: Keyword cardinality(1,1) Actual " + ls + " - " + kv.key)
             }
         case kw.is_range("1", "N") :    
@@ -154,7 +157,10 @@ func (kw *KeywordData) test_cardinality(kv *KeyVal) (err error) {
 func (kw *KeywordData) parse_value_type(kv *KeyVal) (err error) {
 
     for _, v := range kv.val {
-        err = kw.kw_type_parser(v)
+        
+        v1 := strings.Trim(v, "\"'`")
+        
+        err = kw.kw_type_parser(v1)
         if err != nil {
             return
         }
@@ -362,5 +368,4 @@ func (d *MddData) test_input_kv2(k string,
 func NewMddData() *MddData {
    return NewMddData_Base("C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Tables.csv", 
                           "C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Enums.csv")
-     
 }
