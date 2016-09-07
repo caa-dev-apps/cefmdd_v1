@@ -129,7 +129,6 @@ func (kw *KeywordData) test_cardinality(kv *KeyVal) (err error) {
             // anything is good!
         case kw.is_range("1", "1") :
             if l != 1 {
-//x                 fmt.Printf("___________________________________ 0,1 %d \n", len(kv.val))
                 err = errors.New("Error: Keyword cardinality(1,1) Actual " + ls + " - " + kv.key)
             }
         case kw.is_range("1", "N") :    
@@ -366,6 +365,7 @@ func (d *MddData) test_input_kv2(k string,
 
 
 func NewMddData() *MddData {
-   return NewMddData_Base("C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Tables.csv", 
+   //x return NewMddData_Base("C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Tables.csv", 
+    return NewMddData_Base("C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Keywords.csv", 
                           "C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Enums.csv")
 }

@@ -31,7 +31,10 @@ to:         REPRESENTATION_i    string    -> 0, N
 from:       DATASET_ID,1,1,   Enumerated         ,m,CAA        ,7,,,
 to:         DATASET_ID,1,1,   string
 
-         
+     
+from        PARENT_DATASET   ,1,1,Enumerated         ,m,PI         ,14,,,
+to:         PARENT_DATASET   ,1,1,String         ,m,PI         ,14,,,
+     
 
 
 ENUMS.csv
