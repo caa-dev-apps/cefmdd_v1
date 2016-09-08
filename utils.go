@@ -101,18 +101,18 @@ func numerical_parser(v string) (err error) {
 
 func string_parser(v string) (err error) { 
     
-    if len(v) == 0 {
-        return on_parser_error("String", v)
-    }
+//x     if len(v) == 0 {
+//x         return on_parser_error("String", v)
+//x     }
     
     return 
 }
 
 func text_parser(v string) (err error) { 
 
-    if len(v) == 0 {
-        return on_parser_error("String", v)
-    }
+//x     if len(v) == 0 {
+//x         return on_parser_error("String", v)
+//x     }
     
     return 
 }

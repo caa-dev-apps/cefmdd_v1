@@ -222,6 +222,7 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
         // details - log.Printf("%s\n  %s\n", err.Error(), kv)        
         // basic
         log.Printf("%s\n", err.Error())        
+        // log.Printf("\t\tTESTING-1 %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
     }   
 
     return
@@ -239,8 +240,7 @@ func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
         // details - log.Printf("%s\n  %s\n", err.Error(), kv)        
         // basic
         log.Printf("%s\n", err.Error())        
-        //x log.Printf("\t\tTESTING %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
-        
+        // log.Printf("\t\tTESTING-2 %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
     }   
     
     
