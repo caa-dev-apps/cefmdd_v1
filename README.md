@@ -19,14 +19,17 @@ go install github.com\caa-dev-apps\cefmdd_v1
 
 
 ## Config
-During development 2 of the worksheets (Keywords, Enums) from the cannonical Google hosted Excel workbook (linked to above)
-are copied to the home/user/.cefmdd_v1 folder as csv files and used by the cefmdd_v1 app for data at startup.
+During development, 2 of the worksheets (Keywords, Enums) from the cannonical Google hosted Excel workbook (linked to above)
+are copied to the home/user/.cefmdd_v1 folder as csv files and used by the cefmdd_v1 on startup for its rules.
 
 
 ## Example test run
 set INC_0=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/HEADERS
+
 set INC_1=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/HEADERS/EDI
+
 set TEST_FILE_4=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/CEF/EDI/C3_CP_EDI_QZC__20111021_V01.cef.gz
+
 
 cefmdd_v1 -i %INC_0% -i %INC_1% -f %TEST_FILE_4% 
 
