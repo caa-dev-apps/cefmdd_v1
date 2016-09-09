@@ -1,13 +1,11 @@
 @echo off
 
-set TEST_HOME=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_
-
-set INC_0=%TEST_HOME%/header_includes
-set INC_1=%TEST_HOME%/header_includes/whisper
+set INC_0=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/header_includes
+set INC_1=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/header_includes/whisper
+set TEST_FILE_4=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/CEF/WHISPER/C1_CP_WHI_ELECTRON_DENSITY__20080704_V01.cef.gz
 
 @echo on
 
-cefmdd_v1.exe -i %INC_0% -i %INC_1% -f %TEST_HOME%/CEF/WHISPER/C1_CP_WHI_ELECTRON_DENSITY__20080704_V01.cef.gz
-
+cefmdd_v1 -i %INC_0% -i %INC_1% -f %TEST_FILE_5%
 pause
 

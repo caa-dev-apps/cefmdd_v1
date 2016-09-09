@@ -17,6 +17,12 @@ ON HOLD
 KEYWORDS.csv
 ============
 
+patterns:
+            DEPEND_i                    // removed DEPEND_0
+            LABEL_i
+            REPRESENTATION_i
+
+
 
 from:       UNITS                       1, 1         
 to:         UNITS                       1, N
@@ -24,11 +30,6 @@ to:         UNITS                       1, N
 from:       SI_CONVERSION               1, 1         
 to:         SI_CONVERSION               1, N
 
-
-patterns:
-            DEPEND_i                    // removed DEPEND_0
-            LABEL_i
-            REPRESENTATION_i
 
 
 from:       REPRESENTATION_i            formatted -> 0, 1
@@ -65,11 +66,6 @@ to:         MISSION_DESCRIPTION         ,1,N,       String
             DATASET_DESCRIPTION         ,1,N,       String
             INVESTIGATOR_COORDINATES    ,1,N,       String      
             DATASET_CAVEATS             ,0,N,       String
-     
-
-
-     
-     
      
      
      

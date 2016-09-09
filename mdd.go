@@ -240,15 +240,9 @@ func (d *MddData) add_enum(i_keyword,
     _, present := d.m_enums[i_keyword]
     if present == false {
         d.m_enums[i_keyword] = make(map[string]*EnumData)
-        fmt.Println("New Enum: " + i_keyword)
+        //- fmt.Println("New Enum: " + i_keyword)
     }
 
-    
-    if i_keyword == "PARAMETER_TYPE" {
-        fmt.Println("#+: ", i_keyword, i_definition)
-    }
-    
-    
     _, present = d.m_enums[i_keyword][i_definition]
     if present == true {
         return errors.New("Error: add_enum: keyword[definition] exists")
@@ -366,6 +360,9 @@ func (d *MddData) test_input_kv2(k string,
 
 func NewMddData() *MddData {
    //x return NewMddData_Base("C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Tables.csv", 
+   
+   fmt.Println("Home folder -> ", UserHomeDir())
+   
     return NewMddData_Base("C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Keywords.csv", 
                           "C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Enums.csv")
 }

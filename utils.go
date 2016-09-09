@@ -7,7 +7,29 @@ import (
     "strconv"
     "errors"
     "strings"
+    "runtime"
 )
+
+///////////////////////////////////////////////////////////////////////////////
+//
+
+func UserHomeDir() string {
+    
+    pwd, _ := os.Getwd()
+    fmt.Println("Getwd : ", pwd)
+    
+    
+    
+    if runtime.GOOS == "windows" {
+        home := os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")
+        
+        if home == "" {
+            home = os.Getenv("USERPROFILE")
+        }
+        return home
+    }
+    return os.Getenv("HOME")
+}
 
 func error_check(err error, i_s string) {
 	if err != nil {
