@@ -357,12 +357,10 @@ func (d *MddData) test_input_kv2(k string,
     return 
 }
 
-
 func NewMddData() *MddData {
-   //x return NewMddData_Base("C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Tables.csv", 
    
-   fmt.Println("Home folder -> ", UserHomeDir())
+    fmt.Println("Home folder -> ", UserHomeDir())
    
-    return NewMddData_Base("C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Keywords.csv", 
-                          "C:\\work.dev.go\\src\\github.com\\caa-dev-apps\\cefmdd_v1\\_mdd-csv\\mdd__20160617.xlsx - Enums.csv")
+    return NewMddData_Base(CefMddDir() + `/Keywords.csv`, 
+                           CefMddDir() + `/Enums.csv`)
 }

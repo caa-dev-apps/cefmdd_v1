@@ -18,8 +18,6 @@ func UserHomeDir() string {
     pwd, _ := os.Getwd()
     fmt.Println("Getwd : ", pwd)
     
-    
-    
     if runtime.GOOS == "windows" {
         home := os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")
         
@@ -30,6 +28,11 @@ func UserHomeDir() string {
     }
     return os.Getenv("HOME")
 }
+
+func CefMddDir() string {
+    return UserHomeDir() + `/.cefmdd_v1`
+}
+
 
 func error_check(err error, i_s string) {
 	if err != nil {

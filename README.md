@@ -20,7 +20,7 @@ go install github.com\caa-dev-apps\cefmdd_v1
 
 ## Config
 During development, 2 of the worksheets (Keywords, Enums) from the cannonical Google hosted Excel workbook (linked to above)
-are copied to the home/user/.cefmdd_v1 folder as csv files and used by the cefmdd_v1 on startup for its rules.
+are copied to the /home/user/.cefmdd_v1 folder as csv files and used by the cefmdd_v1 App on startup for its rules.
 
 
 ## Example test run
