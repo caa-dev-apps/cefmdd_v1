@@ -9,7 +9,8 @@ import (
     "strconv"
     "regexp"
 //x 	"io/ioutil"
- 	"log"
+//x  	"log"
+//x     "github.com/fatih/color"
 //x 	"net/http"    
 )
 
@@ -206,9 +207,9 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
     l_kv := kv
 
     switch {
-        case kv.key == "ENTRY":     /* log.Println("ENTRY");   */ return
-        case kv.key == "FILLVAL":   /* log.Println("FILLVAL"); */ return        // multiple types - depends on var type
-        case kv.key == "SIZES":     /* log.Println("SIZES");   */ return        // type is FORMAT can be 1 or 1,2 for e.g.
+        case kv.key == "ENTRY":     fmt.Println(BoldBlue("delay-meta-check-", "ENTRY",   " ",  kv.val));  return
+        case kv.key == "FILLVAL":   fmt.Println(BoldBlue("delay-check-", "FILLVAL", " ",  kv.val));  return        // multiple types - depends on var type
+        case kv.key == "SIZES":     fmt.Println(BoldBlue("delay-check-", "SIZES",   " ",  kv.val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
         
         case REGX_REPRESENTATION_i.MatchString(kv.key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
         case REGX_LABEL_i.MatchString(kv.key):           l_kv = kv.NewSwitchKey(`LABEL_i`)
@@ -221,9 +222,12 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
     if err != nil {
         // details - log.Printf("%s\n  %s\n", err.Error(), kv)        
         // basic
-        log.Printf("%s\n", err.Error())        
+//x         log.Printf("%s\n", err.Error())        
+        fmt.Println(BoldRed(err.Error()))
         // log.Printf("\t\tTESTING-1 %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
-    }   
+    } else {
+        fmt.Println(BoldGreen("Ok-KeyVal"), kv.key, kv.val)
+    }
 
     return
 }
@@ -239,9 +243,11 @@ func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
     if err != nil {
         // details - log.Printf("%s\n  %s\n", err.Error(), kv)        
         // basic
-        log.Printf("%s\n", err.Error())        
+        fmt.Println(BoldRed(err.Error()))
         // log.Printf("\t\tTESTING-2 %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
-    }   
+    } else {
+        fmt.Println(BoldCyan("ok-meta"), h.m_name)
+    }
     
     
     return

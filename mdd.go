@@ -361,6 +361,7 @@ func NewMddData() *MddData {
    
     fmt.Println("Home folder -> ", UserHomeDir())
    
+    //- /home/user/.cefmdd_v1
     return NewMddData_Base(CefMddDir() + `/Keywords.csv`, 
                            CefMddDir() + `/Enums.csv`)
 }

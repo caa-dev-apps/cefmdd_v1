@@ -41,3 +41,6 @@ cefmdd_v1 -i %INC_0% -i %INC_1% -f %TEST_FILE_4%
 
 ## Misc        
 go test -run name-of-test-pattern  
+
+set GOOS=linux&&set GOARCH=amd64&& go build -v .
+set GOOS=linux&&set GOARCH=amd64&& go build -v a1.go

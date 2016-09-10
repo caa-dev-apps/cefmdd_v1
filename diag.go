@@ -4,16 +4,30 @@ import (
 	"fmt"
 	"os"
 	"text/tabwriter"
-    //x "io"
+    "github.com/fatih/color"
+
 )
 
 type Diag struct {
     m_writer *tabwriter.Writer
 }
 
+
+var (
+    //x info2 := color.New(color.FgWhite, color.BgCyan).SprintFunc()
+    BoldWhite   = color.New(color.FgWhite, color.Bold).SprintFunc()
+    BoldMagenta = color.New(color.FgMagenta, color.Bold).SprintFunc()
+    BoldRed     = color.New(color.FgRed, color.Bold).SprintFunc()
+    BoldBlue    = color.New(color.FgBlue, color.Bold).SprintFunc()
+    BoldGreen   = color.New(color.FgGreen, color.Bold).SprintFunc()
+    BoldYellow  = color.New(color.FgYellow, color.Bold).SprintFunc()
+    BoldCyan    = color.New(color.FgCyan, color.Bold).SprintFunc()
+)
+
+
 func NewDiag() *Diag {
     const padding = 3
-    //- return &Diag{ m_writer: tabwriter.NewWriter(os.Stdout, 0, 0, padding, '-', tabwriter.AlignRight|tabwriter.Debug) }
+    //- return &Diag{ m_writer: tabwriter.NewWriter(os.Stdout, 0, 0, padding, '-', tabwriter.AlignRight|tabwriter.Debug) }  
     return &Diag{ m_writer: tabwriter.NewWriter(os.Stdout, 0, 0, padding, ' ', tabwriter.AlignRight) }
 }
 

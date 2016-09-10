@@ -356,6 +356,7 @@ PROPERTY,Status,"Used with ENTITY=""Spacecraft"" or ENTITY=""Instrument""",Parti
 PROPERTY,Temperature,,Particle-type
 PROPERTY,Time_Offset,,Particle-type
 PROPERTY,Time-of-flight,,Particle-type
+PROPERTY,Time-of-Flight,,Particle-type
 PROPERTY,Vector_Mass_Flux,,Particle-type
 PROPERTY,Velocity,,Particle-type
 PROPERTY,Component,,Field-type
