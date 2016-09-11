@@ -20,5 +20,5 @@ func main() {
 	_, err = ReadCefHeader(&args)
 	error_check(err, "Error parsing header")
     
-    fmt.Println(BoldMagenta("Go CAA-Team!"))
+    fmt.Println(BoldMagenta("CAA Rocks!"))
 }
