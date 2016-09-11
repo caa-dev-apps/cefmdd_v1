@@ -15,8 +15,8 @@ import (
 
 func UserHomeDir() string {
     
-    pwd, _ := os.Getwd()
-    fmt.Println("Getwd : ", pwd)
+    //x pwd, _ := os.Getwd()
+    //x fmt.Println("Getwd : ", pwd)
     
     if runtime.GOOS == "windows" {
         home := os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")

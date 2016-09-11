@@ -42,5 +42,36 @@ cefmdd_v1 -i %INC_0% -i %INC_1% -f %TEST_FILE_4%
 ## Misc        
 go test -run name-of-test-pattern  
 
+GOOS=linux GOARCH=386 go build
+
 set GOOS=linux&&set GOARCH=amd64&& go build -v .
 set GOOS=linux&&set GOARCH=amd64&& go build -v a1.go
+set GOOS=linux&&set GOARCH=386&& go build -v .
+
+
+
+    ~/.cefmdd_v1
+        Enums.csv
+        Keywords.csv
+        
+    ~/cefmdd_v1
+        /CEF_CEH_SAMPLES
+        cefmdd_v1
+        t4.sh
+
+            INC_0=~/cefmdd_v1/CEF_CEH_SAMPLES/HEADERS
+            INC_1=~/cefmdd_v1/CEF_CEH_SAMPLES/HEADERS/EDI
+            TEST_FILE_4=~/cefmdd_v1/CEF_CEH_SAMPLES/CEF/EDI/C3_CP_EDI_QZC__20111021_V01.cef.gz
+
+            ./cefmdd_v1 -i $INC_0 -i $INC_1 -f $TEST_FILE_4
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            

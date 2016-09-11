@@ -359,7 +359,7 @@ func (d *MddData) test_input_kv2(k string,
 
 func NewMddData() *MddData {
    
-    fmt.Println("Home folder -> ", UserHomeDir())
+    //x fmt.Println("Home folder -> ", UserHomeDir())
    
     //- /home/user/.cefmdd_v1
     return NewMddData_Base(CefMddDir() + `/Keywords.csv`, 
