@@ -164,6 +164,17 @@ func dumpJSONList(s string, l []Attrs) (err error) {
 }
 
 
+func (h *CefHeaderData) dumpAttrs()  {
+    dumpJSON("Attrs:", h.m_attrs.m_map)
+    fmt.Println("\n")
+}
+
+func (h *CefHeaderData) dumpMeta()  {
+    dumpJSONMap("Meta:", h.m_meta.m_map)
+    fmt.Println("\n")
+}
+
+
 func (h *CefHeaderData) dump() (err error) {
 
     fmt.Println("--\n", h.m_attrs)
@@ -182,6 +193,36 @@ func (h *CefHeaderData) dump() (err error) {
     fmt.Println("\n")
     
 	return err
+}
+
+
+func (h *CefHeaderData) getAttr(k string) (v []string, err error) {
+    
+    v, present := h.m_attrs.m_map[k]
+    if present == false {
+        err = errors.New("Error: keyword not presnt " + k)
+    } 
+    
+    return
+}
+
+
+func (h *CefHeaderData) getMeta(k string) (entry, value_type []string, err error) {
+    
+    v, present := h.m_meta.m_map[k]
+    if present == false {
+        err = errors.New("Error: meta not presnt " + k)
+    } else {
+        entry, present = v.m_map[`ENTRY`]
+        if present == false {
+            err = errors.New("Error: meta:ENTRY not presnt " + k)
+        } else {
+        }
+        
+        value_type, _ = v.m_map[`VALUE_TYPE`]
+    }
+    
+    return
 }
 
 

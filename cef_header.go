@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"strings"
+    "fmt"
 )
 
 func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_err error) {
@@ -88,6 +89,100 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_err error) {
 		return
 	}
 
+    r_header.dumpAttrs()
+    
+
+    
+    aks := []string {
+        "DATA_UNTIL",
+        "FILE_FORMAT_VERSION",
+        "FILE_NAME",
+    }
+    
+    for _, k := range aks {
+        if v, err := r_header.getAttr(k); err == nil {
+            fmt.Println(k, v)
+        } else {
+            fmt.Println(err)
+        }
+        
+    }
+    
+    
+    mks := []string {
+        "MISSION_KEY_PERSONNEL",
+        "EXPERIMENT_KEY_PERSONNEL",
+        "INSTRUMENT_NAME",
+        "INSTRUMENT_DESCRIPTION",
+        "DATASET_CAVEATS",
+        "METADATA_TYPE",
+        "LOGICAL_FILE_ID",
+        "EXPERIMENT_DESCRIPTION",
+        "DATASET_ID",
+        "MIN_TIME_RESOLUTION",
+        "PROCESSING_LEVEL",
+        "DATASET_VERSION",
+        "FILE_TYPE",
+        "FILE_CAVEATS",
+        "TIME_RESOLUTION",
+        "DATASET_DESCRIPTION",
+        "MISSION_REFERENCES",
+        "MISSION_CAVEATS",
+        "EXPERIMENT",
+        "OBSERVATORY_DESCRIPTION",
+        "MEASUREMENT_TYPE",
+        "ACKNOWLEDGEMENT",
+        "METADATA_VERSION",
+        "FILE_TIME_SPAN",
+        "OBSERVATORY_CAVEATS",
+        "OBSERVATORY_REGION",
+        "INSTRUMENT_CAVEATS",
+        "DATASET_TITLE",
+        "INVESTIGATOR_COORDINATES",
+        "EXPERIMENT_CAVEATS",
+        "MISSION_TIME_SPAN",
+        "MISSION_AGENCY",
+        "MISSION_REGION",
+        "EXPERIMENT_REFERENCES",
+        "INSTRUMENT_TYPE",
+        "DATA_TYPE",
+        "MAX_TIME_RESOLUTION",
+        "MISSION",
+        "GENERATION_DATE",
+        "MISSION_DESCRIPTION",
+        "OBSERVATORY",
+        "OBSERVATORY_TIME_SPAN",
+        "CONTACT_COORDINATES",
+        "VERSION_NUMBER",
+    }
+    
+    for _, k := range mks {
+        if entry, value_type, err := r_header.getMeta(k); err == nil {
+            fmt.Println("Meta:ENTRY", entry)
+            fmt.Println("Meta:VALUE_TYPE", value_type)
+        } else {
+            fmt.Println(err)
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //x r_header.dumpMeta()
+    
+    
 	println("Lines read -> ", ix)
 
 	//x r_header.m_data.dump()

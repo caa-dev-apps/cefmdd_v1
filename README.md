@@ -66,7 +66,18 @@ set GOOS=linux&&set GOARCH=386&& go build -v .
             ./cefmdd_v1 -i $INC_0 -i $INC_1 -f $TEST_FILE_4
 
             
-            
+# csv sheets            
+    https://docs.google.com/spreadsheets/d/1KSEQS-1ncG7tNt7PJRVbT_gGuFfyJfmWNHoKANsw5kI/export?format=csv&gid=791408233
+    https://docs.google.com/spreadsheets/d/1KSEQS-1ncG7tNt7PJRVbT_gGuFfyJfmWNHoKANsw5kI/export?format=csv&gid=1933632029
+
+
+Bash/sh    
+    wget –no-check-certificate -q -O – ‘https://docs.google.com/spreadsheet/ccc?key=0At2sqNEgxTf3dEt5SXBTemZZM1gzQy1vLVFNRnludHc&single=true&gid=0&output=txt’ | cut -f1,3
+
+R    
+    covarianceTableURL=”https://docs.google.com/spreadsheet/ccc?key=0At2sqNEgxTf3dEt5SXBTemZZM1gzQy1vLVFNRnludHc&single=true&gid=0&output=txt”
+    require(RCurl)
+    covarianceTable=read.table(textConnection(getURL(covarianceTableURL)))
             
             
             
