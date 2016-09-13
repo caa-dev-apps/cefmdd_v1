@@ -8,16 +8,37 @@ func mooi_log(a ...interface{}) (n int, err error) {
 	return
 }
 
+var (
+	s_args CefArgs
+)
+
+//- func main() {
+//- 
+//-     fmt.Println(BoldMagenta("cefmdd_v1 v0.0.1, (Sept 2016)"))
+//- 
+//- 	args, err := NewCefArgs()
+//- 	error_check(err, "Invalid Command Line Args")
+//- 	args.dump()
+//- 
+//- 	_, err = ReadCefHeader(&args)
+//- 	error_check(err, "Error parsing header")
+//-     
+//-     fmt.Println(BoldMagenta("CAA Rocks!"))
+//- }
+
 func main() {
 
     fmt.Println(BoldMagenta("cefmdd_v1 v0.0.1, (Sept 2016)"))
-    //x fmt.Println(BoldWhite("User Home: " + UserHomeDir()))
 
-	args, err := NewCefArgs()
+	s_args, err := NewCefArgs()
+    
+    fmt.Println(BoldYellow("cef cefpath"), *s_args.m_cefpath)
+    fmt.Println(BoldYellow("cef filename"), s_args.m_filename)
+    
 	error_check(err, "Invalid Command Line Args")
-	args.dump()
+	s_args.dump()
 
-	_, err = ReadCefHeader(&args)
+	_, err = ReadCefHeader(&s_args)
 	error_check(err, "Error parsing header")
     
     fmt.Println(BoldMagenta("CAA Rocks!"))

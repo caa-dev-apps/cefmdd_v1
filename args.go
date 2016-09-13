@@ -4,6 +4,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+    "path"
 )
 
 type strslice []string
@@ -20,6 +21,7 @@ func (ss *strslice) Set(s string) error {
 type CefArgs struct {
 	m_includes strslice
 	m_cefpath  *string
+    m_filename string
 }
 
 func (a1s *CefArgs) init() error {
@@ -27,6 +29,8 @@ func (a1s *CefArgs) init() error {
 
 	flag.Var(&a1s.m_includes, "i", "Include Folders")
 	a1s.m_cefpath = flag.String("f", "", "Cef file path (.cef/.cef.gz)")
+    
+    a1s.m_filename = path.Base(*a1s.m_cefpath)
 
 	flag.Parse()
 	if flag.NFlag() == 0 {
