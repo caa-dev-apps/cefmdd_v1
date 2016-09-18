@@ -62,8 +62,6 @@ func (a1s *CefArgs) dump() {
 func NewCefArgs() (args CefArgs, err error) {
 	args = CefArgs{}
 	err = args.init()
-//x     fmt.Println("--->", *args.m_cefpath)
-    
     
 	return args, err
 }

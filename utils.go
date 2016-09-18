@@ -56,6 +56,20 @@ func fileExists(name string) (isReq bool, err error) {
 ///////////////////////////////////////////////////////////////////////////////
 //
 
+func is_quoted_string(s string) (r bool) {
+
+    l := len(s)
+    r = l >= 2 && s[0] == '"' && s[l-1] == '"'
+
+    return
+}
+
+func trim_quoted_string(s string) (string) {
+    return strings.Trim(s, `"`)
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//
 
 func on_enum_not_found_error(i_keyword string) (err error) {
     return errors.New("Parse Error: Enum keyword not found, " + i_keyword)     
