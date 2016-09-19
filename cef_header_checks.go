@@ -86,6 +86,36 @@ func (h *CefHeaderData) getMetaEntryFirstQuoted(key string) (v0 string, err erro
     return
 }
 
+func (h *CefHeaderData) getAttrFirstQuotedTrimed(key string) (v0 string, err error) {
+    
+    v0, err = h.getAttrFirstQuoted(key)
+    if err != nil {
+        return
+    }    
+
+    v0 = trim_quoted_string(v0)
+    if len(v0) == 0 {
+        err = errors.New("error: Attr: " + key + " length = 0")
+    } 
+    
+    return
+}
+
+func (h *CefHeaderData) getMetaEntryFirstQuotedTrimed(key string) (v0 string, err error) {
+
+    v0, err = h.getMetaEntryFirstQuoted(key)
+    if err != nil {
+        return
+    }    
+
+    v0 = trim_quoted_string(v0)
+    if len(v0) == 0 {
+        err = errors.New("error: Meta:ENTRY: " + key + " length = 0")
+    } 
+    
+    return
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 
@@ -121,7 +151,7 @@ func (h *CefHeaderData) check_attr_DATA_UNTIL() {
 //- START_META     =   DATASET_ID
 //-    ENTRY       =   "C3_CP_EDI_QZC"
 //- END_META       =   DATASET_ID
-
+//- !
 //- START_META     =   LOGICAL_FILE_ID
 //-    ENTRY       =   "C3_CP_EDI_QZC__20111021_V01"
 //- END_META       =   LOGICAL_FILE_ID
@@ -155,10 +185,10 @@ func (h *CefHeaderData) check_meta_LOGICAL_FILE_ID() (err error) {
 
 //- FILE_NAME="C3_CP_EDI_QZC__20111021_V01.cef"
 //- 
-//- START_META = LOGICAL_FILE_ID
-//-  ENTRY = "C3_CP_EDI_QZC__20111021_V01"
-//- END_META = LOGICAL_FILE_ID
-//- 
+//- START_META     = LOGICAL_FILE_ID
+//-     ENTRY      = "C3_CP_EDI_QZC__20111021_V01"
+//- END_META       = LOGICAL_FILE_ID
+//- !
 //- START_META     =   FILE_TYPE
 //-    ENTRY       =   "cef"
 //- END_META       =   FILE_TYPE
@@ -218,8 +248,56 @@ func (h *CefHeaderData) check_meta_DATA_TYPE() (err error) {
 func (h *CefHeaderData) check_meta_OBSERVATORY() (err error) {
     return
 }
-        
+
+
+//- FILE_NAME="C3_CP_EDI_QZC__20111021_V01.cef"
+//- 
+//- START_META     = LOGICAL_FILE_ID
+//-     ENTRY      = "C3_CP_EDI_QZC__20111021_V01"
+//- END_META       = LOGICAL_FILE_ID
+//- !
+//- START_META     = VERSION_NUMBER
+//-  ENTRY         = "01"
+//- END_META       = VERSION_NUMBER
+//- !
+//- VERSION_NUMBER must be integer        
+//- Version in filename /logical_file id must match VERSION_NUMBER
 func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
+    
+    v0_version_number, err := h.getMetaEntryFirstQuotedTrimed("VERSION_NUMBER")
+    if err != nil {
+        return
+    }    
+
+    err = integer_parser(v0_version_number)
+    if err != nil {
+        return
+    }    
+
+    v0_filename, err := h.getAttrFirstQuotedTrimed("FILE_NAME")
+    if err != nil {
+        return
+    }    
+    
+    v0_logical, err := h.getMetaEntryFirstQuotedTrimed("LOGICAL_FILE_ID")
+    if err != nil {
+        return
+    }
+    
+    ix := strings.LastIndex(v0_filename, ".")
+    if ix < 0 {
+        return errors.New("error: FILE_NAME does have .cef suffix")
+    }        
+
+    fn := v0_filename[0:ix]
+    if strings.HasSuffix(fn, v0_version_number) == false {
+        return errors.New("error: FILE_NAME does have suffix (" + v0_version_number + ")")
+    }
+    
+    if strings.HasSuffix(v0_logical, v0_version_number) == false {
+        return errors.New("error: LOGICAL_FILE_ID does have suffix (" + v0_version_number + ")")
+    }
+    
     return
 }
         
@@ -291,7 +369,12 @@ func (h *CefHeaderData) checks() (err error) {
     h.check_meta_FILE_TIME_SPAN()
     h.check_meta_DATA_TYPE()
     h.check_meta_OBSERVATORY()
-    h.check_meta_VERSION_NUMBER()
+    
+    err = h.check_meta_VERSION_NUMBER()
+    h.print_results("VERSION_NUMBER checks", err) 
+    
+    
+    
     
     return
 }
