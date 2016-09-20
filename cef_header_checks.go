@@ -226,8 +226,21 @@ func (h *CefHeaderData) check_meta_FILE_TYPE() (err error) {
         return errors.New("error: LOGICAL_FILE_ID length = 0")
     } 
     
+    
+    //x ix := strings.FirstIndex(v0_filename, ".")
+    ix := strings.Index(v0_filename, ".")
+    if ix < 0 {
+        return errors.New("error: FILE_NAME does have .cef or .cef.gz suffix")
+    }        
+
+    ext0 := v0_filename[ix+1:]
+    if strings.HasPrefix(ext0, v0_file_type) == false {
+        return errors.New("error: FILE_TYPE does not follow first '.' in actual filename" + "||" + ext0 + "||" + v0_file_type)
+    }
+    
     fn := v0_logical + `.` + v0_file_type
-    if v0_filename != fn {
+    // allow for .gz
+    if strings.HasSuffix(v0_filename, fn) == false {
         fmt.Println(v0_filename)
         fmt.Println(fn)
         
@@ -236,8 +249,34 @@ func (h *CefHeaderData) check_meta_FILE_TYPE() (err error) {
     
     return
 }
-        
+
+//- FILE_TIME_SPAN must be ISO time
+//- FIME_TIME_SPAN start time must be before stop time
 func (h *CefHeaderData) check_meta_FILE_TIME_SPAN() (err error) {
+    
+    es, vs, err := h.getMeta(`FILE_TIME_SPAN`)
+    
+    if err != nil {
+        return
+    }
+
+    if len(es) == 0 {
+        return errors.New("error: META-ENTRY for FILE_TIME_SPAN Missing")
+    }
+    
+    if len(vs) == 0 {
+        return errors.New("error: META-VALUE_TYPE for FILE_TIME_SPAN Missing")
+    }
+    
+    v1_value_type_FILE_TIME_SPAN := vs[0]
+    if "ISO_TIME_RANGE" != v1_value_type_FILE_TIME_SPAN {
+        return errors.New("error: META-VALUE_TYPE for FILE_TIME_SPAN not equal to ISO_TIME_RANGE")
+    }
+    
+    v0_entry_FILE_TIME_SPAN := es[0]
+    v0_entry_FILE_TIME_SPAN = trim_quoted_string(v0_entry_FILE_TIME_SPAN)
+    err = iso_time_range_parser(v0_entry_FILE_TIME_SPAN)
+    
     return
 }
         
@@ -284,9 +323,11 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
         return
     }
     
-    ix := strings.LastIndex(v0_filename, ".")
+    //x ix := strings.LastIndex(v0_filename, ".")
+    //x ix := strings.FirstIndex(v0_filename, ".")
+    ix := strings.Index(v0_filename, ".")
     if ix < 0 {
-        return errors.New("error: FILE_NAME does have .cef suffix")
+        return errors.New("error: FILE_NAME does have .cef or .cef.gz suffix")
     }        
 
     fn := v0_filename[0:ix]
@@ -366,7 +407,9 @@ func (h *CefHeaderData) checks() (err error) {
     h.print_results("FILE_TYPE checks", err) 
     
     
-    h.check_meta_FILE_TIME_SPAN()
+    err = h.check_meta_FILE_TIME_SPAN()
+    h.print_results("FILE_TIME_SPAN checks", err) 
+    
     h.check_meta_DATA_TYPE()
     h.check_meta_OBSERVATORY()
     
