@@ -2,6 +2,7 @@ package main
 
 import (
     "fmt"
+//x     "errors"
 )
 
 func mooi_log(a ...interface{}) (n int, err error) {
@@ -30,7 +31,8 @@ func main() {
 
     fmt.Println(BoldMagenta("cefmdd_v1 v0.0.2, (Dec 2016)"))
 
-	s_args, err := NewCefArgs()
+    var err error
+	s_args, err = NewCefArgs()
     
     fmt.Println(BoldYellow("cef cefpath"), *s_args.m_cefpath)
     fmt.Println(BoldYellow("cef filename"), s_args.m_filename)

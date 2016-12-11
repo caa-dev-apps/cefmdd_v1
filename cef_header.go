@@ -224,6 +224,13 @@ func (h *CefHeaderData) getMeta(k string) (entry, value_type []string, err error
     return
 }
 
+func (h *CefHeaderData) getMetaEntry(k string) (entry []string, err error) {
+    
+    entry, _, err = h.getMeta(k)
+    
+    return
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -260,11 +267,7 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
 
     err = s_mdd_data.test_input(l_kv)
     if err != nil {
-        // details - log.Printf("%s\n  %s\n", err.Error(), kv)        
-        // basic
-//x         log.Printf("%s\n", err.Error())        
         fmt.Println(BoldRed(err.Error()))
-        // log.Printf("\t\tTESTING-1 %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
     } else {
         fmt.Println(BoldGreen("Ok-KeyVal"), kv.key, kv.val)
     }
@@ -275,14 +278,10 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
 
 func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
     
-    // log.Printf("TESTING %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
-        
     l_kv := NewMetaKeyVal(h.m_name, h.m_cur.m_map[`ENTRY`])
     
     err = s_mdd_data.test_input(l_kv)
     if err != nil {
-        // details - log.Printf("%s\n  %s\n", err.Error(), kv)        
-        // basic
         fmt.Println(BoldRed(err.Error()))
         // log.Printf("\t\tTESTING-2 %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
     } else {

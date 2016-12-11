@@ -1,77 +1,13 @@
 package main
 
-import "fmt"
+import (
+    "fmt"
+    "errors"
+    "strings"
+)
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-
-//- type CefHeaderData struct {
-//- 	m_state State
-//- 	m_name  string
-//-     m_cur* Attrs
-//-
-//-     m_attrs* Attrs
-//-     m_meta* Meta
-//-     m_vars* Vars
-//- }
-
-//- func (h *CefHeaderData) dumpAttrs()  {
-//-     dumpJSON("Attrs:", h.m_attrs.m_map)
-//-     fmt.Println("\n")
-//- }
-
-//- func (h *CefHeaderData) dumpMeta()  {
-//-     dumpJSONMap("Meta:", h.m_meta.m_map)
-//-     fmt.Println("\n")
-//- }
-
-//- func (h *CefHeaderData) dump() (err error) {
-//-
-//-     fmt.Println("--\n", h.m_attrs)
-//-     fmt.Println("--\n", h.m_meta)
-//-     fmt.Println("--\n", h.m_vars)
-//-
-//-
-//-     fmt.Println("\n")
-//-     dumpJSON("Attrs:", h.m_attrs.m_map)
-//-     fmt.Println("\n")
-//-     dumpJSONMap("Meta:", h.m_meta.m_map)
-//-     fmt.Println("\n")
-//-     dumpJSONMap("Var:", h.m_vars.m_map)
-//-     fmt.Println("\n")
-//-     dumpJSONList("Var:", h.m_vars.m_list)
-//-     fmt.Println("\n")
-//-
-//- 	return err
-//- }
-
-//- func (h *CefHeaderData) getAttr(k string) (v []string, err error) {
-//-
-//-     v, present := h.m_attrs.m_map[k]
-//-     if present == false {
-//-         err = errors.New("Error: keyword not presnt " + k)
-//-     }
-//-
-//-     return
-//- }
-
-//- func (h *CefHeaderData) getMeta(k string) (entry, value_type []string, err error) {
-//-
-//-     v, present := h.m_meta.m_map[k]
-//-     if present == false {
-//-         err = errors.New("Error: meta not presnt " + k)
-//-     } else {
-//-         entry, present = v.m_map[`ENTRY`]
-//-         if present == false {
-//-             err = errors.New("Error: meta:ENTRY not presnt " + k)
-//-         } else {
-//-         }
-//-
-//-         value_type, _ = v.m_map[`VALUE_TYPE`]
-//-     }
-//-
-//-     return
-//- }
 
 //-     mks := []string {
 //-         "MISSION_KEY_PERSONNEL",
@@ -123,22 +59,315 @@ import "fmt"
 ///////////////////////////////////////////////////////////////////////////////
 //
 
-func (h *CefHeaderData) checks() {
+func (h *CefHeaderData) getAttrFirstQuoted(key string) (v0 string, err error) {
+
+    vs, err := h.getAttr(key);
+    if err == nil {  
+        v0 = vs[0]
+        if is_quoted_string(v0) == false {
+            err = errors.New("error: " + key + "attribute is unquoted string ")
+        } 
+    }
+        
+    return
+}
+
+
+func (h *CefHeaderData) getMetaEntryFirstQuoted(key string) (v0 string, err error) {
+
+    vs, err := h.getMetaEntry(key);
+    if err == nil {  
+        v0 = vs[0]
+        if is_quoted_string(v0) == false {
+            err = errors.New("error: " + key + "META ENTRY is unquoted string ")
+        } 
+    }
+        
+    return
+}
+
+func (h *CefHeaderData) getAttrFirstQuotedTrimed(key string) (v0 string, err error) {
     
-    //x fmt.Println("cef filename", s_args.m_filename)
-    fmt.Println("cef filename", s_args.m_cefpath)
+    v0, err = h.getAttrFirstQuoted(key)
+    if err != nil {
+        return
+    }    
+
+    v0 = trim_quoted_string(v0)
+    if len(v0) == 0 {
+        err = errors.New("error: Attr: " + key + " length = 0")
+    } 
+    
+    return
+}
+
+func (h *CefHeaderData) getMetaEntryFirstQuotedTrimed(key string) (v0 string, err error) {
+
+    v0, err = h.getMetaEntryFirstQuoted(key)
+    if err != nil {
+        return
+    }    
+
+    v0 = trim_quoted_string(v0)
+    if len(v0) == 0 {
+        err = errors.New("error: Meta:ENTRY: " + key + " length = 0")
+    } 
+    
+    return
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//
+
+//- Rule: Name of file on disk equals FILE_NAME
+func (h *CefHeaderData) check_attr_FILE_NAME() (err error) {
+    
+    v0, err := h.getAttrFirstQuoted("FILE_NAME")
+    if err != nil {
+        return
+    }
+    
+    v0 = trim_quoted_string(v0)
+    if s_args.m_filename != v0 {
+        err = errors.New("error: FILE_NAME attribute mismatches - actual (" + s_args.m_filename + ")")
+    } 
+    
+    return
+}
+
+func (h *CefHeaderData) check_attr_FILE_FORMAT_VERSION() (err error) {
+    
+    fmt.Println(BoldMagenta("TODO check_attr_FILE_FORMAT_VERSION"))  
+    
+    return
+}
+
+func (h *CefHeaderData) check_attr_DATA_UNTIL() {
+    
+    fmt.Println(BoldMagenta("TODO check_attr_DATA_UNTIL"))  
+    return
+}
+
+//- START_META     =   DATASET_ID
+//-    ENTRY       =   "C3_CP_EDI_QZC"
+//- END_META       =   DATASET_ID
+//- !
+//- START_META     =   LOGICAL_FILE_ID
+//-    ENTRY       =   "C3_CP_EDI_QZC__20111021_V01"
+//- END_META       =   LOGICAL_FILE_ID
+
+//- Rule: Dataset name matches LOGICAL_FILE_ID (DATASET must be start of logical file id)
+func (h *CefHeaderData) check_meta_LOGICAL_FILE_ID() (err error) {
+    
+    v0_dataset, err := h.getMetaEntryFirstQuoted("DATASET_ID")
+    if err != nil {
+        return
+    }
+    
+    v0_logical, err := h.getMetaEntryFirstQuoted("LOGICAL_FILE_ID")
+    if err != nil {
+        return
+    }
+    
+    v0_dataset = trim_quoted_string(v0_dataset)
+    if len(v0_dataset) == 0 {
+        err = errors.New("error: DATASET_ID length = 0")
+        return
+    } 
+    
+    v0_logical = trim_quoted_string(v0_logical)
+    if strings.HasPrefix(v0_logical, v0_dataset) == false {
+        err = errors.New("error: DATASET_ID (" + v0_dataset + ") is not a prefix of LOGICAL_FILE_ID (" + v0_logical + ")" )
+    }
+    
+    return
+}
+
+//- FILE_NAME="C3_CP_EDI_QZC__20111021_V01.cef"
+//- 
+//- START_META     = LOGICAL_FILE_ID
+//-     ENTRY      = "C3_CP_EDI_QZC__20111021_V01"
+//- END_META       = LOGICAL_FILE_ID
+//- !
+//- START_META     =   FILE_TYPE
+//-    ENTRY       =   "cef"
+//- END_META       =   FILE_TYPE
+
+//- Filename matches LOGICAL_FILE_ID + FILE_TYPE        
+func (h *CefHeaderData) check_meta_FILE_TYPE() (err error) {
+    
+    v0_filename, err := h.getAttrFirstQuoted("FILE_NAME")
+    if err != nil {
+        return
+    }    
+    
+    v0_file_type, err := h.getMetaEntryFirstQuoted("FILE_TYPE")
+    if err != nil {
+        return
+    }
+    
+    v0_logical, err := h.getMetaEntryFirstQuoted("LOGICAL_FILE_ID")
+    if err != nil {
+        return
+    }
+    
+    v0_filename = trim_quoted_string(v0_filename)
+    if len(v0_filename) == 0 {
+        return errors.New("error: FILE_NAME length = 0")
+    } 
+    
+    v0_file_type = trim_quoted_string(v0_file_type)
+    if len(v0_file_type) == 0 {
+        return errors.New("error: FILE_TYPE length = 0")
+    } 
+    
+    v0_logical = trim_quoted_string(v0_logical)
+    if len(v0_logical) == 0 {
+        return errors.New("error: LOGICAL_FILE_ID length = 0")
+    } 
+    
+    
+    //x ix := strings.FirstIndex(v0_filename, ".")
+    ix := strings.Index(v0_filename, ".")
+    if ix < 0 {
+        return errors.New("error: FILE_NAME does have .cef or .cef.gz suffix")
+    }        
+
+    ext0 := v0_filename[ix+1:]
+    if strings.HasPrefix(ext0, v0_file_type) == false {
+        return errors.New("error: FILE_TYPE does not follow first '.' in actual filename" + "||" + ext0 + "||" + v0_file_type)
+    }
+    
+    fn := v0_logical + `.` + v0_file_type
+    // allow for .gz
+    if strings.HasSuffix(v0_filename, fn) == false {
+        fmt.Println(v0_filename)
+        fmt.Println(fn)
+        
+        return errors.New("error: FILE_NAME does not match LOGICAL_FILE_ID + FILE_TYPE  || " + v0_filename  + " || " + fn)
+    }
+    
+    return
+}
+
+//- FILE_TIME_SPAN must be ISO time
+//- FIME_TIME_SPAN start time must be before stop time
+func (h *CefHeaderData) check_meta_FILE_TIME_SPAN() (err error) {
+    
+    es, vs, err := h.getMeta(`FILE_TIME_SPAN`)
+    
+    if err != nil {
+        return
+    }
+
+    if len(es) == 0 {
+        return errors.New("error: META-ENTRY for FILE_TIME_SPAN Missing")
+    }
+    
+    if len(vs) == 0 {
+        return errors.New("error: META-VALUE_TYPE for FILE_TIME_SPAN Missing")
+    }
+    
+    v1_value_type_FILE_TIME_SPAN := vs[0]
+    if "ISO_TIME_RANGE" != v1_value_type_FILE_TIME_SPAN {
+        return errors.New("error: META-VALUE_TYPE for FILE_TIME_SPAN not equal to ISO_TIME_RANGE")
+    }
+    
+    v0_entry_FILE_TIME_SPAN := es[0]
+    v0_entry_FILE_TIME_SPAN = trim_quoted_string(v0_entry_FILE_TIME_SPAN)
+    err = iso_time_range_parser(v0_entry_FILE_TIME_SPAN)
+    
+    return
+}
+        
+func (h *CefHeaderData) check_meta_DATA_TYPE() (err error) {
+    return
+}
+        
+func (h *CefHeaderData) check_meta_OBSERVATORY() (err error) {
+    return
+}
+
+
+//- FILE_NAME="C3_CP_EDI_QZC__20111021_V01.cef"
+//- 
+//- START_META     = LOGICAL_FILE_ID
+//-     ENTRY      = "C3_CP_EDI_QZC__20111021_V01"
+//- END_META       = LOGICAL_FILE_ID
+//- !
+//- START_META     = VERSION_NUMBER
+//-  ENTRY         = "01"
+//- END_META       = VERSION_NUMBER
+//- !
+//- VERSION_NUMBER must be integer        
+//- Version in filename /logical_file id must match VERSION_NUMBER
+func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
+    
+    v0_version_number, err := h.getMetaEntryFirstQuotedTrimed("VERSION_NUMBER")
+    if err != nil {
+        return
+    }    
+
+    err = integer_parser(v0_version_number)
+    if err != nil {
+        return
+    }    
+
+    v0_filename, err := h.getAttrFirstQuotedTrimed("FILE_NAME")
+    if err != nil {
+        return
+    }    
+    
+    v0_logical, err := h.getMetaEntryFirstQuotedTrimed("LOGICAL_FILE_ID")
+    if err != nil {
+        return
+    }
+    
+    //x ix := strings.LastIndex(v0_filename, ".")
+    //x ix := strings.FirstIndex(v0_filename, ".")
+    ix := strings.Index(v0_filename, ".")
+    if ix < 0 {
+        return errors.New("error: FILE_NAME does have .cef or .cef.gz suffix")
+    }        
+
+    fn := v0_filename[0:ix]
+    if strings.HasSuffix(fn, v0_version_number) == false {
+        return errors.New("error: FILE_NAME does have suffix (" + v0_version_number + ")")
+    }
+    
+    if strings.HasSuffix(v0_logical, v0_version_number) == false {
+        return errors.New("error: LOGICAL_FILE_ID does have suffix (" + v0_version_number + ")")
+    }
+    
+    return
+}
+        
+func (h *CefHeaderData) print_results(about string, err error) {
+
+    if err != nil {
+        fmt.Println(BoldRed("error-" + about), err)        
+    } else {
+        fmt.Println(BoldGreen("ok-" + about))        
+    }
+}        
+        
+        
+func (h *CefHeaderData) checks() (err error) {
+    
+    fmt.Println("cef filename", s_args.m_filename)
+    fmt.Println("cef cefpath", *s_args.m_cefpath)
     
 	aks := []string{
-		"DATA_UNTIL",
-		"FILE_FORMAT_VERSION",
 		"FILE_NAME",
+		"FILE_FORMAT_VERSION",
+		"DATA_UNTIL",
 	}
 
 	for _, k := range aks {
 		if v, err := h.getAttr(k); err == nil {
 			fmt.Println(k, v)
 		} else {
-			fmt.Println(err)
+			fmt.Println (err)
 		}
 
 	}
@@ -159,10 +388,51 @@ func (h *CefHeaderData) checks() {
                 fmt.Println(k, "Meta:VALUE_TYPE", value_type)
             }
 		} else {
-			fmt.Println(err)
+			fmt.Println (err)
 		}
 
 	}
+    
+    err = h.check_attr_FILE_NAME()
+    h.print_results("FILE_NAME checks", err) 
+    
+    h.check_attr_FILE_FORMAT_VERSION()
+    h.check_attr_DATA_UNTIL()
+
+    err = h.check_meta_LOGICAL_FILE_ID()
+    h.print_results("LOGICAL_FILE_ID checks", err) 
+    
+    
+    err = h.check_meta_FILE_TYPE()
+    h.print_results("FILE_TYPE checks", err) 
+    
+    
+    err = h.check_meta_FILE_TIME_SPAN()
+    h.print_results("FILE_TIME_SPAN checks", err) 
+    
+    h.check_meta_DATA_TYPE()
+    h.check_meta_OBSERVATORY()
+    
+    err = h.check_meta_VERSION_NUMBER()
+    h.print_results("VERSION_NUMBER checks", err) 
+    
+    
+    
+    
+    return
 }
 
 //x h.dumpMeta()
+
+
+
+
+
+
+
+
+
+
+
+
+
