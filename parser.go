@@ -3,22 +3,20 @@ package main
 import (
 	"errors"
 	"strings"
-//x     "fmt"
+    "fmt"
 )
 
-func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_err error) {
+func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_lines chan Line, r_err error) {
 
 	includedMap := map[string]bool{}
 	ix := 0
 	nestedLevel := 0
 
-	//x r_header = CefHeaderData{m_state: ATTR, m_data: Parsed_Data{}}
     r_header = *NewCefHeaderData()
-    
 	l_path := *args.m_cefpath
 
 	// forward decl
-	var doProcess func(i_path string) (data_until bool, err error)
+	var doProcess func(i_lines chan Line) (data_until bool, err error)
 
 	getIncludePath := func(i_filename string) (r_path string, err error) {
 		done := false
@@ -48,10 +46,9 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_err error) {
 		return
 	}
 
-	doProcess = func(i_filepath string) (data_until bool, err error) {
-		l_lines := EachLine(i_filepath)
+	doProcess = func(i_lines chan Line) (data_until bool, err error) {
 
-		for kv := range eachKeyVal(l_lines) {
+		for kv := range eachKeyVal(i_lines) {
 
 			if strings.EqualFold("include", kv.key) == true {
 				v := strings.Trim(kv.val[0], `" `)
@@ -64,7 +61,8 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_err error) {
 				includedMap[ceh_path] = true
 				nestedLevel++
 
-				if _, err = doProcess(ceh_path); err != nil {
+				l_lines := EachLine(ceh_path)				
+				if _, err = doProcess(l_lines); err != nil {
 					return data_until, err
 				}
 				nestedLevel--
@@ -79,7 +77,8 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_err error) {
 		return
 	}
 
-	data_until, r_err := doProcess(l_path)
+	r_lines = EachLine(l_path)
+	data_until, r_err := doProcess(r_lines)
 	if r_err != nil {
 		return
 	}
@@ -101,3 +100,30 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_err error) {
 
 	return
 }
+
+//x type Line struct {
+//x     tag         string     // typically filename
+//x     ln          int        // line number
+//x     line        string     // line contents
+//x }
+
+func ReadCef(args *CefArgs) (r_err error) {
+
+	_, l_lines, err := ReadCefHeader(args)
+	error_check(err, "Error parsing header")
+
+	// dev data line reader
+	ix := 0
+	for l_line := range l_lines {
+		fmt.Println("line:", ix, l_line)
+
+		if ix > 3 {
+			break
+		}
+
+		ix++
+	}
+
+	return
+}
+

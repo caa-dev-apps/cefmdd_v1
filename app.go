@@ -28,7 +28,7 @@ var (
 
 func main() {
 
-    fmt.Println(BoldMagenta("cefmdd_v1 v0.0.1, (Sept 2016)"))
+    fmt.Println(BoldMagenta("cefmdd_v1 v0.0.2, (Dec 2016)"))
 
 	s_args, err := NewCefArgs()
     
@@ -38,8 +38,12 @@ func main() {
 	error_check(err, "Invalid Command Line Args")
 	s_args.dump()
 
-	_, err = ReadCefHeader(&s_args)
-	error_check(err, "Error parsing header")
+	//x _, err = ReadCefHeader(&s_args)
+	//x error_check(err, "Error parsing header")
     
+	err = ReadCef(&s_args)
+	error_check(err, "Error parsing cef file")
+
+
     fmt.Println(BoldMagenta("CAA Rocks!"))
 }
