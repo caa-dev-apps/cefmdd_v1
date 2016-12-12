@@ -108,15 +108,15 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_lines chan Line, r_
 //x }
 
 
-// TODO 2016/2017
-	- User Header Data to get access to info on Vars.
-
-	- Multi-Line Data Reader
-		- Check comments
-		- Check number of elements
-		- Check eol marker
-		- Check type of each cell
-		- Check Time/Date stamp 
+//!  TODO 2016/2017
+//! 	- User Header Data to get access to info on Vars.
+//! 
+//! 	- Multi-Line Data Reader
+//! 		- Check comments
+//! 		- Check number of elements
+//! 		- Check eol marker
+//! 		- Check type of each cell
+//! 		- Check Time/Date stamp 
 
 
 func ReadCef(args *CefArgs) (r_err error) {
