@@ -296,7 +296,7 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 
 	switch {
 	case strings.EqualFold("START_META", kv.key) == true:
-		mooi_log("START_META", kv.val[0])
+		//d mooi_log("START_META", kv.val[0])
 
 		switch h.m_state {
 		case ATTR:
@@ -309,7 +309,7 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 		}
 
 	case strings.EqualFold("START_VARIABLE", kv.key) == true:
-		mooi_log("START_VARIABLE", kv.val[0])
+		//d mooi_log("START_VARIABLE", kv.val[0])
 
 		switch h.m_state {
 		case ATTR:
@@ -322,7 +322,7 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 		}
 
 	case strings.EqualFold("END_META", kv.key) == true:
-		mooi_log("END_META", kv.val[0])
+		//d mooi_log("END_META", kv.val[0])
 
 		switch h.m_state {
 		case META:
@@ -341,7 +341,7 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 		}
 
 	case strings.EqualFold("END_VARIABLE", kv.key) == true:
-		mooi_log("END_VARIABLE", kv.val[0])
+		//d mooi_log("END_VARIABLE", kv.val[0])
 
 		switch h.m_state {
 		case VAR:
@@ -361,7 +361,7 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 		}
 
 	default:
-		mooi_log(kv.key, kv.val[0])
+		//d mooi_log(kv.key, kv.val[0])
 
         // this is where to place the key - val tests //////////////////////////////////////////////
         h.m_cur.push_kv(kv)

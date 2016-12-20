@@ -126,7 +126,7 @@ func rowTokeniser(i_lines chan string, i_len int) chan RowTokens {
                 default:
                     // allow for end of record marker without previous comma
                     // e.g. ... " 2002-11-10T04:17:14.758391Z,    -502,    -596,    -502,    -763, -10, -1000000000 $ "
-                    fmt.Printf("________>> \tlen(r_tokens) %d \tl_running_len %d \t(i_len -1) %d \n", len(r_tokens), l_running_len, (i_len -1))
+                    //x fmt.Printf("________>> \tlen(r_tokens) %d \tl_running_len %d \t(i_len -1) %d \n", len(r_tokens), l_running_len, (i_len -1))
                     if (len(r_tokens) + l_running_len) == (i_len -1) {
                         l_tok = string(ch)
                         state = TOK

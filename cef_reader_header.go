@@ -3,17 +3,20 @@ package main
 import (
 	"errors"
 	"strings"
-    "fmt"
 )
 
-func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_lines chan Line, r_err error) {
+//x func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_lines chan Line, r_err error) {
+
+func ReadHeader(args *CefArgs,
+			    i_lines_in chan Line) (r_header CefHeaderData, r_err error) {
 
 	includedMap := map[string]bool{}
 	ix := 0
 	nestedLevel := 0
 
     r_header = *NewCefHeaderData()
-	l_path := *args.m_cefpath
+	//x l_path := *args.m_cefpath
+
 
 	// forward decl
 	var doProcess func(i_lines chan Line) (data_until bool, err error)
@@ -34,7 +37,7 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_lines chan Line, r_
 				return r_path, errors.New("Attempt to include duplcate ceh")
 			}
 
-			mooi_log("PATH: ", i, r_path)
+			//d mooi_log("PATH: ", i, r_path)
 
 			done, _ = fileExists(r_path)
 		}
@@ -77,11 +80,16 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_lines chan Line, r_
 		return
 	}
 
-	r_lines = EachLine(l_path)
-	data_until, r_err := doProcess(r_lines)
+	//x r_lines = EachLine(l_path)
+	//x data_until, r_err := doProcess(r_lines)
+	data_until, r_err := doProcess(i_lines_in)
+
+
 	if r_err != nil {
 		return
 	}
+
+
 
 	if data_until == false {
 		r_err = errors.New("Error: data_until = false")
@@ -91,7 +99,7 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_lines chan Line, r_
     r_header.checks()
 
     //-r_header.dumpAttrs()
-	println("Lines read -> ", ix)
+	println("Header Lines read -> ", ix)
 
 	//- r_header.m_data.dump()
     
@@ -100,42 +108,3 @@ func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_lines chan Line, r_
 
 	return
 }
-
-//x type Line struct {
-//x     tag         string     // typically filename
-//x     ln          int        // line number
-//x     line        string     // line contents
-//x }
-
-
-//!  TODO 2016/2017
-//! 	- User Header Data to get access to info on Vars.
-//! 
-//! 	- Multi-Line Data Reader
-//! 		- Check comments
-//! 		- Check number of elements
-//! 		- Check eol marker
-//! 		- Check type of each cell
-//! 		- Check Time/Date stamp 
-
-
-func ReadCef(args *CefArgs) (r_err error) {
-
-	_, l_lines, err := ReadCefHeader(args)
-	error_check(err, "Error parsing header")
-
-	// dev data line reader
-	ix := 0
-	for l_line := range l_lines {
-		fmt.Println("line:", ix, l_line)
-
-		if ix > 3 {
-			break
-		}
-
-		ix++
-	}
-
-	return
-}
-

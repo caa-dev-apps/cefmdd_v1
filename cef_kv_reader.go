@@ -241,6 +241,9 @@ func eachKeyVal(i_lines chan Line) chan KeyVal {
 		initVars()
         
 		for l_line := range i_lines {
+
+
+
 			err := parse_line(l_line.line)
 			if err != nil {
                 println("Tag->",    l_line.tag)

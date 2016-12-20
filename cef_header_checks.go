@@ -355,7 +355,8 @@ func (h *CefHeaderData) print_results(about string, err error) {
 func (h *CefHeaderData) checks() (err error) {
     
     fmt.Println("cef filename", s_args.m_filename)
-    fmt.Println("cef cefpath", *s_args.m_cefpath)
+    //xfmt.Println("cef cefpath", *s_args.m_cefpath)
+    fmt.Println("cef cefpath2", s_args.m_cefpath)
     
 	aks := []string{
 		"FILE_NAME",
