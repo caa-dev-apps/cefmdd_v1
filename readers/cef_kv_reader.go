@@ -1,14 +1,10 @@
-package main
+package readers
 
 import (
-//x 	"compress/gzip"
 	"errors"
 	"fmt"
-//x 	"io"
-//x 	"os"
 	"strings"
 	"unicode"
-//x 	"path"    
 )
 
 type KVState int
@@ -58,27 +54,27 @@ func state_diag(ch rune, s1, s2 KVState) {
 
 
 type KeyVal struct {
-	key string
-	val []string
+	Key string
+	Val []string
     
-    line Line       // 
+    Line Line       // 
 }
 
 func (kv KeyVal) String() string {
-     //x return fmt.Sprintf("\n{\n key: %s \n val: %s \n line: %s\n}\n", kv.key, kv.val, kv.line)
-     return fmt.Sprintf("key: %s\n  val: %s\n  line: %s\n", kv.key, kv.val, kv.line)
+     //x return fmt.Sprintf("\n{\n key: %s \n val: %s \n line: %s\n}\n", kv.Key, kv.Val, kv.Line)
+     return fmt.Sprintf("key: %s\n  val: %s\n  line: %s\n", kv.Key, kv.Val, kv.Line)
 }
 
 func (kv KeyVal) NewSwitchKey(k string) (*KeyVal) {
-    return &KeyVal{key: k, val: kv.val, line: kv.line}
+    return &KeyVal{Key: k, Val: kv.Val, Line: kv.Line}
 }
 
 func NewMetaKeyVal(k string, v []string) (*KeyVal) {
-    return &KeyVal{key: k, val: v}
+    return &KeyVal{Key: k, Val: v}
 }
 
 
-func eachKeyVal(i_lines chan Line) chan KeyVal {
+func EachKeyVal(i_lines chan Line) chan KeyVal {
 	output := make(chan KeyVal, 16)
 
 	state := B4_KEY

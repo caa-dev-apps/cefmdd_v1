@@ -4,6 +4,8 @@ import (
     "fmt"
     "errors"
     "strings"
+    "github.com/caa-dev-apps/cefmdd_v1/utils"
+    //x "github.com/caa-dev-apps/cefmdd_v1/rules"
 )
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -64,7 +66,7 @@ func (h *CefHeaderData) getAttrFirstQuoted(key string) (v0 string, err error) {
     vs, err := h.getAttr(key);
     if err == nil {  
         v0 = vs[0]
-        if is_quoted_string(v0) == false {
+        if utils.Is_quoted_string(v0) == false {
             err = errors.New("error: " + key + "attribute is unquoted string ")
         } 
     }
@@ -78,7 +80,7 @@ func (h *CefHeaderData) getMetaEntryFirstQuoted(key string) (v0 string, err erro
     vs, err := h.getMetaEntry(key);
     if err == nil {  
         v0 = vs[0]
-        if is_quoted_string(v0) == false {
+        if utils.Is_quoted_string(v0) == false {
             err = errors.New("error: " + key + "META ENTRY is unquoted string ")
         } 
     }
@@ -93,7 +95,7 @@ func (h *CefHeaderData) getAttrFirstQuotedTrimed(key string) (v0 string, err err
         return
     }    
 
-    v0 = trim_quoted_string(v0)
+    v0 = utils.Trim_quoted_string(v0)
     if len(v0) == 0 {
         err = errors.New("error: Attr: " + key + " length = 0")
     } 
@@ -108,7 +110,7 @@ func (h *CefHeaderData) getMetaEntryFirstQuotedTrimed(key string) (v0 string, er
         return
     }    
 
-    v0 = trim_quoted_string(v0)
+    v0 = utils.Trim_quoted_string(v0)
     if len(v0) == 0 {
         err = errors.New("error: Meta:ENTRY: " + key + " length = 0")
     } 
@@ -127,7 +129,7 @@ func (h *CefHeaderData) check_attr_FILE_NAME() (err error) {
         return
     }
     
-    v0 = trim_quoted_string(v0)
+    v0 = utils.Trim_quoted_string(v0)
     if s_args.m_filename != v0 {
         err = errors.New("error: FILE_NAME attribute mismatches - actual (" + s_args.m_filename + ")")
     } 
@@ -169,13 +171,13 @@ func (h *CefHeaderData) check_meta_LOGICAL_FILE_ID() (err error) {
         return
     }
     
-    v0_dataset = trim_quoted_string(v0_dataset)
+    v0_dataset = utils.Trim_quoted_string(v0_dataset)
     if len(v0_dataset) == 0 {
         err = errors.New("error: DATASET_ID length = 0")
         return
     } 
     
-    v0_logical = trim_quoted_string(v0_logical)
+    v0_logical = utils.Trim_quoted_string(v0_logical)
     if strings.HasPrefix(v0_logical, v0_dataset) == false {
         err = errors.New("error: DATASET_ID (" + v0_dataset + ") is not a prefix of LOGICAL_FILE_ID (" + v0_logical + ")" )
     }
@@ -211,17 +213,17 @@ func (h *CefHeaderData) check_meta_FILE_TYPE() (err error) {
         return
     }
     
-    v0_filename = trim_quoted_string(v0_filename)
+    v0_filename = utils.Trim_quoted_string(v0_filename)
     if len(v0_filename) == 0 {
         return errors.New("error: FILE_NAME length = 0")
     } 
     
-    v0_file_type = trim_quoted_string(v0_file_type)
+    v0_file_type = utils.Trim_quoted_string(v0_file_type)
     if len(v0_file_type) == 0 {
         return errors.New("error: FILE_TYPE length = 0")
     } 
     
-    v0_logical = trim_quoted_string(v0_logical)
+    v0_logical = utils.Trim_quoted_string(v0_logical)
     if len(v0_logical) == 0 {
         return errors.New("error: LOGICAL_FILE_ID length = 0")
     } 
@@ -274,8 +276,8 @@ func (h *CefHeaderData) check_meta_FILE_TIME_SPAN() (err error) {
     }
     
     v0_entry_FILE_TIME_SPAN := es[0]
-    v0_entry_FILE_TIME_SPAN = trim_quoted_string(v0_entry_FILE_TIME_SPAN)
-    err = iso_time_range_parser(v0_entry_FILE_TIME_SPAN)
+    v0_entry_FILE_TIME_SPAN = utils.Trim_quoted_string(v0_entry_FILE_TIME_SPAN)
+    err = utils.Iso_time_range_parser(v0_entry_FILE_TIME_SPAN)
     
     return
 }
@@ -308,7 +310,7 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
         return
     }    
 
-    err = integer_parser(v0_version_number)
+    err = utils.Integer_parser(v0_version_number)
     if err != nil {
         return
     }    
@@ -354,9 +356,9 @@ func (h *CefHeaderData) print_results(about string, err error) {
         
 func (h *CefHeaderData) checks() (err error) {
     
-    fmt.Println("cef filename", s_args.m_filename)
+    //x fmt.Println("cef filename", s_args.m_filename)
     //xfmt.Println("cef cefpath", *s_args.m_cefpath)
-    fmt.Println("cef cefpath2", s_args.m_cefpath)
+    //x fmt.Println("cef cefpath2", s_args.m_cefpath)
     
 	aks := []string{
 		"FILE_NAME",

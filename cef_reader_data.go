@@ -2,6 +2,7 @@ package main
 
 import (
     "fmt"
+    "github.com/caa-dev-apps/cefmdd_v1/readers"
 )
 
 
@@ -24,7 +25,7 @@ import (
 
 
 func ReadData(args *CefArgs,
-			  i_lines chan Line) (r_err error) {
+			  i_lines chan readers.Line) (r_err error) {
 
 	// dev data line reader
 	ix := 0

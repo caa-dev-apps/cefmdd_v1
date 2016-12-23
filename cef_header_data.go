@@ -12,6 +12,8 @@ import (
 //x  	"log"
 //x     "github.com/fatih/color"
 //x 	"net/http"    
+    "github.com/caa-dev-apps/cefmdd_v1/readers"
+    "github.com/caa-dev-apps/cefmdd_v1/rules"
 )
 
 //          Current State	                Key In	            Val In	            Checks	                            Output function	            Next State
@@ -50,7 +52,7 @@ const (
 	ERROR
 )
 
-// used for Global Attributes + Meta and Var  (see KeyVal string -> []string)
+// used for Global Attributes + Meta and Var  (see readers.KeyVal string -> []string)
 type Attrs struct {
     m_map map[string][]string 
 }
@@ -59,16 +61,16 @@ func NewAttrs() *Attrs {
     return &Attrs{m_map: make(map[string][]string)}
 }
 
-func (m *Attrs) push_kv(kv *KeyVal) (err error) {
+func (m *Attrs) push_kv(kv *readers.KeyVal) (err error) {
 
-    val, is_present := m.m_map[kv.key]
+    val, is_present := m.m_map[kv.Key]
     if is_present == true {
-        val = append(val, kv.val...)
+        val = append(val, kv.Val...)
     } else {
-        val = kv.val
+        val = kv.Val
     }
     
-    m.m_map[kv.key] = val
+    m.m_map[kv.Key] = val
     
 	return err
 }
@@ -236,7 +238,7 @@ func (h *CefHeaderData) getMetaEntry(k string) (entry []string, err error) {
 //
  
 var (
-    s_mdd_data = NewMddData()
+    s_mdd_data = rules.NewMddData()
 )
 
 var (
@@ -249,27 +251,27 @@ var (
 
 
 
-func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
+func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
 
     l_kv := kv
 
     switch {
-        case kv.key == "ENTRY":     fmt.Println(BoldBlue("delay-meta-check-", "ENTRY",   " ",  kv.val));  return
-        case kv.key == "FILLVAL":   fmt.Println(BoldBlue("delay-check-", "FILLVAL", " ",  kv.val));  return        // multiple types - depends on var type
-        case kv.key == "SIZES":     fmt.Println(BoldBlue("delay-check-", "SIZES",   " ",  kv.val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
+        case kv.Key == "ENTRY":     fmt.Println(BoldBlue("delay-meta-check-", "ENTRY",   " ",  kv.Val));  return
+        case kv.Key == "FILLVAL":   fmt.Println(BoldBlue("delay-check-", "FILLVAL", " ",  kv.Val));  return        // multiple types - depends on var type
+        case kv.Key == "SIZES":     fmt.Println(BoldBlue("delay-check-", "SIZES",   " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
         
-        case REGX_REPRESENTATION_i.MatchString(kv.key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
-        case REGX_LABEL_i.MatchString(kv.key):           l_kv = kv.NewSwitchKey(`LABEL_i`)
-        case REGX_DEPEND_i.MatchString(kv.key):          l_kv = kv.NewSwitchKey(`DEPEND_i`)
+        case REGX_REPRESENTATION_i.MatchString(kv.Key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
+        case REGX_LABEL_i.MatchString(kv.Key):           l_kv = kv.NewSwitchKey(`LABEL_i`)
+        case REGX_DEPEND_i.MatchString(kv.Key):          l_kv = kv.NewSwitchKey(`DEPEND_i`)
         
         default:
     }
 
-    err = s_mdd_data.test_input(l_kv)
+    err = s_mdd_data.Test_input(l_kv)
     if err != nil {
         fmt.Println(BoldRed(err.Error()))
     } else {
-        fmt.Println(BoldGreen("Ok-KeyVal"), kv.key, kv.val)
+        fmt.Println(BoldGreen("Ok-readers.KeyVal"), kv.Key, kv.Val)
     }
 
     return
@@ -278,9 +280,9 @@ func (h *CefHeaderData) check_mdd(kv *KeyVal) (err error) {
 
 func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
     
-    l_kv := NewMetaKeyVal(h.m_name, h.m_cur.m_map[`ENTRY`])
+    l_kv := readers.NewMetaKeyVal(h.m_name, h.m_cur.m_map[`ENTRY`])
     
-    err = s_mdd_data.test_input(l_kv)
+    err = s_mdd_data.Test_input(l_kv)
     if err != nil {
         fmt.Println(BoldRed(err.Error()))
         // log.Printf("\t\tTESTING-2 %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
@@ -292,41 +294,41 @@ func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
     return
 }
 
-func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
+func (h *CefHeaderData) add_kv(kv *readers.KeyVal) (err error) {
 
 	switch {
-	case strings.EqualFold("START_META", kv.key) == true:
-		//d mooi_log("START_META", kv.val[0])
+	case strings.EqualFold("START_META", kv.Key) == true:
+		//d mooi_log("START_META", kv.Val[0])
 
 		switch h.m_state {
 		case ATTR:
             h.m_state = META
-            h.m_name = kv.val[0]
+            h.m_name = kv.Val[0]
             h.m_cur = NewAttrs()
             
 		default:
 			return errors.New("START_META: invalid State")
 		}
 
-	case strings.EqualFold("START_VARIABLE", kv.key) == true:
-		//d mooi_log("START_VARIABLE", kv.val[0])
+	case strings.EqualFold("START_VARIABLE", kv.Key) == true:
+		//d mooi_log("START_VARIABLE", kv.Val[0])
 
 		switch h.m_state {
 		case ATTR:
             h.m_state = VAR
-            h.m_name = kv.val[0]
+            h.m_name = kv.Val[0]
             h.m_cur = NewAttrs()            
             
 		default:
 			return errors.New("START_VARIABLE: invalid State")
 		}
 
-	case strings.EqualFold("END_META", kv.key) == true:
-		//d mooi_log("END_META", kv.val[0])
+	case strings.EqualFold("END_META", kv.Key) == true:
+		//d mooi_log("END_META", kv.Val[0])
 
 		switch h.m_state {
 		case META:
-			if h.m_name != kv.val[0] {
+			if h.m_name != kv.Val[0] {
 				return errors.New("END_META: invalid Name")
 			}
             
@@ -340,12 +342,12 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 			return errors.New("END_META: invalid State")
 		}
 
-	case strings.EqualFold("END_VARIABLE", kv.key) == true:
-		//d mooi_log("END_VARIABLE", kv.val[0])
+	case strings.EqualFold("END_VARIABLE", kv.Key) == true:
+		//d mooi_log("END_VARIABLE", kv.Val[0])
 
 		switch h.m_state {
 		case VAR:
-			if h.m_name != kv.val[0] {
+			if h.m_name != kv.Val[0] {
 				return errors.New("END_VARIABLE: invalid Name")
 			}
             
@@ -361,7 +363,7 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 		}
 
 	default:
-		//d mooi_log(kv.key, kv.val[0])
+		//d mooi_log(kv.Key, kv.Val[0])
 
         // this is where to place the key - val tests //////////////////////////////////////////////
         h.m_cur.push_kv(kv)
@@ -375,7 +377,7 @@ func (h *CefHeaderData) add_kv(kv *KeyVal) (err error) {
 	return err
 }
 
-func NewKV(k, v string) *KeyVal {
-    return &KeyVal { key: k, val: []string{ v}}
+func NewKV(k, v string) *readers.KeyVal {
+    return &readers.KeyVal { Key: k, Val: []string{ v}}
 }
 

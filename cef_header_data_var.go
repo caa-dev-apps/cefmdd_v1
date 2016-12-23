@@ -1,8 +1,10 @@
 package main
 
-import ()
+import (
+	"github.com/caa-dev-apps/cefmdd_v1/readers"
+)
 
-func (hds *CefHeaderData) kv_var(kv *KeyVal) (err error) {
+func (hds *CefHeaderData) kv_var(kv *readers.KeyVal) (err error) {
 
     //todo need to  add kv_var to current Var{}
     println("TODO: kv_var");

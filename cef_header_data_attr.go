@@ -1,8 +1,10 @@
 package main
 
-import ()
+import (
+	"github.com/caa-dev-apps/cefmdd_v1/readers"
+)
 
-func (hds *CefHeaderData) kv_attr(kv *KeyVal) (err error) {
+func (hds *CefHeaderData) kv_attr(kv *readers.KeyVal) (err error) {
 
     //x FILE_NAME
     //x FILE_FORMAT_VERSION

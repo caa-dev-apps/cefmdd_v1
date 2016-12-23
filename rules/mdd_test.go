@@ -1,8 +1,9 @@
-package main
+package rules
 
 import (
      "log"
      "testing"
+    "github.com/caa-dev-apps/cefmdd_v1/readers"
 )
 
 //- Keywords
@@ -133,7 +134,7 @@ var (
 
 func Test_mdd_all_should_pass(t *testing.T) {
 
-    l_test_data := []KeyVal {
+    l_test_data := []readers.KeyVal {
         { key: "MISSION_REGION",              val: []string{ "Magnetosheath"}},                                    //    1,      N,         Enumerated, 
         { key: "FILE_TYPE",                   val: []string{ "cdf"}},                                              //    1,      1,         Enumerated,       
         { key: "GENERATION_DATE",             val: []string{ "2011-10-09T00:00:00Z" }},                            //    1,      1,         ISO_TIME,   
@@ -147,7 +148,7 @@ func Test_mdd_all_should_pass(t *testing.T) {
     }
 
     for _, d := range l_test_data {
-        err := mdd_data.test_input(&d)
+        err := mdd_data.Test_input(&d)
         if err != nil {
             log.Print(err)        
         }
@@ -156,7 +157,7 @@ func Test_mdd_all_should_pass(t *testing.T) {
 
 func Test_mdd_all_should_fail(t *testing.T) {
 
-    l_test_data := []KeyVal {
+    l_test_data := []readers.KeyVal {
         { key: "MISSION_REGION",              val: []string{ "XMagnetosheath"}},                                    //    1,      N,         Enumerated, 
         { key: "FILE_TYPE",                   val: []string{ "Xcdf"}},                                              //    1,      1,         Enumerated,       
         { key: "GENERATION_DATE",             val: []string{ "X2011-10-09T00:00:00Z" }},                            //    1,      1,         ISO_TIME,   
@@ -168,7 +169,7 @@ func Test_mdd_all_should_fail(t *testing.T) {
     }
 
     for _, d := range l_test_data {
-        err := mdd_data.test_input(&d)
+        err := mdd_data.Test_input(&d)
         if err != nil {
             log.Print(err)        
         }
@@ -185,12 +186,12 @@ func Test_mdd_enums(t *testing.T) {
 
     println("X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X X - X ");
 
-    l_test_data := []KeyVal {
+    l_test_data := []readers.KeyVal {
         { key: "PARAMETER_TYPE",              val: []string{ "Support_Data"}},                                     //    1,      1*,        Integer,           
     }
 
     for _, d := range l_test_data {
-        err := mdd_data.test_input(&d)
+        err := mdd_data.Test_input(&d)
         if err != nil {
             log.Print(err)        
         }

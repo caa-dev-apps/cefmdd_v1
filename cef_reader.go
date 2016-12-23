@@ -2,13 +2,14 @@ package main
 
 import (
     "fmt"
+	"github.com/caa-dev-apps/cefmdd_v1/readers"    
 )
 
 
 func ReadCef(args *CefArgs) (err error) {
 
 	l_path := args.m_cefpath
-	l_lines := EachLine(l_path)
+	l_lines := readers.EachLine(l_path)
 
 	fmt.Println("....", l_path)
 

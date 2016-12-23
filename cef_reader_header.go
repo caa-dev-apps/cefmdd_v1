@@ -3,23 +3,21 @@ package main
 import (
 	"errors"
 	"strings"
+    "github.com/caa-dev-apps/cefmdd_v1/readers"
+    "github.com/caa-dev-apps/cefmdd_v1/utils"
 )
 
-//x func ReadCefHeader(args *CefArgs) (r_header CefHeaderData, r_lines chan Line, r_err error) {
-
 func ReadHeader(args *CefArgs,
-			    i_lines_in chan Line) (r_header CefHeaderData, r_err error) {
+			    i_lines_in chan readers.Line) (r_header CefHeaderData, r_err error) {
 
 	includedMap := map[string]bool{}
 	ix := 0
 	nestedLevel := 0
 
     r_header = *NewCefHeaderData()
-	//x l_path := *args.m_cefpath
-
 
 	// forward decl
-	var doProcess func(i_lines chan Line) (data_until bool, err error)
+	var doProcess func(i_lines chan readers.Line) (data_until bool, err error)
 
 	getIncludePath := func(i_filename string) (r_path string, err error) {
 		done := false
@@ -39,7 +37,7 @@ func ReadHeader(args *CefArgs,
 
 			//d mooi_log("PATH: ", i, r_path)
 
-			done, _ = fileExists(r_path)
+			done, _ = utils.FileExists(r_path)
 		}
 
 		if done == false {
@@ -49,12 +47,12 @@ func ReadHeader(args *CefArgs,
 		return
 	}
 
-	doProcess = func(i_lines chan Line) (data_until bool, err error) {
+	doProcess = func(i_lines chan readers.Line) (data_until bool, err error) {
 
-		for kv := range eachKeyVal(i_lines) {
+		for kv := range readers.EachKeyVal(i_lines) {
 
-			if strings.EqualFold("include", kv.key) == true {
-				v := strings.Trim(kv.val[0], `" `)
+			if strings.EqualFold("include", kv.Key) == true {
+				v := strings.Trim(kv.Val[0], `" `)
 
 				ceh_path, err := getIncludePath(v)
 				if err != nil {
@@ -64,14 +62,14 @@ func ReadHeader(args *CefArgs,
 				includedMap[ceh_path] = true
 				nestedLevel++
 
-				l_lines := EachLine(ceh_path)				
+				l_lines := readers.EachLine(ceh_path)				
 				if _, err = doProcess(l_lines); err != nil {
 					return data_until, err
 				}
 				nestedLevel--
 			} else {
 				r_header.add_kv(&kv)
-				data_until = strings.EqualFold("DATA_UNTIL", kv.key)
+				data_until = strings.EqualFold("DATA_UNTIL", kv.Key)
 			}
 
 			ix++

@@ -3,27 +3,28 @@ package main
 import (
 	"errors"
 	"strings"
+	"github.com/caa-dev-apps/cefmdd_v1/readers"
 )
 
 
-func (hds *CefHeaderData) kv_meta_entry(kv *KeyVal) (err error) {
+func (hds *CefHeaderData) kv_meta_entry(kv *readers.KeyVal) (err error) {
     //todo need to  add entry to current Meta{}
     println("TODO: kv_meta_entry");
     return 
 }
 
-func (hds *CefHeaderData) kv_meta_value_type(kv *KeyVal) (err error) {
+func (hds *CefHeaderData) kv_meta_value_type(kv *readers.KeyVal) (err error) {
     //todo need to  add value_type to current Meta{}
     println("TODO: kv_meta_value_type");
 	return
 }
 
-func (hds *CefHeaderData) kv_meta(kv *KeyVal) (err error) {
+func (hds *CefHeaderData) kv_meta(kv *readers.KeyVal) (err error) {
 
 	switch {
-	case strings.EqualFold("ENTRY", kv.key) == true:
+	case strings.EqualFold("ENTRY", kv.Key) == true:
 		err = hds.kv_meta_entry(kv)
-	case strings.EqualFold("VALUE_TYPE", kv.key) == true:
+	case strings.EqualFold("VALUE_TYPE", kv.Key) == true:
 		err = hds.kv_meta_value_type(kv)
 	default:
 		return errors.New("META KEY: unknown")
