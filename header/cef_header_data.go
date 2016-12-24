@@ -1,4 +1,4 @@
-package main
+package header
 
 import (
     "strings"
@@ -8,12 +8,9 @@ import (
     "os"
     "strconv"
     "regexp"
-//x 	"io/ioutil"
-//x  	"log"
-//x     "github.com/fatih/color"
-//x 	"net/http"    
     "github.com/caa-dev-apps/cefmdd_v1/readers"
     "github.com/caa-dev-apps/cefmdd_v1/rules"
+    "github.com/caa-dev-apps/cefmdd_v1/diag"
 )
 
 //          Current State	                Key In	            Val In	            Checks	                            Output function	            Next State
@@ -246,7 +243,7 @@ var (
     REGX_LABEL_i, _ = regexp.Compile(`LABEL_([\d]+)`)
     REGX_DEPEND_i, _ = regexp.Compile(`DEPEND_([\d]+)`)
     
-    s_diag = NewDiag()
+    s_diag = diag.NewDiag()
 )
 
 
@@ -256,9 +253,9 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
     l_kv := kv
 
     switch {
-        case kv.Key == "ENTRY":     fmt.Println(BoldBlue("delay-meta-check-", "ENTRY",   " ",  kv.Val));  return
-        case kv.Key == "FILLVAL":   fmt.Println(BoldBlue("delay-check-", "FILLVAL", " ",  kv.Val));  return        // multiple types - depends on var type
-        case kv.Key == "SIZES":     fmt.Println(BoldBlue("delay-check-", "SIZES",   " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
+        case kv.Key == "ENTRY":     fmt.Println(diag.BoldBlue("delay-meta-check-", "ENTRY",   " ",  kv.Val));  return
+        case kv.Key == "FILLVAL":   fmt.Println(diag.BoldBlue("delay-check-", "FILLVAL", " ",  kv.Val));  return        // multiple types - depends on var type
+        case kv.Key == "SIZES":     fmt.Println(diag.BoldBlue("delay-check-", "SIZES",   " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
         
         case REGX_REPRESENTATION_i.MatchString(kv.Key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
         case REGX_LABEL_i.MatchString(kv.Key):           l_kv = kv.NewSwitchKey(`LABEL_i`)
@@ -269,9 +266,9 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
 
     err = s_mdd_data.Test_input(l_kv)
     if err != nil {
-        fmt.Println(BoldRed(err.Error()))
+        fmt.Println(diag.BoldRed(err.Error()))
     } else {
-        fmt.Println(BoldGreen("Ok-readers.KeyVal"), kv.Key, kv.Val)
+        fmt.Println(diag.BoldGreen("Ok-readers.KeyVal"), kv.Key, kv.Val)
     }
 
     return
@@ -284,17 +281,17 @@ func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
     
     err = s_mdd_data.Test_input(l_kv)
     if err != nil {
-        fmt.Println(BoldRed(err.Error()))
+        fmt.Println(diag.BoldRed(err.Error()))
         // log.Printf("\t\tTESTING-2 %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
     } else {
-        fmt.Println(BoldCyan("ok-meta"), h.m_name)
+        fmt.Println(diag.BoldCyan("ok-meta"), h.m_name)
     }
     
     
     return
 }
 
-func (h *CefHeaderData) add_kv(kv *readers.KeyVal) (err error) {
+func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 
 	switch {
 	case strings.EqualFold("START_META", kv.Key) == true:

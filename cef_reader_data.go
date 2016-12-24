@@ -3,6 +3,7 @@ package main
 import (
     "fmt"
     "github.com/caa-dev-apps/cefmdd_v1/readers"
+	"github.com/caa-dev-apps/cefmdd_v1/utils"    
 )
 
 
@@ -24,7 +25,7 @@ import (
 //! 		- Check Time/Date stamp 
 
 
-func ReadData(args *CefArgs,
+func ReadData(args *utils.CefArgs,
 			  i_lines chan readers.Line) (r_err error) {
 
 	// dev data line reader

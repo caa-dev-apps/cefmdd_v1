@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"errors"
@@ -29,6 +29,19 @@ type CefArgs struct {
 	m_cefpath  string
     m_filename string
 }
+
+func (a1s CefArgs) GetIncludes() (strslice) {
+	return a1s.m_includes	
+}
+
+func (a1s CefArgs) GetCefPath() (string) {
+	return a1s.m_cefpath
+}
+
+func (a1s CefArgs) GetFilename() (string) {
+	return a1s.m_filename
+}
+
 
 func (a1s *CefArgs) init() error {
 	err := error(nil)
@@ -84,11 +97,8 @@ func NewCefArgs() (s_args CefArgs, err error) {
 	return s_args, err
 }
 
-
-
-
-
-
-
+func GetCefArgs() (s_args CefArgs) {
+	return s_args		
+}
 
 

@@ -1,11 +1,11 @@
-package main
+package header
 
 import (
     "fmt"
     "errors"
     "strings"
     "github.com/caa-dev-apps/cefmdd_v1/utils"
-    //x "github.com/caa-dev-apps/cefmdd_v1/rules"
+    "github.com/caa-dev-apps/cefmdd_v1/diag"
 )
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -130,8 +130,14 @@ func (h *CefHeaderData) check_attr_FILE_NAME() (err error) {
     }
     
     v0 = utils.Trim_quoted_string(v0)
-    if s_args.m_filename != v0 {
-        err = errors.New("error: FILE_NAME attribute mismatches - actual (" + s_args.m_filename + ")")
+    //x l_args := utils.GetCefArgs()
+    l_filename := utils.GetCefArgs().GetFilename()
+//x     if l_args.m_filename != v0 {
+//x         err = errors.New("error: FILE_NAME attribute mismatches - actual (" + l_args.m_filename + ")")
+//x     } 
+
+    if l_filename != v0 {
+        err = errors.New("error: FILE_NAME attribute mismatches - actual (" + l_filename + ")")
     } 
     
     return
@@ -139,14 +145,14 @@ func (h *CefHeaderData) check_attr_FILE_NAME() (err error) {
 
 func (h *CefHeaderData) check_attr_FILE_FORMAT_VERSION() (err error) {
     
-    fmt.Println(BoldMagenta("TODO check_attr_FILE_FORMAT_VERSION"))  
+    fmt.Println(diag.BoldMagenta("TODO check_attr_FILE_FORMAT_VERSION"))  
     
     return
 }
 
 func (h *CefHeaderData) check_attr_DATA_UNTIL() {
     
-    fmt.Println(BoldMagenta("TODO check_attr_DATA_UNTIL"))  
+    fmt.Println(diag.BoldMagenta("TODO check_attr_DATA_UNTIL"))  
     return
 }
 
@@ -347,14 +353,14 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
 func (h *CefHeaderData) print_results(about string, err error) {
 
     if err != nil {
-        fmt.Println(BoldRed("error-" + about), err)        
+        fmt.Println(diag.BoldRed("error-" + about), err)        
     } else {
-        fmt.Println(BoldGreen("ok-" + about))        
+        fmt.Println(diag.BoldGreen("ok-" + about))        
     }
 }        
         
         
-func (h *CefHeaderData) checks() (err error) {
+func (h *CefHeaderData) Checks() (err error) {
     
     //x fmt.Println("cef filename", s_args.m_filename)
     //xfmt.Println("cef cefpath", *s_args.m_cefpath)

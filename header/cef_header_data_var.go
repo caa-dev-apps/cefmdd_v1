@@ -1,4 +1,4 @@
-package main
+package header
 
 import (
 	"github.com/caa-dev-apps/cefmdd_v1/readers"

@@ -1,14 +1,15 @@
-package main
+package diag
 
 import (
      "testing"
+         "github.com/caa-dev-apps/cefmdd_v1/diag"
 )
 
 /////////////////////////////////////////////////////////////////////////////// -------------------------------------------------------------------------------
 //
 
 var (
-    s_diag = NewDiag()
+    s_diag = diag.NewDiag()
 )
 
 func Test_mdd_all_should_fail(t *testing.T) {

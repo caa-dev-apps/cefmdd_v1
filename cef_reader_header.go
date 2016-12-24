@@ -3,18 +3,19 @@ package main
 import (
 	"errors"
 	"strings"
+    "github.com/caa-dev-apps/cefmdd_v1/header"
     "github.com/caa-dev-apps/cefmdd_v1/readers"
     "github.com/caa-dev-apps/cefmdd_v1/utils"
 )
 
-func ReadHeader(args *CefArgs,
-			    i_lines_in chan readers.Line) (r_header CefHeaderData, r_err error) {
+func ReadHeader(args *utils.CefArgs,
+			    i_lines_in chan readers.Line) (r_header header.CefHeaderData, r_err error) {
 
 	includedMap := map[string]bool{}
 	ix := 0
 	nestedLevel := 0
 
-    r_header = *NewCefHeaderData()
+    r_header = *header.NewCefHeaderData()
 
 	// forward decl
 	var doProcess func(i_lines chan readers.Line) (data_until bool, err error)
@@ -26,9 +27,13 @@ func ReadHeader(args *CefArgs,
 			return r_path, errors.New("Include nested files limit reached (8 deep)")
 		}
 
-		for i := 0; i < len(args.m_includes) && done == false; i++ {
+//x 		for i := 0; i < len(args.m_includes) && done == false; i++ {
+//x 
+//x 			r_path = args.m_includes[i] + `/` + i_filename
+		l_includes := args.GetIncludes()
+		for i := 0; i < len(l_includes) && done == false; i++ {
 
-			r_path = args.m_includes[i] + `/` + i_filename
+			r_path = l_includes[i] + `/` + i_filename
 
 			_, included := includedMap[r_path]
 			if included == true {
@@ -68,7 +73,7 @@ func ReadHeader(args *CefArgs,
 				}
 				nestedLevel--
 			} else {
-				r_header.add_kv(&kv)
+				r_header.Add_kv(&kv)
 				data_until = strings.EqualFold("DATA_UNTIL", kv.Key)
 			}
 
@@ -94,7 +99,7 @@ func ReadHeader(args *CefArgs,
 		return
 	}
 
-    r_header.checks()
+    r_header.Checks()
 
     //-r_header.dumpAttrs()
 	println("Header Lines read -> ", ix)

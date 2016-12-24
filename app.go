@@ -2,31 +2,31 @@ package main
 
 import (
     "fmt"
-//x 	"github.com/caa-dev-apps/cefmdd_v1/cefdata"
-//x 	"github.com/caa-dev-apps/cefmdd_v1/cefheader"
+    "github.com/caa-dev-apps/cefmdd_v1/diag"
+    "github.com/caa-dev-apps/cefmdd_v1/utils"
 )
 
-var (
-	s_args CefArgs
-)
+//x var (
+//x 	s_args CefArgs
+//x )
 
 func main() {
 
-    fmt.Println(BoldMagenta("cefmdd_v1 v0.0.2, (Dec 2016)"))
+    fmt.Println(diag.BoldMagenta("cefmdd_v1 v0.0.2, (Dec 2016)"))
 
-	s_args, err := NewCefArgs()
+	s_args, err := utils.NewCefArgs()
 	if err != nil {
-		fmt.Println(BoldRed("Invalid Command Line Args"))	
+		fmt.Println(diag.BoldRed("Invalid Command Line Args"))	
 		return
 	}
     
 	err = ReadCef(&s_args)
 	if err != nil {
-		fmt.Println(BoldRed("Error parsing cef file"))	
+		fmt.Println(diag.BoldRed("Error parsing cef file"))	
 		return
 	}
 
-    fmt.Println(BoldMagenta("CAA Rocks!"))
+    fmt.Println(diag.BoldMagenta("CAA Rocks!"))
 
 
 }
