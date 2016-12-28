@@ -58,6 +58,10 @@ func NewAttrs() *Attrs {
     return &Attrs{m_map: make(map[string][]string)}
 }
 
+func (a *Attrs) Map() (map[string][]string) {
+    return a.m_map
+}
+
 func (m *Attrs) push_kv(kv *readers.KeyVal) (err error) {
 
     val, is_present := m.m_map[kv.Key]
@@ -70,6 +74,14 @@ func (m *Attrs) push_kv(kv *readers.KeyVal) (err error) {
     m.m_map[kv.Key] = val
     
 	return err
+}
+
+func (m *Attrs) push_k_v(k, v string) (err error) {
+    vs := []string{ v }
+
+    kv := readers.NewMetaKeyVal(k , vs)
+
+    return m.push_kv(kv)
 }
 
 type Meta struct {
@@ -94,6 +106,13 @@ func NewVars() *Vars {
     }
 }
 
+func (v *Vars) Map() (map[string]Attrs) {
+    return v.m_map
+}
+
+func (v *Vars) List() ([]Attrs) {
+    return v.m_list
+}
 
 type CefHeaderData struct {
 	m_state State
@@ -120,6 +139,18 @@ func (h *CefHeaderData) init()  {
     h.m_cur = h.m_attrs
     
 	return
+}
+
+func (h *CefHeaderData) Attrs() (*Attrs) {
+    return h.m_attrs
+}
+
+func (h *CefHeaderData) Meta() (*Meta) {
+    return h.m_meta
+}
+
+func (h *CefHeaderData) Vars() (*Vars) {
+    return h.m_vars
 }
 
 
@@ -174,7 +205,7 @@ func (h *CefHeaderData) dumpMeta()  {
 }
 
 
-func (h *CefHeaderData) dump() (err error) {
+func (h *CefHeaderData) Dump() (err error) {
 
     fmt.Println("--\n", h.m_attrs)
     fmt.Println("--\n", h.m_meta)
@@ -348,9 +379,10 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 				return errors.New("END_VARIABLE: invalid Name")
 			}
             
+            h.m_cur.push_k_v("variable_name", h.m_name)
+
             h.m_vars.m_list = append(h.m_vars.m_list, *h.m_cur)
             h.m_vars.m_map[h.m_name] = *h.m_cur
-            
             
             
             h.init()

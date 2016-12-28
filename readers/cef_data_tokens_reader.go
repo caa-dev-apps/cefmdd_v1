@@ -2,7 +2,6 @@ package readers
 
 import (
 	"fmt"
-//x     "strings"
     "errors"
     "unicode"
 )
@@ -20,27 +19,8 @@ const (
     //x EOL
 )
 
-//x func state_str(s ROWState) (str string) {
-//x 
-//x     switch s {
-//x     case STX:                   return "STX        "
-//x     case TOK:                   return "TOK         "
-//x     case TOK_2:                 return "TOK_2       "
-//x     case QSTR:                  return "QSTR        "
-//x     case QSTR_2:                return "QSTR_2      "
-//x     //x case COMMENT:               return "COMMENT     "
-//x     case ERROR:                 return "ERROR       "
-//x     //x case EOL:                   return "EOL         "
-//x     default:                    return "????????    "
-//x     }
-//x 
-//x     return
-//x }
-//x 
-//x func state_diag(ch rune, s1, s2 ROWState, tok string) {
-//x 
-//x     fmt.Println(string(ch), state_str(s1), state_str(s2), tok)
-//x }
+// TOK        TOK    TOK  TOK     QTOK    TOK
+// DATE-TIME, FLOAT, INT, DOUBLE, STRING, EOL_MARKER
 
 func (s ROWState)state_str() (str string) {
 
@@ -146,7 +126,6 @@ func rowTokeniser(i_lines chan string, i_len int) chan RowTokens {
                 default:
                     // allow for end of record marker without previous comma
                     // e.g. ... " 2002-11-10T04:17:14.758391Z,    -502,    -596,    -502,    -763, -10, -1000000000 $ "
-                    //x fmt.Printf("________>> \tlen(r_tokens) %d \tl_running_len %d \t(i_len -1) %d \n", len(r_tokens), l_running_len, (i_len -1))
                     if (len(r_tokens) + l_running_len) == (i_len -1) {
                         l_tok = string(ch)
                         state = TOK
