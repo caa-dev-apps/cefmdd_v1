@@ -2,8 +2,9 @@ package main
 
 import (
     "fmt"
+    "github.com/caa-dev-apps/cefmdd_v1/header"
     "github.com/caa-dev-apps/cefmdd_v1/readers"
-	"github.com/caa-dev-apps/cefmdd_v1/utils"    
+//x 	"github.com/caa-dev-apps/cefmdd_v1/utils"    
 )
 
 
@@ -25,7 +26,42 @@ import (
 //! 		- Check Time/Date stamp 
 
 
-func ReadData(args *utils.CefArgs,
+type Cell struct {
+	Variable_ix 	int
+	Cell_ix 		int
+	Variable_type 	int
+}
+
+func NewCellsArray(i_header header.CefHeaderData) (r_cells []Cell) {
+
+	vs := i_header.Vars().List()
+
+	for ix, v := range vs {
+		fmt.Println(ix)		
+
+		for k1, v1 := range v.Map() {
+			fmt.Println(k1, "\t", v1)	
+
+			// TODO move to []struct {
+			// 	Variable_Name string
+			// 	Value_Type string
+			// 	Sizes_total n0 x n1 x n2...
+			// }
+			// 
+		}
+
+		//x fmt.Println(v)		
+		fmt.Println("\n\n")		
+	}
+
+	//x fmt.Println(vs)
+
+	return
+}
+
+
+
+func ReadData(i_header header.CefHeaderData,
 			  i_lines chan readers.Line) (r_err error) {
 
 	// dev data line reader
@@ -39,6 +75,8 @@ func ReadData(args *utils.CefArgs,
 
 		ix++
 	}
+
+	_ = NewCellsArray(i_header)
 
 	return
 }
