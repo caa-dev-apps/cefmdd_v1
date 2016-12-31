@@ -4,9 +4,7 @@ import (
     "fmt"
     "errors"
     "strconv"
-//x     "github.com/caa-dev-apps/cefmdd_v1/diag"
     "github.com/caa-dev-apps/cefmdd_v1/header"
-//x     "github.com/caa-dev-apps/cefmdd_v1/readers"
  	"github.com/caa-dev-apps/cefmdd_v1/utils"    
 )
 
@@ -26,9 +24,10 @@ import (
 //! 		- Check type of each cell
 //! 		- Check Time/Date stamp 
 
-type DataCell struct {
+type DataCellType struct {
 	Variable_ix 	int
 	Cell_ix 		int
+	VariableName    string
 	VariableType 	string
 	VariableParser  func(string) (error)
 }
@@ -99,13 +98,12 @@ func sizesProduct(sizes []string) (product int64, err error) {
     return
 }
 
-
-func NewDataCellsArray(i_header header.CefHeaderData) (r_cells []DataCell, err error) {
+func NewDataCellTypesArray(i_header header.CefHeaderData) (r_cells []DataCellType, err error) {
 	vs := i_header.Vars().List()
 
 	c_ix := 0
 	for ix, v := range vs {
-		fmt.Println(ix)		
+		//x fmt.Println(ix)		
 
 		vmap := v.Map()
 		if _, p := vmap["DATA"]; p == true {
@@ -114,7 +112,6 @@ func NewDataCellsArray(i_header header.CefHeaderData) (r_cells []DataCell, err e
 		}
 
 		// not official - but should get added for convenience
-		//x if vn, p := vmap["variable_name"]; p == false {
 		vn, p := vmap["variable_name"] 
 		if p == false {
 			err = errors.New(`error variable_name missing from Variable index: ` + strconv.Itoa(ix))
@@ -141,7 +138,6 @@ func NewDataCellsArray(i_header header.CefHeaderData) (r_cells []DataCell, err e
 			return
 		}
 
-		//x if f, err = valueTypeParserFunc(vt) (f func(string) (error), err error) {
 		f, err2 := valueTypeParserFunc(vt[0])
 		if err2 != nil {
 			err = errors.New(fmt.Sprintf(`error VALUE_TYPE unknown type : %#v  -  variable : %#v`, vt, vn))
@@ -150,8 +146,9 @@ func NewDataCellsArray(i_header header.CefHeaderData) (r_cells []DataCell, err e
 
 		for sp_ix := int64(0); sp_ix < sp; sp_ix++ {
 
-			l_cell := &DataCell{Variable_ix: ix,
+			l_cell := &DataCellType{Variable_ix: ix,
 							Cell_ix: c_ix,
+							VariableName: vn[0],
 							VariableType: vt[0],
 							VariableParser: f,
 						}
@@ -162,36 +159,19 @@ func NewDataCellsArray(i_header header.CefHeaderData) (r_cells []DataCell, err e
         }
     }
 
+	amap := i_header.Attrs().Map()
+	eorms, p := amap["END_OF_RECORD_MARKER"]
+	if p == true && len(eorms) == 1 {
+		l_cell := &DataCellType{Variable_ix: -1,
+						Cell_ix: c_ix,
+						VariableName: "END_OF_RECORD_MARKER",
+						VariableType: "string",
+						VariableParser: utils.String_matcher_test(eorms[0]),
+					}
+
+		r_cells = append(r_cells, *l_cell)
+	}
+
 	return
 }
-
-
-//..    func ReadData(i_header header.CefHeaderData,
-//..    			  i_lines chan readers.Line) (err error) {
-//..    
-//..    	// dev data line reader
-//..    	ix := 0
-//..    	for l_line := range i_lines {
-//..    		fmt.Println("line:", ix, l_line)
-//..    
-//..    		if ix > 3 {
-//..    			break
-//..    		}
-//..    
-//..    		ix++
-//..    	}
-//..    
-//..    	l_cells, err := NewCellsArray(i_header)
-//..    	if err != nil {
-//..    		fmt.Println(diag.BoldRed("Error creating Cells Array for Data checks"))	
-//..    		return
-//..    	}
-//..    
-//..    	for i, c := range l_cells {
-//..    		fmt.Println(i)
-//..    		fmt.Printf("%#v \n", c)
-//..    	}
-//..    
-//..    	return
-//..    }
 

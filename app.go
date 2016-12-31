@@ -6,10 +6,6 @@ import (
     "github.com/caa-dev-apps/cefmdd_v1/utils"
 )
 
-//x var (
-//x 	s_args CefArgs
-//x )
-
 func main() {
 
     fmt.Println(diag.BoldMagenta("cefmdd_v1 v0.0.2, (Dec 2016)"))
@@ -27,6 +23,4 @@ func main() {
 	}
 
     fmt.Println(diag.BoldMagenta("CAA Rocks!"))
-
-
 }

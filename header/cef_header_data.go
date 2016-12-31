@@ -398,9 +398,6 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
         h.m_cur.push_kv(kv)
         
         h.check_mdd(kv)
-        
-    
-        
 	}
 
 	return err

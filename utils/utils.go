@@ -157,3 +157,15 @@ func Text_parser(v string) (err error) {
     return 
 }
 
+func String_matcher_test(v0 string) (f func(v1 string) (err error)) { 
+
+    return func(v string) (err error) {
+        if v0 != v {
+            err = errors.New(fmt.Sprintf("String Mismatch: Expected %s : Received %s", v0, v))
+        }
+
+        return
+    }
+
+    return 
+}
