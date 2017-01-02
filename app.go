@@ -8,9 +8,11 @@ import (
 
 func main() {
 
-    fmt.Println(diag.BoldMagenta("cefmdd_v1 v0.0.2, (Dec 2016)"))
+    fmt.Println(diag.BoldMagenta("cefmdd_v1 v0.0.3, (1 Jan 2016)"))
+    fmt.Println(diag.BoldMagenta("Are we there yet?"))
 
 	s_args, err := utils.NewCefArgs()
+
 	if err != nil {
 		fmt.Println(diag.BoldRed("Invalid Command Line Args"))	
 		return
@@ -18,7 +20,7 @@ func main() {
     
 	err = ReadCef(&s_args)
 	if err != nil {
-		fmt.Println(diag.BoldRed("Error parsing cef file"))	
+		fmt.Println(diag.BoldRed(fmt.Sprintf("Error parsing cef file \n%#v", err.Error())))
 		return
 	}
 

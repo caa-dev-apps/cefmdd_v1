@@ -39,7 +39,7 @@ func shouldFail(i_about string,
 
     l_reader := array_line_reader(i_test_data)
 
-    for l := range RowTokeniser(l_reader, i_len) {
+    for l := range DataRecords(l_reader, i_len) {
         if l.Err == nil {
             t.Error("ERROR THIS SHOULD FAIL!!! (but it did NOT) \n", l)
         } else {
@@ -57,7 +57,7 @@ func shouldPass(i_about string,
 
     l_reader := array_line_reader(i_test_data)
 
-    for l := range RowTokeniser(l_reader, i_len) {
+    for l := range DataRecords(l_reader, i_len) {
         if l.Err != nil {
             t.Error(l.Err, "\n", l)
         } else {

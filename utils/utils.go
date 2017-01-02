@@ -87,6 +87,14 @@ func On_parser_error(i_parser, i_value string) (err error) {
 ///////////////////////////////////////////////////////////////////////////////
 //
 
+func Iso_time(v string) (time.Time, error) { 
+    // "2012-04-11T15:57:15.012345678Z"
+    return time.Parse(time.RFC3339Nano, v)
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//
+
 func Formatted_parser(v string) (err error) { 
     
     fs := strings.Split(v, ">")

@@ -24,13 +24,31 @@ import (
 //! 		- Check type of each cell
 //! 		- Check Time/Date stamp 
 
-type DataCellType struct {
+type RecordCellType struct {
 	Variable_ix 	int
 	Cell_ix 		int
 	VariableName    string
 	VariableType 	string
 	VariableParser  func(string) (error)
 }
+
+func(ct RecordCellType) String() (s string) {
+
+	return fmt.Sprintf("Variable Name: %s, " +
+						"Variable Index: %d, " +
+						"Variable Type: %s, " +
+						"Cell Index: %d ",
+						ct.VariableName,
+						ct.Variable_ix,
+						ct.VariableType,
+						ct.Cell_ix)
+}
+
+
+
+
+
+
 
 //		CATDESC 	 						["Cluster C3, theta look direction index for D2"]			
 //		variable_name 	 		x			[D2_theta_index__C3_CP_EDI_QZC]						
@@ -98,7 +116,7 @@ func sizesProduct(sizes []string) (product int64, err error) {
     return
 }
 
-func NewDataCellTypesArray(i_header header.CefHeaderData) (r_cells []DataCellType, err error) {
+func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, err error) {
 	vs := i_header.Vars().List()
 
 	c_ix := 0
@@ -146,7 +164,7 @@ func NewDataCellTypesArray(i_header header.CefHeaderData) (r_cells []DataCellTyp
 
 		for sp_ix := int64(0); sp_ix < sp; sp_ix++ {
 
-			l_cell := &DataCellType{Variable_ix: ix,
+			l_cell := &RecordCellType{Variable_ix: ix,
 							Cell_ix: c_ix,
 							VariableName: vn[0],
 							VariableType: vt[0],
@@ -162,7 +180,7 @@ func NewDataCellTypesArray(i_header header.CefHeaderData) (r_cells []DataCellTyp
 	amap := i_header.Attrs().Map()
 	eorms, p := amap["END_OF_RECORD_MARKER"]
 	if p == true && len(eorms) == 1 {
-		l_cell := &DataCellType{Variable_ix: -1,
+		l_cell := &RecordCellType{Variable_ix: -1,
 						Cell_ix: c_ix,
 						VariableName: "END_OF_RECORD_MARKER",
 						VariableType: "string",

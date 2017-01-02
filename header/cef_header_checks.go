@@ -137,7 +137,7 @@ func (h *CefHeaderData) check_attr_FILE_NAME() (err error) {
 //x     } 
 
     if l_filename != v0 {
-        err = errors.New("error: FILE_NAME attribute mismatches - actual (" + l_filename + ")")
+        err = errors.New("error: FILE_NAME attribute(" + v0 + ") - mismatches actual (" + l_filename + ")")
     } 
     
     return

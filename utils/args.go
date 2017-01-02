@@ -68,12 +68,12 @@ func (a1s *CefArgs) init() error {
         a1s.m_filename = s1
     }
     
-	a1s.dump()
+	a1s.Dump()
 
 	return err
 }
 
-func (a1s *CefArgs) dump() {
+func (a1s CefArgs) Dump() {
 
     fmt.Println(diag.BoldYellow("cef cefpath"), a1s.m_cefpath)
     fmt.Println(diag.BoldYellow("cef filename"), a1s.m_filename)	
@@ -90,14 +90,23 @@ func (a1s *CefArgs) dump() {
 //x s_args
 
 
-func NewCefArgs() (s_args CefArgs, err error) {
+//d func NewCefArgs() (r_args CefArgs, err error) {
+//d 	s_args = CefArgs{}
+//d 	err = s_args.init()
+//d     
+//d 	r_args = s_args
+//d 
+//d 	return 
+//d }
+
+func NewCefArgs() (CefArgs, error) {
 	s_args = CefArgs{}
-	err = s_args.init()
+	err := s_args.init()
     
 	return s_args, err
 }
 
-func GetCefArgs() (s_args CefArgs) {
+func GetCefArgs() (CefArgs) {
 	return s_args		
 }
 
