@@ -10,8 +10,8 @@ import (
     "log"
     "strings"
     "strconv"
-    "github.com/caa-dev-apps/cefmdd_v1/readers"
-    "github.com/caa-dev-apps/cefmdd_v1/utils"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
 //x     "testing"
 )
 

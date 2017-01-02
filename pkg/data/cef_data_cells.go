@@ -4,8 +4,8 @@ import (
     "fmt"
     "errors"
     "strconv"
-    "github.com/caa-dev-apps/cefmdd_v1/header"
- 	"github.com/caa-dev-apps/cefmdd_v1/utils"    
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/header"
+ 	"github.com/caa-dev-apps/cefmdd_v1/pkg/utils"    
 )
 
 //x type Line struct {

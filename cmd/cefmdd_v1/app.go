@@ -2,13 +2,13 @@ package main
 
 import (
     "fmt"
-    "github.com/caa-dev-apps/cefmdd_v1/diag"
-    "github.com/caa-dev-apps/cefmdd_v1/utils"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
 )
 
 func main() {
 
-    fmt.Println(diag.BoldMagenta("cefmdd_v1 v0.0.3, (1 Jan 2016)"))
+    fmt.Println(diag.BoldMagenta("cefmdd_v1 v0.0.4, (2 Jan 2016)"))
     fmt.Println(diag.BoldMagenta("Are we there yet?"))
 
 	s_args, err := utils.NewCefArgs()

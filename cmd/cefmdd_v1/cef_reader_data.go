@@ -4,11 +4,11 @@ import (
 	"errors"
     "fmt"
     "time"
-    "github.com/caa-dev-apps/cefmdd_v1/diag"
-    "github.com/caa-dev-apps/cefmdd_v1/data"
-    "github.com/caa-dev-apps/cefmdd_v1/header"
-    "github.com/caa-dev-apps/cefmdd_v1/readers"
-    "github.com/caa-dev-apps/cefmdd_v1/utils"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/data"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/header"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
 )
 
 //.     type Line struct {
@@ -90,12 +90,14 @@ func ReadData(i_header header.CefHeaderData,
 
 		t0 = t1
 
-		if r_ix > 3 {
+		r_ix++
+		if r_ix >= 100 {
 			break
 		}
-		r_ix++
 
 	}
+
+	fmt.Println("Data Records Checked: ", r_ix)
 
 	return
 }

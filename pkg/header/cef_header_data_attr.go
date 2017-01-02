@@ -1,7 +1,7 @@
 package header
 
 import (
-	"github.com/caa-dev-apps/cefmdd_v1/readers"
+	"github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
 )
 
 func (hds *CefHeaderData) kv_attr(kv *readers.KeyVal) (err error) {

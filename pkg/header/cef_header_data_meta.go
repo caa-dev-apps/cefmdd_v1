@@ -3,7 +3,7 @@ package header
 import (
 	"errors"
 	"strings"
-	"github.com/caa-dev-apps/cefmdd_v1/readers"
+	"github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
 )
 
 

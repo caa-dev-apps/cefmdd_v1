@@ -4,8 +4,8 @@ import (
     "fmt"
     "errors"
     "strings"
-    "github.com/caa-dev-apps/cefmdd_v1/utils"
-    "github.com/caa-dev-apps/cefmdd_v1/diag"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 ///////////////////////////////////////////////////////////////////////////////

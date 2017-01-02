@@ -5,7 +5,7 @@ import (
 	"flag"
 	"fmt"
     "strings"
-    "github.com/caa-dev-apps/cefmdd_v1/diag"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 

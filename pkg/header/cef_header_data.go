@@ -8,9 +8,9 @@ import (
     "os"
     "strconv"
     "regexp"
-    "github.com/caa-dev-apps/cefmdd_v1/readers"
-    "github.com/caa-dev-apps/cefmdd_v1/rules"
-    "github.com/caa-dev-apps/cefmdd_v1/diag"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/rules"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 //          Current State	                Key In	            Val In	            Checks	                            Output function	            Next State

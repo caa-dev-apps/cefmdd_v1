@@ -3,9 +3,9 @@ package main
 import (
 	"errors"
 	"strings"
-    "github.com/caa-dev-apps/cefmdd_v1/header"
-    "github.com/caa-dev-apps/cefmdd_v1/readers"
-    "github.com/caa-dev-apps/cefmdd_v1/utils"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/header"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
 )
 
 func ReadHeader(args *utils.CefArgs,
