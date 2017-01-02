@@ -30,7 +30,8 @@ func UserHomeDir() string {
 }
 
 func CefMddDir() string {
-    return UserHomeDir() + `/.cefmdd_v1`
+//x    return UserHomeDir() + `/.cefmdd_v1`
+    return UserHomeDir() + `/_cefmdd_v1`
 }
 
 
