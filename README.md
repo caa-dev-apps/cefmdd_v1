@@ -14,14 +14,14 @@ and then used to validate the cef/ceh files under test.
 Getting there! 
 
 * Parses cef/ceh files for header data validity.
-    ** creates in memory representation (attrs, meta, vars) for fast referencing.
+    * creates in memory representation (attrs, meta, vars) for fast referencing.
 * Performs header data tests detailed in the above spreadsheet (more to be added over time)
 * Reads Data Records 
-    * maps variables to cell vector taking into account SIZES of each variable (Except DATA variables)
+    * maps variables to data-types vector taking into account SIZES of each variable (Except DATA variables)
     * handles single/multiple lines - with/without END_OF_RECORD_MARKER
-    * checks for increasing time and date stamps 
+    * checks for increasing date-time stamps 
     * checks for correct number of cells pre record
-    * checks each cell for correct data type
+    * checks each cell for correct data-type
 
 
 ## Installation
@@ -38,27 +38,25 @@ are copied to the /home/user/.cefmdd_v1 folder as csv files and used by the cefm
 * set INC_1=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/HEADERS/EDI
 * set TEST_FILE_4=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/CEF/EDI/C3_CP_EDI_QZC__20111021_V01.cef.gz
 
-cefmdd_v1 -i %INC_0% -i %INC_1% -f %TEST_FILE_4% 
+    * cefmdd_v1 -i %INC_0% -i %INC_1% -f %TEST_FILE_4% 
 
 
 ## TODO
 
-###cef_reader_data
-* Add test for DATA_UNTIL
-* Add cmdline arg for max number of records
-    ** Default = 100
+* cef_reader_data
+    * Add test for DATA_UNTIL
+    * Add cmdline arg for max number of records
+        * Default = 100
 
 
-###tests (local development)
-* copy all ceh files to dir for easy testing
+* tests (local development)
+    * copy all ceh files to dir for easy testing
 
 
         
-        
-## Notes
-* go test -run name-of-test-pattern  
-* GOOS=linux GOARCH=386 go build
-
-* set GOOS=linux&&set GOARCH=amd64&& go build -v .
-* set GOOS=linux&&set GOARCH=amd64&& go build -v a1.go
-* set GOOS=linux&&set GOARCH=386&& go build -v .
+## Misc Notes
+    * go test -run name-of-test-pattern  
+    * GOOS=linux GOARCH=386 go build
+    * set GOOS=linux&&set GOARCH=amd64&& go build -v .
+    * set GOOS=linux&&set GOARCH=amd64&& go build -v a1.go
+    * set GOOS=linux&&set GOARCH=386&& go build -v .
