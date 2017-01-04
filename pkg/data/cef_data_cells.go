@@ -177,14 +177,29 @@ func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, e
         }
     }
 
+//x 	amap := i_header.Attrs().Map()
+//x 	eorms, p := amap["END_OF_RECORD_MARKER"]
+//x 	if p == true && len(eorms) == 1 {
+//x 		l_cell := &RecordCellType{Variable_ix: -1,
+//x 						Cell_ix: c_ix,
+//x 						VariableName: "END_OF_RECORD_MARKER",
+//x 						VariableType: "string",
+//x 						VariableParser: utils.String_matcher_test(eorms[0]),
+//x 					}
+//x 
+//x 		r_cells = append(r_cells, *l_cell)
+//x 	}
+
 	amap := i_header.Attrs().Map()
 	eorms, p := amap["END_OF_RECORD_MARKER"]
 	if p == true && len(eorms) == 1 {
+		e := utils.Trim_quoted_string(eorms[0])
+
 		l_cell := &RecordCellType{Variable_ix: -1,
 						Cell_ix: c_ix,
 						VariableName: "END_OF_RECORD_MARKER",
 						VariableType: "string",
-						VariableParser: utils.String_matcher_test(eorms[0]),
+						VariableParser: utils.String_matcher_test(e),
 					}
 
 		r_cells = append(r_cells, *l_cell)

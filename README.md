@@ -1,4 +1,5 @@
-## cefmdd_v1
+# cefmdd_v1
+
 A cef meta data validator
 
 
@@ -10,7 +11,8 @@ and then used to validate the cef/ceh files under test.
 [Canonical MDD](https://docs.google.com/spreadsheets/d/1KSEQS-1ncG7tNt7PJRVbT_gGuFfyJfmWNHoKANsw5kI/pubhtml "Google Hosted Excel Workbook")
 
 
-## Status
+# Status
+
 Getting there! 
 
 * Parses cef/ceh files for header data validity.
@@ -24,24 +26,30 @@ Getting there!
     * checks each cell for correct data-type
 
 
-## Installation
+# Installation
+
+```bash
 go install github.com\caa-dev-apps\cefmdd_v1
+```
 
+# Config
 
-## Config
 During development, 2 of the worksheets (Keywords, Enums) from the cannonical Google hosted Excel workbook (linked to above)
 are copied to the /home/user/_cefmdd_v1 folder as csv files and used by the cefmdd_v1 App on startup for its rules.
 
 
-## Example test run
-* set INC_0=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/HEADERS
-* set INC_1=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/HEADERS/EDI
-* set TEST_FILE_4=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/CEF/EDI/C3_CP_EDI_QZC__20111021_V01.cef.gz
+# Example test run
 
-    * cefmdd_v1 -i %INC_0% -i %INC_1% -f %TEST_FILE_4% 
+```bash
+set INC_0=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/HEADERS
+set INC_1=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/HEADERS/EDI
+set TEST_FILE_4=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/CEF/EDI/C3_CP_EDI_QZC__20111021_V01.cef.gz
+
+cefmdd_v1 -i %INC_0% -i %INC_1% -f %TEST_FILE_4% 
+```
 
 
-## TODO
+# TODO
 
 * cef_reader_data
     * Add test for DATA_UNTIL
@@ -54,9 +62,12 @@ are copied to the /home/user/_cefmdd_v1 folder as csv files and used by the cefm
 
 
         
-## Misc Notes
-    * go test -run name-of-test-pattern  
-    * GOOS=linux GOARCH=386 go build
-    * set GOOS=linux&&set GOARCH=amd64&& go build -v .
-    * set GOOS=linux&&set GOARCH=amd64&& go build -v a1.go
-    * set GOOS=linux&&set GOARCH=386&& go build -v .
+# Misc Notes
+
+```
+    go test -run name-of-test-pattern  
+    GOOS=linux GOARCH=386 go build
+    set GOOS=linux&&set GOARCH=amd64&& go build -v .
+    set GOOS=linux&&set GOARCH=amd64&& go build -v a1.go
+    set GOOS=linux&&set GOARCH=386&& go build -v .
+```

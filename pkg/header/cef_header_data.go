@@ -284,7 +284,7 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
     l_kv := kv
 
     switch {
-        case kv.Key == "ENTRY":     fmt.Println(diag.BoldBlue("delay-meta-check-", "ENTRY",   " ",  kv.Val));  return
+        case kv.Key == "ENTRY":     fmt.Println(diag.BoldBlue("delay-check-", "ENTRY",   " ",  kv.Val));  return
         case kv.Key == "FILLVAL":   fmt.Println(diag.BoldBlue("delay-check-", "FILLVAL", " ",  kv.Val));  return        // multiple types - depends on var type
         case kv.Key == "SIZES":     fmt.Println(diag.BoldBlue("delay-check-", "SIZES",   " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
         
@@ -297,9 +297,10 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
 
     err = s_mdd_data.Test_input(l_kv)
     if err != nil {
-        fmt.Println(diag.BoldRed(err.Error()))
+        //x fmt.Println(diag.BoldRed(err.Error()))
+        fmt.Println(diag.BoldRed(err.Error()), kv.Key, kv.Val)
     } else {
-        fmt.Println(diag.BoldGreen("Ok-readers.KeyVal"), kv.Key, kv.Val)
+        fmt.Println(diag.BoldGreen("ok-kv"), kv.Key, kv.Val)
     }
 
     return
@@ -312,10 +313,9 @@ func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
     
     err = s_mdd_data.Test_input(l_kv)
     if err != nil {
-        fmt.Println(diag.BoldRed(err.Error()))
-        // log.Printf("\t\tTESTING-2 %s %s\n",h.m_name, h.m_cur.m_map[`ENTRY`])
+        fmt.Println(diag.BoldRed(err.Error()), h.m_name, h.m_cur.m_map[`ENTRY`])
     } else {
-        fmt.Println(diag.BoldCyan("ok-meta"), h.m_name)
+        fmt.Println(diag.BoldGreen("ok-meta"), h.m_name)
     }
     
     
@@ -333,6 +333,7 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
             h.m_state = META
             h.m_name = kv.Val[0]
             h.m_cur = NewAttrs()
+            fmt.Println(diag.BoldCyan("start-meta"), h.m_name)
             
 		default:
 			return errors.New("START_META: invalid State")
@@ -346,7 +347,9 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
             h.m_state = VAR
             h.m_name = kv.Val[0]
             h.m_cur = NewAttrs()            
-            
+
+            fmt.Println(diag.BoldCyan("start-var"), h.m_name)
+
 		default:
 			return errors.New("START_VARIABLE: invalid State")
 		}
@@ -359,10 +362,12 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 			if h.m_name != kv.Val[0] {
 				return errors.New("END_META: invalid Name")
 			}
-            
+
             h.m_meta.m_map[h.m_name] = *h.m_cur
             
             h.check_mdd_meta_etx()
+
+            fmt.Println(diag.BoldCyan("end-meta"), h.m_name)
             
             h.init()            
             
@@ -379,11 +384,13 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 				return errors.New("END_VARIABLE: invalid Name")
 			}
             
+            
             h.m_cur.push_k_v("variable_name", h.m_name)
 
             h.m_vars.m_list = append(h.m_vars.m_list, *h.m_cur)
             h.m_vars.m_map[h.m_name] = *h.m_cur
             
+            fmt.Println(diag.BoldCyan("end-var"), h.m_name)
             
             h.init()
                         
@@ -392,11 +399,10 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 		}
 
 	default:
-		//d mooi_log(kv.Key, kv.Val[0])
 
-        // this is where to place the key - val tests //////////////////////////////////////////////
         h.m_cur.push_kv(kv)
         
+        // key - val tests !!!
         h.check_mdd(kv)
 	}
 
