@@ -284,9 +284,9 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
     l_kv := kv
 
     switch {
-        case kv.Key == "ENTRY":     fmt.Println(diag.BoldBlue("delay-check-", "ENTRY",   " ",  kv.Val));  return
-        case kv.Key == "FILLVAL":   fmt.Println(diag.BoldBlue("delay-check-", "FILLVAL", " ",  kv.Val));  return        // multiple types - depends on var type
-        case kv.Key == "SIZES":     fmt.Println(diag.BoldBlue("delay-check-", "SIZES",   " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
+        case kv.Key == "ENTRY":     fmt.Println(diag.BoldBlue(" delay-check-", "ENTRY",   " ",  kv.Val));  return
+        case kv.Key == "FILLVAL":   fmt.Println(diag.BoldBlue(" delay-check-", "FILLVAL", " ",  kv.Val));  return        // multiple types - depends on var type
+        case kv.Key == "SIZES":     fmt.Println(diag.BoldBlue(" delay-check-", "SIZES",   " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
         
         case REGX_REPRESENTATION_i.MatchString(kv.Key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
         case REGX_LABEL_i.MatchString(kv.Key):           l_kv = kv.NewSwitchKey(`LABEL_i`)
@@ -300,7 +300,7 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
         //x fmt.Println(diag.BoldRed(err.Error()))
         fmt.Println(diag.BoldRed(err.Error()), kv.Key, kv.Val)
     } else {
-        fmt.Println(diag.BoldGreen("ok-kv"), kv.Key, kv.Val)
+        fmt.Println(diag.BoldGreen(" ok-kv"), kv.Key, kv.Val)
     }
 
     return
@@ -315,7 +315,7 @@ func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
     if err != nil {
         fmt.Println(diag.BoldRed(err.Error()), h.m_name, h.m_cur.m_map[`ENTRY`])
     } else {
-        fmt.Println(diag.BoldGreen("ok-meta"), h.m_name)
+        fmt.Println(diag.BoldGreen(" ok-meta"), h.m_name)
     }
     
     
