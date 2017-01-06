@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 	"path"    
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 type Line struct {
@@ -29,10 +30,13 @@ func EachLine(i_path string) chan Line {
 	go func() {
 		defer close(output)
 
+		fmt.Println(diag.BoldMagenta("File Open"), i_path)
+
 		fi, err := os.Open(i_path)
 		if err != nil {
 			return
 		}
+		//x defer fmt.Println(diag.BoldMagenta("File Close"), i_path)
 		defer fi.Close()
 
 		var reader *bufio.Reader

@@ -27,9 +27,6 @@ func ReadHeader(args *utils.CefArgs,
 			return r_path, errors.New("Include nested files limit reached (8 deep)")
 		}
 
-//x 		for i := 0; i < len(args.m_includes) && done == false; i++ {
-//x 
-//x 			r_path = args.m_includes[i] + `/` + i_filename
 		l_includes := args.GetIncludes()
 		for i := 0; i < len(l_includes) && done == false; i++ {
 
@@ -83,15 +80,11 @@ func ReadHeader(args *utils.CefArgs,
 		return
 	}
 
-	//x r_lines = EachLine(l_path)
-	//x data_until, r_err := doProcess(r_lines)
 	data_until, r_err := doProcess(i_lines_in)
-
 
 	if r_err != nil {
 		return
 	}
-
 
 
 	if data_until == false {
@@ -101,13 +94,7 @@ func ReadHeader(args *utils.CefArgs,
 
     r_header.Checks()
 
-    //-r_header.dumpAttrs()
 	println("Header Lines read -> ", ix)
-
-	//- r_header.m_data.dump()
-    
-    //x println("//x (cef_header.go) r_header.dump()")
-	//x r_header.dump()
 
 	return
 }
