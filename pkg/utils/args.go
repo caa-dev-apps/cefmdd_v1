@@ -8,7 +8,6 @@ import (
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
-
 var (
 	s_args CefArgs
 )
@@ -28,6 +27,7 @@ type CefArgs struct {
 	m_includes strslice
 	m_cefpath  string
     m_filename string
+    m_debug bool
 }
 
 func (a1s CefArgs) GetIncludes() (strslice) {
@@ -42,12 +42,13 @@ func (a1s CefArgs) GetFilename() (string) {
 	return a1s.m_filename
 }
 
-
 func (a1s *CefArgs) init() error {
 	err := error(nil)
 
 	flag.Var(&a1s.m_includes, "i", "Include Folders")
     flag.StringVar(&a1s.m_cefpath , "f", "", "Cef file path (.cef/.cef.gz)")
+    flag.BoolVar(&a1s.m_debug , "d", false, "Show debug (false)")
+
 	flag.Parse()
 
 	if flag.NFlag() == 0 {
@@ -76,28 +77,10 @@ func (a1s *CefArgs) init() error {
 func (a1s CefArgs) Dump() {
 
     fmt.Println(diag.BoldYellow("cef cefpath"), a1s.m_cefpath)
-    fmt.Println(diag.BoldYellow("cef filename"), a1s.m_filename)	
-    fmt.Println(diag.BoldYellow("cef includes"), a1s.m_includes)	
+    fmt.Println(diag.BoldYellow("cef filename"), a1s.m_filename)
+    fmt.Println(diag.BoldYellow("cef includes"), a1s.m_includes)
+    fmt.Println(diag.BoldYellow("debug"), a1s.m_debug)
 }
-
-//x func NewCefArgs() (args CefArgs, err error) {
-//x 	args = CefArgs{}
-//x 	err = args.init()
-//x     
-//x 	return args, err
-//x }
-//x 
-//x s_args
-
-
-//d func NewCefArgs() (r_args CefArgs, err error) {
-//d 	s_args = CefArgs{}
-//d 	err = s_args.init()
-//d     
-//d 	r_args = s_args
-//d 
-//d 	return 
-//d }
 
 func NewCefArgs() (CefArgs, error) {
 	s_args = CefArgs{}
