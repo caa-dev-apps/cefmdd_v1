@@ -42,6 +42,14 @@ func (a1s CefArgs) GetFilename() (string) {
 	return a1s.m_filename
 }
 
+func (a1s CefArgs) GetDebug() (bool) {
+	return a1s.m_debug
+}
+
+
+
+
+
 func (a1s *CefArgs) init() error {
 	err := error(nil)
 
@@ -50,6 +58,8 @@ func (a1s *CefArgs) init() error {
     flag.BoolVar(&a1s.m_debug , "d", false, "Show debug (false)")
 
 	flag.Parse()
+
+	diag.SetDebug(a1s.m_debug)
 
 	if flag.NFlag() == 0 {
 		flag.PrintDefaults()
@@ -69,7 +79,7 @@ func (a1s *CefArgs) init() error {
         a1s.m_filename = s1
     }
     
-	a1s.Dump()
+	//x a1s.Dump()
 
 	return err
 }

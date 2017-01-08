@@ -2,14 +2,13 @@ package diag
 
 import (
 	"fmt"
-	"os"
-	"text/tabwriter"
     "github.com/fatih/color"
-
 )
 
-type Diag struct {
-    m_writer *tabwriter.Writer
+var s_debug bool 
+
+func SetDebug(d bool) {
+    s_debug = d
 }
 
 
@@ -24,36 +23,28 @@ var (
     BoldCyan    = color.New(color.FgCyan, color.Bold).SprintFunc()
 )
 
-
-func NewDiag() *Diag {
-    const padding = 3
-    //- return &Diag{ m_writer: tabwriter.NewWriter(os.Stdout, 0, 0, padding, '-', tabwriter.AlignRight|tabwriter.Debug) }  
-    return &Diag{ m_writer: tabwriter.NewWriter(os.Stdout, 0, 0, padding, ' ', tabwriter.AlignRight) }
-}
-
-func (d *Diag) Printf(format string, a ...interface{}) {
-    fmt.Fprintf(d.m_writer, format, a...)
-}
-
-func (d *Diag) Println(ss ...string) {
-
-    for _, s := range ss {
-        fmt.Fprint(d.m_writer, s, "\t")
+func Trace(tag string, ss ...string) {
+    if s_debug == true {
+        fmt.Println(tag, ss)
     }
-    fmt.Fprintln(d.m_writer, "")
-    
 }
 
-func (d *Diag) PrintlnN(n int, ss ...string) {
-
-    for i:=0; i<n; i++ {
-        fmt.Fprint(d.m_writer, "", "\t")
-    }
-
-    d.Println(ss...)
+func Info(tag string, ss ...string) {
+    fmt.Println(tag, ss)
 }
 
-func (d *Diag) Flush() {
-    d.m_writer.Flush()
+func Warn(tag string, ss ...string) {
+    fmt.Println(tag, ss)
 }
-    
+
+func Error(tag string, ss ...string) {
+    fmt.Println(tag, ss)
+}
+
+func Fatal(tag string, ss ...string) {
+    fmt.Println(tag, ss)
+}
+
+
+
+
