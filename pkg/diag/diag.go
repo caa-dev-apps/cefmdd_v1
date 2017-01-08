@@ -5,10 +5,10 @@ import (
     "github.com/fatih/color"
 )
 
-var s_debug bool 
+var s_trace bool 
 
-func SetDebug(d bool) {
-    s_debug = d
+func SetTrace(d bool) {
+    s_trace = d
 }
 
 
@@ -24,7 +24,7 @@ var (
 )
 
 func Trace(tag string, ss ...string) {
-    if s_debug == true {
+    if s_trace == true {
         fmt.Println(tag, ss)
     }
 }

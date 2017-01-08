@@ -274,7 +274,7 @@ var (
     REGX_LABEL_i, _ = regexp.Compile(`LABEL_([\d]+)`)
     REGX_DEPEND_i, _ = regexp.Compile(`DEPEND_([\d]+)`)
     
-    s_diag = diag.NewDiag()
+    //x s_diag = diag.NewDiag()
 )
 
 
