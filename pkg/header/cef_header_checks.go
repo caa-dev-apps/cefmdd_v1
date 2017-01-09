@@ -352,10 +352,15 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
         
 func (h *CefHeaderData) print_results(about string, err error) {
 
+//x     if err != nil {
+//x         fmt.Println(diag.BoldRed("error-" + about), err)        
+//x     } else {
+//x         fmt.Println(diag.BoldGreen("ok-" + about))        
+//x     }
     if err != nil {
-        fmt.Println(diag.BoldRed("error-" + about), err)        
+        diag.Error(diag.BoldRed("error:"), about, err)   
     } else {
-        fmt.Println(diag.BoldGreen("ok-" + about))        
+        diag.Info(diag.BoldGreen("ok:"), about)  
     }
 }        
         
@@ -374,11 +379,10 @@ func (h *CefHeaderData) Checks() (err error) {
 
 	for _, k := range aks {
 		if v, err := h.getAttr(k); err == nil {
-			fmt.Println(k, v)
+            diag.Info(diag.Cyan(k), v)
 		} else {
-			fmt.Println (err)
+            diag.Error(diag.BoldRed(err))
 		}
-
 	}
 
 	mks := []string{
@@ -392,14 +396,13 @@ func (h *CefHeaderData) Checks() (err error) {
 
 	for _, k := range mks {
 		if entry, value_type, err := h.getMeta(k); err == nil {
-			fmt.Println(k, "Meta:ENTRY", entry)
+            diag.Info(diag.Blue(k), "Meta:ENTRY", entry)
             if value_type != nil {
-                fmt.Println(k, "Meta:VALUE_TYPE", value_type)
+                diag.Info(diag.Yellow(k), "Meta:VALUE_TYPE", value_type)
             }
 		} else {
-			fmt.Println (err)
+            diag.Error(diag.BoldRed(err))
 		}
-
 	}
     
     err = h.check_attr_FILE_NAME()

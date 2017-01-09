@@ -27,7 +27,7 @@ type CefArgs struct {
 	m_includes strslice
 	m_cefpath  string
     m_filename string
-    m_trace bool
+    m_info bool
 }
 
 func (a1s CefArgs) GetIncludes() (strslice) {
@@ -42,8 +42,8 @@ func (a1s CefArgs) GetFilename() (string) {
 	return a1s.m_filename
 }
 
-func (a1s CefArgs) GetTrace() (bool) {
-	return a1s.m_trace
+func (a1s CefArgs) GetInfo() (bool) {
+	return a1s.m_info
 }
 
 
@@ -55,11 +55,11 @@ func (a1s *CefArgs) init() error {
 
 	flag.Var(&a1s.m_includes, "i", "Include Folders")
     flag.StringVar(&a1s.m_cefpath , "f", "", "Cef file path (.cef/.cef.gz)")
-    flag.BoolVar(&a1s.m_trace , "t", false, "Show trace info (false)")
+    flag.BoolVar(&a1s.m_info , "t", false, "Show info (false)")
 
 	flag.Parse()
 
-	diag.SetTrace(a1s.m_trace)
+	diag.SetInfo(a1s.m_info)
 
 	if flag.NFlag() == 0 {
 		flag.PrintDefaults()
@@ -89,7 +89,7 @@ func (a1s CefArgs) Dump() {
     fmt.Println(diag.BoldYellow("cef cefpath"), a1s.m_cefpath)
     fmt.Println(diag.BoldYellow("cef filename"), a1s.m_filename)
     fmt.Println(diag.BoldYellow("cef includes"), a1s.m_includes)
-    fmt.Println(diag.BoldYellow("trace"), a1s.m_trace)
+    fmt.Println(diag.BoldYellow("info"), a1s.m_info)
 }
 
 func NewCefArgs() (CefArgs, error) {

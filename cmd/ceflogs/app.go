@@ -15,7 +15,12 @@ func main() {
     args.Dump()
 
 
-    diag.Trace(diag.BoldBlue("Trace"), "1", "2", "3")
+    diag.Info(diag.Green("Info"), "1", "2", "3")
+    diag.Warn(diag.Blue("Warn"), "1", "2", "3")
+    diag.Error(diag.Red("Error"), "1", "2", "3")
+    diag.Fatal(diag.Magenta("Fatal"), "1", "2", "3")
+
+
     diag.Info(diag.BoldGreen("Info"), "1", "2", "3")
     diag.Warn(diag.BoldBlue("Warn"), "1", "2", "3")
     diag.Error(diag.BoldRed("Error"), "1", "2", "3")
@@ -27,6 +32,6 @@ func main() {
 		return
 	}
 
-    diag.Trace(diag.BoldMagenta("CAA Rocks!"))
+    diag.Info(diag.BoldMagenta("CAA Rocks!"))
 }
 
