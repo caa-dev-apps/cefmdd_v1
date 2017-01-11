@@ -352,24 +352,15 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
         
 func (h *CefHeaderData) print_results(about string, err error) {
 
-//x     if err != nil {
-//x         fmt.Println(diag.BoldRed("error-" + about), err)        
-//x     } else {
-//x         fmt.Println(diag.BoldGreen("ok-" + about))        
-//x     }
     if err != nil {
         diag.Error(diag.BoldRed("error:"), about, err)   
     } else {
-        diag.Info(diag.BoldGreen("ok:"), about)  
+        diag.Trace(diag.BoldGreen("ok:"), about)  
     }
 }        
         
         
 func (h *CefHeaderData) Checks() (err error) {
-    
-    //x fmt.Println("cef filename", s_args.m_filename)
-    //xfmt.Println("cef cefpath", *s_args.m_cefpath)
-    //x fmt.Println("cef cefpath2", s_args.m_cefpath)
     
 	aks := []string{
 		"FILE_NAME",
@@ -379,7 +370,7 @@ func (h *CefHeaderData) Checks() (err error) {
 
 	for _, k := range aks {
 		if v, err := h.getAttr(k); err == nil {
-            diag.Info(diag.Cyan(k), v)
+            diag.Trace(diag.Cyan(k), v)
 		} else {
             diag.Error(diag.BoldRed(err))
 		}
@@ -396,9 +387,9 @@ func (h *CefHeaderData) Checks() (err error) {
 
 	for _, k := range mks {
 		if entry, value_type, err := h.getMeta(k); err == nil {
-            diag.Info(diag.Blue(k), "Meta:ENTRY", entry)
+            diag.Trace(diag.Blue(k), "Meta:ENTRY", entry)
             if value_type != nil {
-                diag.Info(diag.Yellow(k), "Meta:VALUE_TYPE", value_type)
+                diag.Trace(diag.Yellow(k), "Meta:VALUE_TYPE", value_type)
             }
 		} else {
             diag.Error(diag.BoldRed(err))

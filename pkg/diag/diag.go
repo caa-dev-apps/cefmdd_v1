@@ -5,10 +5,10 @@ import (
     "github.com/fatih/color"
 )
 
-var s_info bool 
+var s_trace bool 
 
-func SetInfo(d bool) {
-    s_info = d
+func SetTrace(d bool) {
+    s_trace = d
 }
 
 
@@ -33,29 +33,15 @@ var (
 
 )
 
-//x func Info(tag string, ss ...string) {
-//x     if s_info == true {
-//x         fmt.Println(tag, ss)
-//x     }
-//x }
-//x 
-//x func Warn(tag string, ss ...string) {
-//x     fmt.Println(tag, ss)
-//x }
-//x 
-//x func Error(tag string, ss ...string) {
-//x     fmt.Println(tag, ss)
-//x }
-//x 
-//x func Fatal(tag string, ss ...string) {
-//x     fmt.Println(tag, ss)
-//x }
 
-
-func Info(tag string, v ...interface{}) {
-    if s_info == true {
+func Trace(tag string, v ...interface{}) {
+    if s_trace == true {
         fmt.Println(tag, v)
     }
+}
+
+func Info(tag string, v ...interface{}) {
+        fmt.Println(tag, v)
 }
 
 func Warn(tag string, v ...interface{}) {
@@ -72,10 +58,14 @@ func Fatal(tag string, v ...interface{}) {
 
 
 
-func Infof(tag, format string, v ...interface{}) {
-    if s_info == true {
+func Tracef(tag, format string, v ...interface{}) {
+    if s_trace == true {
         fmt.Println(tag, fmt.Sprintf(format, v))
     }
+}
+
+func Infof(tag, format string, v ...interface{}) {
+    fmt.Println(tag, fmt.Sprintf(format, v))
 }
 
 func Warnf(tag, format string, v ...interface{}) {
