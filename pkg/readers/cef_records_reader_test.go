@@ -5,6 +5,7 @@ package readers
 import (
     "testing"
 	"fmt"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,7 +18,7 @@ func array_line_reader(i_lines []string) chan string {
         defer close(output)
 
         for ix, l := range i_lines {
-            fmt.Println(ix, l)
+            diag.Println(ix, l)
 
             output <- l
         }

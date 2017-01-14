@@ -4,6 +4,7 @@ import (
 	"fmt"
     "errors"
     "unicode"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 type ROWState int
@@ -38,8 +39,7 @@ func (s ROWState)state_str() (str string) {
 }
 
 func (s ROWState)state_diag(ch rune, s2 ROWState, tok string) {
-
-    fmt.Println(string(ch), s.state_str(), s2.state_str(), tok)
+    diag.Println(string(ch), s.state_str(), s2.state_str(), tok)
 }
 
 
@@ -76,7 +76,7 @@ func DataRecords(i_lines chan Line, i_len int) chan CefRecord {
 
         for _, ch := range i_line {
             //debug 
-            //d fmt.Printf("%c", ch)
+            //d diag.Printf("%c", ch)
             //d state_0 := state
 
             switch state {
@@ -198,7 +198,7 @@ func DataRecords(i_lines chan Line, i_len int) chan CefRecord {
                 l_running_len = 0
                 //x l_rowTokens = NewCefRecord()
             } else if  l_running_len > i_len {
-                l_rowTokens.Err = errors.New(fmt.Sprint(`error: line reader - Too many tokens - expected : `, i_len, " actual : ", l_running_len))
+                l_rowTokens.Err = errors.New(fmt.Sprint(`Line reader - Too many tokens - expected : `, i_len, " actual : ", l_running_len))
                 output <- *l_rowTokens
                 break
             }
@@ -207,7 +207,7 @@ func DataRecords(i_lines chan Line, i_len int) chan CefRecord {
         }
 
         if l_running_len > 0 && l_running_len < i_len {
-            l_rowTokens.Err = errors.New(fmt.Sprint(`error: line reader - Too few tokens - expected : `, i_len, " actual : ", l_running_len))
+            l_rowTokens.Err = errors.New(fmt.Sprint(`Line reader - Too few tokens - expected : `, i_len, " actual : ", l_running_len))
             output <- *l_rowTokens
         }
 

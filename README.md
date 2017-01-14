@@ -91,6 +91,6 @@ cefmdd_v1 -i %INC_0% -i %INC_1% -f %TEST_FILE_4%
     var Build string
 
     func main() {
-        fmt.Printf("Using build: %s\n", Build)
+        diag.Printf("Using build: %s\n", Build)
     }
 ```

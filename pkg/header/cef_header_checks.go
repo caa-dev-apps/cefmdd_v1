@@ -1,7 +1,7 @@
 package header
 
 import (
-    "fmt"
+//x     "fmt"
     "errors"
     "strings"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
@@ -67,7 +67,7 @@ func (h *CefHeaderData) getAttrFirstQuoted(key string) (v0 string, err error) {
     if err == nil {  
         v0 = vs[0]
         if utils.Is_quoted_string(v0) == false {
-            err = errors.New("error: " + key + "attribute is unquoted string ")
+            err = errors.New(key + "attribute is unquoted string ")
         } 
     }
         
@@ -81,7 +81,7 @@ func (h *CefHeaderData) getMetaEntryFirstQuoted(key string) (v0 string, err erro
     if err == nil {  
         v0 = vs[0]
         if utils.Is_quoted_string(v0) == false {
-            err = errors.New("error: " + key + "META ENTRY is unquoted string ")
+            err = errors.New(key + "META ENTRY is unquoted string ")
         } 
     }
         
@@ -97,7 +97,7 @@ func (h *CefHeaderData) getAttrFirstQuotedTrimed(key string) (v0 string, err err
 
     v0 = utils.Trim_quoted_string(v0)
     if len(v0) == 0 {
-        err = errors.New("error: Attr: " + key + " length = 0")
+        err = errors.New("Attr: " + key + " length = 0")
     } 
     
     return
@@ -112,7 +112,7 @@ func (h *CefHeaderData) getMetaEntryFirstQuotedTrimed(key string) (v0 string, er
 
     v0 = utils.Trim_quoted_string(v0)
     if len(v0) == 0 {
-        err = errors.New("error: Meta:ENTRY: " + key + " length = 0")
+        err = errors.New("Meta:ENTRY: " + key + " length = 0")
     } 
     
     return
@@ -130,29 +130,25 @@ func (h *CefHeaderData) check_attr_FILE_NAME() (err error) {
     }
     
     v0 = utils.Trim_quoted_string(v0)
-    //x l_args := utils.GetCefArgs()
     l_filename := utils.GetCefArgs().GetFilename()
-//x     if l_args.m_filename != v0 {
-//x         err = errors.New("error: FILE_NAME attribute mismatches - actual (" + l_args.m_filename + ")")
-//x     } 
 
     if l_filename != v0 {
-        err = errors.New("error: FILE_NAME attribute(" + v0 + ") - mismatches actual (" + l_filename + ")")
+        err = errors.New("FILE_NAME attribute(" + v0 + ") - mismatches actual (" + l_filename + ")")
     } 
     
     return
 }
 
 func (h *CefHeaderData) check_attr_FILE_FORMAT_VERSION() (err error) {
-    
-    fmt.Println(diag.BoldMagenta("TODO check_attr_FILE_FORMAT_VERSION"))  
+
+    diag.Todo("Check_attr_FILE_FORMAT_VERSION")  
     
     return
 }
 
 func (h *CefHeaderData) check_attr_DATA_UNTIL() {
     
-    fmt.Println(diag.BoldMagenta("TODO check_attr_DATA_UNTIL"))  
+    diag.Todo("Check_attr_DATA_UNTIL")  
     return
 }
 
@@ -179,13 +175,13 @@ func (h *CefHeaderData) check_meta_LOGICAL_FILE_ID() (err error) {
     
     v0_dataset = utils.Trim_quoted_string(v0_dataset)
     if len(v0_dataset) == 0 {
-        err = errors.New("error: DATASET_ID length = 0")
+        err = errors.New("DATASET_ID length = 0")
         return
     } 
     
     v0_logical = utils.Trim_quoted_string(v0_logical)
     if strings.HasPrefix(v0_logical, v0_dataset) == false {
-        err = errors.New("error: DATASET_ID (" + v0_dataset + ") is not a prefix of LOGICAL_FILE_ID (" + v0_logical + ")" )
+        err = errors.New("DATASET_ID (" + v0_dataset + ") is not a prefix of LOGICAL_FILE_ID (" + v0_logical + ")" )
     }
     
     return
@@ -221,38 +217,38 @@ func (h *CefHeaderData) check_meta_FILE_TYPE() (err error) {
     
     v0_filename = utils.Trim_quoted_string(v0_filename)
     if len(v0_filename) == 0 {
-        return errors.New("error: FILE_NAME length = 0")
+        return errors.New("FILE_NAME length = 0")
     } 
     
     v0_file_type = utils.Trim_quoted_string(v0_file_type)
     if len(v0_file_type) == 0 {
-        return errors.New("error: FILE_TYPE length = 0")
+        return errors.New("FILE_TYPE length = 0")
     } 
     
     v0_logical = utils.Trim_quoted_string(v0_logical)
     if len(v0_logical) == 0 {
-        return errors.New("error: LOGICAL_FILE_ID length = 0")
+        return errors.New("LOGICAL_FILE_ID length = 0")
     } 
     
     
     //x ix := strings.FirstIndex(v0_filename, ".")
     ix := strings.Index(v0_filename, ".")
     if ix < 0 {
-        return errors.New("error: FILE_NAME does have .cef or .cef.gz suffix")
+        return errors.New("FILE_NAME does have .cef or .cef.gz suffix")
     }        
 
     ext0 := v0_filename[ix+1:]
     if strings.HasPrefix(ext0, v0_file_type) == false {
-        return errors.New("error: FILE_TYPE does not follow first '.' in actual filename" + "||" + ext0 + "||" + v0_file_type)
+        return errors.New("FILE_TYPE does not follow first '.' in actual filename" + "||" + ext0 + "||" + v0_file_type)
     }
     
     fn := v0_logical + `.` + v0_file_type
     // allow for .gz
     if strings.HasSuffix(v0_filename, fn) == false {
-        fmt.Println(v0_filename)
-        fmt.Println(fn)
+        diag.Println(v0_filename)
+        diag.Println(fn)
         
-        return errors.New("error: FILE_NAME does not match LOGICAL_FILE_ID + FILE_TYPE  || " + v0_filename  + " || " + fn)
+        return errors.New("FILE_NAME does not match LOGICAL_FILE_ID + FILE_TYPE  || " + v0_filename  + " || " + fn)
     }
     
     return
@@ -269,16 +265,16 @@ func (h *CefHeaderData) check_meta_FILE_TIME_SPAN() (err error) {
     }
 
     if len(es) == 0 {
-        return errors.New("error: META-ENTRY for FILE_TIME_SPAN Missing")
+        return errors.New("META-ENTRY for FILE_TIME_SPAN Missing")
     }
     
     if len(vs) == 0 {
-        return errors.New("error: META-VALUE_TYPE for FILE_TIME_SPAN Missing")
+        return errors.New("META-VALUE_TYPE for FILE_TIME_SPAN Missing")
     }
     
     v1_value_type_FILE_TIME_SPAN := vs[0]
     if "ISO_TIME_RANGE" != v1_value_type_FILE_TIME_SPAN {
-        return errors.New("error: META-VALUE_TYPE for FILE_TIME_SPAN not equal to ISO_TIME_RANGE")
+        return errors.New("META-VALUE_TYPE for FILE_TIME_SPAN not equal to ISO_TIME_RANGE")
     }
     
     v0_entry_FILE_TIME_SPAN := es[0]
@@ -335,16 +331,16 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
     //x ix := strings.FirstIndex(v0_filename, ".")
     ix := strings.Index(v0_filename, ".")
     if ix < 0 {
-        return errors.New("error: FILE_NAME does have .cef or .cef.gz suffix")
+        return errors.New("FILE_NAME does have .cef or .cef.gz suffix")
     }        
 
     fn := v0_filename[0:ix]
     if strings.HasSuffix(fn, v0_version_number) == false {
-        return errors.New("error: FILE_NAME does have suffix (" + v0_version_number + ")")
+        return errors.New("FILE_NAME does have suffix (" + v0_version_number + ")")
     }
     
     if strings.HasSuffix(v0_logical, v0_version_number) == false {
-        return errors.New("error: LOGICAL_FILE_ID does have suffix (" + v0_version_number + ")")
+        return errors.New("LOGICAL_FILE_ID does have suffix (" + v0_version_number + ")")
     }
     
     return
@@ -353,7 +349,8 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
 func (h *CefHeaderData) print_results(about string, err error) {
 
     if err != nil {
-        diag.Error(diag.BoldRed("error:"), about, err)   
+//x         diag.Error(diag.BoldRed("error:"), about, err)   
+        diag.Error(about, err)   
     } else {
         diag.Trace(diag.BoldGreen("ok:"), about)  
     }
@@ -372,7 +369,8 @@ func (h *CefHeaderData) Checks() (err error) {
 		if v, err := h.getAttr(k); err == nil {
             diag.Trace(diag.Cyan(k), v)
 		} else {
-            diag.Error(diag.BoldRed(err))
+//x             diag.Error(diag.BoldRed(err))
+            diag.Error("Attr Checks ", err)   
 		}
 	}
 
@@ -392,7 +390,8 @@ func (h *CefHeaderData) Checks() (err error) {
                 diag.Trace(diag.Yellow(k), "Meta:VALUE_TYPE", value_type)
             }
 		} else {
-            diag.Error(diag.BoldRed(err))
+//x             diag.Error(diag.BoldRed(err))
+            diag.Error("Meta Checks ", err)
 		}
 	}
     

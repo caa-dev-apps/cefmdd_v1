@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 	"testing"
+  "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 var test_cef_lines_txt_01 = `
@@ -95,14 +96,12 @@ func read_cef_chan(i_test_about string,
  				   i_lines chan Line) {
 	cx := 0
 	for _ = range eachKeyVal(i_lines) {
-		//TODO: for kv := range eachKeyVal(i_lines) {
-		//TODO:  fmt.Println(cx, kv)
 		cx++
 	}
 
 	if cx > 0 {
 		t.Log(i_test_about, "cx = ", cx)
-		fmt.Println(i_test_about, "cx = ", cx)
+		diag.Println(i_test_about, "cx = ", cx)
 	} else {
 		t.Error(i_test_about, "cx = ", cx)
 	}

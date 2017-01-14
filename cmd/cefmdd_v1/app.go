@@ -8,8 +8,7 @@ import (
 
 func main() {
 
-    diag.Info(diag.BoldMagenta("cefmdd_v1 v0.0.5, (4 Jan 2016)"))
-    diag.Info(diag.BoldMagenta("Are we there yet?"))
+    diag.Info(diag.Yellow("cefmdd_v1 v0.0.6, (14 Jan 2016)"))
 
 	s_args, err := utils.NewCefArgs()
 
@@ -20,10 +19,15 @@ func main() {
 
 	err = ReadCef(&s_args)
 	if err != nil {
-		//x diag.Error(diag.BoldRed(fmt.Sprintf("Error parsing cef file \n%#v", err.Error())))
 		diag.Errorf(diag.BoldRed("Error parsing cef file"), "\n%#v", err.Error())
 		return
 	}
 
-    diag.Info(diag.BoldMagenta("CAA Rocks!"))
+//x     diag.Trace("TEST!", 	"__Trace__")
+//x     diag.Info("TEST!", 		"__Info___")
+//x     diag.Warn("TEST!", 		"__Warn___")
+//x     diag.Error("TEST!", 	"__Error__")
+//x     diag.Fatal("TEST!", 	"__Fatal__")
+
+    diag.Info(diag.Yellow("CAA Rocks!"))
 }

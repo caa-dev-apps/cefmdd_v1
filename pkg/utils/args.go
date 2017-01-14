@@ -53,7 +53,7 @@ func (a1s *CefArgs) init() error {
 
 	flag.Var(&a1s.m_includes, "i", "Include Folders")
     flag.StringVar(&a1s.m_cefpath , "f", "", "Cef file path (.cef/.cef.gz)")
-    flag.BoolVar(&a1s.m_trace , "t", false, "Show info (false)")
+    flag.BoolVar(&a1s.m_trace , "t", false, "Show Trace debug  (false)")
 
 	flag.Parse()
 
@@ -84,10 +84,16 @@ func (a1s *CefArgs) init() error {
 
 func (a1s CefArgs) Dump() {
 
-    diag.Info(diag.BoldYellow("cef cefpath"), a1s.m_cefpath)
-    diag.Info(diag.BoldYellow("cef filename"), a1s.m_filename)
-    diag.Info(diag.BoldYellow("cef includes"), a1s.m_includes)
-    diag.Info(diag.BoldYellow("trace"), a1s.m_trace)
+//x     diag.Info(diag.BoldYellow("cef cefpath"), a1s.m_cefpath)
+//x     diag.Info(diag.BoldYellow("cef filename"), a1s.m_filename)
+//x     diag.Info(diag.BoldYellow("cef includes"), a1s.m_includes)
+//x     diag.Info(diag.BoldYellow("trace"), a1s.m_trace)
+
+    diag.Trace(diag.BoldYellow("cef cefpath"), a1s.m_cefpath)
+    diag.Trace(diag.BoldYellow("cef filename"), a1s.m_filename)
+    diag.Trace(diag.BoldYellow("cef includes"), a1s.m_includes)
+    diag.Trace(diag.BoldYellow("trace"), a1s.m_trace)
+
 }
 
 func NewCefArgs() (CefArgs, error) {

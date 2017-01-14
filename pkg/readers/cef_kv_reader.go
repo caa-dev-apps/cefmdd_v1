@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 	"unicode"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 type KVState int
@@ -49,7 +50,7 @@ func state_str(s KVState) (str string) {
 
 func state_diag(ch rune, s1, s2 KVState) {
 
-	fmt.Println(string(ch), state_str(s1), state_str(s2))
+	diag.Println(string(ch), state_str(s1), state_str(s2))
 }
 
 

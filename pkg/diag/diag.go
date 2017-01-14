@@ -33,50 +33,58 @@ var (
 
 )
 
+func Println(v ...interface{}) {
+    if s_trace == true {
+        fmt.Println(v...)
+    }
+}
 
 func Trace(tag string, v ...interface{}) {
     if s_trace == true {
-        fmt.Println(tag, v)
+        fmt.Print(tag, " ")
+        fmt.Println(v...)
     }
 }
 
+
 func Info(tag string, v ...interface{}) {
-        fmt.Println(tag, v)
+    fmt.Print(Yellow(tag), " ")
+    fmt.Println(v...)
+}
+
+func Todo(tag string, v ...interface{}) {
+    fmt.Print(BoldMagenta("Todo: ", tag), " ")
+    fmt.Println(v...)
 }
 
 func Warn(tag string, v ...interface{}) {
-    fmt.Println(tag, v)
+    fmt.Print(Magenta("Warn: ", tag), " ")
+    fmt.Println(v...)
 }
 
 func Error(tag string, v ...interface{}) {
-    fmt.Println(tag, v)
+    fmt.Print(Red("Error: ", tag), " ")
+    fmt.Println(v...)
 }
 
 func Fatal(tag string, v ...interface{}) {
-    fmt.Println(tag, v)
+    fmt.Print(BoldRed("Fatal: ", tag), " ")
+    fmt.Println(v...)
 }
 
-
-
-func Tracef(tag, format string, v ...interface{}) {
-    if s_trace == true {
-        fmt.Println(tag, fmt.Sprintf(format, v))
-    }
-}
 
 func Infof(tag, format string, v ...interface{}) {
-    fmt.Println(tag, fmt.Sprintf(format, v))
+    Info(tag, fmt.Sprintf(format, v))
 }
 
 func Warnf(tag, format string, v ...interface{}) {
-    fmt.Println(tag, fmt.Sprintf(format, v))
+    Warn(tag, fmt.Sprintf(format, v))
 }
 
 func Errorf(tag, format string, v ...interface{}) {
-    fmt.Println(tag, fmt.Sprintf(format, v))
+    Error(tag, fmt.Sprintf(format, v))
 }
 
 func Fatalf(tag, format string, v ...interface{}) {
-    fmt.Println(tag, fmt.Sprintf(format, v))
+    Fatal(tag, fmt.Sprintf(format, v))
 }
-

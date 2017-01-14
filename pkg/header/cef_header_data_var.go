@@ -2,12 +2,13 @@ package header
 
 import (
 	"github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
+	"github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 func (hds *CefHeaderData) kv_var(kv *readers.KeyVal) (err error) {
 
     //todo need to  add kv_var to current Var{}
-    println("TODO: kv_var");
+    diag.Todo("kv_var")
 	return
 }
 

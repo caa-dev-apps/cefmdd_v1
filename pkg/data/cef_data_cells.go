@@ -70,7 +70,6 @@ func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, e
 
 	c_ix := 0
 	for ix, v := range vs {
-		//x fmt.Println(ix)		
 
 		vmap := v.Map()
 		if _, p := vmap["DATA"]; p == true {

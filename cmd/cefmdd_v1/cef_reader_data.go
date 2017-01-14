@@ -48,7 +48,7 @@ func ReadData(i_header header.CefHeaderData,
 
 	l_cellTypes, err := data.RecordCellTypes(i_header)
 	if err != nil {
-		fmt.Println(diag.BoldRed("Error creating Cell Types Array for Data checks"))	
+		diag.Error("Creating Cell Types Array for Data checks")
 		return
 	}
 
@@ -59,7 +59,7 @@ func ReadData(i_header header.CefHeaderData,
 
 		if l_record.Err != nil {
 			err = l_record.Err
-			fmt.Println(diag.BoldRed(fmt.Sprintf("Error reading data record %#v", l_record.Line)))
+			diag.Errorf("Reading data record ", "%#v", l_record.Line)
 			return
 		}
 
@@ -68,21 +68,20 @@ func ReadData(i_header header.CefHeaderData,
 			err = ct.VariableParser(rd) 
 			if err != nil {
 
-				fmt.Println(diag.BoldRed(fmt.Sprintf("Error in data record, incorrect data type\n" +
-													 "%s\n" +
-													 "Error Token %s\n" +
-													 "Tokens %#v\n" +
-													 "Line %#v\n",
-													 ct,
-													 rd,
-													 l_record.Tokens,
-													 l_record.Line)))
+				diag.Errorf("Error in data record, incorrect data type\n",
+							"%s\n" +
+							"Error Token %s\n" +
+							"Tokens %#v\n" +
+							"Line %#v\n",
+							ct,
+							rd,
+							l_record.Tokens,
+							l_record.Line)
 				return err
 			}
 		}
 
 		t1, _ := utils.Iso_time(l_record.Tokens[0])
-		//- fmt.Printf("t0 %#v\t  t1 %#v \n", t0, t1)
 
 		if(t1.Sub(t0) < 0) {
 			return errors.New(fmt.Sprintf("Error in Record Date/Time stamp predating previous record value t0(%#v) t1(%#v) %#v", t0, t1, l_record.Line))
@@ -97,7 +96,7 @@ func ReadData(i_header header.CefHeaderData,
 
 	}
 
-	fmt.Println("Data Records Checked: ", r_ix)
+	diag.Info("Data Records Checked: ", r_ix)
 
 	return
 }

@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fmt"
+	//x "fmt"
 	"errors"
 	"strings"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/header"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
@@ -95,7 +96,7 @@ func ReadHeader(args *utils.CefArgs,
 
     r_header.Checks()
 
-	fmt.Println("Header Lines read: ", ix)
+	diag.Info("Header Lines read:", ix)
 
 	return
 }

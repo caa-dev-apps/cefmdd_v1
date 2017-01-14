@@ -8,15 +8,13 @@ import (
     "errors"
     "strings"
     "runtime"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 ///////////////////////////////////////////////////////////////////////////////
 //
 
 func UserHomeDir() string {
-    
-    //x pwd, _ := os.Getwd()
-    //x fmt.Println("Getwd : ", pwd)
     
     if runtime.GOOS == "windows" {
         home := os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")
@@ -30,15 +28,14 @@ func UserHomeDir() string {
 }
 
 func CefMddDir() string {
-//x    return UserHomeDir() + `/.cefmdd_v1`
     return UserHomeDir() + `/_cefmdd_v1`
 }
 
 
 func Error_check(err error, i_s string) {
     if err != nil {
-        fmt.Println(err.Error())
-        fmt.Println("Error-Check: ", i_s)
+        diag.Error(err.Error())
+        diag.Error("Error-Check: ", i_s)
         os.Exit(1)
     }
 }
@@ -73,16 +70,19 @@ func Trim_quoted_string(s string) (string) {
 //
 
 func On_enum_not_found_error(i_keyword string) (err error) {
-    return errors.New("Parse Error: Enum keyword not found, " + i_keyword)     
+//x     return errors.New("Parse Error: Enum keyword not found, " + i_keyword)     
+    return errors.New("Parser, Enum keyword not found")     
 }
 
 
 func On_enum_parser_error(i_keyword, i_value string) (err error) {
-    return errors.New("Parse Error: Enum value not found, " + i_keyword + " -> " + i_value)     
+//x     return errors.New("Parse Error: Enum value not found, " + i_keyword + " -> " + i_value)     
+    return errors.New("Parser, Enum value not found ")     
 }
 
 func On_parser_error(i_parser, i_value string) (err error) {
-    return errors.New("Parse Error: " + i_parser + " -> " + i_value)     
+//x     return errors.New("Parser Error: " + i_parser + " -> " + i_value)     
+    return errors.New("Parser Error: ")     
 }
 
 ///////////////////////////////////////////////////////////////////////////////

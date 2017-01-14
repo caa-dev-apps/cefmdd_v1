@@ -12,7 +12,7 @@ import (
     "strconv"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
-//x     "testing"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 //- Keywords
@@ -187,7 +187,6 @@ func NewMddData_Base(i_path_keywords, i_path_enums string) *MddData {
 
     // read Enums
     for r := range read_csv(i_path_enums) {
-        //x fmt.Println(r[0], r[1])
         mdd_data.add_enum(r[0], r[1], &EnumData{description: r[2], additional: r[3]})
     }
 
@@ -201,7 +200,6 @@ func NewMddData_Base(i_path_keywords, i_path_enums string) *MddData {
             break
         }
         
-        //x fmt.Println(r[0], r[1], r[2], r[3])
         mdd_data.add_keyword(r[0], &KeywordData{ lo : r[1], 
                                                  hi : r[2],  
                                                  kw_type : l_keywordType,    
@@ -242,7 +240,6 @@ func (d *MddData) add_enum(i_keyword,
     _, present := d.m_enums[i_keyword]
     if present == false {
         d.m_enums[i_keyword] = make(map[string]*EnumData)
-        //- fmt.Println("New Enum: " + i_keyword)
     }
 
     _, present = d.m_enums[i_keyword][i_definition]
@@ -276,15 +273,9 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
     }
     
     f =  func(v string) (e error) {
-        //x fmt.Printf("#?: [%s] [%s]\n", i_keyword, v)
         v1 := strings.Trim(v, "\"'`")
         
         _, p := enums[v1]
-        
-        //x if i_keyword == "PARAMETER_TYPE" {
-        //x     fmt.Print("############ -> ")
-        //x     fmt.Println(enums[v1])
-        //x }
         
         if p == false {
             return utils.On_enum_parser_error(i_keyword, v)
@@ -297,8 +288,8 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
 }
     
 func (d *MddData) dump() {
-    fmt.Println(d.m_keywords)
-    fmt.Println(d.m_enums)
+    diag.Trace(fmt.Sprintf("%#v", d.m_keywords))
+    diag.Trace(fmt.Sprintf("%#v", d.m_enums))
 }
 
 /////////////////////////////////////////////////////////////////////////////// -------------------------------------------------------------------------------
@@ -361,9 +352,6 @@ func (d *MddData) Test_input_kv2(k string,
 
 func NewMddData() *MddData {
    
-    //x fmt.Println("Home folder -> ", UserHomeDir())
-   
-    //- /home/user/.cefmdd_v1
     return NewMddData_Base(utils.CefMddDir() + `/Keywords.csv`, 
                            utils.CefMddDir() + `/Enums.csv`)
 }

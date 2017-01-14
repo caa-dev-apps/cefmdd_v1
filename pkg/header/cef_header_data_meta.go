@@ -4,18 +4,19 @@ import (
 	"errors"
 	"strings"
 	"github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
+	"github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 
 func (hds *CefHeaderData) kv_meta_entry(kv *readers.KeyVal) (err error) {
     //todo need to  add entry to current Meta{}
-    println("TODO: kv_meta_entry");
+    diag.Todo("kv_meta_entry")
     return 
 }
 
 func (hds *CefHeaderData) kv_meta_value_type(kv *readers.KeyVal) (err error) {
     //todo need to  add value_type to current Meta{}
-    println("TODO: kv_meta_value_type");
+    diag.Todo("kv_meta_value_type")
 	return
 }
 
