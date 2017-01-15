@@ -283,9 +283,11 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
     l_kv := kv
 
     switch {
-        case kv.Key == "ENTRY":     diag.Trace(diag.BoldBlue(" delay-check-", "ENTRY",   " ",  kv.Val));  return
-        case kv.Key == "FILLVAL":   diag.Trace(diag.BoldBlue(" delay-check-", "FILLVAL", " ",  kv.Val));  return        // multiple types - depends on var type
-        case kv.Key == "SIZES":     diag.Trace(diag.BoldBlue(" delay-check-", "SIZES",   " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
+        case kv.Key == "ENTRY":         diag.Trace(diag.BoldBlue(" delay-check-", "ENTRY",          " ",  kv.Val));  return
+        case kv.Key == "FILLVAL":       diag.Trace(diag.BoldBlue(" delay-check-", "FILLVAL",        " ",  kv.Val));  return        // multiple types - depends on var type
+        case kv.Key == "SIZES":         diag.Trace(diag.BoldBlue(" delay-check-", "SIZES",          " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
+        case kv.Key == "DELTA_MINUS":   diag.Todo("No rule to check",             "DELTA_MINUS",    " ",  kv.Val);  return        // need further details for later checks
+        case kv.Key == "DELTA_PLUS":    diag.Todo("No rule to check",             "DELTA_PLUS",     " ",  kv.Val);  return        // need further details for later checks
         
         case REGX_REPRESENTATION_i.MatchString(kv.Key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
         case REGX_LABEL_i.MatchString(kv.Key):           l_kv = kv.NewSwitchKey(`LABEL_i`)

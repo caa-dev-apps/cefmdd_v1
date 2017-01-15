@@ -68,7 +68,7 @@ func ReadData(i_header header.CefHeaderData,
 			err = ct.VariableParser(rd) 
 			if err != nil {
 
-				diag.Errorf("Error in data record, incorrect data type\n",
+				diag.Errorf("In data record, incorrect data type\n",
 							"%s\n" +
 							"Error Token %s\n" +
 							"Tokens %#v\n" +

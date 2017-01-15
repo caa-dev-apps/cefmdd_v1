@@ -67,7 +67,7 @@ func (h *CefHeaderData) getAttrFirstQuoted(key string) (v0 string, err error) {
     if err == nil {  
         v0 = vs[0]
         if utils.Is_quoted_string(v0) == false {
-            err = errors.New(key + "attribute is unquoted string ")
+            err = errors.New(key + " attribute is unquoted string - " + v0)
         } 
     }
         
@@ -81,7 +81,7 @@ func (h *CefHeaderData) getMetaEntryFirstQuoted(key string) (v0 string, err erro
     if err == nil {  
         v0 = vs[0]
         if utils.Is_quoted_string(v0) == false {
-            err = errors.New(key + "META ENTRY is unquoted string ")
+            err = errors.New(key + " META ENTRY is unquoted string - " + v0)
         } 
     }
         

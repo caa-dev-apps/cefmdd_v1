@@ -81,8 +81,8 @@ func On_enum_parser_error(i_keyword, i_value string) (err error) {
 }
 
 func On_parser_error(i_parser, i_value string) (err error) {
-//x     return errors.New("Parser Error: " + i_parser + " -> " + i_value)     
-    return errors.New("Parser Error: ")     
+    return errors.New("Parser Error: " + i_parser + " -> " + i_value)     
+    //x return errors.New("Parser Error: ")     
 }
 
 ///////////////////////////////////////////////////////////////////////////////
