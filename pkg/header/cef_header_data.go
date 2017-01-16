@@ -386,7 +386,11 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 				return errors.New("END_VARIABLE: invalid Name")
 			}
             
-            
+            // need to set SIZES to 1 if missing
+            if _, p := h.m_cur.Map()["SIZES"]; p == false {
+                h.m_cur.push_k_v("SIZES", "1")                
+            }
+
             h.m_cur.push_k_v("variable_name", h.m_name)
 
             h.m_vars.m_list = append(h.m_vars.m_list, *h.m_cur)

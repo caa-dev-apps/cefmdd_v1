@@ -52,6 +52,11 @@ func ReadData(i_header header.CefHeaderData,
 		return
 	}
 
+	is_cell_0_ISO_TIME := l_cellTypes[0].VariableType == "ISO_TIME" 
+
+//x 	diag.Info(l_cellTypes[0].VariableType, is_0_ISO_TIME)
+
+
 	var t0 time.Time
 
 	r_ix := 0
@@ -81,13 +86,15 @@ func ReadData(i_header header.CefHeaderData,
 			}
 		}
 
-		t1, _ := utils.Iso_time(l_record.Tokens[0])
+		if is_cell_0_ISO_TIME == true {
+			t1, _ := utils.Iso_time(l_record.Tokens[0])
 
-		if(t1.Sub(t0) < 0) {
-			return errors.New(fmt.Sprintf("Error in Record Date/Time stamp predating previous record value t0(%#v) t1(%#v) %#v", t0, t1, l_record.Line))
+			if(t1.Sub(t0) < 0) {
+				return errors.New(fmt.Sprintf("Error in Record Date/Time stamp predating previous record value t0(%#v) t1(%#v) %#v", t0, t1, l_record.Line))
+			}
+
+			t0 = t1
 		}
-
-		t0 = t1
 
 		r_ix++
 		if r_ix >= 100 {
