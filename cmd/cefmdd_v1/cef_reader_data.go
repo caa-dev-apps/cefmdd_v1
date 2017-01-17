@@ -54,11 +54,9 @@ func ReadData(i_header header.CefHeaderData,
 
 	is_cell_0_ISO_TIME := l_cellTypes[0].VariableType == "ISO_TIME" 
 
-//x 	diag.Info(l_cellTypes[0].VariableType, is_0_ISO_TIME)
-
-
 	var t0 time.Time
 
+	l_max_records := utils.GetCefArgs().GetMaxRecords()
 	r_ix := 0
 	for l_record := range readers.DataRecords(i_lines, len(l_cellTypes))  {
 
@@ -96,8 +94,8 @@ func ReadData(i_header header.CefHeaderData,
 			t0 = t1
 		}
 
-		r_ix++
-		if r_ix >= 100 {
+		r_ix++;
+		if l_max_records > 0 && r_ix >= l_max_records {
 			break
 		}
 

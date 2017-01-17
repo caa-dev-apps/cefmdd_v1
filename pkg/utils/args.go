@@ -27,6 +27,7 @@ type CefArgs struct {
 	m_includes strslice
 	m_cefpath  string
     m_filename string
+    m_max_records int
     m_trace bool
 }
 
@@ -46,14 +47,19 @@ func (a1s CefArgs) GetInfo() (bool) {
 	return a1s.m_trace
 }
 
+func (a1s CefArgs) GetMaxRecords() (int) {
+	return a1s.m_max_records
+}
 
 
-func (a1s *CefArgs) init() error {
-	err := error(nil)
+
+func (a1s *CefArgs) init() (err error) {
 
 	flag.Var(&a1s.m_includes, "i", "Include Folders")
     flag.StringVar(&a1s.m_cefpath , "f", "", "Cef file path (.cef/.cef.gz)")
-    flag.BoolVar(&a1s.m_trace , "t", false, "Show Trace debug  (false)")
+    flag.BoolVar(&a1s.m_trace , "t", false, "Show trace debug  (false)")
+    flag.IntVar(&a1s.m_max_records , "n", 100, "Max number of records to read (all -1)")
+
 
 	flag.Parse()
 
@@ -84,14 +90,10 @@ func (a1s *CefArgs) init() error {
 
 func (a1s CefArgs) Dump() {
 
-//x     diag.Info(diag.BoldYellow("cef cefpath"), a1s.m_cefpath)
-//x     diag.Info(diag.BoldYellow("cef filename"), a1s.m_filename)
-//x     diag.Info(diag.BoldYellow("cef includes"), a1s.m_includes)
-//x     diag.Info(diag.BoldYellow("trace"), a1s.m_trace)
-
     diag.Trace(diag.BoldYellow("cef cefpath"), a1s.m_cefpath)
     diag.Trace(diag.BoldYellow("cef filename"), a1s.m_filename)
     diag.Trace(diag.BoldYellow("cef includes"), a1s.m_includes)
+    diag.Trace(diag.BoldYellow("m_max_records"), a1s.m_max_records)
     diag.Trace(diag.BoldYellow("trace"), a1s.m_trace)
 
 }
@@ -106,5 +108,3 @@ func NewCefArgs() (CefArgs, error) {
 func GetCefArgs() (CefArgs) {
 	return s_args		
 }
-
-
