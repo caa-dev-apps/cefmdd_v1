@@ -60,7 +60,6 @@ func (a1s *CefArgs) init() (err error) {
     flag.BoolVar(&a1s.m_trace , "t", false, "Show trace debug  (false)")
     flag.IntVar(&a1s.m_max_records , "n", 100, "Max number of records to read (all -1)")
 
-
 	flag.Parse()
 
 	diag.SetTrace(a1s.m_trace)

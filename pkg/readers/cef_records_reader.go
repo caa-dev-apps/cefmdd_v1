@@ -65,7 +65,7 @@ func NewCefRecord(l Line) (*CefRecord) {
     }
 }
 
-func DataRecords(i_lines chan Line, i_len int) chan CefRecord {
+func DataRecords(i_lines chan Line, i_len int, i_data_until string) chan CefRecord {
     output := make(chan CefRecord, 16)
     l_running_len := 0
 
@@ -206,9 +206,17 @@ func DataRecords(i_lines chan Line, i_len int) chan CefRecord {
             ix++
         }
 
+        diag.Info("_________ l_running_len", l_running_len, "______", l_rowTokens.Tokens)
+
+        // check if DATA_UNTIL
         if l_running_len > 0 && l_running_len < i_len {
-            l_rowTokens.Err = errors.New(fmt.Sprint(`Line reader - Too few tokens - expected : `, i_len, " actual : ", l_running_len))
-            output <- *l_rowTokens
+            diag.Info("_________LAST_ACTUAL__", l_rowTokens.Tokens[0], "_________LAST_EXPECTED_", i_data_until)
+
+//x         if !(l_running_len == 1 && i_data_until != nil && i_data_until == l_rowTokens.Tokens[0]) {
+            if !(l_running_len == 1 && len(i_data_until) > 0 && i_data_until == l_rowTokens.Tokens[0]) {
+                l_rowTokens.Err = errors.New(fmt.Sprint(`Line reader - Too few tokens - expected : `, i_len, " actual : ", l_running_len))
+                output <- *l_rowTokens
+            }
         }
 
     }()

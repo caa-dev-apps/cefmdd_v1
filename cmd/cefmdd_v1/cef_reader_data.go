@@ -45,6 +45,16 @@ import (
 func ReadData(i_header header.CefHeaderData,
 			  i_lines chan readers.Line) (err error) {
 
+	var l_data_until string 
+
+    du, p := i_header.Attrs().Map()["DATA_UNTIL"];
+    if p == true {
+    	if du[0] != "EOFx" {
+    		l_data_until = du[0]
+    	}
+
+    	diag.Info("_____________________________________", l_data_until) 
+    }
 
 	l_cellTypes, err := data.RecordCellTypes(i_header)
 	if err != nil {
@@ -58,7 +68,7 @@ func ReadData(i_header header.CefHeaderData,
 
 	l_max_records := utils.GetCefArgs().GetMaxRecords()
 	r_ix := 0
-	for l_record := range readers.DataRecords(i_lines, len(l_cellTypes))  {
+	for l_record := range readers.DataRecords(i_lines, len(l_cellTypes), l_data_until)  {
 
 		if l_record.Err != nil {
 			err = l_record.Err
@@ -94,6 +104,7 @@ func ReadData(i_header header.CefHeaderData,
 			t0 = t1
 		}
 
+		// max_records = -1 for all
 		r_ix++;
 		if l_max_records > 0 && r_ix >= l_max_records {
 			break
