@@ -29,7 +29,7 @@ Getting there!
 # Installation
 
 ```bash
-go install github.com\caa-dev-apps\cefmdd_v1
+go get github.com\caa-dev-apps\cefmdd_v1\cmd\cefmdd_v1
 ```
 
 # Config

@@ -53,7 +53,7 @@ func ReadData(i_header header.CefHeaderData,
     		l_data_until = du[0]
     	}
 
-    	diag.Info("_____________________________________", l_data_until) 
+    	//x diag.Info("_____________________________________", l_data_until) 
     }
 
 	l_cellTypes, err := data.RecordCellTypes(i_header)
