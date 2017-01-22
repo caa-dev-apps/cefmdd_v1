@@ -283,12 +283,21 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
     l_kv := kv
 
     switch {
-        case kv.Key == "ENTRY":         diag.Trace(diag.BoldBlue(" delay-check-", "ENTRY",          " ",  kv.Val));  return
-        case kv.Key == "FILLVAL":       diag.Trace(diag.BoldBlue(" delay-check-", "FILLVAL",        " ",  kv.Val));  return        // multiple types - depends on var type
-        case kv.Key == "SIZES":         diag.Trace(diag.BoldBlue(" delay-check-", "SIZES",          " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.
-        case kv.Key == "DELTA_MINUS":   diag.Todo("No rule to check",             "DELTA_MINUS",    " ",  kv.Val);  return        // need further details for later checks
-        case kv.Key == "DELTA_PLUS":    diag.Todo("No rule to check",             "DELTA_PLUS",     " ",  kv.Val);  return        // need further details for later checks
+        case kv.Key == "ENTRY":                 diag.Trace(diag.BoldBlue(" delay-check-", "ENTRY",                  " ",  kv.Val));  return     
+        case kv.Key == "FILLVAL":               diag.Trace(diag.BoldBlue(" delay-check-", "FILLVAL",                " ",  kv.Val));  return        // multiple types - depends on var type      
+        case kv.Key == "SIZES":                 diag.Trace(diag.BoldBlue(" delay-check-", "SIZES",                  " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.       
+        case kv.Key == "DELTA_MINUS":           diag.Todo("Can point to variable",        "DELTA_MINUS",            " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
+        case kv.Key == "DELTA_PLUS":            diag.Todo("Can point to variable",        "DELTA_PLUS",             " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
         
+        case kv.Key == "ERROR_MINUS":           diag.Todo("Can point to variable",        "ERROR_MINUS",            " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
+        case kv.Key == "ERROR_PLUS":            diag.Todo("Can point to variable",        "ERROR_PLUS",             " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
+
+        //0 case kv.Key == "QUALITY":           diag.Todo("Can point to variable",        "QUALITY",                " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
+
+        case kv.Key == "MIN_TIME_RESOLUTION":   diag.Todo("Can point to variable",        "MIN_TIME_RESOLUTION",    " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
+        case kv.Key == "MAX_TIME_RESOLUTION":   diag.Todo("Can point to variable",        "MAX_TIME_RESOLUTION",    " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
+
+
         case REGX_REPRESENTATION_i.MatchString(kv.Key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
         case REGX_LABEL_i.MatchString(kv.Key):           l_kv = kv.NewSwitchKey(`LABEL_i`)
         case REGX_DEPEND_i.MatchString(kv.Key):          l_kv = kv.NewSwitchKey(`DEPEND_i`)

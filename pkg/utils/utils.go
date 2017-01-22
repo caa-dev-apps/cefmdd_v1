@@ -70,15 +70,17 @@ func Trim_quoted_string(s string) (string) {
 //
 
 func On_enum_not_found_error(i_keyword string) (err error) {
-//x     return errors.New("Parse Error: Enum keyword not found, " + i_keyword)     
     return errors.New("Parser, Enum keyword not found")     
 }
 
-
 func On_enum_parser_error(i_keyword, i_value string) (err error) {
-//x     return errors.New("Parse Error: Enum value not found, " + i_keyword + " -> " + i_value)     
     return errors.New("Parser, Enum value not found ")     
 }
+
+func On_enum_description_error(i_keyword, i_value string) (err error) {
+    return errors.New("Parser, Enum description mismatch ")     
+}
+
 
 func On_parser_error(i_parser, i_value string) (err error) {
     return errors.New("Parser, " + i_parser + " -> " + i_value)     

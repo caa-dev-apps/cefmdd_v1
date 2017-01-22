@@ -272,17 +272,60 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
         return nil, utils.On_enum_not_found_error(i_keyword)
     }
     
-    f =  func(v string) (e error) {
+    f = func(v string) (e error) {
         v1 := strings.Trim(v, "\"'`")
-        
-        _, p := enums[v1]
-        
-        if p == false {
-            return utils.On_enum_parser_error(i_keyword, v)
+
+        if i_keyword == "COORDINATE_SYSTEM" {
+            vs := strings.Split(v1, ">")
+            es, p := enums[vs[0]]
+
+            //x fmt.Println(vs)
+            if p == false {
+                return utils.On_enum_parser_error(i_keyword, v)
+            }
+
+            if (len(vs) > 1 && es.description != vs[1]) {
+                return utils.On_enum_description_error(i_keyword, v)
+            } 
+        } else if i_keyword == "SI_CONVERSION" {
+            vs := strings.Split(v1, ">")
+            l := len(vs) 
+
+            if l==0 || l > 2 {
+                //x fmt.Println("@1",vs)
+                return utils.On_enum_parser_error(i_keyword, v)
+            }
+
+            ix := 0
+            if l == 2 {
+                ix = 1
+            }
+
+            _, p := enums[vs[ix]]
+            if p == false {
+                //x fmt.Println("@2",vs)
+                return utils.On_enum_parser_error(i_keyword, v)
+            } 
+
+            if l == 2 {
+
+                if e1 := utils.Numerical_parser(vs[0]); e1 != nil {
+                    //x fmt.Println("@3",vs[0])
+                    return utils.On_enum_parser_error(i_keyword, v)
+                }
+            }
+
+        } else {
+            _, p := enums[v1]
+
+            if p == false {
+                return utils.On_enum_parser_error(i_keyword, v)
+            } 
         }
-        
+
         return
     }
+
     
     return
 }

@@ -207,20 +207,16 @@ func DataRecords(i_lines chan Line, i_len int, i_data_until string) chan CefReco
             ix++
         }
 
-        //x diag.Info("_________ l_running_len", l_running_len, "______", l_rowTokens.Tokens)
-
         // check if DATA_UNTIL
         if len(i_data_until) > 0 && l_running_len == 1 && strings.Contains(i_data_until, l_rowTokens.Tokens[0]) {
             if i_data_until != l_rowTokens.Tokens[0] {
                 diag.Warn("DATA_UNTIL: ", "Actual", l_rowTokens.Tokens[0], " Expected", i_data_until)
             }
-        } else {
+        } else if l_running_len > 1 {
             l_rowTokens.Err = errors.New(fmt.Sprint(`Line reader - Too few tokens - expected : `, i_len, " actual : ", l_running_len))
             output <- *l_rowTokens
         }
-
-
-
+        // else eof
 
     }()
 
