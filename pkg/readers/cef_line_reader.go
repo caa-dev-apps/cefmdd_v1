@@ -18,7 +18,8 @@ type Line struct {
 }
 
 func (l Line) String() string {
-     return fmt.Sprintf("ln: %d\n  tag: %s\n  line: %s\n", l.ln, l.tag, strings.TrimSpace(l.line))
+//x     return fmt.Sprintf("ln: %d\n  tag: %s\n  line: %s\n", l.ln, l.tag, strings.TrimSpace(l.line))
+     return fmt.Sprintf("Line: %d,  File: %s,  Text: %s", l.ln, l.tag, strings.TrimSpace(l.line))
 }
 
 

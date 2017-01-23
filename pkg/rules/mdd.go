@@ -163,6 +163,8 @@ func (kw *KeywordData) parse_value_type(kv *readers.KeyVal) (err error) {
         
         err = kw.kw_type_parser(v1)
         if err != nil {
+            fmt.Println(diag.BoldRed("\tTODO: Print readers.KeyVal"))
+            fmt.Println(diag.BoldRed(kv.Line))
             return
         }
     }
