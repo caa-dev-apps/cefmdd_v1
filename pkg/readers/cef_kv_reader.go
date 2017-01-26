@@ -243,10 +243,10 @@ func EachKeyVal(i_lines chan Line) chan KeyVal {
 
 			err := parse_line(l_line.line)
 			if err != nil {
-                println("Tag->",    l_line.tag)
-                println("Line #->", l_line.ln)
-                println("Line->",   l_line.line)
-				println("Error: ",  err)
+                diag.Error("Tag->",    l_line.tag)
+                diag.Error("Line #->", l_line.ln)
+                diag.Error("Line->",   l_line.line)
+				diag.Error("Error: ",  err)
 				break
 			}
 

@@ -376,7 +376,12 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 
             h.m_meta.m_map[h.m_name] = *h.m_cur
             
-            h.check_mdd_meta_etx()
+            e := h.check_mdd_meta_etx()
+
+            if e != nil {
+                //x diag.Error("meta check", kv)
+                diag.Error("check meta", kv.Line)
+            }
 
             diag.Trace(diag.BoldCyan("end-meta"), h.m_name)
             

@@ -72,6 +72,12 @@ func ReadHeader(args *utils.CefArgs,
 				}
 				nestedLevel--
 			} else {
+
+//x 				debug_v := strings.Trim(kv.Val[0], `" `)
+//x 				if debug_v == "DATA_TYPE" {
+//x 					diag.Infof("KV: ", "%#v", kv)
+//x 				}
+
 				r_header.Add_kv(&kv)
 				data_until = strings.EqualFold("DATA_UNTIL", kv.Key)
 			}
@@ -83,9 +89,11 @@ func ReadHeader(args *utils.CefArgs,
 	}
 
 	data_until, r_err := doProcess(i_lines_in)
+	//x diag.Error("X X X X X X X X X")
 
 	if r_err != nil {
 		return
+		//x diag.Error("X X X X X X X X X1")
 	}
 
 
