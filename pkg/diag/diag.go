@@ -6,11 +6,15 @@ import (
 )
 
 var s_trace bool 
+var s_show_error_line bool
 
 func SetTrace(d bool) {
     s_trace = d
 }
 
+func SetShowErrorLine(d bool) {
+    s_show_error_line = d
+}
 
 var (
     //x info2 := color.New(color.FgWhite, color.BgCyan).SprintFunc()
@@ -66,6 +70,23 @@ func Error(tag string, v ...interface{}) {
     fmt.Print(Red("Error: ", tag), " ")
     fmt.Println(v...)
 }
+
+//x func ErrorLine(tag string, v ...interface{}) {
+//x     if s_show_error_line == true {
+//x         fmt.Print(Red("Error: ", tag), " ")
+//x         fmt.Println(v...)
+//x     }
+//x }
+
+func ErrorLine(v ...interface{}) {
+    if s_show_error_line == true {
+        //x fmt.Print(Red("Error: ", tag), " ")
+        fmt.Print("  ")
+        fmt.Println(v...)
+    }
+}
+
+
 
 func Fatal(tag string, v ...interface{}) {
     fmt.Print(BoldRed("Fatal: ", tag), " ")

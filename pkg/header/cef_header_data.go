@@ -307,7 +307,6 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
 
     err = s_mdd_data.Test_input(l_kv)
     if err != nil {
-//x         diag.Error(diag.BoldRed(err.Error()), kv.Key, kv.Val)
         diag.Error(err.Error(), kv.Key, kv.Val)
     } else {
         diag.Trace(diag.BoldGreen(" ok-kv"), kv.Key, kv.Val)
@@ -377,10 +376,9 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
             h.m_meta.m_map[h.m_name] = *h.m_cur
             
             e := h.check_mdd_meta_etx()
-
             if e != nil {
-                //x diag.Error("meta check", kv)
-                diag.Error("check meta", kv.Line)
+//x                 diag.ErrorLine("check meta", kv.Line)
+                diag.ErrorLine(kv.Line)
             }
 
             diag.Trace(diag.BoldCyan("end-meta"), h.m_name)
@@ -423,7 +421,10 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
         h.m_cur.push_kv(kv)
         
         // key - val tests !!!
-        h.check_mdd(kv)
+        e := h.check_mdd(kv)
+        if e != nil {
+            diag.ErrorLine(kv.Line)
+        }
 	}
 
 	return err
