@@ -8,5 +8,5 @@ INC_0=$ROOT_2016/header_includes
 INC_1=$ROOT_2016/header_includes/fgm
 TEST_FILE_2=$ROOT_2016/fgm/csds/2016/C1_PP_FGM_20010606_V01.cef.gz
 
-cefmdd_v1 -i $INC_0 -i $INC_1 -f $TEST_FILE_2
+cefmdd_v1 -i $INC_0 -i $INC_1 -f $TEST_FILE_2 $1 $2 $3 $4
 

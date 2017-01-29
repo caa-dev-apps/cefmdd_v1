@@ -9,4 +9,4 @@ INC_1=$ROOT_2013/HEADERS/EDI
 TEST_FILE_4=$ROOT_2013/CEF/EDI/C3_CP_EDI_QZC__20111021_V01.cef.gz
 
 
-cefmdd_v1 -i $INC_0 -i $INC_1 -f $TEST_FILE_4
+cefmdd_v1 -i $INC_0 -i $INC_1 -f $TEST_FILE_4 $1 $2 $3 $4

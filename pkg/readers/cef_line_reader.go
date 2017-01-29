@@ -33,6 +33,7 @@ func EachLine(i_path string) chan Line {
 
 		fi, err := os.Open(i_path)
 		if err != nil {
+			diag.Error("File Open:", i_path)
 			return
 		}
 		defer fi.Close()

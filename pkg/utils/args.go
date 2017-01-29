@@ -59,7 +59,7 @@ func (a1s *CefArgs) init() (err error) {
 	flag.Var(&a1s.m_includes, "i", "Include Folders")
     flag.StringVar(&a1s.m_cefpath , "f", "", "Cef file path (.cef/.cef.gz)")
     flag.BoolVar(&a1s.m_trace , "t", false, "Show trace debug")
-    flag.BoolVar(&a1s.m_show_error_line , "e", false, "Show error line details")
+    flag.BoolVar(&a1s.m_show_error_line , "e", true, "Show error line details")
 
     flag.IntVar(&a1s.m_max_records , "n", 100, "Max number of records to read (all -1)")
 

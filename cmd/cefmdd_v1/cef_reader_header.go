@@ -36,15 +36,15 @@ func ReadHeader(args *utils.CefArgs,
 
 			_, included := includedMap[r_path]
 			if included == true {
+				diag.Error("Attempt to include duplcate ceh", i_filename)
 				return r_path, errors.New("Attempt to include duplcate ceh")
 			}
-
-			//d mooi_log("PATH: ", i, r_path)
 
 			done, _ = utils.FileExists(r_path)
 		}
 
 		if done == false {
+			diag.Error("Include file not found: ", i_filename)
 			err = errors.New("Include file not found: " + i_filename)
 		}
 
@@ -72,12 +72,6 @@ func ReadHeader(args *utils.CefArgs,
 				}
 				nestedLevel--
 			} else {
-
-//x 				debug_v := strings.Trim(kv.Val[0], `" `)
-//x 				if debug_v == "DATA_TYPE" {
-//x 					diag.Infof("KV: ", "%#v", kv)
-//x 				}
-
 				r_header.Add_kv(&kv)
 				data_until = strings.EqualFold("DATA_UNTIL", kv.Key)
 			}
@@ -89,13 +83,10 @@ func ReadHeader(args *utils.CefArgs,
 	}
 
 	data_until, r_err := doProcess(i_lines_in)
-	//x diag.Error("X X X X X X X X X")
 
 	if r_err != nil {
 		return
-		//x diag.Error("X X X X X X X X X1")
 	}
-
 
 	if data_until == false {
 		r_err = errors.New("Error: data_until = false")

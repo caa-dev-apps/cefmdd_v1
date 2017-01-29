@@ -71,21 +71,12 @@ func Error(tag string, v ...interface{}) {
     fmt.Println(v...)
 }
 
-//x func ErrorLine(tag string, v ...interface{}) {
-//x     if s_show_error_line == true {
-//x         fmt.Print(Red("Error: ", tag), " ")
-//x         fmt.Println(v...)
-//x     }
-//x }
-
 func ErrorLine(v ...interface{}) {
     if s_show_error_line == true {
-        //x fmt.Print(Red("Error: ", tag), " ")
         fmt.Print("  ")
         fmt.Println(v...)
     }
 }
-
 
 
 func Fatal(tag string, v ...interface{}) {
