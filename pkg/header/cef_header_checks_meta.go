@@ -11,70 +11,6 @@ import (
 ///////////////////////////////////////////////////////////////////////////////
 //
 
-//-     mks := []string {
-//-         "MISSION_KEY_PERSONNEL",
-//-         "EXPERIMENT_KEY_PERSONNEL",
-//-         "INSTRUMENT_NAME",
-//-         "INSTRUMENT_DESCRIPTION",
-//-         "DATASET_CAVEATS",
-//-         "METADATA_TYPE",
-//-             "LOGICAL_FILE_ID",
-//-         "EXPERIMENT_DESCRIPTION",
-//-         "DATASET_ID",
-//-         "MIN_TIME_RESOLUTION",
-//-         "PROCESSING_LEVEL",
-//-         "DATASET_VERSION",
-//-             "FILE_TYPE",
-//-         "FILE_CAVEATS",
-//-         "TIME_RESOLUTION",
-//-         "DATASET_DESCRIPTION",
-//-         "MISSION_REFERENCES",
-//-         "MISSION_CAVEATS",
-//-         "EXPERIMENT",
-//-         "OBSERVATORY_DESCRIPTION",
-//-         "MEASUREMENT_TYPE",
-//-         "ACKNOWLEDGEMENT",
-//-         "METADATA_VERSION",
-//-             "FILE_TIME_SPAN",
-//-         "OBSERVATORY_CAVEATS",
-//-         "OBSERVATORY_REGION",
-//-         "INSTRUMENT_CAVEATS",
-//-         "DATASET_TITLE",
-//-         "INVESTIGATOR_COORDINATES",
-//-         "EXPERIMENT_CAVEATS",
-//-         "MISSION_TIME_SPAN",
-//-         "MISSION_AGENCY",
-//-         "MISSION_REGION",
-//-         "EXPERIMENT_REFERENCES",
-//-         "INSTRUMENT_TYPE",
-//-             "DATA_TYPE",
-//-         "MAX_TIME_RESOLUTION",
-//-         "MISSION",
-//-         "GENERATION_DATE",
-//-         "MISSION_DESCRIPTION",
-//-             "OBSERVATORY",
-//-         "OBSERVATORY_TIME_SPAN",
-//-         "CONTACT_COORDINATES",
-//-             "VERSION_NUMBER",
-//-     }
-
-///////////////////////////////////////////////////////////////////////////////
-//
-
-func (h *CefHeaderData) getAttrFirstQuoted(key string) (v0 string, err error) {
-
-    vs, err := h.getAttr(key);
-    if err == nil {  
-        v0 = vs[0]
-        if utils.Is_quoted_string(v0) == false {
-            err = errors.New(key + " attribute is unquoted string - " + v0)
-        } 
-    }
-        
-    return
-}
-
-
 func (h *CefHeaderData) getMetaEntryFirstQuoted(key string) (v0 string, err error) {
 
     vs, err := h.getMetaEntry(key);
@@ -85,21 +21,6 @@ func (h *CefHeaderData) getMetaEntryFirstQuoted(key string) (v0 string, err erro
         } 
     }
         
-    return
-}
-
-func (h *CefHeaderData) getAttrFirstQuotedTrimed(key string) (v0 string, err error) {
-    
-    v0, err = h.getAttrFirstQuoted(key)
-    if err != nil {
-        return
-    }    
-
-    v0 = utils.Trim_quoted_string(v0)
-    if len(v0) == 0 {
-        err = errors.New("Attr: " + key + " length = 0")
-    } 
-    
     return
 }
 
@@ -120,37 +41,6 @@ func (h *CefHeaderData) getMetaEntryFirstQuotedTrimed(key string) (v0 string, er
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-
-//- Rule: Name of file on disk equals FILE_NAME
-func (h *CefHeaderData) check_attr_FILE_NAME() (err error) {
-    
-    v0, err := h.getAttrFirstQuoted("FILE_NAME")
-    if err != nil {
-        return
-    }
-    
-    v0 = utils.Trim_quoted_string(v0)
-    l_filename := utils.GetCefArgs().GetFilename()
-
-    if l_filename != v0 {
-        err = errors.New("FILE_NAME attribute(" + v0 + ") - mismatches actual (" + l_filename + ")")
-    } 
-    
-    return
-}
-
-func (h *CefHeaderData) check_attr_FILE_FORMAT_VERSION() (err error) {
-
-    diag.Todo("Check_attr_FILE_FORMAT_VERSION")  
-    
-    return
-}
-
-func (h *CefHeaderData) check_attr_DATA_UNTIL() {
-    
-    diag.Todo("Check_attr_DATA_UNTIL")  
-    return
-}
 
 //- START_META     =   DATASET_ID
 //-    ENTRY       =   "C3_CP_EDI_QZC"
@@ -346,33 +236,8 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
     return
 }
         
-func (h *CefHeaderData) print_results(about string, err error) {
-
-    if err != nil {
-//x         diag.Error(diag.BoldRed("error:"), about, err)   
-        diag.Error(about, err)   
-    } else {
-        diag.Trace(diag.BoldGreen("ok:"), about)  
-    }
-}        
-        
-        
-func (h *CefHeaderData) Checks() (err error) {
+func (h *CefHeaderData) Meta_Checks() (err error) {
     
-	aks := []string{
-		"FILE_NAME",
-		"FILE_FORMAT_VERSION",
-		"DATA_UNTIL",
-	}
-
-	for _, k := range aks {
-		if v, err := h.getAttr(k); err == nil {
-            diag.Trace(diag.Cyan(k), v)
-		} else {
-            diag.Error("Attr Checks ", err)   
-		}
-	}
-
 	mks := []string{
 		"LOGICAL_FILE_ID",
 		"FILE_TYPE",
@@ -393,15 +258,8 @@ func (h *CefHeaderData) Checks() (err error) {
 		}
 	}
     
-    err = h.check_attr_FILE_NAME()
-    h.print_results("FILE_NAME checks", err) 
-    
-    h.check_attr_FILE_FORMAT_VERSION()
-    h.check_attr_DATA_UNTIL()
-
     err = h.check_meta_LOGICAL_FILE_ID()
     h.print_results("LOGICAL_FILE_ID checks", err) 
-    
     
     err = h.check_meta_FILE_TYPE()
     h.print_results("FILE_TYPE checks", err) 
@@ -415,9 +273,6 @@ func (h *CefHeaderData) Checks() (err error) {
     
     err = h.check_meta_VERSION_NUMBER()
     h.print_results("VERSION_NUMBER checks", err) 
-    
-    
-    
     
     return
 }
