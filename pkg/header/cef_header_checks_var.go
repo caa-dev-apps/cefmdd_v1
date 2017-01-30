@@ -73,43 +73,84 @@ import (
 //.                 m_vars* Vars
 //.             }
 
+//x func (h *CefHeaderData) Var_Checks() (err error) {
+//x     h.print_results("VAR CHECKS TODO", err) 
+//x     
+//x     var_list := h.Vars().List()
+//x     var_map  := h.Vars().Map()
+//x 
+//x     for k, v := range var_list {
+//x         v_map := v.Map()
+//x         var_name := v_map["variable_name"]
+//x 
+//x         fmt.Println("\n\n")
+//x         fmt.Println("k:", k)
+//x         fmt.Println("n:", var_name)
+//x //.         fmt.Println(v)
+//x 
+//x 
+//x         depend0, p := v_map["DEPEND_0"]
+//x         if p == true {
+//x             fmt.Println("DEPEND_0 = ", depend0)
+//x 
+//x             v1_map, p1 := var_map[depend0[0]]
+//x             if p1 == false {
+//x                 diag.Error("DEPEND_0 VAR not found", depend0[0])
+//x             } else {
+//x                 fmt.Println("DEPEND_0 VAR OK", depend0[0], v1_map.Map()["variable_name"])
+//x             }
+//x         }
+//x 
+//x     }    
+//x 
+//x     return
+//x }
 
-        
+func (h *CefHeaderData) Depend_N_Checks(a Attrs) (err error) {
+    // all vars
+    //vars_map  := h.Vars().Map()
+
+    var_name := a.Map()["variable_name"]
+    diag.Info("n:", var_name)
+
+    depend0, p := a.Map()["DEPEND_0"]
+    if p == true {
+        diag.Info("DEPEND_0 = ", depend0)
+
+//        v1_map, p1 := vars_map[depend0[0]]
+//        if p1 == false {
+//            diag.Error("DEPEND_0 VAR not found", depend0[0])
+//        } else {
+//            fmt.Println("DEPEND_0 VAR OK", depend0[0], v1_map.Map()["variable_name"])
+//        }
+    }
+
+
+
+    for k, v := range a.Map() {
+        fmt.Println("k:", k)
+        fmt.Println("v:", v)
+    }    
+
+
+    return
+}
+
 func (h *CefHeaderData) Var_Checks() (err error) {
     h.print_results("VAR CHECKS TODO", err) 
     
     var_list := h.Vars().List()
-    var_map  := h.Vars().Map()
 
     for k, v := range var_list {
-        v_map := v.Map()
-        var_name := v_map["variable_name"]
-
-        fmt.Println("\n\n")
         fmt.Println("k:", k)
-        fmt.Println("n:", var_name)
-//.         fmt.Println(v)
 
-
-        depend0, p := v_map["DEPEND_0"]
-        if p == true {
-            fmt.Println("DEPEND_0 = ", depend0)
-
-            v1_map, p1 := var_map[depend0[0]]
-            if p1 == false {
-                diag.Error("DEPEND_0 VAR not found", depend0[0])
-            } else {
-                fmt.Println("DEPEND_0 VAR OK", depend0[0], v1_map.Map()["variable_name"])
-            }
-        }
-
+        h.Depend_N_Checks(v)
     }    
 
     return
 }
 
 //x h.dumpMeta()
-
 
 
 
