@@ -84,11 +84,11 @@ func (h *CefHeaderData) Checks() (err error) {
     }
 
 
-    if h.Var_Checks() != nil {
-        diag.Error("Header VAR Checks:", "error(s) ")
-    } else {
-        diag.Info("Header VAR Checks:", "ok ")
-    }
+//x     if h.Var_Checks() != nil {
+//x         diag.Error("Header VAR Checks:", "error(s) ")
+//x     } else {
+//x         diag.Info("Header VAR Checks:", "ok ")
+//x     }
     
     return
 }

@@ -2,6 +2,8 @@ package header
 
 import (
     "fmt"
+    "regexp"
+    "strconv"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 //x     "errors"
 //x     "strings"
@@ -106,32 +108,41 @@ import (
 //x     return
 //x }
 
+var (
+    regex_depend_n *regexp.Regexp   
+)
+
+func init() {
+    regex_depend_n = regexp.MustCompile("^DEPEND_([0-9]+)$")
+}
+
 func (h *CefHeaderData) Depend_N_Checks(a Attrs) (err error) {
     // all vars
-    //vars_map  := h.Vars().Map()
+    vars_map  := h.Vars().Map()
 
-    var_name := a.Map()["variable_name"]
+    a_map := a.Map()
+    var_name := a_map["variable_name"]
     diag.Info("n:", var_name)
 
-    depend0, p := a.Map()["DEPEND_0"]
-    if p == true {
-        diag.Info("DEPEND_0 = ", depend0)
+    for k, v := range a_map {
+        fmt.Printf("k: %-30s v: %v\n", k, v)
 
-//        v1_map, p1 := vars_map[depend0[0]]
-//        if p1 == false {
-//            diag.Error("DEPEND_0 VAR not found", depend0[0])
-//        } else {
-//            fmt.Println("DEPEND_0 VAR OK", depend0[0], v1_map.Map()["variable_name"])
-//        }
-    }
+        // regexp.MustCompile("^DEPEND_([0-9]+)$")
+        if r := regex_depend_n.FindStringSubmatch(k); r != nil {
+            if i, err := strconv.Atoi(r[1]); err == nil {
+                vd_map, p1 := vars_map[v[0]]
+                if p1 == false {
+                    diag.Error("DEPEND_TEST: ref var not found", k, v[0])
+                } else if i > 0 {
+                    // need to check sizes
 
-
-
-    for k, v := range a.Map() {
-        fmt.Println("k:", k)
-        fmt.Println("v:", v)
+                    diag.Todo("DEPENDS_N > 0 - check sizes", vd_map.Map()["variable_name"])
+                } else {
+                    diag.Todo("Still working on this!")
+                }
+            }
+        } 
     }    
-
 
     return
 }

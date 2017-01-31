@@ -7,17 +7,16 @@ import (
 
 func main() {
 
-    diag.Info(diag.Yellow("cefmdd v1.0.3, (27 Jan 2017)"))
+    diag.Info(diag.Yellow("cefmdd v1.0.4, (31 Jan 2017)"))
 
 	s_args, err := utils.NewCefArgs()
-
 	if err != nil {
 		return
 	}
 
 	err = ReadCef(&s_args)
 	if err != nil {
-		diag.Errorf(diag.BoldRed("Error parsing cef file"), "\n%#v", err.Error())
+		diag.Errorf(diag.BoldRed("Error parsing cef file"), "\n%v", err.Error())
 		return
 	}
 
