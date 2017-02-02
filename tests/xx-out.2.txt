@@ -1,0 +1,421 @@
+cefmdd v1.0.4, (31 Jan 2017) 
+cef cefpath /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEF_CEH_EXAMPLES_2013_VALIDATOR/CEF/WHISPER/C1_CP_WHI_ELECTRON_DENSITY__20080704_V01.cef.gz
+cef filename C1_CP_WHI_ELECTRON_DENSITY__20080704_V01.cef
+cef includes [/home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEF_CEH_EXAMPLES_2013_VALIDATOR/header_includes /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEF_CEH_EXAMPLES_2013_VALIDATOR/header_includes/whisper]
+m_max_records 100
+trace true
+show error line true
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEF_CEH_EXAMPLES_2013_VALIDATOR/CEF/WHISPER/C1_CP_WHI_ELECTRON_DENSITY__20080704_V01.cef.gz
+ ok-kv FILE_NAME ["C1_CP_WHI_ELECTRON_DENSITY__20080704_V01.cef"]
+ ok-kv FILE_FORMAT_VERSION ["CEF-2.0"]
+ ok-kv END_OF_RECORD_MARKER [$]
+start-meta METADATA_VERSION
+ delay-check-ENTRY ["2.0"] 
+ ok-meta METADATA_VERSION
+end-meta METADATA_VERSION
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEF_CEH_EXAMPLES_2013_VALIDATOR/header_includes/CL_CH_MISSION.ceh
+start-meta MISSION
+ delay-check-ENTRY ["Cluster"] 
+ ok-meta MISSION
+end-meta MISSION
+start-meta MISSION_TIME_SPAN
+ ok-kv VALUE_TYPE [ISO_TIME_RANGE]
+ delay-check-ENTRY [2000-08-16T12:39:00Z/2030-12-31T23:59:59Z] 
+ ok-meta MISSION_TIME_SPAN
+end-meta MISSION_TIME_SPAN
+start-meta MISSION_AGENCY
+ delay-check-ENTRY ["ESA"] 
+ ok-meta MISSION_AGENCY
+end-meta MISSION_AGENCY
+start-meta MISSION_DESCRIPTION
+ delay-check-ENTRY ["The aim of the Cluster mission is to study small-scale structures of the magnetosphere "] 
+ delay-check-ENTRY ["and its environment in three dimensions. To achieve this, Cluster is constituted of four "] 
+ delay-check-ENTRY ["identical spacecraft that will flight in a tetrahedral configuration. The separation distances "] 
+ delay-check-ENTRY ["between the spacecraft will be varied between ~40 km and 10 000 km, according to the "] 
+ delay-check-ENTRY ["key scientific regions."] 
+ ok-meta MISSION_DESCRIPTION
+end-meta MISSION_DESCRIPTION
+start-meta MISSION_KEY_PERSONNEL
+ delay-check-ENTRY ["Philippe Escoubet>Philippe.Escoubet@esa.int >Cluster Project Scientist"] 
+ ok-meta MISSION_KEY_PERSONNEL
+end-meta MISSION_KEY_PERSONNEL
+start-meta MISSION_REFERENCES
+ delay-check-ENTRY ["The Cluster and Phoenix Missions>Cluster project and instrument teams>Space Sci. Rev. 79, Nos. 1-2, 1997"] 
+ ok-meta MISSION_REFERENCES
+end-meta MISSION_REFERENCES
+start-meta MISSION_REGION
+ delay-check-ENTRY ["Solar_Wind"] 
+ delay-check-ENTRY ["Bow_Shock"] 
+ delay-check-ENTRY ["Magnetosheath"] 
+ delay-check-ENTRY ["Magnetopause"] 
+ delay-check-ENTRY ["Magnetosphere"] 
+ delay-check-ENTRY ["Magnetotail"] 
+ delay-check-ENTRY ["Polar_Cap"] 
+ delay-check-ENTRY ["Auroral_Region"] 
+ delay-check-ENTRY ["Cusp"] 
+ delay-check-ENTRY ["Radiation_Belt"] 
+ delay-check-ENTRY ["Plasmasphere"] 
+ ok-meta MISSION_REGION
+end-meta MISSION_REGION
+start-meta MISSION_CAVEATS
+ delay-check-ENTRY ["*CL"] 
+ ok-meta MISSION_CAVEATS
+end-meta MISSION_CAVEATS
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEF_CEH_EXAMPLES_2013_VALIDATOR/header_includes/C1_CH_OBS.ceh
+start-meta OBSERVATORY
+ delay-check-ENTRY ["Cluster-1"] 
+ ok-meta OBSERVATORY
+end-meta OBSERVATORY
+start-meta OBSERVATORY_CAVEATS
+ delay-check-ENTRY ["*C1_CQ"] 
+ ok-meta OBSERVATORY_CAVEATS
+end-meta OBSERVATORY_CAVEATS
+start-meta OBSERVATORY_DESCRIPTION
+ delay-check-ENTRY ["Cluster-1 (Rumba)"] 
+ delay-check-ENTRY ["Launched: 09 Aug 2000"] 
+ delay-check-ENTRY ["ESA Number: 1"] 
+ delay-check-ENTRY ["COSPAR ID: 2000-045A"] 
+ delay-check-ENTRY ["USSPACECOM catalogue number 26463"] 
+ delay-check-ENTRY ["CSDS Code: C1"] 
+ delay-check-ENTRY ["ESOC FD code: S1"] 
+ delay-check-ENTRY ["ESA Flight Model Number: FM5"] 
+ ok-meta OBSERVATORY_DESCRIPTION
+end-meta OBSERVATORY_DESCRIPTION
+start-meta OBSERVATORY_TIME_SPAN
+ ok-kv VALUE_TYPE [ISO_TIME_RANGE]
+ delay-check-ENTRY [2000-07-16T12:39:00Z/2030-12-31T23:59:59Z] 
+ ok-meta OBSERVATORY_TIME_SPAN
+end-meta OBSERVATORY_TIME_SPAN
+start-meta OBSERVATORY_REGION
+ delay-check-ENTRY ["Solar_Wind"] 
+ delay-check-ENTRY ["Bow_Shock"] 
+ delay-check-ENTRY ["Magnetosheath"] 
+ delay-check-ENTRY ["Magnetopause"] 
+ delay-check-ENTRY ["Magnetosphere"] 
+ delay-check-ENTRY ["Magnetotail"] 
+ delay-check-ENTRY ["Polar_Cap"] 
+ delay-check-ENTRY ["Auroral_Region"] 
+ delay-check-ENTRY ["Cusp"] 
+ delay-check-ENTRY ["Radiation_Belt"] 
+ delay-check-ENTRY ["Plasmasphere"] 
+ ok-meta OBSERVATORY_REGION
+end-meta OBSERVATORY_REGION
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEF_CEH_EXAMPLES_2013_VALIDATOR/header_includes/whisper/CL_CH_WHI_EXP.ceh
+start-meta EXPERIMENT
+ delay-check-ENTRY ["WHISPER"] 
+ ok-meta EXPERIMENT
+end-meta EXPERIMENT
+start-meta EXPERIMENT_DESCRIPTION
+ delay-check-ENTRY ["The Wave of HIgh frequency and Sounder for Probing of Electron density"] 
+ delay-check-ENTRY ["by Relaxation (WHISPER) performs the measurement of the electron density"] 
+ delay-check-ENTRY ["on the four satellites of the CLUSTER project. The two main purposes of"] 
+ delay-check-ENTRY ["the WHISPER experiment are to record the natural waves and to make a"] 
+ delay-check-ENTRY ["diagnostic of the electron density using the sounding technique."] 
+ delay-check-ENTRY ["The various working modes and the fourier transforms calculated on board"] 
+ delay-check-ENTRY ["provide a good frequency resolution obtained in the bandwidth 2-83 kHz."] 
+ delay-check-ENTRY ["Onboard data compression by the Digital Wave Processing (DWP) intrument"] 
+ delay-check-ENTRY ["allows a good dynamic and level resolution of the electric signal amplitude."] 
+ ok-meta EXPERIMENT_DESCRIPTION
+end-meta EXPERIMENT_DESCRIPTION
+start-meta INVESTIGATOR_COORDINATES
+ delay-check-ENTRY ["Jean-Louis Rauch>PI>Jean-Louis.Rauch@cnrs-orleans.fr"] 
+ ok-meta INVESTIGATOR_COORDINATES
+end-meta INVESTIGATOR_COORDINATES
+start-meta EXPERIMENT_KEY_PERSONNEL
+ delay-check-ENTRY ["Pierrette Decreau>Former PI (1987 - 2007)"] 
+ delay-check-ENTRY ["Jean-Gabriel Trotignon>Former PI (2007 - 2012)"] 
+ delay-check-ENTRY ["Patrick Canu>Deputy-PI>patrick.canu@lpp.polytechnique.fr"] 
+ ok-meta EXPERIMENT_KEY_PERSONNEL
+end-meta EXPERIMENT_KEY_PERSONNEL
+start-meta EXPERIMENT_REFERENCES
+ delay-check-ENTRY ["Decreau, P. M. E., et al., Early results from the WHISPER instrument on Cluster: an overview, Ann. Geophysicae, 19, 1241, 2001."] 
+ delay-check-ENTRY ["Decreau, P. M. E., et al., WHISPER, a resonance sounder and wave analyser: performances and perspectives for the CLUSTER mission,Space Sci.Rev.,79,157,1997."] 
+ delay-check-ENTRY ["User Guide to the WHISPER measurements in the Cluster Active Archive, CAA-EST-UG-WHI, ESA"] 
+ delay-check-ENTRY ["Calibration Report of the WHISPER measurements in the Cluster Active Archive, CAA-EST-CR-WHI, ESA"] 
+ delay-check-ENTRY ["Cluster Active Archive: Interface Control Document for WHISPER, CAA-WHI-ICD, ESA"] 
+ delay-check-ENTRY ["WHISPER experiment homepage: http://whisper.cnrs-orleans.fr/"] 
+ ok-meta EXPERIMENT_REFERENCES
+end-meta EXPERIMENT_REFERENCES
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEF_CEH_EXAMPLES_2013_VALIDATOR/header_includes/whisper/C1_CH_WHI_INST.ceh
+start-meta INSTRUMENT_NAME
+ delay-check-ENTRY ["WHISPER1"] 
+ ok-meta INSTRUMENT_NAME
+end-meta INSTRUMENT_NAME
+start-meta INSTRUMENT_DESCRIPTION
+ delay-check-ENTRY ["WHISPER Experiment on Cluster C1"] 
+ ok-meta INSTRUMENT_DESCRIPTION
+end-meta INSTRUMENT_DESCRIPTION
+start-meta INSTRUMENT_TYPE
+ delay-check-ENTRY ["Antenna"] 
+ delay-check-ENTRY ["Double_Sphere"] 
+ delay-check-ENTRY ["Spectral_Power_Receiver"] 
+ delay-check-ENTRY ["Resonance_Sounder"] 
+ ok-meta INSTRUMENT_TYPE
+end-meta INSTRUMENT_TYPE
+start-meta MEASUREMENT_TYPE
+ delay-check-ENTRY ["Electric_Field"] 
+ delay-check-ENTRY ["Radio_and_Plasma_Waves"] 
+ delay-check-ENTRY ["Radio_Soundings"] 
+ ok-meta MEASUREMENT_TYPE
+end-meta MEASUREMENT_TYPE
+start-meta INSTRUMENT_CAVEATS
+ delay-check-ENTRY ["*C1_CQ_WHI_INST"] 
+ delay-check-ENTRY ["*C1_CQ_WHI_CAVEATS"] 
+ ok-meta INSTRUMENT_CAVEATS
+end-meta INSTRUMENT_CAVEATS
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEF_CEH_EXAMPLES_2013_VALIDATOR/header_includes/whisper/C1_CH_WHI_ELECTRON_DENSITY_DATASET.ceh
+start-meta DATASET_ID
+ delay-check-ENTRY ["C1_CP_WHI_ELECTRON_DENSITY"] 
+ ok-meta DATASET_ID
+end-meta DATASET_ID
+start-meta DATA_TYPE
+ delay-check-ENTRY ["CP>CAA_Parameter"] 
+ ok-meta DATA_TYPE
+end-meta DATA_TYPE
+start-meta DATASET_TITLE
+ delay-check-ENTRY ["Electron Density"] 
+ ok-meta DATASET_TITLE
+end-meta DATASET_TITLE
+start-meta DATASET_DESCRIPTION
+ delay-check-ENTRY ["This dataset contains electron density derived from Whisper spectra on spacecraft 1"] 
+ ok-meta DATASET_DESCRIPTION
+end-meta DATASET_DESCRIPTION
+start-meta DATASET_CAVEATS
+ delay-check-ENTRY ["DATASET VERSION HISTORY"] 
+ delay-check-ENTRY ["VERSION 01: first version of dataset"] 
+ delay-check-ENTRY ["VERSION 02: dataset headers update, QUALITY changed to CONTRAST, addition of a new QUALITY variable"] 
+ ok-meta DATASET_CAVEATS
+end-meta DATASET_CAVEATS
+start-meta TIME_RESOLUTION
+ delay-check-ENTRY ["52"] 
+ ok-meta TIME_RESOLUTION
+end-meta TIME_RESOLUTION
+start-meta MIN_TIME_RESOLUTION
+ delay-check-ENTRY ["1.5"] 
+ ok-meta MIN_TIME_RESOLUTION
+end-meta MIN_TIME_RESOLUTION
+start-meta MAX_TIME_RESOLUTION
+ delay-check-ENTRY ["104"] 
+ ok-meta MAX_TIME_RESOLUTION
+end-meta MAX_TIME_RESOLUTION
+start-meta PROCESSING_LEVEL
+ delay-check-ENTRY ["Derived"] 
+ ok-meta PROCESSING_LEVEL
+end-meta PROCESSING_LEVEL
+start-meta CONTACT_COORDINATES
+ delay-check-ENTRY ["Jean-Louis Rauch>PI>Jean-Louis.Rauch@cnrs-orleans.fr"] 
+ ok-meta CONTACT_COORDINATES
+end-meta CONTACT_COORDINATES
+start-meta ACKNOWLEDGEMENT
+ delay-check-ENTRY ["Please acknowledge the instrument team and ESA Cluster Active Archive when using this data"] 
+ ok-meta ACKNOWLEDGEMENT
+end-meta ACKNOWLEDGEMENT
+start-meta FILE_TYPE
+ delay-check-ENTRY ["cef"] 
+ ok-meta FILE_TYPE
+end-meta FILE_TYPE
+start-meta METADATA_TYPE
+ delay-check-ENTRY ["CAA"] 
+ ok-meta METADATA_TYPE
+end-meta METADATA_TYPE
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEF_CEH_EXAMPLES_2013_VALIDATOR/header_includes/whisper/C1_CH_WHI_ELECTRON_DENSITY_PARAMETERS.ceh
+start-var time_tags__C1_CP_WHI_ELECTRON_DENSITY
+ ok-kv CATDESC ["Interval centred time tag"]
+ ok-kv UNITS ["s"]
+ delay-check-SIZES [1] 
+ ok-kv VALUE_TYPE [ISO_TIME]
+ ok-kv SIGNIFICANT_DIGITS [24]
+ delay-check-FILLVAL [9999-12-31T23:59:59Z] 
+Todo: Check variable pointer DELTA_PLUS   [Delta_Time__C1_CP_WHI_ELECTRON_DENSITY]
+Todo: Check variable pointer DELTA_MINUS   [Delta_Time__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv LABLAXIS ["UT"]
+ ok-kv FIELDNAM ["Universal Time"]
+ ok-kv PARAMETER_TYPE ["Support_Data"]
+end-var time_tags__C1_CP_WHI_ELECTRON_DENSITY
+start-var Delta_Time__C1_CP_WHI_ELECTRON_DENSITY
+ delay-check-SIZES [1] 
+ ok-kv VALUE_TYPE [FLOAT]
+ delay-check-FILLVAL [-1] 
+ ok-kv LABLAXIS ["D"]
+ ok-kv FIELDNAM ["Delta"]
+ ok-kv UNITS ["s"]
+ ok-kv CATDESC ["Half of the number of seconds corresponding the uncertainty of the time tags"]
+ ok-kv DEPEND_0 [time_tags__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv SIGNIFICANT_DIGITS [8]
+ ok-kv PARAMETER_TYPE ["Support_Data"]
+end-var Delta_Time__C1_CP_WHI_ELECTRON_DENSITY
+start-var Spectrum_Type__C1_CP_WHI_ELECTRON_DENSITY
+ delay-check-SIZES [1] 
+ ok-kv VALUE_TYPE [CHAR]
+ delay-check-FILLVAL ["-"] 
+ ok-kv LABLAXIS ["S_T"]
+ ok-kv FIELDNAM ["Spectrum Type"]
+ ok-kv UNITS ["unitless"]
+ ok-kv CATDESC ["spectrum type (A: Active; N:Natural) from which the electron density is derived"]
+ ok-kv DEPEND_0 [time_tags__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv PARAMETER_TYPE ["Support_Data"]
+ ok-kv SIGNIFICANT_DIGITS [1]
+end-var Spectrum_Type__C1_CP_WHI_ELECTRON_DENSITY
+start-var Computation_Method__C1_CP_WHI_ELECTRON_DENSITY
+ delay-check-SIZES [1] 
+ ok-kv VALUE_TYPE [CHAR]
+ delay-check-FILLVAL ["XX"] 
+ ok-kv LABLAXIS ["Meth"]
+ ok-kv FIELDNAM ["Computation Method"]
+ ok-kv UNITS ["unitless"]
+ ok-kv CATDESC ["method used for computation of electron density - see CAA-EST-CR-WHI"]
+ ok-kv DEPEND_0 [time_tags__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv PARAMETER_TYPE ["Support_Data"]
+ ok-kv SIGNIFICANT_DIGITS [2]
+end-var Computation_Method__C1_CP_WHI_ELECTRON_DENSITY
+start-var External_Data__C1_CP_WHI_ELECTRON_DENSITY
+ delay-check-SIZES [1] 
+ ok-kv VALUE_TYPE [CHAR]
+ delay-check-FILLVAL ["-"] 
+ ok-kv LABLAXIS ["E_D"]
+ ok-kv FIELDNAM ["External Data"]
+ ok-kv UNITS ["unitless"]
+ ok-kv CATDESC ["use of external data (-: none;  E: EFW s/c potential)"]
+ ok-kv DEPEND_0 [time_tags__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv PARAMETER_TYPE ["Support_Data"]
+ ok-kv SIGNIFICANT_DIGITS [1]
+end-var External_Data__C1_CP_WHI_ELECTRON_DENSITY
+start-var Human_Validation__C1_CP_WHI_ELECTRON_DENSITY
+ delay-check-SIZES [1] 
+ ok-kv VALUE_TYPE [CHAR]
+ delay-check-FILLVAL ["-"] 
+ ok-kv LABLAXIS ["Val"]
+ ok-kv FIELDNAM ["Human Validation"]
+ ok-kv UNITS ["unitless"]
+ ok-kv CATDESC ["human validation (V:viewed and accepted; C:corrected manually; -:none)"]
+ ok-kv DEPEND_0 [time_tags__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv PARAMETER_TYPE ["Support_Data"]
+ ok-kv SIGNIFICANT_DIGITS [1]
+end-var Human_Validation__C1_CP_WHI_ELECTRON_DENSITY
+start-var Electron_Density__C1_CP_WHI_ELECTRON_DENSITY
+ delay-check-SIZES [1] 
+ ok-kv VALUE_TYPE [FLOAT]
+ ok-kv ENTITY ["Electron"]
+ ok-kv PROPERTY ["Number_Density"]
+ ok-kv LABLAXIS ["E-D"]
+ ok-kv FIELDNAM ["Electron Density"]
+Error: Parser, Enum value not found  SI_CONVERSION ["1.0e6>m^-3"]
+  Line: 91,  File: C1_CH_WHI_ELECTRON_DENSITY_PARAMETERS.ceh,  Text: SI_CONVERSION = "1.0e6>m^-3"
+ ok-kv UNITS ["cm^-3"]
+ delay-check-FILLVAL [-1] 
+Todo: Check variable pointer ERROR_PLUS   [Uncertainty__C1_CP_WHI_ELECTRON_DENSITY]
+Todo: Check variable pointer ERROR_MINUS   [Uncertainty__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv CATDESC ["Electron Density"]
+ ok-kv DEPEND_0 [time_tags__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv SIGNIFICANT_DIGITS [9]
+ ok-kv PARAMETER_TYPE ["Data"]
+Error: Parser, Integer -> Quality__C1_CP_WHI_ELECTRON_DENSITY QUALITY [Quality__C1_CP_WHI_ELECTRON_DENSITY]
+  Line: 100,  File: C1_CH_WHI_ELECTRON_DENSITY_PARAMETERS.ceh,  Text: QUALITY = Quality__C1_CP_WHI_ELECTRON_DENSITY
+end-var Electron_Density__C1_CP_WHI_ELECTRON_DENSITY
+start-var Uncertainty__C1_CP_WHI_ELECTRON_DENSITY
+ delay-check-SIZES [1] 
+ ok-kv VALUE_TYPE [FLOAT]
+ delay-check-FILLVAL [-1] 
+ ok-kv LABLAXIS ["Unc"]
+ ok-kv FIELDNAM ["Uncertainty"]
+ ok-kv UNITS ["cm^-3"]
+Error: Parser, Enum value not found  SI_CONVERSION ["1.0e6>m^-3"]
+  Line: 110,  File: C1_CH_WHI_ELECTRON_DENSITY_PARAMETERS.ceh,  Text: SI_CONVERSION = "1.0e6>m^-3"
+ ok-kv CATDESC ["Uncertainty of the computed electron density"]
+ ok-kv DEPEND_0 [time_tags__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv SIGNIFICANT_DIGITS [3]
+ ok-kv PARAMETER_TYPE ["Support_Data"]
+end-var Uncertainty__C1_CP_WHI_ELECTRON_DENSITY
+start-var Contrast__C1_CP_WHI_ELECTRON_DENSITY
+ delay-check-SIZES [1] 
+ ok-kv VALUE_TYPE [FLOAT]
+ delay-check-FILLVAL [-1] 
+ ok-kv LABLAXIS ["Contr"]
+ ok-kv FIELDNAM ["Contrast"]
+ ok-kv UNITS ["unitless"]
+ ok-kv SI_CONVERSION ["1>unitless"]
+ ok-kv CATDESC ["Local contrast for the computed density - see CAA-EST-CR-WHI"]
+ ok-kv DEPEND_0 [time_tags__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv SIGNIFICANT_DIGITS [2]
+ ok-kv PARAMETER_TYPE ["Support_Data"]
+end-var Contrast__C1_CP_WHI_ELECTRON_DENSITY
+start-var Quality__C1_CP_WHI_ELECTRON_DENSITY
+ delay-check-SIZES [1] 
+ ok-kv VALUE_TYPE [INT]
+ delay-check-FILLVAL [-1] 
+ ok-kv LABLAXIS ["Qual"]
+ ok-kv FIELDNAM ["Quality"]
+ ok-kv UNITS ["unitless"]
+ ok-kv SI_CONVERSION ["1>unitless"]
+ ok-kv CATDESC ["quality flag (3= semi-automatic derivation, 4= manual derivation)"]
+ ok-kv DEPEND_0 [time_tags__C1_CP_WHI_ELECTRON_DENSITY]
+ ok-kv SIGNIFICANT_DIGITS [2]
+ ok-kv PARAMETER_TYPE ["Support_Data"]
+end-var Quality__C1_CP_WHI_ELECTRON_DENSITY
+start-meta LOGICAL_FILE_ID
+ delay-check-ENTRY ["C1_CP_WHI_ELECTRON_DENSITY__20080704_V01"] 
+ ok-meta LOGICAL_FILE_ID
+end-meta LOGICAL_FILE_ID
+start-meta VERSION_NUMBER
+ delay-check-ENTRY ["01"] 
+ ok-meta VERSION_NUMBER
+end-meta VERSION_NUMBER
+start-meta DATASET_VERSION
+ delay-check-ENTRY ["02"] 
+ ok-meta DATASET_VERSION
+end-meta DATASET_VERSION
+start-meta FILE_TIME_SPAN
+ ok-kv VALUE_TYPE [ISO_TIME_RANGE]
+ delay-check-ENTRY [2008-07-04T00:00:00.000Z/2008-07-04T23:59:59.999Z] 
+ ok-meta FILE_TIME_SPAN
+end-meta FILE_TIME_SPAN
+start-meta GENERATION_DATE
+ ok-kv VALUE_TYPE [ISO_TIME]
+ delay-check-ENTRY [2010-01-29T14:51:07Z] 
+ ok-meta GENERATION_DATE
+end-meta GENERATION_DATE
+ ok-kv DATA_UNTIL ["End"]
+FILE_NAME ["C1_CP_WHI_ELECTRON_DENSITY__20080704_V01.cef"]
+FILE_FORMAT_VERSION ["CEF-2.0"]
+DATA_UNTIL ["End"]
+ok: FILE_NAME checks
+Todo: Check_attr_FILE_FORMAT_VERSION 
+Todo: Check_attr_DATA_UNTIL 
+Header ATTR Checks: ok 
+LOGICAL_FILE_ID Meta:ENTRY ["C1_CP_WHI_ELECTRON_DENSITY__20080704_V01"]
+FILE_TYPE Meta:ENTRY ["cef"]
+FILE_TIME_SPAN Meta:ENTRY [2008-07-04T00:00:00.000Z/2008-07-04T23:59:59.999Z]
+FILE_TIME_SPAN Meta:VALUE_TYPE [ISO_TIME_RANGE]
+DATA_TYPE Meta:ENTRY ["CP>CAA_Parameter"]
+OBSERVATORY Meta:ENTRY ["Cluster-1"]
+VERSION_NUMBER Meta:ENTRY ["01"]
+ok: LOGICAL_FILE_ID checks
+ok: FILE_TYPE checks
+ok: FILE_TIME_SPAN checks
+ok: VERSION_NUMBER checks
+Header META Checks: ok 
+ok: VAR CHECKS TODO
+k: 0
+k: 1
+ok DEPEND_0 time_tags__C1_CP_WHI_ELECTRON_DENSITY variable: [Delta_Time__C1_CP_WHI_ELECTRON_DENSITY]
+k: 2
+ok DEPEND_0 time_tags__C1_CP_WHI_ELECTRON_DENSITY variable: [Spectrum_Type__C1_CP_WHI_ELECTRON_DENSITY]
+k: 3
+ok DEPEND_0 time_tags__C1_CP_WHI_ELECTRON_DENSITY variable: [Computation_Method__C1_CP_WHI_ELECTRON_DENSITY]
+k: 4
+ok DEPEND_0 time_tags__C1_CP_WHI_ELECTRON_DENSITY variable: [External_Data__C1_CP_WHI_ELECTRON_DENSITY]
+k: 5
+ok DEPEND_0 time_tags__C1_CP_WHI_ELECTRON_DENSITY variable: [Human_Validation__C1_CP_WHI_ELECTRON_DENSITY]
+k: 6
+ok DEPEND_0 time_tags__C1_CP_WHI_ELECTRON_DENSITY variable: [Electron_Density__C1_CP_WHI_ELECTRON_DENSITY]
+k: 7
+ok DEPEND_0 time_tags__C1_CP_WHI_ELECTRON_DENSITY variable: [Uncertainty__C1_CP_WHI_ELECTRON_DENSITY]
+k: 8
+ok DEPEND_0 time_tags__C1_CP_WHI_ELECTRON_DENSITY variable: [Contrast__C1_CP_WHI_ELECTRON_DENSITY]
+k: 9
+ok DEPEND_0 time_tags__C1_CP_WHI_ELECTRON_DENSITY variable: [Quality__C1_CP_WHI_ELECTRON_DENSITY]
+Header VAR Checks: ok 
+Header Lines read: 324
+Data Records Checked:  100
+CAA Rocks!
+ 

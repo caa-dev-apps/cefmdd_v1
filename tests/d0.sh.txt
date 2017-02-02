@@ -1,0 +1,278 @@
+cefmdd v1.0.4, (31 Jan 2017) 
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEFMDD_TEST_SETS_2016/CEFSET_20160925/cis/2015/C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEFMDD_TEST_SETS_2016/CEFSET_20160925/header_includes/CL_CH_MISSION.ceh
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEFMDD_TEST_SETS_2016/CEFSET_20160925/header_includes/C1_CH_OBS.ceh
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEFMDD_TEST_SETS_2016/CEFSET_20160925/header_includes/cis/CL_CH_CIS.ceh
+Error: Error: keyword not found: Experiment Experiment ["CIS"]
+  Line: 6,  File: CL_CH_CIS.ceh,  Text: END_META   = Experiment
+Error: Error: keyword not found: Experiment_description Experiment_description ["Cluster Ion Spectrometry." "The CIS (Cluster Ion Spectrometry) experiment is a comprehensive" "ionic plasma spectrometry package onboard the Cluster spacecraft," "capable of obtaining full three-dimentional ion distributions" "(about 0 to 40 KeV/e) with a time resolution of one spacecraft spin (4 sec)" "and with mass-per-charge composition determination." "The CIS package consists of two different instruments," "a time-of-flight ion Composition and Distribution Function analyser (CODIF, or CIS-1)" "and a Hot Ion Analyser (HIA, or CIS-2)."]
+  Line: 18,  File: CL_CH_CIS.ceh,  Text: END_META   = Experiment_description
+Error: Error: keyword not found: Investigator_coordinates Investigator_coordinates ["Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"]
+  Line: 22,  File: CL_CH_CIS.ceh,  Text: END_META   = Investigator_coordinates
+Error: Error: keyword not found: Experiment_key_personnel Experiment_key_personnel ["Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu" "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu" "Claude Aoustin>Experiment Engineer>Claude.Aoustin@irap.omp.eu" "Alain Barthe>Archival Engineer>Alain.Barthe@irap.omp.eu"]
+  Line: 29,  File: CL_CH_CIS.ceh,  Text: END_META   = Experiment_key_personnel
+Error: Error: keyword not found: Experiment_references Experiment_references ["*CL_CD_CIS_CAAICD" "*CL_CD_CIS_USERMAN" "http://www.rssd.esa.int/index.php?project=CLUSTER&page=documentation" "http://cluster.irap.omp.eu" "Reme, H et al.>First multispacecraft ion measurements in and near the Earth's magnetosphere with the identical Cluster ion spectrometry (CIS) experiment>Ann. geophys., 19, 1303, 2001"]
+  Line: 37,  File: CL_CH_CIS.ceh,  Text: END_META   = Experiment_references
+Error: Error: keyword not found: Experiment_caveats Experiment_caveats ["http://cluster.irap.omp.eu/index.php?page=caveats"]
+  Line: 41,  File: CL_CH_CIS.ceh,  Text: END_META   = Experiment_caveats
+File Open /home/spw/C/CAA-DEV-APPS-SAMPLE-DATA/CEFMDD_TEST_SETS_2016/CEFSET_20160925/header_includes/cis/C1_CH_CIS-HIA.ceh
+Error: Error: keyword not found: Instrument_name Instrument_name ["CIS-HIA1"]
+  Line: 4,  File: C1_CH_CIS-HIA.ceh,  Text: END_META   = Instrument_name
+Error: Error: keyword not found: Instrument_description Instrument_description ["CIS Hot Ion Analyser on Cluster C1." "HIA consists of two sections, each with a 180 deg field of view:" "A high-sensitivity (HS) side and a low-sensitivity (LS) side." "The LS side supplies data only during solar wind modes and during solar wind/upstreaming ions modes, " "and covers a 45 deg x 45 deg solid angle centred in the solar wind arrival direction. " "The HS side operates during magnetospheric modes and during solar wind/upstreaming ions modes." "During magnetospheric modes the HS side covers the full space." "During solar wind/upstreaming ions modes the HS side covers the remaining space not covered by the LS side." "cf. the CIS User Guide for details"]
+  Line: 16,  File: C1_CH_CIS-HIA.ceh,  Text: END_META   = Instrument_description
+Error: Error: keyword not found: Instrument_type Instrument_type ["Electrostatic_Analyser" "Micro-channel_Plate"]
+  Line: 21,  File: C1_CH_CIS-HIA.ceh,  Text: END_META   = Instrument_type
+Error: Error: keyword not found: Measurement_type Measurement_type ["Energetic_Particles" "Thermal_Plasma"]
+  Line: 26,  File: C1_CH_CIS-HIA.ceh,  Text: END_META   = Measurement_type
+Error: Error: keyword not found: Instrument_caveats Instrument_caveats ["http://cluster.irap.omp.eu/index.php?page=caveats"]
+  Line: 30,  File: C1_CH_CIS-HIA.ceh,  Text: END_META   = Instrument_caveats
+Error: Error: keyword not found: Generation_date Generation_date [2007-05-29T15:15:07Z]
+  Line: 33,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Generation_date
+Error: Error: keyword not found: File_type File_type ["cef"]
+  Line: 37,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = File_type
+Error: Error: keyword not found: Logical_file_ID Logical_file_ID ["C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03"]
+  Line: 41,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Logical_file_ID
+Error: Error: keyword not found: Dataset_version Dataset_version ["First reprocessing"]
+  Line: 45,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Dataset_version
+Error: Error: keyword not found: Version_number Version_number [03]
+  Line: 50,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Version_number
+Error: Error: keyword not found: File_time_span File_time_span [2001-01-01T00:00:00.000Z/2001-01-01T23:59:59.999Z]
+  Line: 55,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = File_time_span
+Error: Error: keyword not found: Dataset_ID Dataset_ID ["C1_CP_CIS-HIA_HS_MAG_IONS_PF"]
+  Line: 62,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Dataset_ID
+Error: Error: keyword not found: Data_type Data_type ["CP>CAA Parameter"]
+  Line: 66,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Data_type
+Error: Error: keyword not found: Dataset_title Dataset_title ["3D Ion distributions for CIS-HIA, High-Sensitivity, Magnetospheric Mode"]
+  Line: 70,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Dataset_title
+Error: Error: keyword not found: Dataset_description Dataset_description ["This dataset contains 3D Ion distributions in Differential_Particle_Flux units" "from the CIS-HIA instrument on Cluster C1 spacecraft" "in High-Sensitivity and Magnetospheric Mode"]
+  Line: 76,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Dataset_description
+Error: Error: keyword not found: Contact_coordinates Contact_coordinates ["Iannis Dandouras>PI>Iannis.Dandouras@cesr.fr" "Henri Reme>Deputy-PI>Henri.Reme@cesr.fr"]
+  Line: 81,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Contact_coordinates
+Error: Error: keyword not found: Processing_level Processing_level ["Calibrated"]
+  Line: 85,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Processing_level
+Error: Error: keyword not found: Time_resolution Time_resolution [4.0]
+  Line: 90,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Time_resolution
+Error: Error: keyword not found: Min_time_resolution Min_time_resolution [16.0]
+  Line: 95,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Min_time_resolution
+Error: Error: keyword not found: Max_time_resolution Max_time_resolution [4.0]
+  Line: 100,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Max_time_resolution
+Error: Error: keyword not found: Acknowledgement Acknowledgement ["Please acknowlegde the CIS instrument team and" "ESA Cluster Active Archive when using this data."]
+  Line: 105,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: END_META     = Acknowledgement
+Todo: Check variable pointer DELTA_PLUS   [duration__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+Todo: Check variable pointer DELTA_MINUS   [0.0]
+Error: Parser, Enum value not found  SI_CONVERSION ["1.0E-4>m^2 sr J J^-1"]
+  Line: 164,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: SI_CONVERSION      = "1.0E-4>m^2 sr J J^-1"
+Error: Parser, Enum value not found  SI_CONVERSION ["6.2415E+19>(particles) m^-2 s^-1 sr^-1 J^-1"]
+  Line: 202,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: SI_CONVERSION      = "6.2415E+19>(particles) m^-2 s^-1 sr^-1 J^-1"
+Error: Error: keyword not found: DATA DATA [-78.750 -56.250 -33.750 -11.250 11.250 33.750 56.250 78.750]
+  Line: 219,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: DATA               = -78.750, -56.250, -33.750, -11.250, 11.250, 33.750, 56.250, 78.750
+Todo: Check variable pointer DELTA_PLUS   [11.250]
+Todo: Check variable pointer DELTA_MINUS   [11.250]
+Error: Error: keyword not found: DATA DATA [134.583 112.083 89.583 67.083 44.583 22.083 -0.417 -22.917 -45.417 -67.917 -90.417 -112.917 -135.417 -157.917 179.583 157.083]
+  Line: 234,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: DATA               = 134.583, 112.083, 89.583, 67.083, 44.583, 22.083, -0.417, -22.917, -45.417, -67.917, -90.417, -112.917, -135.417, -157.917, 179.583, 157.083
+Todo: Check variable pointer DELTA_PLUS   [11.250]
+Todo: Check variable pointer DELTA_MINUS   [11.250]
+Error: Error: keyword not found: DATA DATA [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00]
+  Line: 248,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: DATA               = 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
+Todo: Check variable pointer DELTA_PLUS   [delta_plus_energy_table__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+Todo: Check variable pointer DELTA_MINUS   [delta_minus_energy_table__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+Error: Error: keyword not found: DATA DATA [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00]
+  Line: 262,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: DATA               = 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
+Error: Error: keyword not found: DATA DATA [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00]
+  Line: 274,  File: C1_CP_CIS-HIA_HS_MAG_IONS_PF__20010101_V03.cef.gz,  Text: DATA               = 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00
+Todo: Check_attr_FILE_FORMAT_VERSION 
+Todo: Check_attr_DATA_UNTIL 
+Header ATTR Checks: ok 
+Error: Meta Checks  Error: meta not presnt LOGICAL_FILE_ID
+Error: Meta Checks  Error: meta not presnt FILE_TYPE
+Error: Meta Checks  Error: meta not presnt FILE_TIME_SPAN
+Error: Meta Checks  Error: meta not presnt DATA_TYPE
+Error: Meta Checks  Error: meta not presnt VERSION_NUMBER
+Error: LOGICAL_FILE_ID checks Error: meta not presnt DATASET_ID
+Error: FILE_TYPE checks Error: meta not presnt FILE_TYPE
+Error: FILE_TIME_SPAN checks Error: meta not presnt FILE_TIME_SPAN
+Error: VERSION_NUMBER checks Error: meta not presnt VERSION_NUMBER
+Error: Header META Checks: error(s) 
+k: 0
+k: FILLVAL                        v: ["9999-99-99T99:99:99Z"]
+k: DELTA_MINUS                    v: [0.0]
+k: variable_name                  v: [time_tags__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: CATDESC                        v: ["Acquisition interval start time"]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: UNITS                          v: ["s"]
+k: LABLAXIS                       v: ["UT"]
+k: FIELDNAM                       v: ["Universal Time"]
+k: VALUE_TYPE                     v: [ISO_TIME]
+k: DELTA_PLUS                     v: [duration__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: SIZES                          v: [1]
+k: 1
+k: CATDESC                        v: ["Interval duration"]
+k: FIELDNAM                       v: ["Accumulation time"]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: DEPEND_0                       v: [time_tags__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+DEPEND 0 OK
+k: VALUE_TYPE                     v: [FLOAT]
+k: FILLVAL                        v: [0.0]
+k: UNITS                          v: ["s"]
+k: LABLAXIS                       v: ["dT"]
+k: SIZES                          v: [1]
+k: variable_name                  v: [duration__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: 2
+k: FIELDNAM                       v: ["CIS Operational Mode"]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: VALUE_TYPE                     v: [INT]
+k: SIGNIFICANT_DIGITS             v: [2]
+k: UNITS                          v: ["unitless"]
+k: LABLAXIS                       v: ["Mode"]
+k: DEPEND_0                       v: [time_tags__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+DEPEND 0 OK
+k: variable_name                  v: [cis_mode__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: CATDESC                        v: ["CIS Operational Mode"]
+k: FILLVAL                        v: [99]
+k: SIZES                          v: [1]
+k: 3
+k: FIELDNAM                       v: ["Telemetry Product Number"]
+k: FILLVAL                        v: [99]
+k: LABLAXIS                       v: ["Product"]
+k: variable_name                  v: [tm_product__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: CATDESC                        v: ["CIS Telemetry Product"]
+k: VALUE_TYPE                     v: [INT]
+k: SIGNIFICANT_DIGITS             v: [2]
+k: UNITS                          v: ["unitless"]
+k: DEPEND_0                       v: [time_tags__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+DEPEND 0 OK
+k: SIZES                          v: [1]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: 4
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: UNITS                          v: ["cm2^2 sr KeV KeV^-1"]
+k: VALUE_TYPE                     v: [FLOAT]
+k: FILLVAL                        v: [-1e+31]
+k: SI_CONVERSION                  v: ["1.0E-4>m^2 sr J J^-1"]
+k: DEPEND_0                       v: [time_tags__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+DEPEND 0 OK
+k: SIZES                          v: [1]
+k: variable_name                  v: [geom_factor__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: CATDESC                        v: ["Geometric factor"]
+k: FIELDNAM                       v: ["Geometric factor"]
+k: 5
+k: CATDESC                        v: ["HIA MCP High-Voltage"]
+k: variable_name                  v: [hia_mcp_hv__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: FILLVAL                        v: [-1e+31]
+k: UNITS                          v: ["volt"]
+k: LABLAXIS                       v: ["MCP HV"]
+k: DEPEND_0                       v: [time_tags__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+DEPEND 0 OK
+k: SIZES                          v: [1]
+k: FIELDNAM                       v: ["HIA MCP High-Voltage"]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: VALUE_TYPE                     v: [FLOAT]
+k: 6
+k: FIELDNAM                       v: ["HIA Discriminator level"]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: FILLVAL                        v: [-1e+31]
+k: DEPEND_0                       v: [time_tags__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+DEPEND 0 OK
+k: variable_name                  v: [hia_discri__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: CATDESC                        v: ["HIA Discriminator level"]
+k: VALUE_TYPE                     v: [FLOAT]
+k: UNITS                          v: ["volt"]
+k: LABLAXIS                       v: ["Discri"]
+k: SIZES                          v: [1]
+k: 7
+k: PROPERTY                       v: ["Differential_Particle_Flux"]
+k: DEPEND_3                       v: [energy_table__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+THIS VALUE TYPE [FLOAT]
+SIZES 3 [8 16 31]
+Todo: DEPEND_N > 0   3 - check sizes [energy_table__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: DEPEND_1                       v: [theta__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+THIS VALUE TYPE [FLOAT]
+SIZES 1 [8 16 31]
+Todo: DEPEND_N > 0   1 - check sizes [theta__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: variable_name                  v: [3d_ions__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: CATDESC                        v: ["CIS-HIA 3D ion distribution"]
+k: QUALITY                        v: [3]
+k: SIGNIFICANT_DIGITS             v: [10]
+k: SI_CONVERSION                  v: ["6.2415E+19>(particles) m^-2 s^-1 sr^-1 J^-1"]
+k: PARAMETER_TYPE                 v: ["Data"]
+k: SIZES                          v: [8 16 31]
+k: FILLVAL                        v: [-1e+31]
+k: UNITS                          v: ["Particles cm^-2 s^-1 sr^-1 Kev^-1"]
+k: DEPEND_2                       v: [phi__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+THIS VALUE TYPE [FLOAT]
+SIZES 2 [8 16 31]
+Todo: DEPEND_N > 0   2 - check sizes [phi__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: FIELDNAM                       v: ["CIS-HIA 3D ion distribution"]
+k: VALUE_TYPE                     v: [FLOAT]
+k: ENTITY                         v: ["Ion"]
+k: DEPEND_0                       v: [time_tags__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+DEPEND 0 OK
+k: 8
+k: FILLVAL                        v: [-1e+31]
+k: LABLAXIS                       v: ["Theta"]
+k: UNITS                          v: ["deg"]
+k: DATA                           v: [-78.750 -56.250 -33.750 -11.250 11.250 33.750 56.250 78.750]
+k: CATDESC                        v: ["Polar bin edges"]
+k: FIELDNAM                       v: ["Polar bin edges"]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: SIZES                          v: [8]
+k: DELTA_PLUS                     v: [11.250]
+k: DELTA_MINUS                    v: [11.250]
+k: variable_name                  v: [theta__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: VALUE_TYPE                     v: [FLOAT]
+k: COORDINATE_SYSTEM              v: ["ISR2"]
+k: 9
+k: variable_name                  v: [phi__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: FIELDNAM                       v: ["Azimuthal bin edges"]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: VALUE_TYPE                     v: [FLOAT]
+k: FILLVAL                        v: [-1e+31]
+k: DELTA_PLUS                     v: [11.250]
+k: DELTA_MINUS                    v: [11.250]
+k: CATDESC                        v: ["Azimuthal bin edges"]
+k: SIZES                          v: [16]
+k: LABLAXIS                       v: ["phi"]
+k: UNITS                          v: ["deg"]
+k: COORDINATE_SYSTEM              v: ["ISR2"]
+k: DATA                           v: [134.583 112.083 89.583 67.083 44.583 22.083 -0.417 -22.917 -45.417 -67.917 -90.417 -112.917 -135.417 -157.917 179.583 157.083]
+k: 10
+k: DELTA_MINUS                    v: [delta_minus_energy_table__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: variable_name                  v: [energy_table__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: FIELDNAM                       v: ["Energy table"]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: SIZES                          v: [31]
+k: FILLVAL                        v: [-1e+31]
+k: UNITS                          v: ["eV"]
+k: CATDESC                        v: ["Energy table"]
+k: VALUE_TYPE                     v: [FLOAT]
+k: SI_CONVERSION                  v: ["1.60217646E-19>J"]
+k: DATA                           v: [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00]
+k: DELTA_PLUS                     v: [delta_plus_energy_table__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: 11
+k: variable_name                  v: [delta_plus_energy_table__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: VALUE_TYPE                     v: [FLOAT]
+k: FILLVAL                        v: [-1e+31]
+k: UNITS                          v: ["eV"]
+k: SI_CONVERSION                  v: ["1.60217646E-19>J"]
+k: CATDESC                        v: ["Delta plus energy table"]
+k: FIELDNAM                       v: ["Delta plus energy table"]
+k: SIZES                          v: [31]
+k: DATA                           v: [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00]
+k: 12
+k: FIELDNAM                       v: ["Delta minus energy table"]
+k: VALUE_TYPE                     v: [FLOAT]
+k: SI_CONVERSION                  v: ["1.60217646E-19>J"]
+k: DATA                           v: [0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00]
+k: UNITS                          v: ["eV"]
+k: variable_name                  v: [delta_minus_energy_table__C1_CP_CIS-HIA_HS_MAG_IONS_PF]
+k: CATDESC                        v: ["Delta minus energy table"]
+k: PARAMETER_TYPE                 v: ["Support_Data"]
+k: SIZES                          v: [31]
+k: FILLVAL                        v: [-1e+31]
+Header VAR Checks: ok 
+Header Lines read: 350
+Warn: DATA_UNTIL:  Actual End  Expected "End"
+Data Records Checked:  0
+CAA Rocks!
+ 

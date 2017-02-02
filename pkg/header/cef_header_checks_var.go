@@ -3,77 +3,74 @@ package header
 import (
     "fmt"
     "regexp"
+    "errors"
     "strconv"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
-//x     "errors"
-//x     "strings"
-//x     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
-//x     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
-//.             type Attrs struct {
-//.                 m_map map[string][]string 
-//.             }
-//. 
-//.             func NewAttrs() *Attrs {
-//.                 return &Attrs{m_map: make(map[string][]string)}
-//.             }
-//. 
-//.             func (a *Attrs) Map() (map[string][]string) {
-//.                 return a.m_map
-//.             }
-//. 
-//.             func (m *Attrs) push_kv(kv *readers.KeyVal) (err error) {
-//. 
-//.                 val, is_present := m.m_map[kv.Key]
-//.                 if is_present == true {
-//.                     val = append(val, kv.Val...)
-//.                 } else {
-//.                     val = kv.Val
-//.                 }
-//.                 
-//.                 m.m_map[kv.Key] = val
-//.                 
-//.                 return err
-//.             }
-//. 
-//.             func (m *Attrs) push_k_v(k, v string) (err error) {
-//.                 vs := []string{ v }
-//. 
-//.                 kv := readers.NewMetaKeyVal(k , vs)
-//. 
-//.                 return m.push_kv(kv)
-//.             }
+//x             type Attrs struct {
+//x                 m_map map[string][]string 
+//x             }
+//x 
+//x             func NewAttrs() *Attrs {
+//x                 return &Attrs{m_map: make(map[string][]string)}
+//x             }
+//x 
+//x             func (a *Attrs) Map() (map[string][]string) {
+//x                 return a.m_map
+//x             }
+//x 
+//x             func (m *Attrs) push_kv(kv *readers.KeyVal) (err error) {
+//x 
+//x                 val, is_present := m.m_map[kv.Key]
+//x                 if is_present == true {
+//x                     val = append(val, kv.Val...)
+//x                 } else {
+//x                     val = kv.Val
+//x                 }
+//x                 
+//x                 m.m_map[kv.Key] = val
+//x                 
+//x                 return err
+//x             }
+//x 
+//x             func (m *Attrs) push_k_v(k, v string) (err error) {
+//x                 vs := []string{ v }
+//x 
+//x                 kv := readers.NewMetaKeyVal(k , vs)
+//x 
+//x                 return m.push_kv(kv)
+//x             }
 
-//.             type Vars struct {
-//.                 m_map map[string]Attrs
-//.                 m_list []Attrs
-//.             }
-//. 
-//.             func NewVars() *Vars {
-//.                 return &Vars{
-//.                     m_map: make(map[string]Attrs),
-//.                     m_list: make([]Attrs, 0),
-//.                 }
-//.             }
-//. 
-//.             func (v *Vars) Map() (map[string]Attrs) {
-//.                 return v.m_map
-//.             }
-//. 
-//.             func (v *Vars) List() ([]Attrs) {
-//.                 return v.m_list
-//.             }
-//. 
-//.             type CefHeaderData struct {
-//.                 m_state State
-//.                 m_name  string
-//.                 m_cur* Attrs
-//.                 
-//.                 m_attrs* Attrs
-//.                 m_meta* Meta
-//.                 m_vars* Vars
-//.             }
+//x             type Vars struct {
+//x                 m_map map[string]Attrs
+//x                 m_list []Attrs
+//x             }
+//x 
+//x             func NewVars() *Vars {
+//x                 return &Vars{
+//x                     m_map: make(map[string]Attrs),
+//x                     m_list: make([]Attrs, 0),
+//x                 }
+//x             }
+//x 
+//x             func (v *Vars) Map() (map[string]Attrs) {
+//x                 return v.m_map
+//x             }
+//x 
+//x             func (v *Vars) List() ([]Attrs) {
+//x                 return v.m_list
+//x             }
+//x 
+//x             type CefHeaderData struct {
+//x                 m_state State
+//x                 m_name  string
+//x                 m_cur* Attrs
+//x                 
+//x                 m_attrs* Attrs
+//x                 m_meta* Meta
+//x                 m_vars* Vars
+//x             }
 
 //x func (h *CefHeaderData) Var_Checks() (err error) {
 //x     h.print_results("VAR CHECKS TODO", err) 
@@ -88,7 +85,7 @@ import (
 //x         fmt.Println("\n\n")
 //x         fmt.Println("k:", k)
 //x         fmt.Println("n:", var_name)
-//x //.         fmt.Println(v)
+//x //x         fmt.Println(v)
 //x 
 //x 
 //x         depend0, p := v_map["DEPEND_0"]
@@ -116,33 +113,77 @@ func init() {
     regex_depend_n = regexp.MustCompile("^DEPEND_([0-9]+)$")
 }
 
-func (h *CefHeaderData) Depend_N_Checks(a Attrs) (err error) {
+
+// Checks VALUE_TYPE and SIZES when DEPEND_N N > 0
+func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
     // all vars
-    vars_map  := h.Vars().Map()
+    a1_map := a1.Map()
+    vars_map := h.Vars().Map()
 
-    a_map := a.Map()
-    var_name := a_map["variable_name"]
-    diag.Info("n:", var_name)
+    var_name := a1_map["variable_name"]
+    //x diag.Info("n:", var_name)
 
-    for k, v := range a_map {
-        fmt.Printf("k: %-30s v: %v\n", k, v)
+    for k, v := range a1_map {
+        //x fmt.Printf("k: %-30s v: %v\n", k, v)
 
         // regexp.MustCompile("^DEPEND_([0-9]+)$")
-        if r := regex_depend_n.FindStringSubmatch(k); r != nil {
-            if i, err := strconv.Atoi(r[1]); err == nil {
-                vd_map, p1 := vars_map[v[0]]
-                if p1 == false {
+        r := regex_depend_n.FindStringSubmatch(k)
+        if r != nil {
+            i, err := strconv.Atoi(r[1])
+            if  err == nil {
+                // var pointed to by DEPEND
+                a2, p0 := vars_map[v[0]]
+                if p0 == false {
                     diag.Error("DEPEND_TEST: ref var not found", k, v[0])
                 } else if i > 0 {
-                    // need to check sizes
 
-                    diag.Todo("DEPENDS_N > 0 - check sizes", vd_map.Map()["variable_name"])
-                } else {
-                    diag.Todo("Still working on this!")
-                }
+
+                    vt1, p1 := a1_map["VALUE_TYPE"]
+                    if p1 == false {
+                        return errors.New(fmt.Sprintf("Missing VALUE_TYPE: variable (%s) ", var_name))
+                    }
+
+                    sz1, p1 := a1_map["SIZES"]
+                    if p1 == false {
+                        return errors.New(fmt.Sprintf("Missing SIZES: variable (%s) ", var_name))
+                    }
+
+
+                    if len(sz1) < i {
+                        return errors.New(fmt.Sprintf("DEPEND index(%d) out of range for SIZES, variable (%s) : %v %v %v", i, var_name, sz1, k, v))
+                    }
+
+                    a2_map:= a2.Map()
+
+                    vt2, p2 := a2_map["VALUE_TYPE"]
+                    if p2 == false {
+                        return errors.New(fmt.Sprintf("Missing VALUE_TYPE for DEPEND variable: %v %v", k, v))
+                    }
+
+
+                    sz2, p2 := a2_map["SIZES"]
+                    if p2 == false {
+                        return errors.New(fmt.Sprintf("Missing SIZES for DEPEND variable: %v %v", k, v))
+                    }
+
+
+                    // value_type checks
+                    if vt1[0] != vt2[0] {
+                        return errors.New(fmt.Sprintf("Missmatch VALUE_TYPE: %v %v %v %v", vt1, vt2, k, v))
+                    }
+
+                    if sz1[i-1] != sz2[0] {
+                        return errors.New(fmt.Sprintf("Missmatch SIZES for DEPEND Variable, index(%d) : %v %v %v %v", i-1, sz1, sz2, k, v))
+                    }
+                } 
+
+                //x diag.Trace(diag.BoldGreen("ok DEPEND checks(VALUE_TYPE,SIZES)"), "variable:", var_name, k, v[0])
+                diag.Trace(diag.BoldGreen("ok"), k, v[0], "variable:", var_name, )
+            } else {
+                return errors.New(fmt.Sprintf("Malformed: %v %v", k, v))
             }
-        } 
-    }    
+        }    
+    }
 
     return
 }
@@ -155,13 +196,15 @@ func (h *CefHeaderData) Var_Checks() (err error) {
     for k, v := range var_list {
         fmt.Println("k:", k)
 
-        h.Depend_N_Checks(v)
+        err = h.Depend_N_Checks(v)
+        if err != nil {
+            return
+        }
     }    
 
     return
 }
 
-//x h.dumpMeta()
 
 
 
