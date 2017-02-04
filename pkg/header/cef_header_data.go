@@ -283,19 +283,16 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
     l_kv := kv
 
     switch {
-        case kv.Key == "ENTRY":                 diag.Trace(diag.BoldBlue(" delay-check-", "ENTRY",                  " ",  kv.Val));  return     
-        case kv.Key == "FILLVAL":               diag.Trace(diag.BoldBlue(" delay-check-", "FILLVAL",                " ",  kv.Val));  return        // multiple types - depends on var type      
-        case kv.Key == "SIZES":                 diag.Trace(diag.BoldBlue(" delay-check-", "SIZES",                  " ",  kv.Val));  return        // type is FORMAT can be 1 or 1,2 for e.g.       
-        case kv.Key == "DELTA_MINUS":           diag.Todo("Check variable pointer",       "DELTA_MINUS",            " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
-        case kv.Key == "DELTA_PLUS":            diag.Todo("Check variable pointer",       "DELTA_PLUS",             " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
-        
-        case kv.Key == "ERROR_MINUS":           diag.Todo("Check variable pointer",       "ERROR_MINUS",            " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
-        case kv.Key == "ERROR_PLUS":            diag.Todo("Check variable pointer",       "ERROR_PLUS",             " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
-
-        //0 case kv.Key == "QUALITY":           diag.Todo("Check variable pointer",       "QUALITY",                " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
-
-        case kv.Key == "MIN_TIME_RESOLUTION":   diag.Todo("Check variable pointer",       "MIN_TIME_RESOLUTION",    " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
-        case kv.Key == "MAX_TIME_RESOLUTION":   diag.Todo("Check variable pointer",       "MAX_TIME_RESOLUTION",    " ",  kv.Val);  return        // Float (Numerical -> can point to a VARIABLE)
+        case kv.Key == "ENTRY":                    diag.Trace(diag.BoldBlue(" delay-check-", "ENTRY",                  " ",  kv.Val));   return     
+        case kv.Key == "FILLVAL":                  diag.Trace(diag.BoldBlue(" delay-check-", "FILLVAL",                " ",  kv.Val));   return        // multiple types - depends on var type      
+        case kv.Key == "SIZES":                    diag.Trace(diag.BoldBlue(" delay-check-", "SIZES",                  " ",  kv.Val));   return        // type is FORMAT can be 1 or 1,2 for e.g.       
+        case kv.Key == "DELTA_MINUS":           /* diag.Todo("Check variable pointer",       "DELTA_MINUS",            " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
+        case kv.Key == "DELTA_PLUS":            /* diag.Todo("Check variable pointer",       "DELTA_PLUS",             " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
+        case kv.Key == "ERROR_MINUS":           /* diag.Todo("Check variable pointer",       "ERROR_MINUS",            " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
+        case kv.Key == "ERROR_PLUS":            /* diag.Todo("Check variable pointer",       "ERROR_PLUS",             " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
+        case kv.Key == "QUALITY":               /* diag.Todo("Check variable pointer",       "QUALITY",                " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
+        case kv.Key == "MIN_TIME_RESOLUTION":   /* diag.Todo("Check variable pointer",       "MIN_TIME_RESOLUTION",    " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
+        case kv.Key == "MAX_TIME_RESOLUTION":   /* diag.Todo("Check variable pointer",       "MAX_TIME_RESOLUTION",    " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
 
 
         case REGX_REPRESENTATION_i.MatchString(kv.Key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
