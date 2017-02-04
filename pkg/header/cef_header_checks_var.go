@@ -74,39 +74,6 @@ import (
 //x                 m_vars* Vars
 //x             }
 
-//x func (h *CefHeaderData) Var_Checks() (err error) {
-//x     h.print_results("VAR CHECKS TODO", err) 
-//x     
-//x     var_list := h.Vars().List()
-//x     var_map  := h.Vars().Map()
-//x 
-//x     for k, v := range var_list {
-//x         v_map := v.Map()
-//x         var_name := v_map["variable_name"]
-//x 
-//x         fmt.Println("\n\n")
-//x         fmt.Println("k:", k)
-//x         fmt.Println("n:", var_name)
-//x //x         fmt.Println(v)
-//x 
-//x 
-//x         depend0, p := v_map["DEPEND_0"]
-//x         if p == true {
-//x             fmt.Println("DEPEND_0 = ", depend0)
-//x 
-//x             v1_map, p1 := var_map[depend0[0]]
-//x             if p1 == false {
-//x                 diag.Error("DEPEND_0 VAR not found", depend0[0])
-//x             } else {
-//x                 fmt.Println("DEPEND_0 VAR OK", depend0[0], v1_map.Map()["variable_name"])
-//x             }
-//x         }
-//x 
-//x     }    
-//x 
-//x     return
-//x }
-
 var (
     regex_depend_n *regexp.Regexp   
 )
@@ -121,10 +88,10 @@ func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
     vars_map := h.Vars().Map()
 
     var_name := a1_map["variable_name"]
-    //x diag.Info("n:", var_name)
+    //- diag.Info("n:", var_name)
 
     for k, v := range a1_map {
-        //x fmt.Printf("k: %-30s v: %v\n", k, v)
+        //- fmt.Printf("k: %-30s v: %v\n", k, v)
 
         // regexp.MustCompile("^DEPEND_([0-9]+)$")
         r := regex_depend_n.FindStringSubmatch(k)
@@ -134,7 +101,7 @@ func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
                 // var pointed to by DEPEND
                 a2, p0 := vars_map[v[0]]
                 if p0 == false {
-                    //x diag.Error("DEPEND_TEST: ref var not found", k, v[0])
+                    //- diag.Error("DEPEND_TEST: ref var not found", k, v[0])
                     return errors.New(fmt.Sprintf("DEPEND_TEST: ref var not found %v %v ", k, v[0]))
                 } else if i > 0 {
 
@@ -178,8 +145,7 @@ func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
                     }
                 } 
 
-                //x diag.Trace(diag.BoldGreen("ok DEPEND checks(VALUE_TYPE,SIZES)"), "variable:", var_name, k, v[0])
-                diag.Trace(diag.BoldGreen("ok"), k, v[0], "variable:", var_name, )
+                diag.Trace(diag.BoldGreen(" ok:"), k, v[0], "variable:", var_name)
             } else {
                 return errors.New(fmt.Sprintf("Malformed: %v %v", k, v))
             }
@@ -188,65 +154,6 @@ func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
 
     return
 }
-
-
-
-//x // Checks DELTA_PLUS, DELTA_MINUS, ERROR_PLUS, ERROR_MINUS, QUALITY
-//x func (h *CefHeaderData) Numeric_Or_Variable(k string, a1 Attrs) (err error) {
-//x     // all vars
-//x     a1_map := a1.Map()
-//x     vars_map := h.Vars().Map()
-//x 
-//x //? var_name := a1_map["variable_name"]
-//x 
-//x     v, p := a1_map[k]
-//x     if p == true {
-//x 
-//x //?     a2, p0 := vars_map[v[0]]
-//x         _, p0 := vars_map[v[0]]
-//x         if p0 == false {
-//x             return errors.New(fmt.Sprintf("%s: ref var not found %v  %v", k, v[0], v))
-//x         } 
-//x 
-//x 
-//x //?         vt1, p1 := a1_map["VALUE_TYPE"]
-//x //?         if p1 == false {
-//x //?             return errors.New(fmt.Sprintf("Missing VALUE_TYPE: variable (%s) ", var_name))
-//x //?         }
-//x //? 
-//x //?         sz1, p1 := a1_map["SIZES"]
-//x //?         if p1 == false {
-//x //?             return errors.New(fmt.Sprintf("Missing SIZES: variable (%s) ", var_name))
-//x //?         }
-//x //? 
-//x //?         a2_map:= a2.Map()
-//x //? 
-//x //?         vt2, p2 := a2_map["VALUE_TYPE"]
-//x //?         if p2 == false {
-//x //?             return errors.New(fmt.Sprintf("Missing VALUE_TYPE: %v (%v)", k, v))
-//x //?         }
-//x //? 
-//x //?         sz2, p2 := a2_map["SIZES"]
-//x //?         if p2 == false {
-//x //?             return errors.New(fmt.Sprintf("Missing SIZES: %v (%v)", k, v))
-//x //?         }
-//x //? 
-//x //?         diag.Info(k, var_name[0], vt1, sz1,  v[0], vt2, sz2)
-//x //? 
-//x //?         // value_type checks
-//x //?         if reflect.DeepEqual(vt1, vt2) == false {
-//x //?             return errors.New(fmt.Sprintf("%s Missmatch VALUE_TYPE checks : variable (%s) %v   (%v) %v", k, var_name, vt1, v, vt2))
-//x //?         }
-//x //? 
-//x //?         if reflect.DeepEqual(sz1, sz2) == false {
-//x //?             return errors.New(fmt.Sprintf("%s Missmatch SIZES checks : variable (%s) %v   (%v) %v", k, var_name, sz1, v, sz2))
-//x //?         }
-//x 
-//x     }
-//x 
-//x     return
-//x }
-
 
 // Checks DELTA_PLUS, DELTA_MINUS, ERROR_PLUS, ERROR_MINUS, QUALITY
 func (h *CefHeaderData) Numeric_Or_Variable(k string, a1 Attrs) (err error) {
@@ -260,7 +167,7 @@ func (h *CefHeaderData) Numeric_Or_Variable(k string, a1 Attrs) (err error) {
 
         v0 := utils.Trim_quoted_string(v[0])
         if utils.Is_Numerical(v0) == true {
-            // nothing more to do
+            diag.Trace(diag.BoldGreen(" ok:"), k, v0)
             return
         }
 
@@ -268,7 +175,9 @@ func (h *CefHeaderData) Numeric_Or_Variable(k string, a1 Attrs) (err error) {
         _, p0 := vars_map[v0]
         if p0 == false {
             return errors.New(fmt.Sprintf("%s: ref var not found %v  %v", k, v0, v))
-        } 
+        } else {
+            diag.Trace(diag.BoldGreen(" ok:"), k, v0)
+        }
     }
 
     return
@@ -298,25 +207,38 @@ func (h *CefHeaderData) NumerIc_or_Variable_Checks(a1 Attrs) (err error) {
 }
 
 func (h *CefHeaderData) Var_Checks() (err error) {
-    h.print_results("VAR CHECKS TODO", err) 
-    
+//x    h.print_results("VAR CHECKS TODO", err) 
+    err_count := 0 
     var_list := h.Vars().List()
 
     for ix, v := range var_list {
-        diag.Info("variable:", ix, v.Map()["variable_name"])
+//x         ec := err_count
+//x         diag.Trace(diag.Cyan(" VARIABLE:"), ix, v.Map()["variable_name"])
+//x         diag.Trace(diag.Cyan(" VARIABLE:"), ix, v.Map()["variable_name"])
+        
+        diag.Trace(diag.Cyan(fmt.Sprintf(" %d %s", ix, v.Map()["variable_name"])))
 
         err = h.Depend_N_Checks(v)
         if err != nil {
-            //x return
             diag.Error("Depend Checks", err)
+            err_count++
         }
 
         err = h.NumerIc_or_Variable_Checks(v)
         if err != nil {
-            //x return
             diag.Error("Plus/Minus/Quality/etc Checks", err)
+            err_count++
         }
+
+//x         if ec == err_count {
+//x             diag.Trace(diag.BoldGreen("variable:"), ix, v.Map()["variable_name"])
+//x         }
     }    
+
+    if err_count > 0 {
+        return errors.New(fmt.Sprintf("Var Checks %d error(s) ", err_count))
+    }
+
 
     return
 }

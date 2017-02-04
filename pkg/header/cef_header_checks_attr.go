@@ -85,7 +85,7 @@ func (h *CefHeaderData) Attr_Checks() (err error) {
 
 	for _, k := range aks {
 		if v, err := h.getAttr(k); err == nil {
-            diag.Trace(diag.Cyan(k), v)
+            diag.Trace(diag.Cyan(" " +k), v)
 		} else {
             diag.Error("Attr Checks ", err)   
 		}

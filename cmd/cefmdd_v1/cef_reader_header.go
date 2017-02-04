@@ -70,6 +70,9 @@ func ReadHeader(args *utils.CefArgs,
 				if _, err = doProcess(l_lines); err != nil {
 					return data_until, err
 				}
+
+				diag.Trace("File Close", ceh_path)
+
 				nestedLevel--
 			} else {
 				r_header.Add_kv(&kv)

@@ -65,28 +65,34 @@ func (h *CefHeaderData) print_results(about string, err error) {
     if err != nil {
         diag.Error(about, err)   
     } else {
-        diag.Trace(diag.BoldGreen("ok:"), about)  
+        diag.Trace(diag.BoldGreen(" ok:"), about)  
     }
 }        
         
 func (h *CefHeaderData) Checks() (err error) {
     
+    diag.Trace(diag.BoldCyan("Start"), "Header ATTR Checks:")
     if h.Attr_Checks() != nil {
         diag.Error("Header ATTR Checks:", "error(s) ")
     } else {
-        diag.Info("Header ATTR Checks:", "ok ")
+        //x diag.Trace(diag.BoldGreen("ok"), "Header ATTR Checks:")
+        h.print_results("Header ATTR Checks:", nil)
     }
 
+    diag.Trace(diag.BoldCyan("Start"), "Header META Checks:")
     if h.Meta_Checks() != nil {
         diag.Error("Header META Checks:", "error(s) ")
     } else {
-        diag.Info("Header META Checks:", "ok ")
+        //x diag.Trace(diag.BoldGreen("ok"), "Header META Checks:")
+        h.print_results("Header META Checks:", nil)
     }
 
+    diag.Trace(diag.BoldCyan("Start"), "Header VAR Checks:")
     if h.Var_Checks() != nil {
         diag.Error("Header VAR Checks:", "error(s) ")
     } else {
-        diag.Info("Header VAR Checks:", "ok ")
+        //x diag.Trace(diag.BoldGreen("ok"), "Header VAR Checks:")
+        h.print_results("Header VAR Checks:", nil)
     }
     
     return

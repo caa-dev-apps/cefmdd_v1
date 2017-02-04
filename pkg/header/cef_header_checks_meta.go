@@ -249,9 +249,9 @@ func (h *CefHeaderData) Meta_Checks() (err error) {
 
 	for _, k := range mks {
 		if entry, value_type, err := h.getMeta(k); err == nil {
-            diag.Trace(diag.Blue(k), "Meta:ENTRY", entry)
+            diag.Trace(diag.Cyan(" " + k), "Meta:ENTRY", entry)
             if value_type != nil {
-                diag.Trace(diag.Yellow(k), "Meta:VALUE_TYPE", value_type)
+                diag.Trace(diag.Cyan(" " + k), "Meta:VALUE_TYPE", value_type)
             }
 		} else {
             diag.Error("Meta Checks ", err)
