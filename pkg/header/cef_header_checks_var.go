@@ -6,6 +6,7 @@ import (
     "errors"
     "strconv"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
 //x    "reflect"
 )
 
@@ -190,64 +191,91 @@ func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
 
 
 
+//x // Checks DELTA_PLUS, DELTA_MINUS, ERROR_PLUS, ERROR_MINUS, QUALITY
+//x func (h *CefHeaderData) Numeric_Or_Variable(k string, a1 Attrs) (err error) {
+//x     // all vars
+//x     a1_map := a1.Map()
+//x     vars_map := h.Vars().Map()
+//x 
+//x //? var_name := a1_map["variable_name"]
+//x 
+//x     v, p := a1_map[k]
+//x     if p == true {
+//x 
+//x //?     a2, p0 := vars_map[v[0]]
+//x         _, p0 := vars_map[v[0]]
+//x         if p0 == false {
+//x             return errors.New(fmt.Sprintf("%s: ref var not found %v  %v", k, v[0], v))
+//x         } 
+//x 
+//x 
+//x //?         vt1, p1 := a1_map["VALUE_TYPE"]
+//x //?         if p1 == false {
+//x //?             return errors.New(fmt.Sprintf("Missing VALUE_TYPE: variable (%s) ", var_name))
+//x //?         }
+//x //? 
+//x //?         sz1, p1 := a1_map["SIZES"]
+//x //?         if p1 == false {
+//x //?             return errors.New(fmt.Sprintf("Missing SIZES: variable (%s) ", var_name))
+//x //?         }
+//x //? 
+//x //?         a2_map:= a2.Map()
+//x //? 
+//x //?         vt2, p2 := a2_map["VALUE_TYPE"]
+//x //?         if p2 == false {
+//x //?             return errors.New(fmt.Sprintf("Missing VALUE_TYPE: %v (%v)", k, v))
+//x //?         }
+//x //? 
+//x //?         sz2, p2 := a2_map["SIZES"]
+//x //?         if p2 == false {
+//x //?             return errors.New(fmt.Sprintf("Missing SIZES: %v (%v)", k, v))
+//x //?         }
+//x //? 
+//x //?         diag.Info(k, var_name[0], vt1, sz1,  v[0], vt2, sz2)
+//x //? 
+//x //?         // value_type checks
+//x //?         if reflect.DeepEqual(vt1, vt2) == false {
+//x //?             return errors.New(fmt.Sprintf("%s Missmatch VALUE_TYPE checks : variable (%s) %v   (%v) %v", k, var_name, vt1, v, vt2))
+//x //?         }
+//x //? 
+//x //?         if reflect.DeepEqual(sz1, sz2) == false {
+//x //?             return errors.New(fmt.Sprintf("%s Missmatch SIZES checks : variable (%s) %v   (%v) %v", k, var_name, sz1, v, sz2))
+//x //?         }
+//x 
+//x     }
+//x 
+//x     return
+//x }
+
+
 // Checks DELTA_PLUS, DELTA_MINUS, ERROR_PLUS, ERROR_MINUS, QUALITY
-func (h *CefHeaderData) Value_Type_Sizes_Checks(k string, a1 Attrs) (err error) {
+func (h *CefHeaderData) Numeric_Or_Variable(k string, a1 Attrs) (err error) {
     // all vars
     a1_map := a1.Map()
     vars_map := h.Vars().Map()
 
-//? var_name := a1_map["variable_name"]
-
+    // only need to test if present
     v, p := a1_map[k]
     if p == true {
 
-//?     a2, p0 := vars_map[v[0]]
-        _, p0 := vars_map[v[0]]
+        v0 := utils.Trim_quoted_string(v[0])
+        if utils.Is_Numerical(v0) == true {
+            // nothing more to do
+            return
+        }
+
+        // check if it's a variable
+        _, p0 := vars_map[v0]
         if p0 == false {
-            return errors.New(fmt.Sprintf("%s: ref var not found %v  %v", k, v[0], v))
+            return errors.New(fmt.Sprintf("%s: ref var not found %v  %v", k, v0, v))
         } 
-
-
-//?         vt1, p1 := a1_map["VALUE_TYPE"]
-//?         if p1 == false {
-//?             return errors.New(fmt.Sprintf("Missing VALUE_TYPE: variable (%s) ", var_name))
-//?         }
-//? 
-//?         sz1, p1 := a1_map["SIZES"]
-//?         if p1 == false {
-//?             return errors.New(fmt.Sprintf("Missing SIZES: variable (%s) ", var_name))
-//?         }
-//? 
-//?         a2_map:= a2.Map()
-//? 
-//?         vt2, p2 := a2_map["VALUE_TYPE"]
-//?         if p2 == false {
-//?             return errors.New(fmt.Sprintf("Missing VALUE_TYPE: %v (%v)", k, v))
-//?         }
-//? 
-//?         sz2, p2 := a2_map["SIZES"]
-//?         if p2 == false {
-//?             return errors.New(fmt.Sprintf("Missing SIZES: %v (%v)", k, v))
-//?         }
-//? 
-//?         diag.Info(k, var_name[0], vt1, sz1,  v[0], vt2, sz2)
-//? 
-//?         // value_type checks
-//?         if reflect.DeepEqual(vt1, vt2) == false {
-//?             return errors.New(fmt.Sprintf("%s Missmatch VALUE_TYPE checks : variable (%s) %v   (%v) %v", k, var_name, vt1, v, vt2))
-//?         }
-//? 
-//?         if reflect.DeepEqual(sz1, sz2) == false {
-//?             return errors.New(fmt.Sprintf("%s Missmatch SIZES checks : variable (%s) %v   (%v) %v", k, var_name, sz1, v, sz2))
-//?         }
-
     }
 
     return
 }
 
 // Checks DELTA_PLUS, DELTA_MINUS, ERROR_PLUS, ERROR_MINUS, QUALITY
-func (h *CefHeaderData) Plus_Minus_Quality_Checks(a1 Attrs) (err error) {
+func (h *CefHeaderData) NumerIc_or_Variable_Checks(a1 Attrs) (err error) {
 
     keys := []string {
         "DELTA_PLUS",
@@ -260,7 +288,7 @@ func (h *CefHeaderData) Plus_Minus_Quality_Checks(a1 Attrs) (err error) {
     }
 
     for _, k := range keys {
-        err = h.Value_Type_Sizes_Checks(k, a1) 
+        err = h.Numeric_Or_Variable(k, a1) 
         if err != nil {
             return
         }
@@ -283,13 +311,12 @@ func (h *CefHeaderData) Var_Checks() (err error) {
             diag.Error("Depend Checks", err)
         }
 
-        err = h.Plus_Minus_Quality_Checks(v)
+        err = h.NumerIc_or_Variable_Checks(v)
         if err != nil {
-//x            return
-            diag.Error("Plus/Minus/Quality Checks", err)
+            //x return
+            diag.Error("Plus/Minus/Quality/etc Checks", err)
         }
     }    
 
     return
 }
-

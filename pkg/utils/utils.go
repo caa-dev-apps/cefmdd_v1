@@ -179,3 +179,12 @@ func String_matcher_test(v0 string) (f func(v1 string) (err error)) {
 
     return 
 }
+
+///////////////////////////////////////////////////////////////////////////////
+//
+
+func Is_Numerical(v string) (bool) { 
+
+    return Numerical_parser(v) == nil
+}
+
