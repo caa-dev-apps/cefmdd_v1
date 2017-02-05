@@ -36,7 +36,7 @@ import (
 //. 	type CefRecord struct {
 //. 	    Err error
 //. 	    Tokens []string
-//. 	    //x Line string       
+//. 	    //- Line string       
 //. 	    Line Line       
 //. 	}
 //. 	
@@ -52,8 +52,6 @@ func ReadData(i_header header.CefHeaderData,
     	if du[0] != "EOFx" {
     		l_data_until = du[0]
     	}
-
-    	//x diag.Info("_____________________________________", l_data_until) 
     }
 
 	l_cellTypes, err := data.RecordCellTypes(i_header)

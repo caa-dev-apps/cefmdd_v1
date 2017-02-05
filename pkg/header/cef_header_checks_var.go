@@ -7,72 +7,71 @@ import (
     "strconv"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
-//x    "reflect"
 )
 
-//x             type Attrs struct {
-//x                 m_map map[string][]string 
-//x             }
-//x 
-//x             func NewAttrs() *Attrs {
-//x                 return &Attrs{m_map: make(map[string][]string)}
-//x             }
-//x 
-//x             func (a *Attrs) Map() (map[string][]string) {
-//x                 return a.m_map
-//x             }
-//x 
-//x             func (m *Attrs) push_kv(kv *readers.KeyVal) (err error) {
-//x 
-//x                 val, is_present := m.m_map[kv.Key]
-//x                 if is_present == true {
-//x                     val = append(val, kv.Val...)
-//x                 } else {
-//x                     val = kv.Val
-//x                 }
-//x                 
-//x                 m.m_map[kv.Key] = val
-//x                 
-//x                 return err
-//x             }
-//x 
-//x             func (m *Attrs) push_k_v(k, v string) (err error) {
-//x                 vs := []string{ v }
-//x 
-//x                 kv := readers.NewMetaKeyVal(k , vs)
-//x 
-//x                 return m.push_kv(kv)
-//x             }
+//-             type Attrs struct {
+//-                 m_map map[string][]string 
+//-             }
+//- 
+//-             func NewAttrs() *Attrs {
+//-                 return &Attrs{m_map: make(map[string][]string)}
+//-             }
+//- 
+//-             func (a *Attrs) Map() (map[string][]string) {
+//-                 return a.m_map
+//-             }
+//- 
+//-             func (m *Attrs) push_kv(kv *readers.KeyVal) (err error) {
+//- 
+//-                 val, is_present := m.m_map[kv.Key]
+//-                 if is_present == true {
+//-                     val = append(val, kv.Val...)
+//-                 } else {
+//-                     val = kv.Val
+//-                 }
+//-                 
+//-                 m.m_map[kv.Key] = val
+//-                 
+//-                 return err
+//-             }
+//- 
+//-             func (m *Attrs) push_k_v(k, v string) (err error) {
+//-                 vs := []string{ v }
+//- 
+//-                 kv := readers.NewMetaKeyVal(k , vs)
+//- 
+//-                 return m.push_kv(kv)
+//-             }
 
-//x             type Vars struct {
-//x                 m_map map[string]Attrs
-//x                 m_list []Attrs
-//x             }
-//x 
-//x             func NewVars() *Vars {
-//x                 return &Vars{
-//x                     m_map: make(map[string]Attrs),
-//x                     m_list: make([]Attrs, 0),
-//x                 }
-//x             }
-//x 
-//x             func (v *Vars) Map() (map[string]Attrs) {
-//x                 return v.m_map
-//x             }
-//x 
-//x             func (v *Vars) List() ([]Attrs) {
-//x                 return v.m_list
-//x             }
-//x 
-//x             type CefHeaderData struct {
-//x                 m_state State
-//x                 m_name  string
-//x                 m_cur* Attrs
-//x                 
-//x                 m_attrs* Attrs
-//x                 m_meta* Meta
-//x                 m_vars* Vars
-//x             }
+//-             type Vars struct {
+//-                 m_map map[string]Attrs
+//-                 m_list []Attrs
+//-             }
+//- 
+//-             func NewVars() *Vars {
+//-                 return &Vars{
+//-                     m_map: make(map[string]Attrs),
+//-                     m_list: make([]Attrs, 0),
+//-                 }
+//-             }
+//- 
+//-             func (v *Vars) Map() (map[string]Attrs) {
+//-                 return v.m_map
+//-             }
+//- 
+//-             func (v *Vars) List() ([]Attrs) {
+//-                 return v.m_list
+//-             }
+//- 
+//-             type CefHeaderData struct {
+//-                 m_state State
+//-                 m_name  string
+//-                 m_cur* Attrs
+//-                 
+//-                 m_attrs* Attrs
+//-                 m_meta* Meta
+//-                 m_vars* Vars
+//-             }
 
 var (
     regex_depend_n *regexp.Regexp   
@@ -207,14 +206,10 @@ func (h *CefHeaderData) NumerIc_or_Variable_Checks(a1 Attrs) (err error) {
 }
 
 func (h *CefHeaderData) Var_Checks() (err error) {
-//x    h.print_results("VAR CHECKS TODO", err) 
     err_count := 0 
     var_list := h.Vars().List()
 
     for ix, v := range var_list {
-//x         ec := err_count
-//x         diag.Trace(diag.Cyan(" VARIABLE:"), ix, v.Map()["variable_name"])
-//x         diag.Trace(diag.Cyan(" VARIABLE:"), ix, v.Map()["variable_name"])
         
         diag.Trace(diag.Cyan(fmt.Sprintf(" %d %s", ix, v.Map()["variable_name"])))
 
@@ -229,16 +224,11 @@ func (h *CefHeaderData) Var_Checks() (err error) {
             diag.Error("Plus/Minus/Quality/etc Checks", err)
             err_count++
         }
-
-//x         if ec == err_count {
-//x             diag.Trace(diag.BoldGreen("variable:"), ix, v.Map()["variable_name"])
-//x         }
     }    
 
     if err_count > 0 {
         return errors.New(fmt.Sprintf("Var Checks %d error(s) ", err_count))
     }
-
 
     return
 }

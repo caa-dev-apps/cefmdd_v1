@@ -3,7 +3,6 @@ package header
 import (
     "strings"
     "errors"
-//x    "fmt"
     "encoding/json"
     "os"
     "strconv"
@@ -157,7 +156,6 @@ func (h *CefHeaderData) Vars() (*Vars) {
 func dumpJSON(s string, v interface{}) (err error) {
     
 	j1, err := json.Marshal(v)
-	//x j1, err := json.MarshalIndent(v, "-", "\t")
 	if err != nil {
 		diag.Error("dumpJSON", err)
         return
@@ -272,8 +270,6 @@ var (
     REGX_REPRESENTATION_i, _ = regexp.Compile(`REPRESENTATION_([\d]+)`)
     REGX_LABEL_i, _ = regexp.Compile(`LABEL_([\d]+)`)
     REGX_DEPEND_i, _ = regexp.Compile(`DEPEND_([\d]+)`)
-    
-    //x s_diag = diag.NewDiag()
 )
 
 
@@ -319,7 +315,6 @@ func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
     
     err = s_mdd_data.Test_input(l_kv)
     if err != nil {
-//x         diag.Error(diag.BoldRed(err.Error()), h.m_name, h.m_cur.m_map[`ENTRY`])
         diag.Error(err.Error(), h.m_name, h.m_cur.m_map[`ENTRY`])
     } else {
         diag.Trace(diag.BoldGreen(" ok-meta"), h.m_name)
@@ -374,7 +369,6 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
             
             e := h.check_mdd_meta_etx()
             if e != nil {
-//x                 diag.ErrorLine("check meta", kv.Line)
                 diag.ErrorLine(kv.Line)
             }
 

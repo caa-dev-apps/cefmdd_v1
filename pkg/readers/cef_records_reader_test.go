@@ -73,7 +73,6 @@ func shouldPass(i_about string,
  func TestReader_002(t *testing.T) {
  
      l_test_data := []string {
-         //x                     x
          "2011-10-21T14:24:16.648 437Z,  1,    0,  -8.38, -24.13, 112,  -1,   -1, 999.99, 999.99, 999, 999", 
      }
  
@@ -86,7 +85,6 @@ func shouldPass(i_about string,
 func TestReader_003(t *testing.T) {
 
     l_test_data := []string {
-        //x                     x
         " , 2011-10-21T14:24:16.648 437Z,  1,    0,  -8.38, -24.13, 112,  -1,   -1, 999.99, 999.99, 999, 999", 
     }
 

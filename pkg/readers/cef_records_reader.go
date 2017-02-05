@@ -16,9 +16,7 @@ const (
     TOK_2
     QSTR
     QSTR_2
-    //x COMMENT
     ERROR
-    //x EOL
 )
 
 // TOK        TOK    TOK  TOK     QTOK    TOK
@@ -47,8 +45,8 @@ func (s ROWState)state_diag(ch rune, s2 ROWState, tok string) {
 type CefRecord struct {
     Err error
     Tokens []string
-    //x Line string       // 
-    Line Line       // 
+    //- Line string       
+    Line Line       
 }
 
 func (row CefRecord) String() string {
@@ -197,7 +195,6 @@ func DataRecords(i_lines chan Line, i_len int, i_data_until string) chan CefReco
             if l_running_len == i_len {
                 output <- *l_rowTokens
                 l_running_len = 0
-                //x l_rowTokens = NewCefRecord()
             } else if  l_running_len > i_len {
                 l_rowTokens.Err = errors.New(fmt.Sprint(`Line reader - Too many tokens - expected : `, i_len, " actual : ", l_running_len))
                 output <- *l_rowTokens

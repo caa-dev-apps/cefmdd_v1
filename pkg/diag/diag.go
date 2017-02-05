@@ -17,8 +17,6 @@ func SetShowErrorLine(d bool) {
 }
 
 var (
-    //x info2 := color.New(color.FgWhite, color.BgCyan).SprintFunc()
-
     White       = color.New(color.FgWhite).SprintFunc()
     Magenta     = color.New(color.FgMagenta).SprintFunc()
     Red         = color.New(color.FgRed).SprintFunc()

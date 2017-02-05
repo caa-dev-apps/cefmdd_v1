@@ -1,9 +1,6 @@
 package header
 
 import (
-//x     "errors"
-//x     "strings"
-//x     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
@@ -75,7 +72,6 @@ func (h *CefHeaderData) Checks() (err error) {
     if h.Attr_Checks() != nil {
         diag.Error("Header ATTR Checks:", "error(s) ")
     } else {
-        //x diag.Trace(diag.BoldGreen("ok"), "Header ATTR Checks:")
         h.print_results("Header ATTR Checks:", nil)
     }
 
@@ -83,7 +79,6 @@ func (h *CefHeaderData) Checks() (err error) {
     if h.Meta_Checks() != nil {
         diag.Error("Header META Checks:", "error(s) ")
     } else {
-        //x diag.Trace(diag.BoldGreen("ok"), "Header META Checks:")
         h.print_results("Header META Checks:", nil)
     }
 
@@ -91,7 +86,6 @@ func (h *CefHeaderData) Checks() (err error) {
     if h.Var_Checks() != nil {
         diag.Error("Header VAR Checks:", "error(s) ")
     } else {
-        //x diag.Trace(diag.BoldGreen("ok"), "Header VAR Checks:")
         h.print_results("Header VAR Checks:", nil)
     }
     

@@ -71,17 +71,6 @@ func read_csv(i_path string) chan []string {
 	return output
 }
 
-//x ///////////////////////////////////////////////////////////////////////////////
-//x //
-//x 
-//x // TODO REMOVE WHEN MERGE TO REMOVE DUPLICATE
-//x 
-//x type readers.KeyVal struct {
-//x 	key string
-//x 	val []string
-//x     
-//x }
-
 ///////////////////////////////////////////////////////////////////////////////
 //
 
@@ -116,11 +105,9 @@ func (kw *KeywordData) is_range(lo, hi string) (bool) {
     return kw.lo == lo && kw.hi == hi
 }
 
-//x  &readers.KeyVal { key: k, val: []string{ v}}
 func (kw *KeywordData) test_cardinality(kv *readers.KeyVal) (err error) {
     
     l := len(kv.Val)
-    //x ls := string(l)
     ls := strconv.Itoa(l)
     switch {
         case kw.is_range("0", "1") :
@@ -163,12 +150,6 @@ func (kw *KeywordData) parse_value_type(kv *readers.KeyVal) (err error) {
         
         err = kw.kw_type_parser(v1)
         if err != nil {
-//x             fmt.Println(diag.BoldRed("TODO: Print readers.KeyVal"))
-//x             fmt.Println(v1)
-//x             fmt.Println(diag.BoldRed(kv))
-//x             fmt.Println(diag.BoldRed(kv.Line))
-//x             //x panic("+-=-=-=-=-=-=-=-=-= +-=-=-=-=-=-=-=-=-=+-=-=-=-=-=-=-=-=-=+-=-=-=-=-=-=-=-=-=")
-//x             //x log.Fatal(err)
             return
         }
     }
@@ -285,7 +266,6 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
             vs := strings.Split(v1, ">")
             es, p := enums[vs[0]]
 
-            //x fmt.Println(vs)
             if p == false {
                 return utils.On_enum_parser_error(i_keyword, v)
             }
@@ -298,7 +278,6 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
             l := len(vs) 
 
             if l==0 || l > 2 {
-                //x fmt.Println("@1",vs)
                 return utils.On_enum_parser_error(i_keyword, v)
             }
 
@@ -309,14 +288,12 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
 
             _, p := enums[vs[ix]]
             if p == false {
-                //x fmt.Println("@2",vs)
                 return utils.On_enum_parser_error(i_keyword, v)
             } 
 
             if l == 2 {
 
                 if e1 := utils.Numerical_parser(vs[0]); e1 != nil {
-                    //x fmt.Println("@3",vs[0])
                     return utils.On_enum_parser_error(i_keyword, v)
                 }
             }

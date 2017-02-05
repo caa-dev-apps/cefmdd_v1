@@ -1,9 +1,7 @@
 package header
 
 import (
-//x     "fmt"
     "errors"
-//x     "strings"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )

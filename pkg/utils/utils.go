@@ -151,19 +151,11 @@ func Numerical_parser(v string) (err error) {
 
 func String_parser(v string) (err error) { 
     
-//x     if len(v) == 0 {
-//x         return On_parser_error("String", v)
-//x     }
-    
     return 
 }
 
 func Text_parser(v string) (err error) { 
 
-//x     if len(v) == 0 {
-//x         return On_parser_error("String", v)
-//x     }
-    
     return 
 }
 

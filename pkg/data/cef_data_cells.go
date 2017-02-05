@@ -87,7 +87,6 @@ func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, e
 		// size = an array of numbers - as strings
 		sizes, p := vmap["SIZES"]
 		if p == false {
-			//x err = errors.New(`error SIZES missing from Variable ` + vn)
 			err = errors.New(fmt.Sprintf(`error SIZES missing from Variable %#v`, vn))
 			return
 		}

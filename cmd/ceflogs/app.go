@@ -1,7 +1,6 @@
 package main
 
 import (
-    //x "fmt"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
 )

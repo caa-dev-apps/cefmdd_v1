@@ -1,7 +1,6 @@
 package header
 
 import (
-//x     "fmt"
     "errors"
     "strings"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
@@ -120,8 +119,6 @@ func (h *CefHeaderData) check_meta_FILE_TYPE() (err error) {
         return errors.New("LOGICAL_FILE_ID length = 0")
     } 
     
-    
-    //x ix := strings.FirstIndex(v0_filename, ".")
     ix := strings.Index(v0_filename, ".")
     if ix < 0 {
         return errors.New("FILE_NAME does have .cef or .cef.gz suffix")
@@ -217,8 +214,6 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
         return
     }
     
-    //x ix := strings.LastIndex(v0_filename, ".")
-    //x ix := strings.FirstIndex(v0_filename, ".")
     ix := strings.Index(v0_filename, ".")
     if ix < 0 {
         return errors.New("FILE_NAME does have .cef or .cef.gz suffix")
@@ -276,18 +271,4 @@ func (h *CefHeaderData) Meta_Checks() (err error) {
     
     return
 }
-
-//x h.dumpMeta()
-
-
-
-
-
-
-
-
-
-
-
-
 
