@@ -5,6 +5,7 @@ import (
     "regexp"
     "errors"
     "strconv"
+    "strings"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
 )
@@ -168,6 +169,18 @@ func (h *CefHeaderData) Numeric_Or_Variable(k string, a1 Attrs) (err error) {
         if utils.Is_Numerical(v0) == true {
             diag.Trace(diag.BoldGreen(" ok:"), k, v0)
             return
+        }
+
+        v0_dataset, er1 := h.getMetaEntryFirstQuoted("DATASET_ID") 
+        if er1 == nil {
+            v0_dataset = utils.Trim_quoted_string(v0_dataset)
+
+            diag.Trace(diag.BoldBlue("DATASET_ID"), v0_dataset, v0)
+            if strings.HasSuffix(v0, v0_dataset) == false {
+                // different dataset
+                diag.Trace(diag.BoldGreen(" ok: (ALT DATASET_ID)"), k, v0)
+                return
+            }
         }
 
         // check if it's a variable
