@@ -38,6 +38,24 @@ func (h *CefHeaderData) getMetaEntryFirstQuotedTrimed(key string) (v0 string, er
     return
 }
 
+
+// can be either quoted or unqotede - return unquoted
+func (h *CefHeaderData) getMetaEntryFirstTrimed(key string) (v0 string, err error) {
+
+    v, err := h.getMetaEntry(key);
+    if err != nil {
+        return
+    }    
+
+    v0 = utils.Trim_quoted_string(v[0])
+    if len(v0) == 0 {
+        err = errors.New("Meta:ENTRY: " + key + " length = 0")
+    } 
+    
+    return
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 
@@ -194,7 +212,8 @@ func (h *CefHeaderData) check_meta_OBSERVATORY() (err error) {
 //- Version in filename /logical_file id must match VERSION_NUMBER
 func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
     
-    v0_version_number, err := h.getMetaEntryFirstQuotedTrimed("VERSION_NUMBER")
+//x v0_version_number, err := h.getMetaEntryFirstQuotedTrimed("VERSION_NUMBER")
+    v0_version_number, err := h.getMetaEntryFirstTrimed("VERSION_NUMBER")
     if err != nil {
         return
     }    

@@ -65,6 +65,7 @@ func NewCefRecord(l Line) (*CefRecord) {
 }
 
 func DataRecords(i_lines chan Line, i_len int, i_data_until string) chan CefRecord {
+    //x diag.Info("LINE-LENGTH = ", i_len)
     output := make(chan CefRecord, 16)
     l_running_len := 0
 
@@ -85,8 +86,12 @@ func DataRecords(i_lines chan Line, i_len int, i_data_until string) chan CefReco
                 case ch == '!':
                     return
                 case ch == ',':
-                    in_err = errors.New(`TOO MANY COMMAS -> ` + string(ch))
-                    return
+//x                     in_err = errors.New(`TOO MANY COMMAS -> ` + string(ch))
+//x                     return
+                    if(l_running_len == 0) {
+                        in_err = errors.New(`TOO MANY COMMAS -> ` + string(ch))
+                        return
+                    }
                 case unicode.IsSpace(ch):   // tab, space \n \r
                     // No Change
                 case ch == '"':

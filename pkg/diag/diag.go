@@ -48,20 +48,23 @@ func Trace(tag string, v ...interface{}) {
     }
 }
 
+func Todo(tag string, v ...interface{}) {
+    if s_trace == true {
+        fmt.Print(BoldMagenta("Todo: ", tag), " ")
+        fmt.Println(v...)
+    }
+}
 
 func Info(tag string, v ...interface{}) {
     fmt.Print(Yellow(tag), " ")
     fmt.Println(v...)
 }
 
-func Todo(tag string, v ...interface{}) {
-    fmt.Print(BoldMagenta("Todo: ", tag), " ")
-    fmt.Println(v...)
-}
-
 func Warn(tag string, v ...interface{}) {
-    fmt.Print(Magenta("Warn: ", tag), " ")
-    fmt.Println(v...)
+    if s_trace == true {
+        fmt.Print(Magenta("Warn: ", tag), " ")
+        fmt.Println(v...)
+    }
 }
 
 func Error(tag string, v ...interface{}) {
