@@ -208,6 +208,8 @@ func EachKeyVal(i_lines chan Line) chan KeyVal {
 
 			case B4_EOL:
 				switch {
+				case ch == '\\':
+					state = CONTINUE_NEXT_LINE
 				case unicode.IsSpace(ch):
 					// No Change
 				case ch == ',':
@@ -218,7 +220,26 @@ func EachKeyVal(i_lines chan Line) chan KeyVal {
 					in_err = errors.New("INVALID B4_EOL char -> " + string(ch))
 					return
 				}
+
+
+			case CONTINUE_NEXT_LINE:
+				switch {
+				case unicode.IsSpace(ch):
+					// No Change
+				case ch == ',':
+					state = B4_NEXT
+				case ch == '!':
+					break skip_comment
+				default:
+					in_err = errors.New("INVALID CONTINUE_NEXT_LINE char -> " + string(ch))
+					return
+				}
 			}
+
+
+
+
+
 
 			//debug state_diag(ch , state_0, state)
 		}
@@ -238,8 +259,6 @@ func EachKeyVal(i_lines chan Line) chan KeyVal {
         
 		for l_line := range i_lines {
 
-
-
 			err := parse_line(l_line.line)
 			if err != nil {
                 diag.Error("Tag->",    l_line.tag)
@@ -249,7 +268,7 @@ func EachKeyVal(i_lines chan Line) chan KeyVal {
 				break
 			}
 
-			if state != B4_NEXT {
+			if (state != B4_NEXT) && (state != CONTINUE_NEXT_LINE) {
 				if len(key) > 0 {
 					output <- KeyVal{key, val, l_line}
 				}

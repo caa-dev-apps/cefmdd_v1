@@ -6,6 +6,7 @@ import (
     "strconv"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/header"
  	"github.com/caa-dev-apps/cefmdd_v1/pkg/utils"    
+//x 	"github.com/caa-dev-apps/cefmdd_v1/pkg/diag"    
 )
 
 type RecordCellType struct {
@@ -68,6 +69,8 @@ func sizesProduct(sizes []string) (product int64, err error) {
 func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, err error) {
 	vs := i_header.Vars().List()
 
+//x	var debug_sz_tot int64 
+
 	c_ix := 0
 	for ix, v := range vs {
 
@@ -97,6 +100,9 @@ func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, e
 			return
 		}
 
+//x		diag.Info("SIZES", sp, sizes)
+//x		debug_sz_tot += sp
+
 		vt, p := vmap["VALUE_TYPE"]
 		if p == false {
 			err = errors.New(fmt.Sprintf(`error VALUE_TYPE missing from Variable %#v`, vn))
@@ -122,6 +128,9 @@ func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, e
 			
 			c_ix++
         }
+
+//x		diag.Info("SIZES-TOTAL", debug_sz_tot)
+
     }
 
 	amap := i_header.Attrs().Map()

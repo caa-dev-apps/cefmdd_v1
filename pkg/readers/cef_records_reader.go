@@ -86,8 +86,6 @@ func DataRecords(i_lines chan Line, i_len int, i_data_until string) chan CefReco
                 case ch == '!':
                     return
                 case ch == ',':
-//x                     in_err = errors.New(`TOO MANY COMMAS -> ` + string(ch))
-//x                     return
                     if(l_running_len == 0) {
                         in_err = errors.New(`TOO MANY COMMAS -> ` + string(ch))
                         return
