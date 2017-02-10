@@ -64,10 +64,11 @@ func NewCefRecord(l Line) (*CefRecord) {
     }
 }
 
-func DataRecords(i_lines chan Line, i_len int, i_data_until string) chan CefRecord {
+func DataRecords(i_lines chan Line, i_len int, i_data_until, i_end_of_line_marker string) chan CefRecord {
     //x diag.Info("LINE-LENGTH = ", i_len)
     output := make(chan CefRecord, 16)
     l_running_len := 0
+    l_check_eolm := len(i_end_of_line_marker) == 1
 
     parse_line_v2 := func(i_line string) (r_tokens []string, in_err error) {
         
@@ -99,7 +100,6 @@ func DataRecords(i_lines chan Line, i_len int, i_data_until string) chan CefReco
                     l_tok = string(ch)
                     state = TOK
                 }
-
             case TOK:                   
                 switch {
                 case ch == '!':
@@ -109,6 +109,18 @@ func DataRecords(i_lines chan Line, i_len int, i_data_until string) chan CefReco
                     r_tokens = append(r_tokens, l_tok)
                     l_tok = ""
                     state = STX
+//0             case ch == '$':
+                case l_check_eolm && ch == rune(i_end_of_line_marker[0]):
+                    // possible 2 more cells to add .. hence -2
+                    if (len(r_tokens) + l_running_len) == (i_len - 2) {
+                        r_tokens = append(r_tokens, l_tok)
+                        l_tok = string(ch)
+                        state = TOK
+                    } else {
+                        in_err = errors.New(`LINE READER TOK, EOL MARKER out of position, ` + string(ch))
+                        return
+                    }
+
                 case unicode.IsSpace(ch):   // tab, space \n \r
                     r_tokens = append(r_tokens, l_tok)
                     l_tok = ""

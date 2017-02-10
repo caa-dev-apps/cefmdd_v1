@@ -46,6 +46,7 @@ func ReadData(i_header header.CefHeaderData,
 			  i_lines chan readers.Line) (err error) {
 
 	var l_data_until string 
+	var l_end_of_record_marker string 
 
     du, p := i_header.Attrs().Map()["DATA_UNTIL"];
     if p == true {
@@ -53,6 +54,17 @@ func ReadData(i_header header.CefHeaderData,
     		l_data_until = du[0]
     	}
     }
+
+	eorms, p := i_header.Attrs().Map()["END_OF_RECORD_MARKER"]
+	if p == true {
+		if len(eorms) == 1 {
+			l_end_of_record_marker = utils.Trim_quoted_string(eorms[0])
+		} else {
+			diag.Error("Invalid END_OF_RECORD_MARKER", eorms)
+			return
+		}
+	}
+
 
 	l_cellTypes, err := data.RecordCellTypes(i_header)
 	if err != nil {
@@ -66,7 +78,7 @@ func ReadData(i_header header.CefHeaderData,
 
 	l_max_records := utils.GetCefArgs().GetMaxRecords()
 	r_ix := 0
-	for l_record := range readers.DataRecords(i_lines, len(l_cellTypes), l_data_until)  {
+	for l_record := range readers.DataRecords(i_lines, len(l_cellTypes), l_data_until, l_end_of_record_marker)  {
 
 		if l_record.Err != nil {
 			err = l_record.Err
