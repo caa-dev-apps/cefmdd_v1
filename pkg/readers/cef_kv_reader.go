@@ -269,6 +269,9 @@ func EachKeyVal(i_lines chan Line) chan KeyVal {
 			}
 
 			if (state != B4_NEXT) && (state != CONTINUE_NEXT_LINE) {
+				// 2017-02-11 keys are case insensitive + meta names (handle on START_META)
+				key = strings.ToUpper(key)
+
 				if len(key) > 0 {
 					output <- KeyVal{key, val, l_line}
 				}

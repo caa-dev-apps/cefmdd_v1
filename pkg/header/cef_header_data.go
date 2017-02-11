@@ -226,7 +226,7 @@ func (h *CefHeaderData) getAttr(k string) (v []string, err error) {
     
     v, present := h.m_attrs.m_map[k]
     if present == false {
-        err = errors.New("Error: keyword not presnt " + k)
+        err = errors.New("Error: keyword not present " + k)
     } 
     
     return
@@ -237,11 +237,11 @@ func (h *CefHeaderData) getMeta(k string) (entry, value_type []string, err error
     
     v, present := h.m_meta.m_map[k]
     if present == false {
-        err = errors.New("Error: meta not presnt " + k)
+        err = errors.New("Error: meta not present " + k)
     } else {
         entry, present = v.m_map[`ENTRY`]
         if present == false {
-            err = errors.New("Error: meta:ENTRY not presnt " + k)
+            err = errors.New("Error: meta:ENTRY not present " + k)
         } else {
         }
         
@@ -279,9 +279,9 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
     l_kv := kv
 
     switch {
-        case kv.Key == "ENTRY":                    diag.Trace(diag.BoldBlue(" delay-check-", "ENTRY",                  " ",  kv.Val));   return     
-        case kv.Key == "FILLVAL":                  diag.Trace(diag.BoldBlue(" delay-check-", "FILLVAL",                " ",  kv.Val));   return        // multiple types - depends on var type      
-        case kv.Key == "SIZES":                    diag.Trace(diag.BoldBlue(" delay-check-", "SIZES",                  " ",  kv.Val));   return        // type is FORMAT can be 1 or 1,2 for e.g.       
+        case kv.Key == "ENTRY":                    diag.Trace(diag.BoldBlue(" ENTRY",                  " ",  kv.Val));   return     
+        case kv.Key == "FILLVAL":                  diag.Trace(diag.BoldBlue(" FILLVAL",                " ",  kv.Val));   return        // multiple types - depends on var type      
+        case kv.Key == "SIZES":                    diag.Trace(diag.BoldBlue(" SIZES",                  " ",  kv.Val));   return        // type is FORMAT can be 1 or 1,2 for e.g.       
         case kv.Key == "DELTA_MINUS":           /* diag.Todo("Check variable pointer",       "DELTA_MINUS",            " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
         case kv.Key == "DELTA_PLUS":            /* diag.Todo("Check variable pointer",       "DELTA_PLUS",             " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
         case kv.Key == "ERROR_MINUS":           /* diag.Todo("Check variable pointer",       "ERROR_MINUS",            " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
@@ -289,7 +289,6 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
         case kv.Key == "QUALITY":               /* diag.Todo("Check variable pointer",       "QUALITY",                " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
         case kv.Key == "MIN_TIME_RESOLUTION":   /* diag.Todo("Check variable pointer",       "MIN_TIME_RESOLUTION",    " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
         case kv.Key == "MAX_TIME_RESOLUTION":   /* diag.Todo("Check variable pointer",       "MAX_TIME_RESOLUTION",    " ",  kv.Val); */ return        // Float (Numerical -> can point to a VARIABLE)
-
 
         case REGX_REPRESENTATION_i.MatchString(kv.Key):  l_kv = kv.NewSwitchKey(`REPRESENTATION_i`)
         case REGX_LABEL_i.MatchString(kv.Key):           l_kv = kv.NewSwitchKey(`LABEL_i`)
@@ -333,7 +332,9 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 		switch h.m_state {
 		case ATTR:
             h.m_state = META
-            h.m_name = kv.Val[0]
+            //x h.m_name = kv.Val[0]
+            //i 2017-02-11 h.m_name = kv.Val[0]
+            h.m_name = strings.ToUpper(kv.Val[0])
             h.m_cur = NewAttrs()
             diag.Trace(diag.BoldCyan("start-meta"), h.m_name)
             
@@ -361,7 +362,8 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 
 		switch h.m_state {
 		case META:
-			if h.m_name != kv.Val[0] {
+//x 			if h.m_name != kv.Val[0] {
+            if strings.EqualFold(h.m_name, kv.Val[0]) == false {
 				return errors.New("END_META: invalid Name")
 			}
 

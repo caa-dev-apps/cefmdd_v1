@@ -278,7 +278,9 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
             l := len(vs) 
 
             if l==0 || l > 2 {
-                return utils.On_enum_parser_error(i_keyword, v)
+                //2017-02-11 return utils.On_enum_parser_error(i_keyword, v)
+                diag.Warn("SI_CONVERSION: ", fmt.Sprintf("%v",v))
+                return
             }
 
             ix := 0
@@ -288,13 +290,17 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
 
             _, p := enums[vs[ix]]
             if p == false {
-                return utils.On_enum_parser_error(i_keyword, v)
+                //2017-02-11 return utils.On_enum_parser_error(i_keyword, v)
+                diag.Warn("SI_CONVERSION: ", fmt.Sprintf("%v",v))
+                return
             } 
 
             if l == 2 {
 
                 if e1 := utils.Numerical_parser(vs[0]); e1 != nil {
-                    return utils.On_enum_parser_error(i_keyword, v)
+                    //2017-02-11 return utils.On_enum_parser_error(i_keyword, v)
+                    diag.Warn("SI_CONVERSION: ", fmt.Sprintf("%v",v))
+                    return
                 }
             }
 
