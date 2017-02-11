@@ -29,42 +29,43 @@ func(ct RecordCellType) String() (s string) {
 						ct.Cell_ix)
 }
 
-func valueTypeParserFunc(vt string) (f func(string) (error), err error) {
+//x func valueTypeParserFunc(vt string) (f func(string) (error), err error) {
+//x 
+//x 	switch vt {
+//x 		case "CHAR" : 				f = utils.String_parser
+//x 		case "INT" :				f = utils.Integer_parser
+//x 		case "FLOAT" :				f = utils.Numerical_parser
+//x 		case "DOUBLE" :				f = utils.Numerical_parser
+//x 		case "ISO_TIME" :			f = utils.Iso_time_parser
+//x 		case "ISO_TIME_RANGE" :		f = utils.Iso_time_range_parser
+//x 		default :
+//x 			err = errors.New("Unknown VALUE_TYPE : " + vt)
+//x 	}
+//x 
+//x 	return
+//x }
 
-	switch vt {
-		case "CHAR" : 				f = utils.String_parser
-		case "INT" :				f = utils.Integer_parser
-		case "FLOAT" :				f = utils.Numerical_parser
-		case "ISO_TIME" :			f = utils.Iso_time_parser
-		case "ISO_TIME_RANGE" :		f = utils.Iso_time_range_parser
-		default :
-			err = errors.New("Unknown VALUE_TYPE : " + vt)
-	}
-
-	return
-}
-
-func sizesProduct(sizes []string) (product int64, err error) {
-
-	for i, v := range sizes {
-	    n, err1 := strconv.ParseInt(v, 10, 64)
-	    if err1 != nil {
-	        return 0, err1
-	    }
-
-	    if i == 0 {
-	    	product = n 
-	    } else {
-	    	product *= n
-	    }
-	}
-
-	if product == 0 {
-    	err = errors.New(fmt.Sprintf(`SIZES malformed %#v`, sizes))
-	}
-    
-    return
-}
+//x func SizesProduct(sizes []string) (product int64, err error) {
+//x 
+//x 	for i, v := range sizes {
+//x 	    n, err1 := strconv.ParseInt(v, 10, 64)
+//x 	    if err1 != nil {
+//x 	        return 0, err1
+//x 	    }
+//x 
+//x 	    if i == 0 {
+//x 	    	product = n 
+//x 	    } else {
+//x 	    	product *= n
+//x 	    }
+//x 	}
+//x 
+//x 	if product == 0 {
+//x     	err = errors.New(fmt.Sprintf(`SIZES malformed %#v`, sizes))
+//x 	}
+//x     
+//x     return
+//x }
 
 func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, err error) {
 	vs := i_header.Vars().List()
@@ -94,7 +95,7 @@ func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, e
 			return
 		}
 
-		sp, err1 := sizesProduct(sizes)  
+		sp, err1 := utils.SizesProduct(sizes)  
 		if err1 != nil {
 			err = errors.New(fmt.Sprintf(`error SIZES malformed in Variable %#v`, vn))
 			return
@@ -105,13 +106,13 @@ func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, e
 
 		vt, p := vmap["VALUE_TYPE"]
 		if p == false {
-			err = errors.New(fmt.Sprintf(`error VALUE_TYPE missing from Variable %#v`, vn))
+			err = errors.New(fmt.Sprintf(`error VALUE_TYPE missing from Variable %v`, vn))
 			return
 		}
 
-		f, err2 := valueTypeParserFunc(vt[0])
+		f, err2 := utils.ValueTypeParserFunc(vt[0])
 		if err2 != nil {
-			err = errors.New(fmt.Sprintf(`error VALUE_TYPE unknown type : %#v  -  variable : %#v`, vt, vn))
+			err = errors.New(fmt.Sprintf(`error VALUE_TYPE unknown type : %v  -  variable : %v`, vt, vn))
 			return
 		} 
 

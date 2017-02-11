@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-    diag.Info(diag.Yellow("cefmdd v1.0.10, (11 Feb 2017)"))
+    diag.Info(diag.Yellow("cefmdd v1.0.11, (11 Feb 2017)"))
 
 	s_args, err := utils.NewCefArgs()
 	if err != nil {

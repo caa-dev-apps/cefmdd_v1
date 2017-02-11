@@ -54,6 +54,31 @@ func FileExists(name string) (isReq bool, err error) {
 ///////////////////////////////////////////////////////////////////////////////
 //
 
+func SizesProduct(sizes []string) (product int64, err error) {
+
+    for i, v := range sizes {
+        n, err1 := strconv.ParseInt(v, 10, 64)
+        if err1 != nil {
+            return 0, err1
+        }
+
+        if i == 0 {
+            product = n 
+        } else {
+            product *= n
+        }
+    }
+
+    if product == 0 {
+        err = errors.New(fmt.Sprintf(`SIZES malformed %#v`, sizes))
+    }
+    
+    return
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//
+
 func Is_quoted_string(s string) (r bool) {
 
     l := len(s)
@@ -178,5 +203,24 @@ func String_matcher_test(v0 string) (f func(v1 string) (err error)) {
 func Is_Numerical(v string) (bool) { 
 
     return Numerical_parser(v) == nil
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//
+
+func ValueTypeParserFunc(vt string) (f func(string) (error), err error) {
+
+    switch vt {
+        case "CHAR" :               f = String_parser
+        case "INT" :                f = Integer_parser
+        case "FLOAT" :              f = Numerical_parser
+        case "DOUBLE" :             f = Numerical_parser
+        case "ISO_TIME" :           f = Iso_time_parser
+        case "ISO_TIME_RANGE" :     f = Iso_time_range_parser
+        default :
+            err = errors.New("Unknown VALUE_TYPE : " + vt)
+    }
+
+    return
 }
 

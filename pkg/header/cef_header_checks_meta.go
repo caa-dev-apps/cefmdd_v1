@@ -235,16 +235,16 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
     
     ix := strings.Index(v0_filename, ".")
     if ix < 0 {
-        return errors.New("FILE_NAME does have .cef or .cef.gz suffix")
+        return errors.New("FILE_NAME does not have .cef or .cef.gz suffix")
     }        
 
     fn := v0_filename[0:ix]
     if strings.HasSuffix(fn, v0_version_number) == false {
-        return errors.New("FILE_NAME does have suffix (" + v0_version_number + ")")
+        return errors.New("FILE_NAME does not have suffix (" + v0_version_number + ")")
     }
     
     if strings.HasSuffix(v0_logical, v0_version_number) == false {
-        return errors.New("LOGICAL_FILE_ID does have suffix (" + v0_version_number + ")")
+        return errors.New("LOGICAL_FILE_ID does not have suffix (" + v0_version_number + ")")
     }
     
     return

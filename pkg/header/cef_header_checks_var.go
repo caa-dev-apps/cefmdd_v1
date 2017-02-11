@@ -82,6 +82,7 @@ func init() {
     regex_depend_n = regexp.MustCompile("^DEPEND_([0-9]+)$")
 }
 
+
 func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
     // all vars
     a1_map := a1.Map()
@@ -218,6 +219,58 @@ func (h *CefHeaderData) NumerIc_or_Variable_Checks(a1 Attrs) (err error) {
     return
 }
 
+func (h *CefHeaderData) Data_Sizes_and_Variable_Type_Checks(a1 Attrs) (err error) {
+    // all vars
+    a1_map := a1.Map()
+    //x vars_map := h.Vars().Map()
+
+    var_name := a1_map["variable_name"]
+    //- diag.Info("n:", var_name)
+
+    ds, p1 := a1_map["DATA"]
+    if p1 == false {
+        // nothing to see here - let's move on
+        return 
+    }
+
+    sizes, p1 := a1_map["SIZES"]
+    if p1 == false {
+        return errors.New(fmt.Sprintf("Missing SIZES: variable (%s) ", var_name))
+    }
+
+    sp, err1 := utils.SizesProduct(sizes)  
+    if err1 != nil {
+        err = errors.New(fmt.Sprintf(`SIZES malformed in Variable (%s)`, var_name))
+        return
+    }
+
+    if len(ds) != int(sp) {
+        err = errors.New(fmt.Sprintf(`length (%d) and SIZES (%v) mismatch -variable (%s)`, len(ds), sizes, var_name))
+        return
+    }
+
+    vt1, p1 := a1_map["VALUE_TYPE"]
+    if p1 == false {
+        return errors.New(fmt.Sprintf("Missing VALUE_TYPE: variable (%s) ", var_name))
+    }
+
+    f_check, err2 := utils.ValueTypeParserFunc(vt1[0])
+    if err2 != nil {
+        err = errors.New(fmt.Sprintf(`unknown type VALUE_TYPE: %v -  variable (%s)`, vt1[0], var_name))
+        return
+    } 
+
+    for _, d := range ds {
+        if f_check(d) != nil {
+            return errors.New(fmt.Sprintf(`mismatch VALUE TYPE (%s) for DATA in variable (%s) %v`, vt1[0], var_name, ds))
+        }
+    }
+
+    return
+}
+
+
+
 func (h *CefHeaderData) Var_Checks() (err error) {
     err_count := 0 
     var_list := h.Vars().List()
@@ -237,6 +290,14 @@ func (h *CefHeaderData) Var_Checks() (err error) {
             diag.Error("Plus/Minus/Quality/etc Checks", err)
             err_count++
         }
+
+
+        err = h.Data_Sizes_and_Variable_Type_Checks(v)
+        if err != nil {
+            diag.Error("DATA", err)
+            err_count++
+        }
+
     }    
 
     if err_count > 0 {

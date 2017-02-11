@@ -6,10 +6,15 @@ import (
 )
 
 var s_trace bool 
+var s_warn bool 
 var s_show_error_line bool
 
 func SetTrace(d bool) {
     s_trace = d
+}
+
+func SetWarn(d bool) {
+    s_warn = d
 }
 
 func SetShowErrorLine(d bool) {
@@ -49,7 +54,7 @@ func Trace(tag string, v ...interface{}) {
 }
 
 func Todo(tag string, v ...interface{}) {
-    if s_trace == true {
+    if s_trace == true || s_warn == true {
         fmt.Print(Magenta("Todo: ", tag), " ")
         fmt.Println(v...)
     }
@@ -61,7 +66,7 @@ func Info(tag string, v ...interface{}) {
 }
 
 func Warn(tag string, v ...interface{}) {
-    if s_trace == true {
+    if s_trace == true || s_warn == true {
         fmt.Print(BoldMagenta("Warn: ", tag), " ")
         fmt.Println(v...)
     }
