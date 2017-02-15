@@ -3,6 +3,7 @@ package header
 import (
     "errors"
     "strings"
+    "time"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
@@ -156,6 +157,18 @@ func (h *CefHeaderData) check_meta_FILE_TYPE() (err error) {
         return errors.New("FILE_NAME does not match LOGICAL_FILE_ID + FILE_TYPE  || " + v0_filename  + " || " + fn)
     }
     
+    return
+}
+
+func (h *CefHeaderData) Get_FILE_TIME_SPAN() (t0, t1 time.Time, err error) {
+    // entries value-type, err
+    es, _, err := h.getMeta(`FILE_TIME_SPAN`)
+    if err != nil {
+        return
+    }
+
+    t0, t1, err = utils.Get_time_range(es[0])
+
     return
 }
 

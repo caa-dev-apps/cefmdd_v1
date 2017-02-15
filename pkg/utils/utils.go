@@ -150,18 +150,72 @@ func Iso_time_parser(v string) (err error) {
     return 
 }
 
-func Iso_time_range_parser(v string) (err error) { 
-    // "2011-10-09T00:00:00Z/2011-10-10T00:00:00Z"
-    
+//x func Iso_time_range_parser(v string) (err error) { 
+//x     // "2011-10-09T00:00:00Z/2011-10-10T00:00:00Z"
+//x     
+//x     ts := strings.Split(v, "/")
+//x     if len(ts) == 2 {
+//x         if err = Iso_time_parser(ts[0]); err == nil {
+//x             if err = Iso_time_parser(ts[1]); err == nil {
+//x                 return 
+//x             }
+//x         }
+//x     }
+//x     
+//x     return On_parser_error("ISO Time Range", v)
+//x }
+
+func Get_time_range(v string) (t0, t1 time.Time, err error) { 
+
     ts := strings.Split(v, "/")
     if len(ts) == 2 {
-        if err = Iso_time_parser(ts[0]); err == nil {
-            if err = Iso_time_parser(ts[1]); err == nil {
-                return 
+        t0, err = time.Parse(time.RFC3339Nano, ts[0])
+        if err == nil {
+            t1, err = time.Parse(time.RFC3339Nano, ts[1])
+            if err == nil {
+                if t0.Before(t1) {
+                    return
+                }
             }
         }
     }
+
+    err = On_parser_error("ISO Time Range", v)
+
+    return 
+}
+
+
+//x func Iso_time_range_parser(v string) (err error) { 
+//x     // "2011-10-09T00:00:00Z/2011-10-10T00:00:00Z"
+//x     
+//x     ts := strings.Split(v, "/")
+//x     if len(ts) == 2 {
+//x         t0, e0 := time.Parse(time.RFC3339Nano, ts[0])
+//x         if e0 == nil {
+//x             t1, e1 := time.Parse(time.RFC3339Nano, ts[1])
+//x             if e1 == nil {
+//x                 if t0.Before(t1) {
+//x                     return
+//x                 }
+//x             }
+//x         }
+//x     }
+//x     
+//x     return On_parser_error("ISO Time Range", v)
+//x }
+
+func Iso_time_range_parser(v string) (err error) { 
+    // "2011-10-09T00:00:00Z/2011-10-10T00:00:00Z"
+
+    t0, t1, err := Get_time_range(v)
     
+    if err == nil {
+        if t0.Before(t1) {
+            return
+        }        
+    }
+
     return On_parser_error("ISO Time Range", v)
 }
 

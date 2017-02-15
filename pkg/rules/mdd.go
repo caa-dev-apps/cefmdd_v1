@@ -273,6 +273,17 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
             if (len(vs) > 1 && es.description != vs[1]) {
                 return utils.On_enum_description_error(i_keyword, v)
             } 
+        } else if i_keyword == "DATA_TYPE" {
+            vs := strings.Split(v1, ">")
+            _, p := enums[vs[0]]
+
+            if p == false {
+                return utils.On_enum_parser_error(i_keyword, v)
+            }
+
+            //x if (len(vs) > 1 && es.description != vs[1]) {
+            //x     return utils.On_enum_description_error(i_keyword, v)
+            //x } 
         } else if i_keyword == "SI_CONVERSION" {
             vs := strings.Split(v1, ">")
             l := len(vs) 
@@ -303,7 +314,8 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
                     return
                 }
             }
-
+        } else if strings.EqualFold(v, "MULTIPLE") && (i_keyword == "EXPERIMENT" || i_keyword == "INSTRUMENT_NAME" || i_keyword == "OBSERVATORY") {
+            // pass
         } else {
             _, p := enums[v1]
 

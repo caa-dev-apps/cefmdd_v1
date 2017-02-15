@@ -103,14 +103,19 @@ func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
                 a2, p0 := vars_map[v[0]]
                 if p0 == false {
                     //- diag.Error("DEPEND_TEST: ref var not found", k, v[0])
-                    return errors.New(fmt.Sprintf("DEPEND_TEST: ref var not found %v %v ", k, v[0]))
+                    note := ""
+                    if len(v[0]) > 0 && v[0][0] == '"' {
+                        note = "Probably because it's in quotes!"
+                    }
+
+                    return errors.New(fmt.Sprintf("DEPEND_TEST: referenced variable not found %v %v %s", k, v[0], note))
                 } else if i > 0 {
 
 
-                    vt1, p1 := a1_map["VALUE_TYPE"]
-                    if p1 == false {
-                        return errors.New(fmt.Sprintf("Missing VALUE_TYPE: variable (%s) ", var_name))
-                    }
+                    //x vt1, p1 := a1_map["VALUE_TYPE"]
+                    //x if p1 == false {
+                    //x     return errors.New(fmt.Sprintf("Missing VALUE_TYPE: variable (%s) ", var_name))
+                    //x }
 
                     sz1, p1 := a1_map["SIZES"]
                     if p1 == false {
@@ -124,10 +129,10 @@ func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
 
                     a2_map:= a2.Map()
 
-                    vt2, p2 := a2_map["VALUE_TYPE"]
-                    if p2 == false {
-                        return errors.New(fmt.Sprintf("Missing VALUE_TYPE for DEPEND variable: %v %v", k, v))
-                    }
+                    //x vt2, p2 := a2_map["VALUE_TYPE"]
+                    //x if p2 == false {
+                    //x     return errors.New(fmt.Sprintf("Missing VALUE_TYPE for DEPEND variable: %v %v", k, v))
+                    //x }
 
 
                     sz2, p2 := a2_map["SIZES"]
@@ -136,10 +141,10 @@ func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
                     }
 
 
-                    // value_type checks
-                    if vt1[0] != vt2[0] {
-                        return errors.New(fmt.Sprintf("Missmatch VALUE_TYPE: %v %v %v %v", vt1, vt2, k, v))
-                    }
+                    //x // value_type checks
+                    //x if vt1[0] != vt2[0] {
+                    //x     return errors.New(fmt.Sprintf("Missmatch VALUE_TYPE: %v %v %v %v", vt1, vt2, k, v))
+                    //x }
 
                     if sz1[i-1] != sz2[0] {
                         return errors.New(fmt.Sprintf("Missmatch SIZES for DEPEND Variable, index(%d) : %v %v %v %v", i-1, sz1, sz2, k, v))

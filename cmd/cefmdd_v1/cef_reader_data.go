@@ -48,6 +48,14 @@ func ReadData(i_header header.CefHeaderData,
 	var l_data_until string 
 	var l_end_of_record_marker string 
 
+
+	ts0, ts1, err := i_header.Get_FILE_TIME_SPAN()
+	if err != nil {
+		diag.Error("Invalid FILE_TIME_SPAN", "")
+		return
+	}
+
+
     du, p := i_header.Attrs().Map()["DATA_UNTIL"];
     if p == true {
     	if du[0] != "EOFx" {
@@ -109,6 +117,12 @@ func ReadData(i_header header.CefHeaderData,
 
 			if(t1.Sub(t0) < 0) {
 				return errors.New(fmt.Sprintf("Error in Record Date/Time stamp predating previous record value t0(%#v) t1(%#v) %#v", t0, t1, l_record.Line))
+			}
+
+			// FILE_TIME_SPAN checks
+			//x Before, After, Equal Sub
+			if t1.Before(ts0) || t1.After(ts1) {
+				return errors.New(fmt.Sprintf("Error in Record Date/Time stamp: Out of Range of FILE_TIME_SPAN t(%v) span(%v %v) %v", t1, ts0, ts1, l_record.Line))
 			}
 
 			t0 = t1
