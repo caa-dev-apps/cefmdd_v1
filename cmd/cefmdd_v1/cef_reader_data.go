@@ -90,7 +90,7 @@ func ReadData(i_header header.CefHeaderData,
 
 		if l_record.Err != nil {
 			err = l_record.Err
-			diag.Errorf("Reading data record ", "%#v", l_record.Line)
+			diag.Errorf("Reading data record ", "%v", l_record.Line)
 			return
 		}
 
