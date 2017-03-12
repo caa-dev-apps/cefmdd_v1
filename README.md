@@ -46,16 +46,3 @@ set TEST_FILE_4=C:/_CEF_CEH_EXAMPLES_2013_VALIDATOR_/CEF/EDI/C3_CP_EDI_QZC__2011
 cefmdd_v1 -i %INC_0% -i %INC_1% -f %TEST_FILE_4% 
 ```
 
-
-        
-# Misc Notes
-
-```
-    go test -run name-of-test-pattern  
-    GOOS=linux GOARCH=386 go build
-    set GOOS=linux&&set GOARCH=amd64&& go build -v .
-    set GOOS=linux&&set GOARCH=amd64&& go build -v a1.go
-    set GOOS=linux&&set GOARCH=386&& go build -v .
-
-```
-

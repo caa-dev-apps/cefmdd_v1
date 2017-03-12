@@ -23,3 +23,19 @@
         diag.Printf("Using build: %s\n", Build)
     }
 ```
+
+
+
+
+        
+# Misc Notes
+
+```
+    go test -run name-of-test-pattern  
+    GOOS=linux GOARCH=386 go build
+    set GOOS=linux&&set GOARCH=amd64&& go build -v .
+    set GOOS=linux&&set GOARCH=amd64&& go build -v a1.go
+    set GOOS=linux&&set GOARCH=386&& go build -v .
+
+```
+
