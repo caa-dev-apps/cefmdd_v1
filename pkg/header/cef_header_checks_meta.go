@@ -160,6 +160,27 @@ func (h *CefHeaderData) check_meta_FILE_TYPE() (err error) {
     return
 }
 
+//x func (h *CefHeaderData) Get_FILE_TIME_SPAN() (t0, t1 time.Time, err error) {
+//x     // entries value-type, err
+//x     es, _, err := h.getMeta(`FILE_TIME_SPAN`)
+//x     if err != nil {
+//x         return
+//x     }
+//x 
+//x 
+//x     es_0 := es[0]
+//x     if utils.Is_quoted_string(v) == true {
+//x         v= utils.Trim_quoted_string(v)
+//x     }
+//x 
+//x 
+//x 
+//x     t0, t1, err = utils.Get_time_range(es[0])
+//x 
+//x     return
+//x }
+
+
 func (h *CefHeaderData) Get_FILE_TIME_SPAN() (t0, t1 time.Time, err error) {
     // entries value-type, err
     es, _, err := h.getMeta(`FILE_TIME_SPAN`)
@@ -167,7 +188,13 @@ func (h *CefHeaderData) Get_FILE_TIME_SPAN() (t0, t1 time.Time, err error) {
         return
     }
 
-    t0, t1, err = utils.Get_time_range(es[0])
+    es_0 := es[0]
+    if utils.Is_quoted_string(es_0) == true {
+        diag.Warn("FILE_TIME_SPAN should not be in quotes!", es[0])
+        es_0 = utils.Trim_quoted_string(es_0)
+    }
+
+    t0, t1, err = utils.Get_time_range(es_0)
 
     return
 }

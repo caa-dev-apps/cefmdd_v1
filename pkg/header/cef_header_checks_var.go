@@ -275,6 +275,40 @@ func (h *CefHeaderData) Data_Sizes_and_Variable_Type_Checks(a1 Attrs) (err error
 }
 
 
+//    1.  QUALITY FLAG is commented out on a PARAMETER_TYPE = "Data".  This is not flagged as an error.  The rule is
+//       
+//       If PARAMETER_TYPE = "Data"  QUALITY is required.
+//       If PARAMETER_TYPE = "Support_Data" QUALITY is not required.`
+//
+func (h *CefHeaderData) Parameter_Type_and_Quality_Checks(a1 Attrs) (err error) {
+    // all vars
+    a1_map := a1.Map()
+    //x vars_map := h.Vars().Map()
+
+    var_name := a1_map["variable_name"]
+    //- diag.Info("n:", var_name)
+
+    pt, p1 := a1_map["PARAMETER_TYPE"]
+    if p1 == false {
+        return  errors.New(fmt.Sprintf("Missing PARAMETER_TYPE: variable (%s) ", var_name))
+    }
+
+    pt_0 := utils.Trim_quoted_string(pt[0])
+
+    //fmt.Printf("PARAMETER_TYPE checks: variable (%s)(%s) ||| (%s)\n", pt[0], pt_0, var_name)
+
+    if strings.EqualFold(pt_0, "Data") == true {
+        _, p2 := a1_map["QUALITY"]
+
+        if p2 == false {
+            return  errors.New(fmt.Sprintf("PARAMETER_TYPE = DATA, Missing QUALITY param: variable (%s) ", var_name))            
+        }
+    }
+
+    return
+}
+
+
 
 func (h *CefHeaderData) Var_Checks() (err error) {
     err_count := 0 
@@ -300,6 +334,13 @@ func (h *CefHeaderData) Var_Checks() (err error) {
         err = h.Data_Sizes_and_Variable_Type_Checks(v)
         if err != nil {
             diag.Error("DATA", err)
+            err_count++
+        }
+
+
+        err = h.Parameter_Type_and_Quality_Checks(v)
+        if err != nil {
+            diag.Error("Parameter Type/Quality Presence Checks", err)
             err_count++
         }
 
