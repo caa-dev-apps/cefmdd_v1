@@ -152,9 +152,7 @@ func Iso_time_parser(v string) (err error) {
 
 func Get_time_range(v string) (t0, t1 time.Time, err error) { 
 
-    if Is_quoted_string(v) == true {
-        v= Trim_quoted_string(v)
-    }
+
 
     ts := strings.Split(v, "/")
     if len(ts) == 2 {
@@ -182,6 +180,20 @@ func Iso_time_range_parser(v string) (err error) {
     
     if err == nil {
         if t0.Before(t1) {
+            return
+        }        
+    }
+
+    return On_parser_error("ISO Time Range", v)
+}
+
+func Iso_time_range_parser_allow_equal(v string) (err error) { 
+    // "2011-10-09T00:00:00Z/2011-10-10T00:00:00Z"
+
+    t0, t1, err := Get_time_range(v)
+    
+    if err == nil {
+        if t0.Before(t1) || t0.Equal(t1) {
             return
         }        
     }
@@ -240,7 +252,7 @@ func ValueTypeParserFunc(vt string) (f func(string) (error), err error) {
         case "FLOAT" :              f = Numerical_parser
         case "DOUBLE" :             f = Numerical_parser
         case "ISO_TIME" :           f = Iso_time_parser
-        case "ISO_TIME_RANGE" :     f = Iso_time_range_parser
+        case "ISO_TIME_RANGE" :     f = Iso_time_range_parser_allow_equal
         default :
             err = errors.New("Unknown VALUE_TYPE : " + vt)
     }
