@@ -196,7 +196,7 @@ func Iso_time_range_parser_allow_equal(v string) (err error) {
         if t0.Before(t1) || t0.Equal(t1) {
             return
         }        
-    }
+    } 
 
     return On_parser_error("ISO Time Range", v)
 }
