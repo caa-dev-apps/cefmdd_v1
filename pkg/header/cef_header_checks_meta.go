@@ -4,6 +4,7 @@ import (
     "errors"
     "strings"
     "time"
+    "fmt"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
@@ -28,7 +29,7 @@ func (h *CefHeaderData) getMetaEntryFirstQuotedTrimed(key string) (v0 string, er
 
     v0, err = h.getMetaEntryFirstQuoted(key)
     if err != nil {
-        return
+        return v0, err
     }    
 
     v0 = utils.Trim_quoted_string(v0)
@@ -45,7 +46,7 @@ func (h *CefHeaderData) getMetaEntryFirstTrimed(key string) (v0 string, err erro
 
     v, err := h.getMetaEntry(key);
     if err != nil {
-        return
+        return v0, err
     }    
 
     v0 = utils.Trim_quoted_string(v[0])
@@ -73,18 +74,18 @@ func (h *CefHeaderData) check_meta_LOGICAL_FILE_ID() (err error) {
     
     v0_dataset, err := h.getMetaEntryFirstQuoted("DATASET_ID")
     if err != nil {
-        return
+        return err
     }
     
     v0_logical, err := h.getMetaEntryFirstQuoted("LOGICAL_FILE_ID")
     if err != nil {
-        return
+        return err
     }
     
     v0_dataset = utils.Trim_quoted_string(v0_dataset)
     if len(v0_dataset) == 0 {
         err = errors.New("DATASET_ID length = 0")
-        return
+        return err
     } 
     
     v0_logical = utils.Trim_quoted_string(v0_logical)
@@ -110,17 +111,17 @@ func (h *CefHeaderData) check_meta_FILE_TYPE() (err error) {
     
     v0_filename, err := h.getAttrFirstQuoted("FILE_NAME")
     if err != nil {
-        return
+        return err
     }    
     
     v0_file_type, err := h.getMetaEntryFirstQuoted("FILE_TYPE")
     if err != nil {
-        return
+        return err
     }
     
     v0_logical, err := h.getMetaEntryFirstQuoted("LOGICAL_FILE_ID")
     if err != nil {
-        return
+        return err
     }
     
     v0_filename = utils.Trim_quoted_string(v0_filename)
@@ -185,7 +186,7 @@ func (h *CefHeaderData) Get_FILE_TIME_SPAN() (t0, t1 time.Time, err error) {
     // entries value-type, err
     es, _, err := h.getMeta(`FILE_TIME_SPAN`)
     if err != nil {
-        return
+        return t0, t1, err
     }
 
     es_0 := es[0]
@@ -206,7 +207,7 @@ func (h *CefHeaderData) check_meta_FILE_TIME_SPAN() (err error) {
     es, vs, err := h.getMeta(`FILE_TIME_SPAN`)
     
     if err != nil {
-        return
+        return err
     }
 
     if len(es) == 0 {
@@ -230,12 +231,100 @@ func (h *CefHeaderData) check_meta_FILE_TIME_SPAN() (err error) {
 }
         
 func (h *CefHeaderData) check_meta_DATA_TYPE() (err error) {
+
+    es, _, err := h.getMeta(`DATA_TYPE`)
+    if err != nil {
+        return err
+    }
+
+    if len(es) == 0 {
+        return errors.New("META-ENTRY for DATA_TYPE Missing")
+    }
+
+    //func Trim_quoted_string(s string) (string) {
+    es_0 := utils.Trim_quoted_string(es[0])
+    dt := strings.Split(es_0, ">")
+
+    _, data_type, _, err := utils.GetFirst3CefFilenameParts()
+    if err != nil {
+        return err
+    }
+
+    if dt[0] != data_type {
+        return errors.New(fmt.Sprintf("Meta DATA TYPE (%s) and Filename data type (%s) missmatch", dt, data_type))
+    }
+
     return
 }
         
 func (h *CefHeaderData) check_meta_OBSERVATORY() (err error) {
+
+    es, _, err := h.getMeta(`OBSERVATORY`)
+    if err != nil {
+        return err
+    }
+
+    if len(es) == 0 {
+        return errors.New("META-ENTRY for OBSERVATORY Missing")
+    }
+
+    obs_0 := utils.Trim_quoted_string(es[0])
+
+
+
+
+
+    ex, _, err := h.getMeta(`EXPERIMENT`)
+    if err != nil {
+        return err
+    }
+
+    if len(ex) == 0 {
+        return errors.New("META-ENTRY for EXPERIMENT Missing")
+    }
+
+    exp_0 := utils.Trim_quoted_string(ex[0])
+
+
+
+
+
+
+    observatory, _, experiment, err := utils.GetFirst3CefFilenameParts()
+    if err != nil {
+        return err
+    }
+
+    if len(observatory) != 2 {
+        return errors.New("Filename error: Observatory not of 2 Character format -> " + observatory)
+    }
+
+    if observatory[1] >= '1' && observatory[1] <= '4' {
+        l := len(obs_0)
+        if l == 0 || obs_0[l-1] != observatory[1] {
+            //x return new Error("Filename error: Observatory (1..4)not of 2 Character format -> " + observatory)
+            return errors.New(fmt.Sprintf("Filename error: Observatory number (%c) does not match Meta OBSERVATORY (%s) ", observatory[1], obs_0))
+        }
+
+        if strings.HasPrefix(exp_0, experiment) == false {
+            return errors.New(fmt.Sprintf("Filename error: Experiment (%s) is not a prefix of meta EXPERIMENT (%s) ", experiment, exp_0))
+        }
+
+
+    } else if observatory[1] == 'M' {
+        if strings.ToUpper(obs_0) != "MULTIPLE" {
+            return errors.New("Filename error: 'M' does not match Meta OBSERVATORY -> " + obs_0)
+        }
+    }
+
+
+//x    observatory, data_type, experiment string, err error := utils.GetFirst3CefFilenameParts()
+
     return
 }
+
+
+
 
 
 //- FILE_NAME="C3_CP_EDI_QZC__20111021_V01.cef"
@@ -255,22 +344,22 @@ func (h *CefHeaderData) check_meta_VERSION_NUMBER() (err error) {
 //x v0_version_number, err := h.getMetaEntryFirstQuotedTrimed("VERSION_NUMBER")
     v0_version_number, err := h.getMetaEntryFirstTrimed("VERSION_NUMBER")
     if err != nil {
-        return
+        return err
     }    
 
     err = utils.Integer_parser(v0_version_number)
     if err != nil {
-        return
+        return err
     }    
 
     v0_filename, err := h.getAttrFirstQuotedTrimed("FILE_NAME")
     if err != nil {
-        return
+        return err
     }    
     
     v0_logical, err := h.getMetaEntryFirstQuotedTrimed("LOGICAL_FILE_ID")
     if err != nil {
-        return
+        return err
     }
     
     ix := strings.Index(v0_filename, ".")
@@ -318,13 +407,15 @@ func (h *CefHeaderData) Meta_Checks() (err error) {
     err = h.check_meta_FILE_TYPE()
     h.print_results("FILE_TYPE checks", err) 
     
-    
     err = h.check_meta_FILE_TIME_SPAN()
     h.print_results("FILE_TIME_SPAN checks", err) 
     
-    h.check_meta_DATA_TYPE()
-    h.check_meta_OBSERVATORY()
-    
+    err = h.check_meta_DATA_TYPE()
+    h.print_results("DATA_TYPE checks", err) 
+
+    err = h.check_meta_OBSERVATORY()
+    h.print_results("OBSERVATORY checks", err) 
+
     err = h.check_meta_VERSION_NUMBER()
     h.print_results("VERSION_NUMBER checks", err) 
     

@@ -260,3 +260,30 @@ func ValueTypeParserFunc(vt string) (f func(string) (error), err error) {
     return
 }
 
+
+///////////////////////////////////////////////////////////////////////////////
+//
+
+// e.g. filename = CN_CP_EDI_SPIN__2001....
+// return observatory, data_type, experiment, error
+// i.e CN, CP, EDI err
+
+func GetFirst3CefFilenameParts() (observatory, data_type, experiment string, err error) {
+
+    l_filename := GetCefArgs().GetFilename()
+
+    if len(l_filename) > 7 && l_filename[2] == '_' && l_filename[5] == '_' {
+        observatory = l_filename[0:2]
+        data_type = l_filename[3:5]
+        ix := strings.Index(l_filename[6:], "_")
+        if ix > 0 {
+            experiment = l_filename[6:6+ix]
+            return
+        }
+    } 
+
+    diag.Error("Maformed filename: ", l_filename)
+    err = errors.New("Maformed filename: " + l_filename)
+
+    return 
+}
