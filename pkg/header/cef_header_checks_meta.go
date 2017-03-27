@@ -272,8 +272,6 @@ func (h *CefHeaderData) check_meta_OBSERVATORY() (err error) {
 
 
 
-
-
     ex, _, err := h.getMeta(`EXPERIMENT`)
     if err != nil {
         return err
@@ -306,9 +304,14 @@ func (h *CefHeaderData) check_meta_OBSERVATORY() (err error) {
             return errors.New(fmt.Sprintf("Filename error: Observatory number (%c) does not match Meta OBSERVATORY (%s) ", observatory[1], obs_0))
         }
 
-        if strings.HasPrefix(exp_0, experiment) == false {
-            return errors.New(fmt.Sprintf("Filename error: Experiment (%s) is not a prefix of meta EXPERIMENT (%s) ", experiment, exp_0))
+//x        if strings.HasPrefix(exp_0, experiment) == false {
+//x            return errors.New(fmt.Sprintf("Filename error: Experiment (%s) - First 3 chars differ those of meta EXPERIMENT (%s) ", experiment, exp_0))
+//x        }
+
+        if exp_0[:3] != experiment[:3]  {
+            return errors.New(fmt.Sprintf("Filename error: Experiment (%s) - First 3 chars differ those of meta EXPERIMENT (%s) ", experiment, exp_0))
         }
+
 
 
     } else if observatory[1] == 'M' {
@@ -319,6 +322,47 @@ func (h *CefHeaderData) check_meta_OBSERVATORY() (err error) {
 
 
 //x    observatory, data_type, experiment string, err error := utils.GetFirst3CefFilenameParts()
+
+    return
+}
+
+
+func (h *CefHeaderData) check_meta_INSTRUMNET() (err error) {
+
+    es, _, err := h.getMeta(`INSTRUMNET`)
+    if err != nil {
+        return err
+    }
+
+    if len(es) == 0 {
+        return errors.New("META-ENTRY for INSTRUMNET Missing")
+    }
+
+    ins_0 := utils.Trim_quoted_string(es[0])
+    if strings.ToUpper(ins_0) != "MULTIPLE" {
+        // nothing to do here
+        return 
+    }
+
+    observatory, _, experiment, err := utils.GetFirst3CefFilenameParts()
+    if err != nil {
+        return err
+    }
+
+    if len(observatory) != 2 {
+        return errors.New("Filename error: Observatory not of 2 Character format -> " + observatory)
+    }
+
+    if observatory[1] >= '1' && observatory[1] <= '4' {
+        exp_n := experiment + string(observatory[1])
+
+        // NEED TO TEST FURTHER
+
+        if ins_0 != exp_n {
+            return errors.New(fmt.Sprintf("Filename error: Experiment (%s) + Observatory Number (%s) - does not match meta INSTRUMENT (%s) ", experiment, string(observatory[1]), ins_0))   
+        }
+
+    }
 
     return
 }
@@ -415,6 +459,10 @@ func (h *CefHeaderData) Meta_Checks() (err error) {
 
     err = h.check_meta_OBSERVATORY()
     h.print_results("OBSERVATORY checks", err) 
+
+    err = h.check_meta_INSTRUMNET()
+    h.print_results("INSTRUMNET checks", err) 
+
 
     err = h.check_meta_VERSION_NUMBER()
     h.print_results("VERSION_NUMBER checks", err) 
