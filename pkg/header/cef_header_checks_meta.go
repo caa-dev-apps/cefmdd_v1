@@ -329,13 +329,13 @@ func (h *CefHeaderData) check_meta_OBSERVATORY() (err error) {
 
 func (h *CefHeaderData) check_meta_INSTRUMNET() (err error) {
 
-    es, _, err := h.getMeta(`INSTRUMNET`)
+    es, _, err := h.getMeta(`INSTRUMENT_NAME`)
     if err != nil {
         return err
     }
 
     if len(es) == 0 {
-        return errors.New("META-ENTRY for INSTRUMNET Missing")
+        return errors.New("META-ENTRY for INSTRUMENT_NAME Missing")
     }
 
     ins_0 := utils.Trim_quoted_string(es[0])
@@ -359,7 +359,7 @@ func (h *CefHeaderData) check_meta_INSTRUMNET() (err error) {
         // NEED TO TEST FURTHER
 
         if ins_0 != exp_n {
-            return errors.New(fmt.Sprintf("Filename error: Experiment (%s) + Observatory Number (%s) - does not match meta INSTRUMENT (%s) ", experiment, string(observatory[1]), ins_0))   
+            return errors.New(fmt.Sprintf("Filename error: Experiment (%s) + Observatory Number (%s) - does not match meta INSTRUMENT_NAME (%s) ", experiment, string(observatory[1]), ins_0))   
         }
 
     }
