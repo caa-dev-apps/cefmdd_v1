@@ -1,0 +1,36 @@
+ 	
+ 	1.  TENSOR_FRAME   
+ 	Add enumerated type FAC
+ 	
+
+
+2.  Change DEPEND_TEST Error ("probably because it's in quotes") error to warning; same for FILE_NAME and LOGICAL_FILE_ID
+
+	Did not find an example for FILE_NAME and LOGICAL_FILE_ID
+
+
+
+
+	3.  INVALID FILE_TIME_SPAN : Cant figure out what example C1_CP_CIS-CODIF_HS_H1_MOMENTS_INERT__20010101_* and  C1_CP_CIS-HIA_ONBOARD_MOMENTS_INERT__20010103_000000_20010103_235959_V03.cef.gz
+	
+	
+	Error: FILE_TIME_SPAN checks Parser, ISO Time Range -> 2001-01-03T00:00:00.000000000Z/2001-01-03T23:59:59.9999999990Z
+	
+
+
+4.    COORDINATE_SYSTEM - change the validation to ignore the bit after >  It's driving me crazy ; same for TARGET_SYSTEM and DATA_TYPE
+
+
+Error: Parser, Enum description mismatch  COORDINATE_SYSTEM ["SR2>Cluster despun S/C "]
+
+
+ 	5.  FLUCTUATIONS
+ 	
+ 	
+ 	Poynting_vector => Poynting_Vector
+ 	
+ 	
+ 	6.  ENTITY
+ 	
+ 	
+ 	Add enumerated type Transformation

@@ -1,0 +1,189 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C1_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C1_CH_CIS-CODIF.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C1_CP_CIS-CODIF_HS_TOF_EVENTS"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS-CODIF HS TOF Selected Events dataset"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains CIS-CODIF time of flight selected events"
+  ENTRY      = "for Cluster C1 spacecraft in High-sensitivity side."
+END_META     = Dataset_description
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C1_CQ_CIS-CODIF_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = Uncalibrated
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 128.0
+END_META     = Time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 64.0
+END_META     = Max_time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 320.0
+END_META     = Min_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+! Variables definitions
+! ---------------------
+!
+START_VARIABLE       = time_tags__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  CATDESC            = "Acquisition interval start time"
+  FIELDNAM           = "Universal Time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  FILLVAL            = "9999-99-99T99:99:99Z"
+  DELTA_PLUS         = duration__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  DELTA_MINUS        = 0.0
+END_VARIABLE         = time_tags__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+
+START_VARIABLE       = duration__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  CATDESC            = "Interval duration"
+  FIELDNAM           = "Interval duration"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 0.0
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+END_VARIABLE         = duration__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+
+START_VARIABLE       = cis_mode__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  CATDESC            = "CIS Operational Mode"
+  FIELDNAM           = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+END_VARIABLE         = cis_mode__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+
+START_VARIABLE       = sweep_number__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  CATDESC            = "Sweep number with the spin"
+  FIELDNAM           = "Sweep number with the spin"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  SIZES              = 48
+  QUALITY            = 2
+  FILLVAL            = -1
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  DEPEND_1           = events__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+END_VARIABLE         = sweep_number__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+
+START_VARIABLE       = start__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  CATDESC            = "Event start address"
+  FIELDNAM           = "Event start address"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  SIZES              = 48
+  QUALITY            = 2
+  FILLVAL            = -1
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  DEPEND_1           = events__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+END_VARIABLE         = start__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+
+START_VARIABLE       = TOF_channel__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  CATDESC            = "TOF Channel number"
+  FIELDNAM           = "TOF Channel number"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  SIZES              = 48
+  QUALITY            = 2
+  FILLVAL            = -1
+  SIGNIFICANT_DIGITS = 2
+  PROPERTY           = Raw_Particle_Counts
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  DEPEND_1           = events__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+END_VARIABLE         = TOF_channel__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+
+START_VARIABLE       = ps__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  CATDESC            = "Proton suppression flag"
+  FIELDNAM           = "Proton suppression flag"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  SIZES              = 48
+  QUALITY            = 2
+  FILLVAL            = -1
+  SIGNIFICANT_DIGITS = 1
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  DEPEND_1           = events__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+END_VARIABLE         = ps__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+
+START_VARIABLE       = energy__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  CATDESC            = "Energy step number"
+  FIELDNAM           = "Energy step number"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  SIZES              = 48
+  QUALITY            = 2
+  FILLVAL            = -1
+  SIGNIFICANT_DIGITS = 3
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  DEPEND_1           = events__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+END_VARIABLE         = energy__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+
+START_VARIABLE       = events__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+  CATDESC            = "Selected event range"
+  FIELDNAM           = "Selected event range"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  SIZES              = 48
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "event"
+  DATA               = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, \
+                       25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48
+END_VARIABLE         = events__C1_CP_CIS-CODIF_HS_TOF_EVENTS
+

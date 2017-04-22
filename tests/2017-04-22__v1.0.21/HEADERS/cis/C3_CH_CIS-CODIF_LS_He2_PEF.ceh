@@ -1,0 +1,238 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C3_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C3_CH_CIS-CODIF.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C3_CP_CIS-CODIF_LS_He2_PEF"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS-CODIF 3D Alpha distributions on C3, Low-Sensitivity, in Particle_Energy_Flux"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains CIS-CODIF 3D Alpha distributions"
+  ENTRY      = "for the Low-Sensitivity side of spacrecraft C3, in Particle_Energy_Flux units"
+END_META     = Dataset_description
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C3_CQ_CIS-CODIF_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = Calibrated
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 16.0
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+START_VARIABLE       = time_tags__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "Acquisition interval start time"
+  FIELDNAM           = "Universal Time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  FILLVAL            = "9999-99-99T99:99:99Z"
+  DELTA_PLUS         = duration__C3_CP_CIS-CODIF_LS_He2_PEF
+  DELTA_MINUS        = 0.0
+END_VARIABLE         = time_tags__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = duration__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "Interval duration"
+  FIELDNAM           = "Interval duration"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 0.0
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_LS_He2_PEF
+END_VARIABLE         = duration__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = cis_mode__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "CIS Operational Mode"
+  FIELDNAM           = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_LS_He2_PEF
+END_VARIABLE         = cis_mode__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = tm_product__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "CIS Telemetry Product"
+  FIELDNAM           = "Telemetry Product Number"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Product"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_LS_He2_PEF
+END_VARIABLE         = tm_product__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = geom_factor__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "Geometric factor"
+  FIELDNAM           = "Geometric factor"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "cm2^2 sr KeV KeV^-1"
+  SI_CONVERSION      = "1.0E-4>m^2 sr"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_LS_He2_PEF
+END_VARIABLE         = geom_factor__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = codif_mcp_hv__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "CODIF MCP High-Voltage"
+  FIELDNAM           = "Codif MCP High-Voltage"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "volt"
+  SI_CONVERSION      = "1>V"
+  LABLAXIS           = "MCP HV"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_LS_He2_PEF
+END_VARIABLE         = codif_mcp_hv__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = codif_acc_hv__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "CODIF Acceleration High-Voltage"
+  FIELDNAM           = "Codif Acceleration High-Voltage"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "volt"
+  SI_CONVERSION      = "1>V"
+  LABLAXIS           = "ACC HV"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_LS_He2_PEF
+END_VARIABLE         = codif_acc_hv__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = 3d_ions__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "CIS-CODIF 3D LS Alpha distributions"
+  FIELDNAM           = "CIS-CODIF 3D LS Alpha distributions"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 8,16,31
+  QUALITY            = 3
+  FILLVAL            = -1e+31
+  SIGNIFICANT_DIGITS = 10
+  ENTITY             = "Alpha"
+  PROPERTY           = "Particle_Energy_Flux"
+  UNITS              = "Kev cm^-2 s^-1 sr^-1 Kev^-1"
+  SI_CONVERSION      = "1.0E+4>m^-2 s^-1 sr^-1"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_LS_He2_PEF
+  DEPEND_1           = theta__C3_CP_CIS-CODIF_LS_He2_PEF
+  DEPEND_2           = phi__C3_CP_CIS-CODIF_LS_He2_PEF
+  DEPEND_3           = energy_table__C3_CP_CIS-CODIF_LS_He2_PEF
+END_VARIABLE         = 3d_ions__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = theta__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "Polar bin edges (particle arrival direction)"
+  FIELDNAM           = "Polar bin edges"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 8
+  FILLVAL            = -1e+31
+  LABLAXIS           = "Polar bin"
+  UNITS              = "deg"
+  SI_CONVERSION      = "1>degree"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = 78.750, 56.250, 33.750, 11.250, -11.250, -33.750, -56.250, -78.750
+  DELTA_PLUS         = 11.250
+  DELTA_MINUS        = 11.250
+END_VARIABLE         = theta__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = phi__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "Azimuthal bin edges (particle arrival direction)"
+  FIELDNAM           = "Azimuthal bin edges"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 16
+  FILLVAL            = -1e+31
+  LABLAXIS           = "Azimuthal bin"
+  UNITS              = "deg"
+  COORDINATE_SYSTEM  = "ISR2"
+  SI_CONVERSION      = "1>degree"
+  DATA               = 134.583, 112.083, 89.583, 67.083, 44.583, 22.083, -0.417, -22.917, -45.417, -67.917, -90.417, -112.917, -135.417, -157.917, 179.583, 157.083
+  DELTA_PLUS         = 11.250
+  DELTA_MINUS        = 11.250
+END_VARIABLE         = phi__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = energy_table__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "Energy table"
+  FIELDNAM           = "Energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 34117.30,26796.81,21047.05,16531.02,12983.98,10198.03,8009.85,6291.19,4941.30,3881.05,3048.30,2394.23,1880.50,1477.01,1160.09,911.17,715.66,562.10,441.49,346.76,272.36,213.92,168.02,131.97,103.65,81.41,63.94,50.22,39.45,30.98,24.33
+  DELTA_PLUS         = delta_plus_energy_table__C3_CP_CIS-CODIF_LS_He2_PEF
+  DELTA_MINUS        = delta_minus_energy_table__C3_CP_CIS-CODIF_LS_He2_PEF
+END_VARIABLE         = energy_table__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = delta_plus_energy_table__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "Delta plus energy table"
+  FIELDNAM           = "Delta plus energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 3149.32,2473.57,1942.82,1525.95,1198.53,941.37,739.38,580.73,456.12,358.25,281.38,221.01,173.59,136.34,107.09,84.11,66.06,51.89,40.75,32.01,25.14,19.75,15.51,12.18,9.57,7.51,5.90,4.64,3.64,2.86,2.25
+END_VARIABLE         = delta_plus_energy_table__C3_CP_CIS-CODIF_LS_He2_PEF
+
+START_VARIABLE       = delta_minus_energy_table__C3_CP_CIS-CODIF_LS_He2_PEF
+  CATDESC            = "Delta minus energy table"
+  FIELDNAM           = "Delta minus energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 4846.93,3806.93,2990.08,2348.50,1844.59,1448.80,1137.93,893.77,701.99,551.37,433.06,340.14,267.16,209.83,164.81,129.45,101.67,79.86,62.72,49.26,38.69,30.39,23.87,18.75,14.73,11.57,9.08,7.13,5.60,4.40,3.46
+END_VARIABLE         = delta_minus_energy_table__C3_CP_CIS-CODIF_LS_He2_PEF
+
+

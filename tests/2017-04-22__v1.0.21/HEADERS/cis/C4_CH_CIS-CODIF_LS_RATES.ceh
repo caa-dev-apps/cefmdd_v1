@@ -1,0 +1,287 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C4_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C4_CH_CIS-CODIF.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C4_CP_CIS-CODIF_LS_RATES"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS-CODIF Monitor Rates dataset"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains CIS-CODIF Monitor Rates"
+  ENTRY      = "for Cluster C4 Spacecraft in Low-sensitivity mode."
+END_META     = Dataset_description
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C4_CQ_CIS-CODIF_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = Uncalibrated
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 128.0
+END_META     = Time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 64.0
+END_META     = Max_time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 320.0
+END_META     = Min_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+! Variables definitions
+! ---------------------
+!
+START_VARIABLE       = time_tags__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Acquisition interval start time"
+  FIELDNAM           = "Universal Time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  FILLVAL            = "9999-99-99T99:99:99Z"
+  DELTA_PLUS         = duration__C4_CP_CIS-CODIF_LS_RATES
+  DELTA_MINUS        = 0.0
+END_VARIABLE         = time_tags__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = duration__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Interval duration"
+  FIELDNAM           = "Interval duration"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 0.0
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = duration__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = cis_mode__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "CIS Operational Mode"
+  FIELDNAM           = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = cis_mode__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = PF__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Counts on Start position per anode"
+  FIELDNAM           = "Counts on Start position per anode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  SIZES              = 8,16,16
+  FILLVAL            = -1
+  SIGNIFICANT_DIGITS = 5
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_1           = anod__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_2           = sweep__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_3           = energy__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = PF__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = SF__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Start Rate"
+  FIELDNAM           = "Start Rate"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  SIZES              = 16,16
+  SIGNIFICANT_DIGITS = 5
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_1           = sweep__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_2           = energy__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = SF__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = SFR__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Start/Stop Coincidence Rate (SFR)"
+  FIELDNAM           = "Start/Stop Coincidence Rate (SFR)"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  SIZES              = 16,16
+  SIGNIFICANT_DIGITS = 5
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_1           = sweep__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_2           = energy__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = SFR__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = SEV__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Single Event Rate (SFR +1 position signal)"
+  FIELDNAM           = "Single Event Rate (SFR +1 position signal)"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  SIZES              = 16,16
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_1           = sweep__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_2           = energy__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = SEV__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = VEV__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Valid Event Rate (SFR +1 or more position signals)"
+  FIELDNAM           = "Valid Event Rate (SFR +1 or more position signals)"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  SIZES              = 16,16
+  SIGNIFICANT_DIGITS = 5
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_1           = sweep__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_2           = energy__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = VEV__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = NVE__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Non-Valid Event Rate (SFR + no position signal)"
+  FIELDNAM           = "Non-Valid Event Rate (SFR + no position signal)"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  SIZES              = 16,16
+  SI_CONVERSION      = "1>(particles)"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_1           = sweep__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_2           = energy__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = NVE__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = TS__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Counts failing below a set TOF threshold"
+  FIELDNAM           = "Counts failing below a set TOF threshold"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  SIZES              = 16,16
+  SIGNIFICANT_DIGITS = 5
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_1           = sweep__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_2           = energy__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = TS__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = SR__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Stop rate"
+  FIELDNAM           = "Stop rate"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  SIZES              = 16,16
+  SIGNIFICANT_DIGITS = 5
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_1           = sweep__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_2           = energy__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = SR__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = ASV__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Adjacent Starts Valid"
+  FIELDNAM           = "Adjacent Starts Valid"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  SIZES              = 16,16
+  SIGNIFICANT_DIGITS = 5
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_1           = sweep__C4_CP_CIS-CODIF_LS_RATES
+  DEPEND_2           = energy__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = ASV__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = anod__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Polar bin edge centered value (particle arrival direction)"
+  FIELDNAM           = "Polar bin edge centered value"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 999
+  SIZES              = 8
+  UNITS              = "deg"
+  SI_CONVERSION      = "1.0>degree"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = 78.75,56.25,33.75,11.25,-11.25,-33.75,-56.25,-78.75
+  DELTA_PLUS         = 11.25
+  DELTA_MINUS        = 11.25
+END_VARIABLE         = anod__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = sweep__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Azimuthal bin edge centered value (partical arrival direction)"
+  FIELDNAM           = "Azimuthal bin edge centered value"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 999
+  SIZES              = 16
+  UNITS              = "deg"
+  SI_CONVERSION      = "1.0>degree"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = 134.58,112.08,89.58,67.08,44.58,22.08,-0.42,-22.92,-45.42,-67.92,-90.42,-112.92,-135.42,-157.92,179.58,157.08
+  DELTA_PLUS         = 11.25
+  DELTA_MINUS        = 11.25
+END_VARIABLE         = sweep__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = energy__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Energy bin center value"
+  FIELDNAM           = "Energy bin center value"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e31
+  SIZES              = 16
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 31457.55,19406.24,11971.76,7385.41,4556.08,2810.66,1733.90,1069.65,659.87,407.08,251.13,154.92,95.57,58.96,36.37,25.13
+  DELTA_PLUS         = delta_plus_energy__C4_CP_CIS-CODIF_LS_RATES
+  DELTA_MINUS        = delta_minus_energy__C4_CP_CIS-CODIF_LS_RATES
+END_VARIABLE         = energy__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = delta_plus_energy__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Energy bin upper interval"
+  PARAMETER_TYPE     = "Support_Data"
+  SIZES              = 16
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 7033.26,4338.83,2676.64,1651.23,1018.65,628.40,387.66,239.15,147.53,91.01,56.15,34.64,21.37,13.18,8.13,2.32
+END_VARIABLE         = delta_plus_energy__C4_CP_CIS-CODIF_LS_RATES
+
+START_VARIABLE       = delta_minus_energy__C4_CP_CIS-CODIF_LS_RATES
+  CATDESC            = "Energy bin lower interval"
+  PARAMETER_TYPE     = "Support_Data"
+  SIZES              = 16
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 7712.47,4757.84,2935.13,1810.69,1117.02,689.09,425.10,262.25,161.78,99.80,61.57,37.98,23.43,14.45,8.92,3.57
+END_VARIABLE         = delta_minus_energy__C4_CP_CIS-CODIF_LS_RATES
+

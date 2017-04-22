@@ -271,14 +271,16 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
             }
 
             if (len(vs) > 1 && es.description != vs[1]) {
-                return utils.On_enum_description_error(i_keyword, v)
+                //return utils.On_enum_description_error(i_keyword, v)
+                diag.Warn("Parser, Enum description mismatch", i_keyword, v)
             } 
         } else if i_keyword == "DATA_TYPE" {
             vs := strings.Split(v1, ">")
             _, p := enums[vs[0]]
 
             if p == false {
-                return utils.On_enum_parser_error(i_keyword, v)
+                //x return utils.On_enum_parser_error(i_keyword, v)
+                diag.Warn("Parser, Enum description mismatch", i_keyword, v)
             }
 
             //x if (len(vs) > 1 && es.description != vs[1]) {

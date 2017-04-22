@@ -1,0 +1,127 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C4_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C4_CH_CIS-CODIF.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C4_CP_CIS-CODIF_He1_QUALITY"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.1 - 2014/03/13"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CODIF Helium+ quality flags"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "CIS-CODIF Helium+ quality flags on Cluster C4"
+END_META     = Dataset_description
+
+START_META   = Processing_level
+  ENTRY      = Uncalibrated
+END_META     = Processing_level
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C4_CQ_CIS-CODIF_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowlegde the CIS instrument team and"
+  ENTRY      = "ESA Cluster Active Archive when using this data."
+END_META     = Acknowledgement
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_VARIABLE       = time_tags__C4_CP_CIS-CODIF_He1_QUALITY
+  CATDESC            = "Interval center time"
+  FIELDNAM           = "Universal time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  DELTA_PLUS         = 0.0
+  DELTA_MINUS        = 0.0
+  FILLVAL            = "9999-99-99T99:99:99Z"
+END_VARIABLE         = time_tags__C4_CP_CIS-CODIF_He1_QUALITY
+
+START_VARIABLE       = quality_3D__C4_CP_CIS-CODIF_He1_QUALITY
+  CATDESC            = "Quality flag (0..4) of CIS-CODIF Helium+ 3D products"
+  FIELDNAM           = "Quality flag"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_He1_QUALITY
+  FILLVAL            = 999
+END_VARIABLE         = quality_3D__C4_CP_CIS-CODIF_He1_QUALITY
+
+START_VARIABLE       = quality_PAD__C4_CP_CIS-CODIF_He1_QUALITY
+  CATDESC            = "Quality flag (0..4) of CIS-CODIF Helium+ PAD's products"
+  FIELDNAM           = "Quality flag"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_He1_QUALITY
+  FILLVAL            = 999
+END_VARIABLE         = quality_PAD__C4_CP_CIS-CODIF_He1_QUALITY
+
+START_VARIABLE       = quality_1D__C4_CP_CIS-CODIF_He1_QUALITY
+  CATDESC            = "Quality flag (0..4) of CIS-CODIF Helium+ 1D products"
+  FIELDNAM           = "Quality flag"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_He1_QUALITY
+  FILLVAL            = 999
+END_VARIABLE         = quality_1D__C4_CP_CIS-CODIF_He1_QUALITY
+
+START_VARIABLE       = quality_MOM__C4_CP_CIS-CODIF_He1_QUALITY
+  CATDESC            = "Quality flag (0..4) of CIS-CODIF Helium+ Moments"
+  FIELDNAM           = "Quality flag"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_He1_QUALITY
+  FILLVAL            = 999
+END_VARIABLE         = quality_MOM__C4_CP_CIS-CODIF_He1_QUALITY
+
+START_VARIABLE       = caveats_key__C4_CP_CIS-CODIF_He1_QUALITY
+  CATDESC            = "Caveats keys that generates quality flags"
+  FIELDNAM           = "Caveats keys"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = CHAR
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_He1_QUALITY
+  FILLVAL            = ""
+END_VARIABLE         = caveats_key__C4_CP_CIS-CODIF_He1_QUALITY
+

@@ -1,0 +1,115 @@
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = DATASET_VERSION
+    ENTRY    = "Corrected He+ Density"
+    ENTRY    = "Primary Delivery"
+END_META     = DATASET_VERSION
+
+
+! Dataset metadata
+! ----------------
+!
+START_META   = Dataset_ID
+  ENTRY      = "C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED"
+END_META     = Dataset_ID
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "Corrected He+ Density"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+   ENTRY     = "He+ density (with standard devitation), which is"
+   ENTRY     = "improved/corrected by removing estimated contamination of"
+   ENTRY     = "H+ spillover into the He+ mass channel"
+END_META     = Dataset_description
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@cesr.fr"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@cesr.fr"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = Calibrated
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 16.0
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowlegde the CIS instrument team and"
+  ENTRY      = "ESA Cluster Active Archive when using this data."
+END_META     = Acknowledgement
+
+! Variables definitions
+! ---------------------
+!
+START_VARIABLE       = time_tags__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+  CATDESC            = "Acquisition interval center time"
+  FIELDNAM           = "Center time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  DELTA_PLUS         = duration__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+  DELTA_MINUS        = duration__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+  FILLVAL            = "9999-99-99T99:99:99Z"
+END_VARIABLE         = time_tags__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+
+START_VARIABLE       = duration__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+  CATDESC            = "Half interval duration"
+  FIELDNAM           = "Halt interval duration"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  UNITS              = "s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+  FILLVAL            = 0.0
+END_VARIABLE         = duration__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+
+START_VARIABLE       = density__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+  CATDESC            = "Density (in cm^-3)"
+  FIELDNAM           = "Density"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Helium+"
+  PROPERTY           = "Mass_Density"
+  UNITS              = "particles cm^-3"
+  SI_CONVERSION      = "1e6>(particles) m^-3"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 4
+  FILLVAL            = -1e31
+END_VARIABLE         = density__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+
+START_VARIABLE       = density-STD__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+  CATDESC            = "Density Standard Deviation(STD) (in cm^-3)"
+  FIELDNAM           = "Density-STD"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Helium+"
+  PROPERTY           = "Mass_Density"
+  UNITS              = "particles cm^-3"
+  SI_CONVERSION      = "1e6>(particles) m^-3"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 4
+  FILLVAL            = -1e31
+END_VARIABLE         = density-STD__C4_CP_CIS-CODIF_He1_DENSITY_CORRECTED

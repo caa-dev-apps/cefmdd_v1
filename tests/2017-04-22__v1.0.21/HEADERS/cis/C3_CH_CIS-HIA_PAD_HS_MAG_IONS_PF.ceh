@@ -1,0 +1,188 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C3_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C3_CH_CIS-HIA.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS-HIA Ion Pitch-Angle Distribution on C3 in Differential_Particle_Flux"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains CIS-HIA Ion Pitch-Angle Distribution,"
+  ENTRY      = "for spacecraft C3 in Magnetospheric mode and High-sensitivity side."
+  ENTRY      = "Data are in Differential_Particle_Flux and computed from CIS 3D distributions and FGM data"
+END_META     = Dataset_description
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C3_CQ_CIS-HIA_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = Calibrated
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 16.0
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+START_VARIABLE       = time_tags__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  CATDESC            = "Acquisition interval start time"
+  FIELDNAM           = "Start time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "UT"
+  DELTA_PLUS         = duration__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  DELTA_MINUS        = 0.0
+  FILLVAL            = "9999-99-99T99:99:99Z"
+END_VARIABLE         = time_tags__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+
+START_VARIABLE       = duration__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  CATDESC            = "Acquisition interval duration"
+  FIELDNAM           = "Acquisition interval duration"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  FILLVAL            = 0.0
+END_VARIABLE         = duration__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+
+START_VARIABLE       = cis_mode__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  CATDESC            = "CIS Operational Mode"
+  FIELDNAM           = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+END_VARIABLE         = cis_mode__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+
+START_VARIABLE       = tm_product__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  CATDESC            = "CIS Telemetry Product"
+  FIELDNAM           = "Telemetry Product Number"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Product"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+END_VARIABLE         = tm_product__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+
+START_VARIABLE       = Differential_Particle_Flux__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  CATDESC            = "Differential_Particle_Flux"
+  FIELDNAM           = "Differential_Particle_Flux"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 10
+  UNITS              = "Particles cm^-2 s^-1 sr^-1 Kev^-1"
+  SI_CONVERSION      = "6.2415E+19>(particles) m^-2 s^-1 sr^-1 J^-1"
+  ENTITY             = "Ion"
+  PROPERTY           = "Differential_Particle_Flux"
+  SIZES              = 16,31
+  LABLAXIS           = "Differential_Particle_Flux"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  DEPEND_1           = pitch_angle__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  DEPEND_2           = energy_table__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+END_VARIABLE         = Differential_Particle_Flux__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+
+START_VARIABLE       = pitch_angle__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  CATDESC            = "Pitch angles center value"
+  FIELDNAM           = "Pitch angles center value"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  UNITS              = "degrees"
+  SI_CONVERSION      = "1>degree"
+  LABLAXIS           = "alpha (deg)"
+  SIZES              = 16
+  DATA               = 5.625, 16.875, 28.125, 39.375, 50.625, 61.875, 73.125, 84.375, 95.625, 106.875, 118.125, 129.375, 140.625, 151.875, 163.125, 174.375
+  DELTA_PLUS         = 5.625
+  DELTA_MINUS        = 5.625
+  FILLVAL            = -1e31
+END_VARIABLE         = pitch_angle__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+
+START_VARIABLE       = energy_table__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  CATDESC            = "Energy table"
+  FIELDNAM           = "Energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 28898.33,21728.22,16337.12,12283.63,9235.88,6944.32,5221.33,3925.84,2951.78,2219.40,1668.73,1254.69,943.39,709.32,533.32,401.00,301.50,226.70,170.45,128.16,96.36,72.45,54.48,40.96,30.80,23.16,17.41,13.09,9.84,7.40,5.56
+  DELTA_PLUS         = delta_plus_energy_table__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  DELTA_MINUS        = delta_minus_energy_table__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+END_VARIABLE         = energy_table__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+
+START_VARIABLE       = delta_plus_energy_table__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  CATDESC            = "Delta plus energy table"
+  FIELDNAM           = "Delta plus energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 5963.11,3241.34,2437.11,1832.43,1377.78,1035.93,778.90,585.64,440.34,331.08,248.94,187.17,140.73,105.81,79.56,59.82,44.98,33.82,25.43,19.12,14.37,10.81,8.13,6.11,4.59,3.45,2.60,1.95,1.47,1.10,0.83
+END_VARIABLE         = delta_plus_energy_table__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+
+START_VARIABLE       = delta_minus_energy_table__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+  CATDESC            = "Delta minus energy table"
+  FIELDNAM           = "Delta minus energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 3928.78,2953.99,2221.06,1669.98,1255.63,944.09,709.85,533.72,401.30,301.73,226.87,170.58,128.25,96.43,72.51,54.52,40.99,30.82,23.17,17.42,13.10,9.85,7.41,5.57,4.19,3.15,2.37,1.78,1.34,1.01,0.98
+END_VARIABLE         = delta_minus_energy_table__C3_CP_CIS-HIA_PAD_HS_MAG_IONS_PF
+
+

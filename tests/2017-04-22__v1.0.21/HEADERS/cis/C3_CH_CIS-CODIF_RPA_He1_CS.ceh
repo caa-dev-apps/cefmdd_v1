@@ -1,0 +1,233 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C3_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C3_CH_CIS-CODIF.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C3_CP_CIS-CODIF_RPA_He1_CS"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS-CODIF 3D Helium+ distributions on C3, RPA Mode"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains CIS-CODIF 3D Helium+ distributions"
+  ENTRY      = "for RPA mode on spacecraft C3 in Corrected_Particle_Count_Rate units"
+END_META     = Dataset_description
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C3_CQ_CIS-CODIF_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = "Calibrated"
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 16.0
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+START_VARIABLE       = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "Acquisition interval start time"
+  FIELDNAM           = "Universal Time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  FILLVAL            = "9999-99-99T99:99:99Z"
+  DELTA_PLUS         = duration__C3_CP_CIS-CODIF_RPA_He1_CS
+  DELTA_MINUS        = 0.0
+END_VARIABLE         = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = duration__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "Interval duration"
+  FIELDNAM           = "Interval duration"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 0.0
+  UNITS              = "s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+END_VARIABLE         = duration__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = cis_mode__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "CIS Operational Mode"
+  FIELDNAM           = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+END_VARIABLE         = cis_mode__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = sensitivity__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "CIS Sensitivity Side"
+  FIELDNAM           = "CIS Sensitivity Side"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 9
+  SIGNIFICANT_DIGITS = 1
+  UNITS              = "unitless"
+  LABLAXIS           = "Side"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+END_VARIABLE         = sensitivity__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = tm_product__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "CIS Telemetry Product"
+  FIELDNAM           = "Telemetry Product Number"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Product"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+END_VARIABLE         = tm_product__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = geom_factor__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "Geometric factor"
+  FIELDNAM           = "Geometric factor"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "cm2^2 sr KeV KeV^-1"
+  SI_CONVERSION      = "1.0E-4>m^2 sr J J^-1"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+END_VARIABLE         = geom_factor__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = anode_number__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "Optimised anode number"
+  FIELDNAM           = "Optimised anode number"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Anode"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+END_VARIABLE         = anode_number__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = codif_mcp_hv__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "CODIF MCP High-Voltage"
+  FIELDNAM           = "Codif MCP High-Voltage"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "volt"
+  LABLAXIS           = "MCP HV"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+END_VARIABLE         = codif_mcp_hv__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = codif_acc_hv__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "CODIF Acceleration High-Voltage"
+  FIELDNAM           = "Codif Acceleration High-Voltage"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "volt"
+  LABLAXIS           = "ACC HV"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+END_VARIABLE         = codif_acc_hv__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = 3d_ions__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "CIS-CODIF 3D RPA Helium+ distribution "
+  FIELDNAM           = "CIS-CODIF 3D RPA Helium+ distribution "
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 8,16,16
+  QUALITY            = 3
+  FILLVAL            = -1e+31
+  SIGNIFICANT_DIGITS = 10
+  ENTITY             = "Helium+"
+  PROPERTY           = "Corrected_Particle_Count_Rate"
+  UNITS              = "Particles s^-1"
+  SI_CONVERSION      = "1>(particles) s^-1"
+  DEPEND_0           = time_tags__C3_CP_CIS-CODIF_RPA_He1_CS
+  DEPEND_1           = theta__C3_CP_CIS-CODIF_RPA_He1_CS
+  DEPEND_2           = phi__C3_CP_CIS-CODIF_RPA_He1_CS
+  DEPEND_3           = energy_table__C3_CP_CIS-CODIF_RPA_He1_CS
+END_VARIABLE         = 3d_ions__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = theta__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "Polar bin edges (particle arrival direction)"
+  FIELDNAM           = "Polar bin edges"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 8
+  FILLVAL            = -1e+31
+  LABLAXIS           = "Theta"
+  UNITS              = "deg"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = -78.750, -56.250, -33.750, -11.250, 11.250, 33.750, 56.250, 78.750
+  DELTA_PLUS         = 11.250
+  DELTA_MINUS        = 11.250
+END_VARIABLE         = theta__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = phi__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "Azimuthal bin edges (particle arrival direction)"
+  FIELDNAM           = "Azimuthal bin edges"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 16
+  FILLVAL            = -1e+31
+  LABLAXIS           = "phi"
+  UNITS              = "deg"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = -45.417, -67.917, -90.417, -112.917, -135.417, -157.917, 179.583, 157.083, 134.583, 112.083, 89.583, 67.083, 44.583, 22.083, -0.417, -22.917
+  DELTA_PLUS         = 11.250
+  DELTA_MINUS        = 11.250
+END_VARIABLE         = phi__C3_CP_CIS-CODIF_RPA_He1_CS
+
+START_VARIABLE       = energy_table__C3_CP_CIS-CODIF_RPA_He1_CS
+  CATDESC            = "Energy table"
+  FIELDNAM           = "Energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 16
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DELTA_PLUS         = 0.0
+  DELTA_MINUS        = 4.459999
+  DATA               = 28.76,27.19,25.62,24.05,22.48,20.91,19.34,17.77,16.20,14.63,13.06,11.49,9.92,8.35,6.78,5.21
+END_VARIABLE         = energy_table__C3_CP_CIS-CODIF_RPA_He1_CS
+
+

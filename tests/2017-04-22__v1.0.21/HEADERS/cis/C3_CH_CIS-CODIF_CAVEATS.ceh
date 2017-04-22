@@ -1,0 +1,105 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C3_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C3_CH_CIS-CODIF.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C3_CQ_CIS-CODIF_CAVEATS"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CQ>CAA Caveats"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS-CODIF caveats file"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains caveats for CIS-CODIF instrument on C3 spacecraft"
+END_META     = Dataset_description
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = "Auxiliary"
+END_META     = Processing_level
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+START_VARIABLE       = time_range__C3_CQ_CIS-CODIF_CAVEATS
+  CATDESC            = "Validity time range"
+  FIELDNAM           = "Validity time range"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME_RANGE
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "UT"
+  FILLVAL            = "9999-99-99T99:99:99Z/9999-99-99T99:99:99Z"
+END_VARIABLE         = time_range__C3_CQ_CIS-CODIF_CAVEATS
+
+START_VARIABLE       = instrument__C3_CQ_CIS-CODIF_CAVEATS
+  CATDESC            = "Instrument"
+  FIELDNAM           = "Instrument"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = CHAR
+  ENTITY             = "Instrument"
+  PROPERTY           = "Status"
+  LABLAXIS           = "Instrument"
+  UNITS              = "unitless"
+  SI_CONVERSION      = "1>unitless"
+  SIGNIFICANT_DIGITS = 5
+  FILLVAL            = ""
+  QUALITY            = 0
+  DEPEND_0           = time_range__C3_CQ_CIS-CODIF_CAVEATS
+END_VARIABLE         = instrument__C3_CQ_CIS-CODIF_CAVEATS
+
+START_VARIABLE       = caveat_key__C3_CQ_CIS-CODIF_CAVEATS
+  CATDESC            = "Caveat key"
+  FIELDNAM           = "Caveat key"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = CHAR
+  ENTITY             = "Instrument"
+  PROPERTY           = "Status"
+  UNITS              = "unitless"
+  SI_CONVERSION      = "1>unitless"
+  SIGNIFICANT_DIGITS = 10
+  FILLVAL            = ""
+  LABLAXIS           = "Caveat key"
+  QUALITY            = 0
+  DEPEND_0           = time_range__C3_CQ_CIS-CODIF_CAVEATS
+END_VARIABLE         = caveat_key__C3_CQ_CIS-CODIF_CAVEATS
+
+START_VARIABLE       = caveat__C3_CQ_CIS-CODIF_CAVEATS
+  CATDESC            = "Caveat"
+  FIELDNAM           = "Caveat"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = CHAR
+  ENTITY             = "Instrument"
+  PROPERTY           = "Status"
+  FILLVAL            = ""
+  UNITS              = "unitless"
+  SI_CONVERSION      = "1>unitless"
+  SIGNIFICANT_DIGITS = 80
+  LABLAXIS           = "Caveat"
+  QUALITY            = 0
+  DEPEND_0           = time_range__C3_CQ_CIS-CODIF_CAVEATS
+END_VARIABLE         = caveat__C3_CQ_CIS-CODIF_CAVEATS
+
+

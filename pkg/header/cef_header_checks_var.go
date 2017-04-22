@@ -100,17 +100,27 @@ func (h *CefHeaderData) Depend_N_Checks(a1 Attrs) (err error) {
             i, err := strconv.Atoi(r[1])
             if  err == nil {
                 // var pointed to by DEPEND
-                a2, p0 := vars_map[v[0]]
+//x                 a2, p0 := vars_map[v[0]]
+//x                 if p0 == false {
+//x                     //- diag.Error("DEPEND_TEST: ref var not found", k, v[0])
+//x                     note := ""
+//x                     if len(v[0]) > 0 && v[0][0] == '"' {
+//x                         note = "Probably because it's in quotes!"
+//x                     }
+//x 
+//x                     return errors.New(fmt.Sprintf("DEPEND_TEST: referenced variable not found %v %v %s", k, v[0], note))
+//x                 } else if i > 0 {
+
+                if len(v[0]) > 0 && v[0][0] == '"' {
+                    diag.Warn("Referenced (DEPEND_n) Variable name in quotes", v[0])
+                }
+
+                v0 := utils.Trim_quoted_string(v[0])
+
+                a2, p0 := vars_map[v0]
                 if p0 == false {
-                    //- diag.Error("DEPEND_TEST: ref var not found", k, v[0])
-                    note := ""
-                    if len(v[0]) > 0 && v[0][0] == '"' {
-                        note = "Probably because it's in quotes!"
-                    }
-
-                    return errors.New(fmt.Sprintf("DEPEND_TEST: referenced variable not found %v %v %s", k, v[0], note))
+                    return errors.New(fmt.Sprintf("DEPEND_TEST: referenced variable not found %v %v", k, v[0]))
                 } else if i > 0 {
-
 
                     //x vt1, p1 := a1_map["VALUE_TYPE"]
                     //x if p1 == false {
