@@ -1,0 +1,12 @@
+# Javascript  Extension
+
+- Read Excel sheet
+	- if correct format - xlsx
+	- read columns
+	- create google doc (word)
+		- create tables
+		- add row with style
+		- write to G:/ drive
+
+
+

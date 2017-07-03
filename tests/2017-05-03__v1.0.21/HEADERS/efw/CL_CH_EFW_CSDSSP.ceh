@@ -1,0 +1,253 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+INCLUDE = "C3_CH_OBS.ceh"
+INCLUDE = "CL_CH_EFW_EXP.ceh"
+
+START_META     =   INSTRUMENT_NAME
+   ENTRY       =   "EFW3"
+END_META       =   INSTRUMENT_NAME
+
+START_META     =   INSTRUMENT_DESCRIPTION
+   ENTRY       =   "EFW Experiment on Cluster C3"
+END_META       =   INSTRUMENT_DESCRIPTION
+
+START_META     =   INSTRUMENT_CAVEATS
+   ENTRY       =   "*C3_CQ_EFW_CAVF"
+END_META       =   INSTRUMENT_CAVEATS
+
+START_META     =   DATASET_ID
+   ENTRY       =   "CL_SP_EFW"
+END_META       =   DATASET_ID
+
+START_META     =   DATA_TYPE
+   ENTRY       =   "SP>CSDS_Summary_Parameter"
+END_META       =   DATA_TYPE
+
+START_META     =   DATASET_TITLE
+   ENTRY       =   "Electric field, 1 minute average"
+END_META       =   DATASET_TITLE
+
+START_META     =   DATASET_DESCRIPTION
+   ENTRY       =   "This dataset contains 1 minute averaged measurements of the"
+   ENTRY       =   "electric field from the EFW experiment on the Cluster C1 spacecraft."
+   ENTRY       =   "These data have been converted into Cluster Exchange Format from the orignal"
+   ENTRY       =   "Cluster Science Data System Common Data Format (CDF) Prime Parameter files"
+   ENTRY       =   "that were made available through the Cluster Science Data System."
+   ENTRY       =   "The metadata has been updated from the CSDS/CDF standard to the CAA to aid"
+   ENTRY       =   "compatibility with tools developed for the Cluster Active Archive."
+   ENTRY       =   " "
+   ENTRY       =   "Version 01 of this dataset is the initial translation prepared for the "
+   ENTRY       =   "launch of the CAA during the second half of 2005."
+END_META       =   DATASET_DESCRIPTION
+
+START_META     =   TIME_RESOLUTION
+   ENTRY       =   60
+END_META       =   TIME_RESOLUTION
+
+START_META     =   MIN_TIME_RESOLUTION
+   ENTRY       =   60.0
+END_META       =   MIN_TIME_RESOLUTION
+
+START_META     =   MAX_TIME_RESOLUTION
+   ENTRY       =   60.0
+END_META       =   MAX_TIME_RESOLUTION
+
+START_META     =   PROCESSING_LEVEL
+   ENTRY       =   "Calibrated"
+END_META       =   PROCESSING_LEVEL
+
+START_META     =   DATASET_CAVEATS
+   ENTRY       =   "*C3_CQ_EFW_CAVF"
+END_META       =   DATASET_CAVEATS
+
+START_META     =   DATASET_VERSION
+   ENTRY       =   "01"
+END_META       =   DATASET_VERSION
+
+START_META     =   FILE_TYPE
+   ENTRY       =   "cef"
+END_META       =   FILE_TYPE
+
+START_META     =   METADATA_TYPE
+   ENTRY       =   "CAA"
+END_META       =   METADATA_TYPE
+
+START_META     =   METADATA_VERSION
+   ENTRY       =   "2.0"
+END_META       =   METADATA_VERSION
+
+START_VARIABLE  =  time_tags__CL_SP_EFW
+    PARAMETER_TYPE      = "Support_Data"
+    CATDESC             = "Interval centred time tag"
+    UNITS               = "s"
+    SI_CONVERSION       = "1.0>s"
+    SIZES               = 1
+    VALUE_TYPE          = ISO_TIME
+    SIGNIFICANT_DIGITS  = 24
+    FILLVAL             = 9999-12-31T23:59:59Z
+    FIELDNAM            = "Universal Time"
+    LABLAXIS            = "UT"
+    DELTA_PLUS          = half_interval__CL_SP_EFW
+    DELTA_MINUS         = half_interval__CL_SP_EFW
+END_VARIABLE    =  time_tags__CL_SP_EFW
+
+START_VARIABLE  =  half_interval__CL_SP_EFW
+    PARAMETER_TYPE      = "Support_Data"
+    CATDESC             = "Half averaging interval length"
+    UNITS               = "s"
+    SI_CONVERSION       = "1.0>s"
+    SIZES               = 1
+    VALUE_TYPE          = FLOAT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = -1.0e28
+    FIELDNAM            = "Half width of averaging interval"
+    LABLAXIS            = "s"
+    DATA                = 30.0
+END_VARIABLE    =  half_interval__CL_SP_EFW
+
+START_VARIABLE = status_EFW__CL_SP_EFW
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Instrument"
+    PROPERTY            = "Status"
+    CATDESC             = "Summary (CSDS SP) Cluster C3, EFW Status"
+    UNITS               = "unitless"
+    SI_CONVERSION       = "1>unitless"
+    SIZES               = 5
+    VALUE_TYPE          = INT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = 255
+    QUALITY             = 2
+    FIELDNAM            = "Summary (CSDS SP) Cluster C3, EFW Status"
+    LABLAXIS            = "EFW Status"
+    DEPEND_0            = time_tags__CL_SP_EFW
+    LABEL_1             = "Status[0]", "Status[1]", "Status[2]", "Status[3]", "Status[4]"
+END_VARIABLE   = status_EFW__CL_SP_EFW
+
+START_VARIABLE = status_WEC__CL_SP_EFW
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Instrument"
+    PROPERTY            = "Status"
+    CATDESC             = "Summary (CSDS SP) Cluster C3, WEC Status"
+    UNITS               = "unitless"
+    SI_CONVERSION       = "1>unitless"
+    SIZES               = 5
+    VALUE_TYPE          = INT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = 255
+    QUALITY             = 2
+    FIELDNAM            = "Summary (CSDS SP) Cluster C3, WEC Status"
+    LABLAXIS            = "EFW Status"
+    DEPEND_0            = time_tags__CL_SP_EFW
+    LABEL_1             = "Status[0]", "Status[1]", "Status[2]", "Status[3]", "Status[4]"
+END_VARIABLE   = status_WEC__CL_SP_EFW
+
+START_VARIABLE  =  E_dusk__CL_SP_EFW
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Electric_Field"
+    PROPERTY            = "Magnitude"
+    FLUCTUATIONS        = "Waveform"
+    CATDESC             = "Summary (CSDS SP) Cluster C3, Duskward Electric Field in spin plane perp to x-GSE, 1 minute average"
+    UNITS               = "mV m^-1"
+    SI_CONVERSION       = "1.0E-3>V m^-1"
+    SIZES               = 1
+    VALUE_TYPE          = FLOAT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = -1.0e31
+    QUALITY             = 2
+    FIELDNAM            = "Summary (CSDS SP) Cluster C3, Duskward Electric Field, 1 minute average"
+    LABLAXIS            = "E_dusk"
+    DEPEND_0            = time_tags__CL_SP_EFW
+END_VARIABLE    =  E_dusk__CL_SP_EFW
+
+START_VARIABLE = E_pow_f1__CL_SP_EFW
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Electric_Field"
+    PROPERTY            = "Magnitude"
+    FLUCTUATIONS        = "Waveform"
+    CATDESC             = "Summary (CSDS SP) Cluster C3, E-field spectral density, Freq range 0.3-10Hz, from EFW waveform, 1 minute average"
+    UNITS               = "V^2 m^-2 Hz^-1"
+    SI_CONVERSION       = "1.0>V^2 m^-2 Hz^-1"
+    SIZES               = 1
+    VALUE_TYPE          = FLOAT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = -1.0e31
+    QUALITY             = 2
+    FIELDNAM            = "Summary (CSDS SP) Cluster C3, E-field spectral density, 1 minute average"
+    LABLAXIS            = "E_pow_f1"
+    DEPEND_0            = time_tags__CL_SP_EFW
+END_VARIABLE   = E_pow_f1__CL_SP_EFW
+
+START_VARIABLE = E_pow_f2__CL_SP_EFW
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Electric_Field"
+    PROPERTY            = "Magnitude"
+    FLUCTUATIONS        = "Waveform"
+    CATDESC             = "Summary (CSDS SP) Cluster C3, E-field spectral density, Freq range 10-180 Hz, from EFW waveform, 1 minute average"
+    UNITS               = "V^2 m^-2 Hz^-1"
+    SI_CONVERSION       = "1.0>V^2 m^-2 Hz^-1"
+    SIZES               = 1
+    VALUE_TYPE          = FLOAT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = -1.0e31
+    QUALITY             = 2
+    FIELDNAM            = "Summary (CSDS SP) Cluster C3, E-field spectral density, 1 minute average"
+    LABLAXIS            = "E_pow_f2"
+    DEPEND_0            = time_tags__CL_SP_EFW
+END_VARIABLE   = E_pow_f2__CL_SP_EFW
+
+START_VARIABLE = E_sigma__CL_SP_EFW
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Electric_Field"
+    PROPERTY            = "Magnitude"
+    FLUCTUATIONS        = "Fluctuation_Level"
+    CATDESC             = "Summary (CSDS SP) Cluster C3, Electric Field Variation, based on spin plane component, 1 minute average"
+    UNITS               = "mV m^-1"
+    SI_CONVERSION       = "1.0E-3>V m^-1"
+    SIZES               = 1
+    VALUE_TYPE          = FLOAT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = -1.0e31
+    QUALITY             = 2
+    FIELDNAM            = "Summary (CSDS SP) Cluster C3, Electric Field Variation, 1 minute average"
+    LABLAXIS            = "E_sigma"
+    DEPEND_0            = time_tags__CL_SP_EFW
+END_VARIABLE   = E_sigma__CL_SP_EFW
+
+START_VARIABLE = I_probe__CL_SP_EFW
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Instrument"
+    PROPERTY            = "Current"
+    FLUCTUATIONS        = "Waveform"
+    CATDESC             = "Summary (CSDS SP) Cluster C3, Probe Current, 1 minute average"
+    UNITS               = "uA"
+    SI_CONVERSION       = "1.0E-6>A"
+    SIZES               = 1
+    VALUE_TYPE          = FLOAT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = -1.0e31
+    QUALITY             = 2
+    FIELDNAM            = "Summary (CSDS SP) Cluster C3, Probe Current, 1 minute average"
+    LABLAXIS            = "I_probe"
+    DEPEND_0            = time_tags__CL_SP_EFW
+END_VARIABLE   = I_probe__CL_SP_EFW
+
+START_VARIABLE = U_probe_sc__CL_SP_EFW
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Instrument"
+    PROPERTY            = "Probe_Potential"
+    FLUCTUATIONS        = "Waveform"
+    CATDESC             = "Summary (CSDS SP) Cluster C3, Probe Potential, relative to spacecraft, 1 minute average"
+    UNITS               = "V"
+    SI_CONVERSION       = "1.0>V"
+    SIZES               = 1
+    VALUE_TYPE          = FLOAT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = -1.0e31
+    QUALITY             = 2
+    FIELDNAM            = "Summary (CSDS SP) Cluster C3, Probe Potential, 1 minute average"
+    LABLAXIS            = "U_probe_sc"
+    DEPEND_0            = time_tags__CL_SP_EFW
+END_VARIABLE   = U_probe_sc__CL_SP_EFW
+
+
+
+

@@ -1,0 +1,65 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+INCLUDE = "C3_CH_OBS.ceh"
+INCLUDE = "CL_CH_EFW_EXP_CAA.ceh"
+INCLUDE = "C3_CH_EFW_INST.ceh"
+
+!=================================
+! Dataset Level Metadata
+!=================================
+
+START_META     =   DATASET_ID
+   ENTRY       =   "C3_CG_EFW_OVERVIEW_CAA"
+END_META       =   DATASET_ID
+
+START_META     =   DATA_TYPE
+   ENTRY       =   "CG>CAA_Graphical_Product"
+END_META       =   DATA_TYPE
+
+START_META     =   CONTACT_COORDINATES
+   ENTRY       =   "Harri Laakso, ESTEC/SRE-OOC>Non-PI>caateam@rssd.esa.int" 
+END_META       =   CONTACT_COORDINATES
+
+START_META     =   ACKNOWLEDGEMENT
+   ENTRY       =   "Please acknowledge the ESA Cluster Active Archive in any publication based upon"
+   ENTRY       =   "the use of this data."
+END_META       =   ACKNOWLEDGEMENT
+
+START_META     =   DATASET_TITLE
+   ENTRY       =   "EFW Overview Plot"
+END_META       =   DATASET_TITLE
+
+START_META     =   DATASET_DESCRIPTION
+   ENTRY       =   "The plot contains the following seven panels from top to bottom:" 
+   ENTRY       =   "- Spin-resolution spacecraft potential taken from L3_P dataset"
+   ENTRY       =   "- Spin-resolution electric field x component in ISR2 taken from L3_E3D_INERT"
+   ENTRY       =   "- Spin-resolution electric field y component in ISR2 taken from L3_E3D_INERT"
+   ENTRY       =   "- Spin-resolution electric field z component in ISR2 taken from L3_E3D_INERT"
+   ENTRY       =   "- bitmask #8-15 taken from L2_E3D_INERT"
+   ENTRY       =   "- bitmask #1-7 taken from L2_E3D_INERT"
+   ENTRY       =   "Bottom panel includes information about the presence of"
+   ENTRY       =   "- caveat taken from CQ_EFW_INST"
+   ENTRY       =   "- internal burst taken from L1_IB"
+END_META       =   DATASET_DESCRIPTION
+
+START_META     =   PROCESSING_LEVEL
+   ENTRY       =   "Calibrated"
+END_META       =   PROCESSING_LEVEL
+
+
+! Mandatory except for CAVEATS datasets
+!--------------------------------------
+START_META     =   TIME_RESOLUTION
+   VALUE_TYPE  =   "INT"
+   ENTRY       =   "86400"
+END_META       =   TIME_RESOLUTION
+
+START_META     =   MIN_TIME_RESOLUTION
+   VALUE_TYPE  =   "INT"
+   ENTRY       =   "86400"
+END_META       =   MIN_TIME_RESOLUTION
+
+START_META     =   MAX_TIME_RESOLUTION
+   VALUE_TYPE  =   "INT"
+   ENTRY       =   "86400"
+END_META       =   MAX_TIME_RESOLUTION
+

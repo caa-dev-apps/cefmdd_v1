@@ -1,6 +1,7 @@
 package header
 
 import (
+//x     "fmt"
     "errors"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
@@ -51,6 +52,9 @@ func (h *CefHeaderData) check_attr_FILE_NAME() (err error) {
     
     v0 = utils.Trim_quoted_string(v0)
     l_filename := utils.GetCefArgs().GetFilename()
+
+//x fmt.Println("l_filename:", l_filename)
+//x fmt.Println("v0:", v0)
 
     if l_filename != v0 {
         err = errors.New("FILE_NAME attribute(" + v0 + ") - mismatches actual (" + l_filename + ")")

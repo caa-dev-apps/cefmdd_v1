@@ -1,0 +1,51 @@
+! Header file: DS_CH_MISSION.ceh
+!
+! Mission Level Metadata
+!
+START_META = MISSION 
+    ENTRY  = "DoubleStar" 
+END_META   = MISSION 
+!
+START_META     = MISSION_TIME_SPAN 
+    VALUE_TYPE = ISO_TIME_RANGE 
+    ENTRY      = 2003-12-29T19:06:00Z/2009-12-31T23:59:59Z
+END_META       = MISSION_TIME_SPAN 
+!
+START_META = MISSION_AGENCY 
+    ENTRY  = "CNSA_and_ESA" 
+END_META   = MISSION_AGENCY 
+!
+START_META = MISSION_DESCRIPTION 
+    ENTRY  = "The Double Star Program (DSP) is the first mission in " 
+    ENTRY  = "collaboration between China and ESA. The mission is made "
+    ENTRY  = "of two spacecraft, the equatorial DoubleStar-1 (D1) and the "
+    ENTRY  = "Polar DoubleStar-2 (D2) to investigate the magnetospheric "
+    ENTRY  = "global processes and their response to the interplanetary "    
+    ENTRY  = "disturbances in conjunction with the Cluster mission." 
+END_META   = MISSION_DESCRIPTION 
+!
+START_META = MISSION_KEY_PERSONNEL 
+    ENTRY = "Zhen-Xing Liu>liu@cssar.ac.cn>Chief Scientist of the Double Star Program"
+    ENTRY = "Philippe Escoubet>Philippe.Escoubet@esa.int>Cluster and Double Star Project Scientist" 
+END_META   = MISSION_KEY_PERSONNEL 
+!
+START_META = MISSION_REFERENCES 
+    ENTRY  = "The Double Star mission>Ann. Geophys., 23, 2707-2712, 2005"
+END_META   =  MISSION_REFERENCES 
+!
+START_META = MISSION_REGION 
+    ENTRY  = "Bow_Shock" 
+    ENTRY  = "Magnetosheath" 
+    ENTRY  = "Magnetopause" 
+    ENTRY  = "Magnetosphere" 
+    ENTRY  = "Magnetotail" 
+    ENTRY  = "Polar_Cap"
+    ENTRY  = "Auroral_Region" 
+    ENTRY  = "Cusp" 
+    ENTRY  = "Radiation_Belt" 
+    ENTRY  = "Plasmasphere" 
+END_META   = MISSION_REGION 
+!
+START_META = MISSION_CAVEATS 
+ ENTRY = "*DS_CQ_MISSION_CAVEATS" 
+END_META = MISSION_CAVEATS

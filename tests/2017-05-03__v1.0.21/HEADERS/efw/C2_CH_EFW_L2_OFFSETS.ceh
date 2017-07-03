@@ -1,0 +1,159 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+INCLUDE = "C2_CH_OBS.ceh"
+INCLUDE = "CL_CH_EFW_EXP_CAA.ceh"
+INCLUDE = "C2_CH_EFW_INST.ceh"
+!
+START_META  =  DATASET_ID
+    ENTRY   =  "C2_CP_EFW_L2_OFFSETS"
+END_META    =  DATASET_ID
+!
+START_META  =  DATA_TYPE
+    ENTRY   =  "CP>CAA_Parameter"
+END_META    =  DATA_TYPE
+!
+START_META  =  DATASET_TITLE
+    ENTRY   =  "Electric field offsets"
+END_META    =  DATASET_TITLE
+!
+START_META  =  DATASET_DESCRIPTION
+    ENTRY   =  "The dataset contains two sets of offsets applied to the measurements: "
+    ENTRY   =  "(1) offsets due to spacecraft charging (often related to the photoelectron/charging sheet) and "
+    ENTRY   =  "(2) offset between two probe pairs. Also the amplitude correction applied to the measured field is given."
+END_META    =  DATASET_DESCRIPTION
+!
+START_META  =  CONTACT_COORDINATES
+    ENTRY   =  "caateam>Non-PI>Harri Laakso (Harri.Laakso@esa.int)"
+END_META    =  CONTACT_COORDINATES
+!
+START_META  =  PROCESSING_LEVEL
+    ENTRY   =  "Calibrated"
+END_META    =  PROCESSING_LEVEL
+!
+START_META  =  ACKNOWLEDGEMENT
+    ENTRY   =  "Please acknowledge the ESA Cluster Active Archive and the EFW instrument team"
+    ENTRY   =  "in any publication based upon use of this data."
+END_META    =  ACKNOWLEDGEMENT
+!
+START_META  =  FILE_TYPE
+    ENTRY   =  "cef"
+END_META    =  FILE_TYPE
+!
+START_META  =  METADATA_VERSION
+    ENTRY   =  "2.0"
+END_META    =  METADATA_VERSION
+!
+START_META  =  DATASET_CAVEATS
+    ENTRY   =  "These data were taken from L2_E caveats"
+END_META    =  DATASET_CAVEATS
+!
+!
+START_VARIABLE  =  time_range__C2_CP_EFW_L2_OFFSETS
+    PARAMETER_TYPE      = "Support_Data"
+    CATDESC             = "Validity time range"
+    FIELDNAM            = "Validity time range"
+    LABLAXIS            = "UT"
+    VALUE_TYPE          = ISO_TIME_RANGE
+    SIGNIFICANT_DIGITS  = 49
+    FILLVAL             = 9999-12-31T23:59:59.999Z/9999-12-31T23:59:59.999Z
+    UNITS               = "s"
+    SI_CONVERSION       = "1.0>s"
+END_VARIABLE    =  time_range__C2_CP_EFW_L2_OFFSETS
+!
+START_VARIABLE  =  dE_photo__C2_CP_EFW_L2_OFFSETS
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Electric_Field"
+    PROPERTY            = "Vector"
+    FLUCTUATIONS        = "Waveform"
+    CATDESC             = "Offset in ISR2 (photoelectron cloud)"
+    FIELDNAM            = "Offset in ISR2"
+    LABLAXIS            = "ISR2 offset"
+    COORDINATE_SYSTEM   = "ISR2"
+    SIZES               = 2
+    TENSOR_ORDER        = 1
+    REPRESENTATION_1    = "x", "y"
+    LABEL_1             = "Ex", "Ey"
+    VALUE_TYPE          = FLOAT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = 100.00
+    UNITS               = "mV/m"
+    SI_CONVERSION       = "1.0e-3>V m^-1"
+    QUALITY             = 2
+    DEPEND_0            = time_range__C2_CP_EFW_L2_OFFSETS
+END_VARIABLE    =  dE_photo__C2_CP_EFW_L2_OFFSETS
+!
+START_VARIABLE  =  dAmp__C2_CP_EFW_L2_OFFSETS
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Electric_Field"
+    PROPERTY            = "Vector"
+    FLUCTUATIONS        = "Waveform"
+    CATDESC             = "Amplitude correction (electric field shortening)"
+    FIELDNAM            = "Amplitude correction"
+    LABLAXIS            = "Amp"
+    SIZES               = 1
+    VALUE_TYPE          = FLOAT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = 100.00
+    UNITS               = "unitless"
+    SI_CONVERSION       = "1>unitless"
+    QUALITY             = 2
+    DEPEND_0            = time_range__C2_CP_EFW_L2_OFFSETS
+END_VARIABLE    =  dAmp__C2_CP_EFW_L2_OFFSETS
+!
+START_VARIABLE = secondary_pair__C2_CP_EFW_L2_OFFSETS
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Electric_Field"
+    PROPERTY            = "Status"
+    FLUCTUATIONS        = "Waveform"
+    CATDESC             = "Probe pair that was chosen to have an offset correction"
+    FIELDNAM            = "Probe pair corrected"
+    LABLAXIS            = "Probe pair corrected"
+    SIZES               = 1
+    VALUE_TYPE          = INT
+    SIGNIFICANT_DIGITS  = 2
+    FILLVAL             = -1
+    UNITS               = "unitless"
+    SI_CONVERSION       = "1>unitless"
+    QUALITY             = 0
+    DEPEND_0            = time_range__C2_CP_EFW_L2_OFFSETS
+END_VARIABLE = secondary_pair__C2_CP_EFW_L2_OFFSETS
+!
+START_VARIABLE  =  dE_delta__C2_CP_EFW_L2_OFFSETS
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Electric_Field"
+    PROPERTY            = "Vector"
+    FLUCTUATIONS        = "Waveform"
+    CATDESC             = "Offset in ISR2 (one probe pair corrected wrt another probe pair)"
+    FIELDNAM            = "ISR2 offset correction of one probe pair"
+    LABLAXIS            = "ISR2 offset of one pair"
+    COORDINATE_SYSTEM   = "ISR2"
+    SIZES               = 2
+    TENSOR_ORDER        = 1
+    REPRESENTATION_1    = "x", "y"
+    LABEL_1             = "Ex", "Ey"
+    VALUE_TYPE          = FLOAT
+    SIGNIFICANT_DIGITS  = 6
+    FILLVAL             = 100.00
+    UNITS               = "mV/m"
+    SI_CONVERSION       = "1.0e-3>V m^-1"
+    QUALITY             = 3
+    DEPEND_0            = time_range__C2_CP_EFW_L2_OFFSETS
+END_VARIABLE    =  dE_delta__C2_CP_EFW_L2_OFFSETS
+!
+START_VARIABLE = probe_pairs__C2_CP_EFW_L2_OFFSETS
+    PARAMETER_TYPE      = "Data"
+    ENTITY              = "Electric_Field"
+    PROPERTY            = "Status"
+    FLUCTUATIONS        = "Waveform"
+    CATDESC             = "Probe pairs used and corrected to calculate the despun E-field"
+    FIELDNAM            = "Probe pairs used and corrected"
+    LABLAXIS            = "Probe pairs used and corrected"
+    SIZES               = 2
+    VALUE_TYPE          = INT
+    SIGNIFICANT_DIGITS  = 2
+    FILLVAL             = -1
+    UNITS               = "unitless"
+    SI_CONVERSION       = "1>unitless"
+    QUALITY             = 0
+    DEPEND_0            = time_range__C2_CP_EFW_L2_OFFSETS
+END_VARIABLE = probe_pairs__C2_CP_EFW_L2_OFFSETS
+!

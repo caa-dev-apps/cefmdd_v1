@@ -1,0 +1,52 @@
+! Header file: D1_CH_OBS.ceh
+!
+! Observatory Level Metadata
+!
+
+START_META      =   OBSERVATORY
+    ENTRY       =   "DoubleStar-1"
+END_META        =   OBSERVATORY
+!
+START_META      =   OBSERVATORY_CAVEATS
+    ENTRY       =   "*D1_CQ_OBS_CAVEATS"
+END_META        =   OBSERVATORY_CAVEATS
+!
+START_META      =   OBSERVATORY_DESCRIPTION 
+    ENTRY       =   "DoubleStar-1 (D1)"
+    ENTRY       =   "Launched: 2003-12-29"
+    ENTRY       =   "COSPAR ID: 2003-061A"
+    ENTRY       =   "USSPACECOM catalogue number 28140"
+    ENTRY       =   "DSDS Code: T1"
+    ENTRY       =   "Orbit: 570 x 78,970 km, inclination 28.5 degrees to the equator"
+    ENTRY       =   " "
+    ENTRY       =   "Double Star 1 (also known as Tan Ce 1, and TC 1) is a Sino-European (CSNA-ESA)"
+    ENTRY       =   "satellite that was launched by a Long March 2C/SM rocket from Xichang Satellite"
+    ENTRY       =   "Launch Center in the Sichuan province of China (PRC) at 19:06 UT on 29 December 2003."
+    ENTRY       =   "The 330 kg, 260 W satellite is cylindrical, with a diameter of 2.1 m, a height "
+    ENTRY       =   "of 1.4 m, and spins at a rate of 15 rpm. It carries eight instruments to probe "
+    ENTRY       =   "Earth's magnetosphere, five from ESA and three from CNSA. The ESA instruments "
+    ENTRY       =   "are legacies from ESA's Cluster mission. The data from all instruments will be "
+    ENTRY       =   "stored on-board and dumped over three grounds stations: Shanghai and Beifing in "
+    ENTRY       =   "China, and Villafranca in Spain. There will be coordination between the Cluster "
+    ENTRY       =   "and Double Star missions. For more information, see"
+    ENTRY       =   "http://sci.esa.int/science-e/www/area/index.cfm?fareaid=70"
+    ENTRY       =   " "
+    ENTRY       =   "In the early morning on 14 October 2007, the satellite re-entered the Earth's "
+    ENTRY       =   "atmosphere and disintegrated during its descent." 
+END_META        =   OBSERVATORY_DESCRIPTION 
+!
+START_META      =   OBSERVATORY_TIME_SPAN
+    VALUE_TYPE  =   ISO_TIME_RANGE
+    ENTRY       =   2003-12-29T00:00:00Z/2007-10-14T00:00:00Z
+END_META        =   OBSERVATORY_TIME_SPAN
+!
+START_META      =   OBSERVATORY_REGION 
+    ENTRY       =   "Bow_Shock" 
+    ENTRY       =   "Magnetosheath" 
+    ENTRY       =   "Magnetopause" 
+    ENTRY       =   "Magnetosphere" 
+    ENTRY       =   "Magnetotail" 
+    ENTRY       =   "Radiation_Belt" 
+    ENTRY       =   "Plasmasphere" 
+END_META        =   OBSERVATORY_REGION
+!

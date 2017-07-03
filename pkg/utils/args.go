@@ -79,14 +79,13 @@ func (a1s *CefArgs) init() (err error) {
     s1 := a1s.m_cefpath
     ix := strings.LastIndexAny(s1, `\\/`); 
     if ix >= 0 {
-        l:=0
-        if strings.HasSuffix(s1, ".gz") {
-            l = 3
-        }
-        
-        a1s.m_filename = s1[ix+1:len(s1)-l]
+        a1s.m_filename = s1[ix+1:len(s1)]
     } else {
         a1s.m_filename = s1
+    }
+
+    if strings.HasSuffix(a1s.m_filename, ".gz") {
+        a1s.m_filename = a1s.m_filename[0:len(a1s.m_filename)-3]
     }
     
 	a1s.Dump()

@@ -1,0 +1,138 @@
+
+!
+!=== Experiment ===
+!
+START_META = EXPERIMENT
+  ENTRY    = "EFW" 
+END_META   = EXPERIMENT
+!
+! Description of the experiment
+!
+START_META = EXPERIMENT_DESCRIPTION
+  ENTRY    = "See referenced experiments"
+END_META   = EXPERIMENT_DESCRIPTION
+!
+! Name and coordinates of the PI
+!
+START_META = INVESTIGATOR_COORDINATES
+  ENTRY    = "See referenced experiments"
+END_META   = INVESTIGATOR_COORDINATES
+!
+! List of standard reference documents for the experiment
+!
+START_META = EXPERIMENT_REFERENCES
+  ENTRY    = "See referenced experiments"
+END_META   = EXPERIMENT_REFERENCES
+!
+! Name, role and coordinates of experiment key personnel
+!
+START_META = EXPERIMENT_KEY_PERSONNEL
+  ENTRY    = "See referenced experiments"
+END_META   = EXPERIMENT_KEY_PERSONNEL
+!
+! Miscellaneous information concerning the experiment
+!
+START_META = EXPERIMENT_CAVEATS
+  ENTRY    = "See referenced experiments"
+END_META   = EXPERIMENT_CAVEATS
+
+
+!
+!=== Instrument ===
+!
+START_META     =   INSTRUMENT_NAME
+   ENTRY       =   "EFW4"
+END_META       =   INSTRUMENT_NAME
+
+START_META     =   INSTRUMENT_DESCRIPTION
+   ENTRY       =   "See referenced instruments"
+END_META       =   INSTRUMENT_DESCRIPTION
+
+START_META     =   INSTRUMENT_TYPE
+   ENTRY       =   "Antenna"
+END_META       =   INSTRUMENT_TYPE
+
+START_META     =   MEASUREMENT_TYPE
+   ENTRY       =   "Electric_Field"
+END_META       =   MEASUREMENT_TYPE
+
+START_META     =   INSTRUMENT_CAVEATS
+   ENTRY       =   "See referenced instruments"
+END_META       =   INSTRUMENT_CAVEATS
+
+
+!
+!=== Dataset ===
+!
+START_META     =   DATASET_ID
+   ENTRY       =   "C4_CP_EFW_L2_E3D_INERT_EX"
+END_META       =   DATASET_ID
+
+START_META     =   DATA_TYPE
+   ENTRY       =   "CP>CAA_Parameter"
+END_META       =   DATA_TYPE
+
+START_META     =   DATASET_TITLE
+   ENTRY       =   "Non-filtered full 3D Electric field in ISR2 with vxB removed"
+END_META       =   DATASET_TITLE
+
+START_META     =   DATASET_DESCRIPTION
+   ENTRY       =   "This dataset contains measurements of the Electric field in the inertial frame "
+   ENTRY       =   "(i.e., vxB removed) in the spacecraft coordinate system (ISR2), using EFW "
+   ENTRY       =   "electric field data from file C4_CP_EFW_L2_E and interpolated FGM "
+   ENTRY       =   "magnetic field data from C4_CP_FGM_FULL. The spin-axis component "
+   ENTRY       =   "of the electric field is calculated with assumption of E.B equals 0 and with "
+   ENTRY       =   "use of 2 electric field components in the spin plane and three magnetic field "
+   ENTRY       =   "components. This dataset also includes Magnetic Field strength and "
+   ENTRY       =   "Inclination to estimate the quality of the spin-axis electric field component."
+END_META       =   DATASET_DESCRIPTION
+
+START_META     =   CONTACT_COORDINATES
+   ENTRY       =   "caateam>Non-PI>caateam@rssd.esa.int"
+END_META       =   CONTACT_COORDINATES
+
+START_META     =   TIME_RESOLUTION
+   ENTRY       =   "0.04"
+END_META       =   TIME_RESOLUTION
+
+START_META     =   MAX_TIME_RESOLUTION
+   ENTRY       =   "0.002"
+END_META       =   MAX_TIME_RESOLUTION
+
+START_META     =   MIN_TIME_RESOLUTION
+   ENTRY       =   "0.04"
+END_META       =   MIN_TIME_RESOLUTION
+    
+START_META     =   PROCESSING_LEVEL
+   ENTRY       =   "Calibrated"
+END_META       =   PROCESSING_LEVEL
+
+START_META     =   ACKNOWLEDGEMENT
+   ENTRY       =   "Please acknowledge the ESA Cluster Active Archive in any publication based upon use of this data."
+END_META       =   ACKNOWLEDGEMENT
+
+START_META     =   DATASET_CAVEATS
+   ENTRY       =   "This dataset has been calculated using the following products:"
+   ENTRY       =   " - C4_CP_FGM_FULL"
+   ENTRY       =   " - CL_SP_AUX"
+   ENTRY       =   " - C4_CP_AUX_POSGSE_1M"
+   ENTRY       =   "This dataset has a varying time resolution: "
+   ENTRY       =   "25 vectors per second for normal mode (NM1) and 450 vectors per second for burst mode (BM1)."
+   ENTRY       =   "The mode intervals are given in 'Telemetry Mode' dataset (see Spacecraft auxiliary datasets)."
+        ENTRY   =       "" 
+        ENTRY   =       "The timing can be inaccurate if the TCOR is not applied:"
+        ENTRY   =       "*C4_CQ_DWP_TCOR"
+END_META       =   DATASET_CAVEATS
+
+START_META     =   FILE_TYPE
+   ENTRY       =   "cef"
+END_META       =   FILE_TYPE
+
+START_META     =   METADATA_TYPE
+   ENTRY       =   "CAA"
+END_META       =   METADATA_TYPE
+
+START_META     =   METADATA_VERSION
+   ENTRY       =   "2.0"
+END_META       =   METADATA_VERSION
+

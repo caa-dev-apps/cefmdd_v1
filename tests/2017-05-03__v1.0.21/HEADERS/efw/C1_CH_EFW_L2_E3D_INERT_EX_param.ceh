@@ -1,0 +1,156 @@
+!
+!-- Header C1_CH_EFW_L2_E3D_INERT_EX_param.ceh created by CAA:  17 Feb 2012
+!
+!
+START_VARIABLE	=	time_tags__C1_CP_EFW_L2_E3D_INERT_EX
+	PARAMETER_TYPE		=	"Support_Data"
+	VALUE_TYPE		=	ISO_TIME
+	UNITS			=	"s"
+	SIZES			=	1
+	DELTA_PLUS		=	0.020000
+	DELTA_MINUS		=	0.020000
+	FILLVAL			=	999-12-31T23:59:59Z
+	LABLAXIS		=	"UT"
+	FIELDNAM		=	"Universal Time"
+END_VARIABLE	=	time_tags__C1_CP_EFW_L2_E3D_INERT_EX
+!
+START_VARIABLE	=	E_Vec_xyz_ISR2__C1_CP_EFW_L2_E3D_INERT_EX
+	PARAMETER_TYPE		=	"Data"
+	SIZES			=	3
+	VALUE_TYPE		=	FLOAT
+	ENTITY			=	"Electric_Field"
+	PROPERTY		=	"Vector"
+	FLUCTUATIONS		=	"Waveform"
+	FIELDNAM		=	"Electric Field"
+	CATDESC			=	"Electric Field"
+	SI_CONVERSION		=	"1.0e-3>V m^-1"
+	UNITS			=	"mV/m"
+	FILLVAL			=	-1e+31
+	QUALITY			=	3
+	SIGNIFICANT_DIGITS	=	6
+	TENSOR_ORDER		=	1
+	COORDINATE_SYSTEM	=	"ISR2>Inverted Despun Spin Reference"
+	FRAME_VELOCITY		=	"Inertial"
+	LABLAXIS		=	"Electric Field (ISR2)"
+	DEPEND_0		=	"time_tags__C1_CP_EFW_L2_E3D_INERT_EX"
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Ex","Ey","Ez"
+END_VARIABLE	=	E_Vec_xyz_ISR2__C1_CP_EFW_L2_E3D_INERT_EX
+!
+START_VARIABLE	=	delta_Ez_ISR2__C1_CP_EFW_L2_E3D_INERT_EX
+	PARAMETER_TYPE		=	"Data"
+	SIZES			=	1
+	VALUE_TYPE		=	FLOAT
+	ENTITY			=	"Electric_Field"
+	PROPERTY		=	"Vector"
+	FLUCTUATIONS		=	"Waveform"
+	FIELDNAM		=	"Error of electric field (ISR2)"
+	CATDESC			=	"Error of electric field (ISR2)"
+	SI_CONVERSION		=	"1.0e-3>V m^-1"
+	UNITS			=	"mV/m"
+	FILLVAL			=	-1e+31
+	QUALITY			=	3
+	SIGNIFICANT_DIGITS	=	6
+	TENSOR_ORDER		=	1
+	COORDINATE_SYSTEM	=	"ISR2>Inverted Despun Spin Reference"
+	FRAME_VELOCITY		=	"Inertial"
+	LABLAXIS		=	"Error of Ez (ISR2)"
+	DEPEND_0		=	"time_tags__C1_CP_EFW_L2_E3D_INERT_EX"
+	REPRESENTATION_1	=	"z"
+	LABEL_1			=	"dEz"
+END_VARIABLE	=	delta_Ez_ISR2__C1_CP_EFW_L2_E3D_INERT_EX
+!
+START_VARIABLE	=	E_bitmask__C1_CP_EFW_L2_E3D_INERT_EX
+	PARAMETER_TYPE		=	"Support_Data"
+	SIZES			=	1
+	VALUE_TYPE		=	INT
+	ENTITY			=	"Electric_Field"
+	PROPERTY		=	"Status"
+	FIELDNAM		=	"Electric field measurement quality bitmask"
+	CATDESC			=	"Electric field measurement quality bitmask"
+	SI_CONVERSION		=	"1>unitless"
+	UNITS			=	"unitless"
+	FILLVAL			=	0
+	SIGNIFICANT_DIGITS	=	5
+	LABLAXIS		=	"Bitmask"
+	DEPEND_0		=	"time_tags__C1_CP_EFW_L2_E3D_INERT_EX"
+END_VARIABLE	=	E_bitmask__C1_CP_EFW_L2_E3D_INERT_EX
+!
+START_VARIABLE	=	E_quality__C1_CP_EFW_L2_E3D_INERT_EX
+	PARAMETER_TYPE		=	"Support_Data"
+	SIZES			=	1
+	VALUE_TYPE		=	INT
+	ENTITY			=	"Electric_Field"
+	PROPERTY		=	"Status"
+	FIELDNAM		=	"Electric field measurement quality flag (4=best)"
+	CATDESC			=	"Electric field measurement quality flag (4=best)"
+	SI_CONVERSION		=	"1>unitless"
+	UNITS			=	"unitless"
+	FILLVAL			=	0
+	SIGNIFICANT_DIGITS	=	1
+	LABLAXIS		=	"Quality"
+	DEPEND_0		=	"time_tags__C1_CP_EFW_L2_E3D_INERT_EX"
+END_VARIABLE	=	E_quality__C1_CP_EFW_L2_E3D_INERT_EX
+!
+START_VARIABLE	=	B_Vec_xyz_ISR2__C1_CP_EFW_L2_E3D_INERT_EX
+	PARAMETER_TYPE		=	"Data"
+	SIZES			=	3
+	VALUE_TYPE		=	FLOAT
+	ENTITY			=	"Magnetic_Field"
+	PROPERTY		=	"Vector"
+	FLUCTUATIONS		=	"Waveform"
+	FIELDNAM		=	"Magnetic Field"
+	CATDESC			=	"Magnetic Field"
+	SI_CONVERSION		=	"1.0e-9>T"
+	UNITS			=	"nT"
+	FILLVAL			=	-1e+31
+	QUALITY			=	3
+	SIGNIFICANT_DIGITS	=	6
+	TENSOR_ORDER		=	1
+	COORDINATE_SYSTEM	=	"ISR2>Inverted Despun Spin Reference"
+	FRAME_VELOCITY		=	"Inertial"
+	LABLAXIS		=	"Magnetic Field (ISR2)"
+	DEPEND_0		=	"time_tags__C1_CP_EFW_L2_E3D_INERT_EX"
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Bx","By","Bz"
+END_VARIABLE	=	B_Vec_xyz_ISR2__C1_CP_EFW_L2_E3D_INERT_EX
+!
+START_VARIABLE	=	B_alpha_ISR2__C1_CP_EFW_L2_E3D_INERT_EX
+	PARAMETER_TYPE		=	"Data"
+	SIZES			=	1
+	VALUE_TYPE		=	FLOAT
+	ENTITY			=	"Observatory"
+	PROPERTY		=	"Direction"
+	FLUCTUATIONS		=	"Waveform"
+	FIELDNAM		=	"Angle of magnetic field relative to spin plane"
+	CATDESC			=	"Angle of magnetic field relative to spin plane"
+	SI_CONVERSION		=	"1>degree"
+	UNITS			=	"Degrees"
+	FILLVAL			=	-1e+31
+	QUALITY			=	3
+	SIGNIFICANT_DIGITS	=	6
+	TENSOR_ORDER		=	1
+	COORDINATE_SYSTEM	=	"ISR2>Inverted Despun Spin Reference"
+	FRAME_VELOCITY		=	"Observatory"
+	LABLAXIS		=	"lat"
+	DEPEND_0		=	"time_tags__C1_CP_EFW_L2_E3D_INERT_EX"
+	REPRESENTATION_1	=	"l"
+	LABEL_1			=	"lat"
+END_VARIABLE	=	B_alpha_ISR2__C1_CP_EFW_L2_E3D_INERT_EX
+!
+START_VARIABLE	=	Time_separation__C1_CP_EFW_L2_E3D_INERT_EX
+	PARAMETER_TYPE		=	"Support_Data"
+	SIZES			=	1
+	VALUE_TYPE		=	FLOAT
+	ENTITY			=	"Instrument"
+	PROPERTY		=	"Status"
+	FIELDNAM		=	"Time separation of 2 points used for the interpolation of B-field"
+	CATDESC			=	"Time separation of 2 points used for the interpolation of B-field"
+	SI_CONVERSION		=	"1>s"
+	UNITS			=	"s"
+	FILLVAL			=	0
+	SIGNIFICANT_DIGITS	=	6
+	LABLAXIS		=	"Time step"
+	DEPEND_0		=	"time_tags__C1_CP_EFW_L2_E3D_INERT_EX"
+END_VARIABLE	=	Time_separation__C1_CP_EFW_L2_E3D_INERT_EX
+!

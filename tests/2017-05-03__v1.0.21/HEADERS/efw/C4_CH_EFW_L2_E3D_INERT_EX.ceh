@@ -1,0 +1,89 @@
+!
+!-- Header C4_CH_EFW_L2_E3D_INERT_EX.ceh created by CAA:  16 Feb 2012
+!
+!
+INCLUDE = "CL_CH_MISSION.ceh"
+INCLUDE = "C4_CH_OBS.ceh"
+INCLUDE = "CL_CH_EFW_EXP_CAA.ceh"
+INCLUDE = "C4_CH_EFW_INST.ceh"
+
+START_META	=	DATASET_ID
+	ENTRY	=	"C4_CP_EFW_L2_E3D_INERT_EX"
+END_META	=	DATASET_ID
+!
+START_META	=	DATA_TYPE
+	ENTRY	=	"CP>CAA_Parameter"
+END_META	=	DATA_TYPE
+!
+START_META	=	DATASET_TITLE
+	ENTRY	=	"3D Electric field in ISR2 (E.B=0) (full resolution, Non-filtered)"
+END_META	=	DATASET_TITLE
+!
+START_META	=	DATASET_DESCRIPTION
+   	ENTRY   =   	"This dataset contains instantaneous values of the 3-dimensional Electric field "
+   	ENTRY   =   	"vector in the inertial frame (i.e., vxB removed) in the spacecraft coordinate "
+   	ENTRY   =   	"system (ISR2), using EFW electric field data from C4_CP_EFW_L2_E and FGM "
+   	ENTRY   =   	"magnetic field data from C4_CP_FGM_FULL that are interpolated to the time "
+   	ENTRY   =   	"stamps of electric field data. The spin-axis component of the electric field is "
+   	ENTRY   =   	"calculated with assumption of E.B equals 0 and with use of 2 electric field "
+   	ENTRY   =   	"components measured in the spin plane and three magnetic field components. "
+   	ENTRY   =   	"If the magnetic field component along the spin axis is less than 2 nT or the "
+   	ENTRY   =   	"elevation angle of the magnetic field vector from the spacecraft spin plane is less "
+   	ENTRY   =   	"than 15 degrees, the spin-axis electric field component has a FILLVAL."
+   	ENTRY   =   	"This dataset also includes the magnitude and elevation angle of the magnetic"
+   	ENTRY   =   	"field vector to estimate the quality of the spin-axis electric field component. "
+  	ENTRY   =   	"The data are not filtered, contrary to C4_CP_EFW_L2_E3D_INERT dataset, and "
+   	ENTRY   =   	"therefore no FILLVAL are used for small spin-axis component or elevation angle "
+   	ENTRY   =   	"of the magnetic field vector."
+END_META	=	DATASET_DESCRIPTION
+!
+START_META	=	CONTACT_COORDINATES
+	ENTRY	=	"caateam>Non-PI>caateam@rssd.esa.int"
+END_META	=	CONTACT_COORDINATES
+!
+START_META	=	TIME_RESOLUTION
+	ENTRY	=	"0.04"
+END_META	=	TIME_RESOLUTION
+!
+START_META	=	MAX_TIME_RESOLUTION
+	ENTRY	=	"0.02"
+END_META	=	MAX_TIME_RESOLUTION
+!
+START_META	=	MIN_TIME_RESOLUTION
+	ENTRY	=	"0.04"
+END_META	=	MIN_TIME_RESOLUTION
+!
+START_META	=	PROCESSING_LEVEL
+	ENTRY	=	"Calibrated"
+END_META	=	PROCESSING_LEVEL
+!
+START_META	=	ACKNOWLEDGEMENT
+	ENTRY	=	"Please acknowledge the ESA Cluster Active Archive in any publication based upon this data"
+END_META	=	ACKNOWLEDGEMENT
+!
+START_META	=	DATASET_CAVEATS
+	ENTRY	=	"This dataset has been calculated using the following products:"
+	ENTRY	=	" - C4_CP_FGM_FULL"
+	ENTRY	=	" - CL_SP_AUX"
+	ENTRY	=	" - C4_CP_AUX_POSGSE_1M"
+	ENTRY	=	"This dataset has a varying time resolution: "
+	ENTRY	=	"25 vectors per second for normal mode (NM1) and 450 vectors per second for burst mode (BM1)."
+	ENTRY	=	"The mode intervals are given in 'Telemetry Mode'dataset (see Spacecraft auxiliary datasets)."
+        ENTRY   =       "" 
+        ENTRY   =       "The timing can be inaccurate if the TCOR is not applied:"
+        ENTRY   =       "*C4_CQ_DWP_TCOR"
+END_META	=	DATASET_CAVEATS
+!
+START_META	=	METADATA_TYPE
+	ENTRY	=	"CAA"
+END_META	=	METADATA_TYPE
+!
+START_META	=	METADATA_VERSION
+	ENTRY	=	"2.0"
+END_META	=	METADATA_VERSION
+!
+
+
+! Include variables metadata
+!===========================
+INCLUDE = "C4_CH_EFW_L2_E3D_INERT_EX_param.ceh"
