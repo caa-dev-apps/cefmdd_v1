@@ -10,3 +10,20 @@
 
 
 
+# Google Sheets:
+- mdd_TEST_0001.xlsx
+
+
+## Sheet "A Test":
+	                                                          https://docs.google.com/spreadsheets/d/1CFFyoD4pKRq0vyaEWm8pnX3hxrjEEfzG69f3j1PTuHw/pub?gid=1573083976&single=true&output=csv
+	wget --no-check-certificate --output-document=a-test.csv 'https://docs.google.com/spreadsheets/d/1CFFyoD4pKRq0vyaEWm8pnX3hxrjEEfzG69f3j1PTuHw/pub?gid=1573083976&single=true&output=csv'
+
+
+
+## Sheet "Keywords":
+		                                                        https://docs.google.com/spreadsheets/d/1CFFyoD4pKRq0vyaEWm8pnX3hxrjEEfzG69f3j1PTuHw/pub?gid=791408233&single=true&output=csv
+	wget --no-check-certificate --output-document=keywords.csv 'https://docs.google.com/spreadsheets/d/1CFFyoD4pKRq0vyaEWm8pnX3hxrjEEfzG69f3j1PTuHw/pub?gid=791408233&single=true&output=csv'
+
+## Sheet "Enums":
+	                                                         https://docs.google.com/spreadsheets/d/1CFFyoD4pKRq0vyaEWm8pnX3hxrjEEfzG69f3j1PTuHw/pub?gid=1933632029&single=true&output=csv
+	wget --no-check-certificate --output-document=enums.csv 'https://docs.google.com/spreadsheets/d/1CFFyoD4pKRq0vyaEWm8pnX3hxrjEEfzG69f3j1PTuHw/pub?gid=1933632029&single=true&output=csv'
