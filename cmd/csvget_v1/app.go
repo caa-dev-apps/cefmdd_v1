@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
 )
 
 //  ## Sheet "A Test":
@@ -72,6 +74,8 @@ func httpGetFile(fn string) (contents string, err error) {
 
 
 func main() {
+    diag.Info(diag.Yellow("csvget v0.0.0, (16 July 2017)"))
+
 
 	files := map[string]string {
 		"a-test.csv": 	`https://docs.google.com/spreadsheets/d/1CFFyoD4pKRq0vyaEWm8pnX3hxrjEEfzG69f3j1PTuHw/pub?gid=1573083976&single=true&output=csv`,		// A Test
@@ -102,4 +106,6 @@ func main() {
 
 	fmt.Println(s)
 
+
+    diag.Info(diag.Yellow("CAA Rocks!\n"))
 }
