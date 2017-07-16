@@ -1,0 +1,204 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C4_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C4_CH_CIS-CODIF.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C4_CP_CIS-CODIF_O1_1D_PEF"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS-CODIF 1D Oxygen+ distributions on C4 in Particle_Energy_Flux"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains CIS-CODIF Oxygen+ omni-directional distributions"
+  ENTRY      = "for spacecraft C4 in Particle_Energy_Flux units"
+END_META     = Dataset_description
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C4_CQ_CIS-CODIF_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = Calibrated
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 16.0
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+START_VARIABLE       = time_tags__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "Acquisition interval start time"
+  FIELDNAM           = "Universal Time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  FILLVAL            = "9999-99-99T99:99:99Z"
+  DELTA_PLUS         = duration__C4_CP_CIS-CODIF_O1_1D_PEF
+  DELTA_MINUS        = 0.0
+END_VARIABLE         = time_tags__C4_CP_CIS-CODIF_O1_1D_PEF
+
+START_VARIABLE       = duration__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "Interval duration"
+  FIELDNAM           = "Interval duration"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 0.0
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_O1_1D_PEF
+END_VARIABLE         = duration__C4_CP_CIS-CODIF_O1_1D_PEF
+
+START_VARIABLE       = sensitivity__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "Instrument sensitivity", "1: High-G", "0: Low-g"
+  FIELDNAM           = "Sensitivity"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  UNITS              = "Unitless"
+  LABLAXIS           = "Sensitivity"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_O1_1D_PEF
+END_VARIABLE         = sensitivity__C4_CP_CIS-CODIF_O1_1D_PEF
+
+START_VARIABLE       = cis_mode__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "CIS Operational Mode"
+  FIELDNAM           = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_O1_1D_PEF
+END_VARIABLE         = cis_mode__C4_CP_CIS-CODIF_O1_1D_PEF
+
+START_VARIABLE       = tm_product__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "CIS Telemetry Product"
+  FIELDNAM           = "Telemetry Product Number"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Product"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_O1_1D_PEF
+END_VARIABLE         = tm_product__C4_CP_CIS-CODIF_O1_1D_PEF
+
+START_VARIABLE       = codif_mcp_hv__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "CODIF MCP High-Voltage"
+  FIELDNAM           = "Codif MCP High-Voltage"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "volt"
+  SI_CONVERSION      = "1>V"
+  LABLAXIS           = "MCP HV"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_O1_1D_PEF
+END_VARIABLE         = codif_mcp_hv__C4_CP_CIS-CODIF_O1_1D_PEF
+
+START_VARIABLE       = codif_acc_hv__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "CODIF Post Acceleration High-Voltage"
+  FIELDNAM           = "Codif Post Acceleration High-Voltage"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "volt"
+  SI_CONVERSION      = "1>V"
+  LABLAXIS           = "ACC HV"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_O1_1D_PEF
+END_VARIABLE         = codif_acc_hv__C4_CP_CIS-CODIF_O1_1D_PEF
+
+START_VARIABLE       = flux__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "CIS-CODIF 1D Oxygen+ distributions"
+  FIELDNAM           = "CIS-CODIF 1D Oxygen+ distributions"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  QUALITY            = 3
+  FILLVAL            = -1e+31
+  SIGNIFICANT_DIGITS = 10
+  ENTITY             = "Oxygen+"
+  PROPERTY           = "Particle_Energy_Flux"
+  UNITS              = "Kev cm^-2 s^-1 sr^-1 Kev^-1"
+  SI_CONVERSION      = "1.0E+4>m^-2 s^-1 sr^-1"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_O1_1D_PEF
+  DEPEND_1           = energy_table__C4_CP_CIS-CODIF_O1_1D_PEF
+END_VARIABLE         = flux__C4_CP_CIS-CODIF_O1_1D_PEF
+
+START_VARIABLE       = energy_table__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "Energy table"
+  FIELDNAM           = "Energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 35238.04,27677.06,21738.44,17074.05,13410.50,10533.03,8272.97,6497.85,5103.62,4008.54,3148.44,2472.88,1942.28,1525.53,1198.20,941.10,739.17,580.57,456.00,358.15,281.31,220.95,173.54,136.30,107.06,84.09,66.04,51.87,40.74,32.00,25.13
+  DELTA_PLUS         = delta_plus_energy_table__C4_CP_CIS-CODIF_O1_1D_PEF
+  DELTA_MINUS        = delta_minus_energy_table__C4_CP_CIS-CODIF_O1_1D_PEF
+END_VARIABLE         = energy_table__C4_CP_CIS-CODIF_O1_1D_PEF
+
+START_VARIABLE       = delta_plus_energy_table__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "Delta plus energy table"
+  FIELDNAM           = "Delta plus energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 3252.77,2554.83,2006.64,1576.08,1237.90,972.29,763.67,599.81,471.11,370.02,290.63,228.27,179.29,140.82,110.60,86.87,68.23,53.59,42.09,33.06,25.97,20.40,16.02,12.58,9.88,7.76,6.10,4.79,3.76,2.95,2.32
+END_VARIABLE         = delta_plus_energy_table__C4_CP_CIS-CODIF_O1_1D_PEF
+
+START_VARIABLE       = delta_minus_energy_table__C4_CP_CIS-CODIF_O1_1D_PEF
+  CATDESC            = "Delta minus energy table"
+  FIELDNAM           = "Delta minus energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 5006.14,3931.98,3088.30,2425.65,1905.18,1496.39,1175.31,923.13,725.05,569.48,447.29,351.31,275.93,216.73,170.22,133.70,105.01,82.48,64.78,50.88,39.96,31.39,24.65,19.36,15.21,11.95,9.38,7.37,5.79,4.55,3.57
+END_VARIABLE         = delta_minus_energy_table__C4_CP_CIS-CODIF_O1_1D_PEF
+
+

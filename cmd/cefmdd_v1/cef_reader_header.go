@@ -74,7 +74,12 @@ func ReadHeader(args *utils.CefArgs,
 
 				nestedLevel--
 			} else {
-				r_header.Add_kv(&kv)
+				err2 := r_header.Add_kv(&kv)
+
+				if err2 != nil {
+					return false, err2
+				}
+
 				data_until = strings.EqualFold("DATA_UNTIL", kv.Key)
 			}
 

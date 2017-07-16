@@ -1,0 +1,197 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C4_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C4_CH_CIS_INST.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C4_CP_CIS_MODES"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS selected modes dataset for spacecraft C4"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains CIS status indicators for spacecraft C4 :"
+  ENTRY      = "- Telemetry rate"
+  ENTRY      = "- CIS operational mode"
+  ENTRY      = "- CODIF and HIA operating flags"
+  ENTRY      = "- CIS Solar-wind mode flag"
+  ENTRY      = "- CODIF sensitivity (HS/LS)"
+  ENTRY      = "- CODIF RPA and Magnetosheath modes flags"
+END_META     = Dataset_description
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = Raw
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 5.125
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 5.125
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 5.125
+END_META     = Max_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+START_VARIABLE       = time_tags__C4_CP_CIS_MODES
+  CATDESC            = "Acquisition interval start time"
+  FIELDNAM           = "Universal Time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  FILLVAL            = "9999-99-99T99:99:99Z"
+  DELTA_PLUS         = 5.125
+  DELTA_MINUS        = 0.0
+END_VARIABLE         = time_tags__C4_CP_CIS_MODES
+
+START_VARIABLE       = tlm_rate__C4_CP_CIS_MODES
+  CATDESC            = "CIS Telemetry Rate"
+  FIELDNAM           = "CIS Telemetry Rate"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  SIGNIFICANT_DIGITS = 1
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C4_CP_CIS_MODES
+END_VARIABLE         = tlm_rate__C4_CP_CIS_MODES
+
+START_VARIABLE       = cis_mode_key__C4_CP_CIS_MODES
+  CATDESC            = "CIS mode description table"
+  FIELDNAM           = "CIS mode description table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = CHAR
+  SIZES              = 16
+  FILLVAL            = ""
+  SIGNIFICANT_DIGITS = 100
+  UNITS              = "unitless"
+  DATA               = "0 : SW-1>Solar Wind-Mode-1",\
+                       "1 : SW-2>Solar Wind-Upstreams-Mode-2",\
+                       "2 : SW-3>Solar Wind-Mode-3",\
+                       "3 : SW-4>Solar Wind-Upstreams-Mode-4",\
+                       "4 : SW-C1>Solar Wind-Data compression",\
+                       "5 : SW-C2>Solar Wind-Upstreams-Data compression",\
+                       "6 : RPA>CODIF:RPA-Mode and HIA:Magnetospheric-Mode",\
+                       "7 : PROM>PROM Operation",\
+                       "8 : MAG-1>Magnetospheric-Mode-1",\
+                       "9 : MAG-2>Magnetospheric-Mode-2",\
+                       "10 : MAG-3>Magnetospheric-Mode-3",\
+                       "11 : MAG-5>Magnetosheath-Mode-1",\
+                       "12 : MAG-1>Magnetosheath-Mode-2",\
+                       "13 : MAG-C1>Magnetospheric-Data Comp",\
+                       "14 : MAG-C2>Magnetosheath-Data Comp",\
+                       "15 : CALIBR>Calibration mode"
+END_VARIABLE         = cis_mode_key__C4_CP_CIS_MODES
+
+START_VARIABLE       = cis_mode__C4_CP_CIS_MODES
+  FIELDNAM           = "CIS Operational Mode"
+  CATDESC            = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  PARAMETER_CAVEATS  = "Value described by cis_mode_key parameter"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C4_CP_CIS_MODES
+END_VARIABLE         = cis_mode__C4_CP_CIS_MODES
+
+START_VARIABLE       = codif_operational__C4_CP_CIS_MODES
+  FIELDNAM           = "CODIF operational"
+  CATDESC            = "CODIF operational (0 : no, 1 : yes)"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  UNITS              = "Unitless"
+  LABLAXIS           = "CODIF operational"
+  DEPEND_0           = time_tags__C4_CP_CIS_MODES
+END_VARIABLE         = codif_operational__C4_CP_CIS_MODES
+
+START_VARIABLE       = hia_operational__C4_CP_CIS_MODES
+  CATDESC            = "HIA operational (0 : no, 1 : yes)"
+  FIELDNAM           = "HIAF operational "
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  UNITS              = "Unitless"
+  LABLAXIS           = "HIA operational"
+  DEPEND_0           = time_tags__C4_CP_CIS_MODES
+END_VARIABLE         = hia_operational__C4_CP_CIS_MODES
+
+START_VARIABLE       = cis_sw__C4_CP_CIS_MODES
+  CATDESC            = "CIS Solar-Wind mode (0 : no, 1 : yes)"
+  FIELDNAM           = "CIS Solar-Wind mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  UNITS              = "Unitless"
+  LABLAXIS           ="CIS SW mode"
+  DEPEND_0           = time_tags__C4_CP_CIS_MODES
+END_VARIABLE         = cis_sw__C4_CP_CIS_MODES
+
+START_VARIABLE       = codif_sensitivity__C4_CP_CIS_MODES
+  CATDESC            = "CIS-CODIF sensitivity (0 : Low-g, 1 : High-G)"
+  FIELDNAM           = "CODIF Sensitivity"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  UNITS              = "Unitless"
+  LABLAXIS           = "CODIF HS/LS"
+  DEPEND_0           = time_tags__C4_CP_CIS_MODES
+END_VARIABLE         = codif_sensitivity__C4_CP_CIS_MODES
+
+START_VARIABLE       = codif_rpa__C4_CP_CIS_MODES
+  CATDESC            = "CODIF RPA mode (0 : no, 1 : yes)"
+  FIELDNAM           = "CODIF RPA mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  UNITS              = "Unitless"
+  LABLAXIS           = "CODIF RPA"
+  DEPEND_0           = time_tags__C4_CP_CIS_MODES
+END_VARIABLE         = codif_rpa__C4_CP_CIS_MODES
+
+START_VARIABLE       = codif_msh__C4_CP_CIS_MODES
+  CATDESC            = "CODIF Magnetosheath mode (0 : no, 1 : yes)"
+  FIELDNAM           = "CODIF Magnetosheath mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  UNITS              = "Unitless"
+  LABLAXIS           = "CODIF Magnetosheath mode"
+  DEPEND_0           = time_tags__C4_CP_CIS_MODES
+END_VARIABLE         = codif_msh__C4_CP_CIS_MODES
+
+

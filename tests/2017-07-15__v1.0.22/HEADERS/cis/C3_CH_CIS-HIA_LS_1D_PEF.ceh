@@ -1,0 +1,205 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C3_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C3_CH_CIS-HIA.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C3_CP_CIS-HIA_LS_1D_PEF"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "Ion omni-directional flux for CIS_HIA in Low-sensitivity mode"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains Ion omni-directional fluxes in Particle_Energy_Flux units"
+  ENTRY      = "from the CIS-HIA instrument on Cluster C3 spacecraft"
+  ENTRY      = "in Low-Sensitivity and Solar Wind mode"
+END_META     = Dataset_description
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C3_CQ_CIS-HIA_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = "Calibrated"
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 16.0
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+START_VARIABLE       = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "Acquisition interval start time"
+  FIELDNAM           = "Universal Time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  FILLVAL            = "9999-99-99T99:99:99Z"
+  DELTA_PLUS         = duration__C3_CP_CIS-HIA_LS_1D_PEF
+  DELTA_MINUS        = 0.0
+END_VARIABLE         = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+
+START_VARIABLE       = duration__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "Interval duration"
+  FIELDNAM           = "Accumulation time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 0.0
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+END_VARIABLE         = duration__C3_CP_CIS-HIA_LS_1D_PEF
+
+START_VARIABLE       = sensitivity__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "Instrument sensitivity", "1: High-G", "0: Low-g"
+  FIELDNAM           = "Sensitivity"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = -1
+  UNITS              = "Unitless"
+  LABLAXIS           = "Sensitivity"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+END_VARIABLE         = sensitivity__C3_CP_CIS-HIA_LS_1D_PEF
+
+START_VARIABLE       = cis_mode__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "CIS Operational Mode"
+  FIELDNAM           = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+END_VARIABLE         = cis_mode__C3_CP_CIS-HIA_LS_1D_PEF
+
+START_VARIABLE       = tm_product__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "CIS Telemetry Product"
+  FIELDNAM           = "Telemetry Product Number"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Product"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+END_VARIABLE         = tm_product__C3_CP_CIS-HIA_LS_1D_PEF
+
+START_VARIABLE       = hia_mcp_hv__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "HIA MCP High-Voltage"
+  FIELDNAM           = "HIA MCP High-Voltage"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "volt"
+  SI_CONVERSION      = "1>V"
+  LABLAXIS           = "MCP HV"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+END_VARIABLE         = hia_mcp_hv__C3_CP_CIS-HIA_LS_1D_PEF
+
+START_VARIABLE       = hia_discri__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "HIA Discriminator level"
+  FIELDNAM           = "HIA Discriminator level"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "volt"
+  SI_CONVERSION      = "1>V"
+  LABLAXIS           = "Discri"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+END_VARIABLE         = hia_discri__C3_CP_CIS-HIA_LS_1D_PEF
+
+START_VARIABLE       = energy_table__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "Energy table"
+  FIELDNAM           = "Energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+  DELTA_PLUS         = delta_plus_energy_table__C3_CP_CIS-HIA_LS_1D_PEF
+  DELTA_MINUS        = delta_minus_energy_table__C3_CP_CIS-HIA_LS_1D_PEF
+END_VARIABLE         = energy_table__C3_CP_CIS-HIA_LS_1D_PEF
+
+START_VARIABLE       = delta_plus_energy_table__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "Delta plus energy table"
+  FIELDNAM           = "Delta plus energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+END_VARIABLE         = delta_plus_energy_table__C3_CP_CIS-HIA_LS_1D_PEF
+
+START_VARIABLE       = delta_minus_energy_table__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "Delta minus energy table"
+  FIELDNAM           = "Delta minus energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+END_VARIABLE         = delta_minus_energy_table__C3_CP_CIS-HIA_LS_1D_PEF
+
+START_VARIABLE       = flux__C3_CP_CIS-HIA_LS_1D_PEF
+  CATDESC            = "CIS-HIA 1D ion distribution"
+  FIELDNAM           = "CIS-HIA 1D ion distribution"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  QUALITY            = 3
+  FILLVAL            = -1e+31
+  SIGNIFICANT_DIGITS = 10
+  ENTITY             = "Ion"
+  PROPERTY           = "Particle_Energy_Flux"
+  UNITS              = "Kev cm^-2 s^-1 sr^-1 Kev^-1"
+  SI_CONVERSION      = "1.0E+4>m^-2 s^-1 sr^-1"
+  DEPEND_0           = time_tags__C3_CP_CIS-HIA_LS_1D_PEF
+  DEPEND_1           = energy_table__C3_CP_CIS-HIA_LS_1D_PEF
+END_VARIABLE         = flux__C3_CP_CIS-HIA_LS_1D_PEF
+
+

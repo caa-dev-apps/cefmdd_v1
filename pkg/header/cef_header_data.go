@@ -364,6 +364,7 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 		case META:
 //x 			if h.m_name != kv.Val[0] {
             if strings.EqualFold(h.m_name, kv.Val[0]) == false {
+                diag.Error("END_META: invalid Name", "\t(START_META)", h.m_name, "\t(END_META)", kv.Val[0])
 				return errors.New("END_META: invalid Name")
 			}
 
@@ -388,6 +389,8 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 		switch h.m_state {
 		case VAR:
 			if h.m_name != kv.Val[0] {
+                //x diag.Error("=========== END_VARIABLE: invalid Name", kv.Val[0])
+                diag.Error("END_VARIABLE: invalid Name", "\t(START_VARIABLE)", h.m_name, "\t(END_VARIABLE)", kv.Val[0])
 				return errors.New("END_VARIABLE: invalid Name")
 			}
             

@@ -1,0 +1,226 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C4_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C4_CH_CIS-CODIF.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C4_CP_CIS-CODIF_HS_64MQ"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS-CODIF HS 64 mass/charge dataset"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains CIS-CODIF 64 mass/charge channels "
+  ENTRY      = "for Cluster C4 Spacecraft in High-sensitivity mode"
+END_META     = Dataset_description
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C4_CQ_CIS-CODIF_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = Uncalibrated
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 128.0
+END_META     = Time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 28.0
+END_META     = Min_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+! Variables definitions
+! ---------------------
+!
+START_VARIABLE       = time_tags__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "Acquisition interval start time"
+  FIELDNAM           = "Universal Time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  FILLVAL            = "9999-99-99T99:99:99Z"
+  DELTA_PLUS         = 128.0
+  DELTA_MINUS        = 0.0
+END_VARIABLE         = time_tags__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = duration__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "Interval duration"
+  FIELDNAM           = "Interval_duration"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 0.0
+  UNITS              = "s"
+  LABLAXIS           = "dT"
+  SI_CONVERSION      = "1.0>s"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_HS_64MQ
+END_VARIABLE         = duration__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = cis_mode__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "CIS Operational Mode"
+  FIELDNAM           = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_HS_64MQ
+END_VARIABLE         = cis_mode__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = 3d_counts__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "CIS-CODIF 64 m/q distribution"
+  FIELDNAM           = "CIS-CODIF 64 m/q distribution"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = INT
+  SIGNIFICANT_DIGITS = 5
+  QUALITY            = 2
+  FILLVAL            = -1e+31
+  SIZES              = 64,6,8
+  ENTITY             = Particles
+  PROPERTY           = Raw_Particle_Counts
+  UNITS              = "unitless"
+  SI_CONVERSION      = "1>(particles)"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_HS_64MQ
+  DEPEND_1           = channels__C4_CP_CIS-CODIF_HS_64MQ
+  DEPEND_2           = theta__C4_CP_CIS-CODIF_HS_64MQ
+  DEPEND_3           = energy__C4_CP_CIS-CODIF_HS_64MQ
+END_VARIABLE         = 3d_counts__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = channels__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "mass/q channels uncalibrated from lower to higher ion masses"
+  FIELDNAM           = "channels"
+  PARAMETER_TYPE     = "Support_Data"
+  SIZES              = 64
+  VALUE_TYPE         = INT
+  FILLVAL            = 999
+  DATA               = 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,\
+                       33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64
+END_VARIABLE         = channels__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = theta__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "Polar bin edges centered values (particle arrival direction)"
+  FIELDNAM           = "Polar bin edges" 
+  PARAMETER_TYPE     = "Support_Data"
+  SIZES              = 6
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 999
+  UNITS              = "deg"
+  SI_CONVERSION      = "1>degree"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = -67.50,0.00,0.00,0.00,0.00,67.50
+  DELTA_PLUS         = delta_theta__C4_CP_CIS-CODIF_HS_64MQ
+  DELTA_MINUS        = delta_theta__C4_CP_CIS-CODIF_HS_64MQ
+END_VARIABLE         = theta__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = delta_theta__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "Polar bin edges half interval"
+  FIELDNAM           = "Polar bin half interval"
+  PARAMETER_TYPE     = "Support_Data"
+  SIZES              = 6
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 999
+  UNITS              = "deg"
+  SI_CONVERSION      = "1>degree"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = 22.500, 45.000, 45.000, 45.000, 45.000, 22.500
+END_VARIABLE         = delta_theta__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = phi__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "Azimuthal bin edges centered value (particle arrival direction)"
+  FIELDNAM           = "Azimuthal bin"
+  PARAMETER_TYPE     = "Support_Data"
+  SIZES              = 6
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 999
+  UNITS              = "deg"
+  SI_CONVERSION      = "1>degree"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = -34.17,-79.17,-169.17,100.83,10.83,-34.17
+  DELTA_PLUS         = delta_phi__C4_CP_CIS-CODIF_HS_64MQ
+  DELTA_MINUS        = delta_phi__C4_CP_CIS-CODIF_HS_64MQ
+  DEPEND_1           = theta__C4_CP_CIS-CODIF_HS_64MQ
+END_VARIABLE         = phi__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = delta_phi__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "Azimuthal bin edges half interval"
+  FIELDNAM           = "Azimuthal bin half interval"
+  PARAMETER_TYPE     = "Support_Data"
+  SIZES              = 6
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 999
+  UNITS              = "deg"
+  SI_CONVERSION      = "1>degree"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = 180.000, 45.000, 45.000, 45.000, 45.000, 180.000
+END_VARIABLE         = delta_phi__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = energy__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "Energy bin center values"
+  PARAMETER_TYPE     = "Support_Data"
+  SIZES              = 8
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 23745.08,9036.64,3439.06,1308.80,498.09,189.56,72.14,30.98
+  DELTA_PLUS         = delta_plus_energy__C4_CP_CIS-CODIF_HS_64MQ
+  DELTA_MINUS        = delta_minus_energy__C4_CP_CIS-CODIF_HS_64MQ
+END_VARIABLE         = energy__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = delta_plus_energy__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "Energy bin upper interval"
+  PARAMETER_TYPE     = "Support_Data"
+  SIZES              = 8
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 14745.73,5611.76,2135.66,812.77,309.31,117.72,44.80,13.53
+END_VARIABLE         = delta_plus_energy__C4_CP_CIS-CODIF_HS_64MQ
+
+START_VARIABLE       = delta_minus_energy__C4_CP_CIS-CODIF_HS_64MQ
+  CATDESC            = "Energy bin lower interval"
+  PARAMETER_TYPE     = "Support_Data"
+  SIZES              = 8
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 9096.68,3461.91,1317.50,501.40,190.82,72.62,27.64,9.41
+END_VARIABLE         = delta_minus_energy__C4_CP_CIS-CODIF_HS_64MQ
+

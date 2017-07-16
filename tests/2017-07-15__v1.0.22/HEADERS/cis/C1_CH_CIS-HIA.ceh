@@ -1,0 +1,34 @@
+! Instrument level metadata
+!
+START_META = Instrument_name
+  ENTRY    = "CIS-HIA1"
+END_META   = Instrument_name
+
+START_META = Instrument_description
+  ENTRY    = "CIS Hot Ion Analyser on Cluster C1."
+  ENTRY    = "HIA consists of two sections, each with a 180 deg field of view:"
+  ENTRY    = "A high-sensitivity (HS) side and a low-sensitivity (LS) side."
+  ENTRY    = "The LS side supplies data only during solar wind modes and during solar wind/upstreaming ions modes, "
+  ENTRY    = "and covers a 45 deg x 45 deg solid angle centred in the solar wind arrival direction. "
+  ENTRY    = "The HS side operates during magnetospheric modes and during solar wind/upstreaming ions modes."
+  ENTRY    = "During magnetospheric modes the HS side covers the full space."
+  ENTRY    = "During solar wind/upstreaming ions modes the HS side covers the remaining space not covered by the LS side."
+  ENTRY    = "cf. the CIS User Guide for details"
+END_META   = Instrument_description
+
+START_META = Instrument_type
+  ENTRY    = "Electrostatic_Analyser"
+  ENTRY    = "Micro-channel_Plate"
+END_META   = Instrument_type
+
+START_META = Measurement_type
+  ENTRY    = "Energetic_Particles"
+  ENTRY    = "Thermal_Plasma"
+END_META   = Measurement_type
+
+START_META = Instrument_caveats
+  ENTRY    = "http://cluster.irap.omp.eu/index.php?page=caveats"
+END_META   = Instrument_caveats
+
+
+

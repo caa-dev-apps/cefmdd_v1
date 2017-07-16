@@ -1,0 +1,196 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C4_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C4_CH_CIS-CODIF.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C4_CP_CIS-CODIF_HS_H1_MOMENTS"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS-CODIF Proton ground computed moments for High-sensitivity side"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains CIS-CODIF Proton ground moments"
+  ENTRY      = "computed from 3D distributions"
+  ENTRY      = "for High-sensitivity side on spacecraft C4"
+END_META     = Dataset_description
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C4_CQ_CIS-CODIF_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = Calibrated
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 16.0
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+START_VARIABLE       = time_tags__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  CATDESC            = "Acquisition interval center time"
+  FIELDNAM           = "Center time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "UT"
+  DELTA_PLUS         = duration__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  DELTA_MINUS        = duration__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  FILLVAL            = "9999-99-99T99:99:99Z"
+END_VARIABLE         = time_tags__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+
+START_VARIABLE       = duration__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  CATDESC            = "Half interval duration"
+  FIELDNAM           = "Halt interval duration"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  FILLVAL            = 0.0
+END_VARIABLE         = duration__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+
+START_VARIABLE       = density__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  CATDESC            = "Density (in cm^-3)"
+  FIELDNAM           = "Density"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Proton"
+  PROPERTY           = "Mass_Density"
+  UNITS              = "particles cm^-3"
+  SI_CONVERSION      = "1e6>(particles) m^-3"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 4
+  FILLVAL            = -1e31
+END_VARIABLE         = density__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+
+START_VARIABLE       = velocity__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  CATDESC            = "Velocity in km s^-1 (GSE)"
+  FIELDNAM           = "Velocity"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 3
+  ENTITY             = "Proton"
+  PROPERTY           = "Velocity"
+  TENSOR_ORDER       = 1
+  COORDINATE_SYSTEM  = "GSE"
+  REPRESENTATION_1   = "x","y","z"
+  UNITS              = "km s^-1"
+  SI_CONVERSION      = "1e3>m s^-1"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 4
+  FILLVAL            = -1e31
+END_VARIABLE         = velocity__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+
+START_VARIABLE       = pressure__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  CATDESC            = "Pressure Tensor (GSE)"
+  FIELDNAM           = "Pressure Tensor (GSE)"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Proton"
+  PROPERTY           = "Pressure_Tensor"
+  SIZES              = 3,3
+  TENSOR_ORDER       = 2
+  COORDINATE_SYSTEM  = "GSE"
+  REPRESENTATION_1   = "x","y","z"
+  REPRESENTATION_2   = "x","y","z"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 4
+  UNITS              = "nPa"
+  SI_CONVERSION      = "1e-9>Pa"
+  FILLVAL            = -1e31
+  ! Added for CEFpass compatibility
+  FRAME              = "GSE"
+  LABEL_1            = "x","y","z"
+  LABEL_2            = "x","y","z"
+  ! Added for CEFpass compatibility
+END_VARIABLE         = pressure__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+
+START_VARIABLE       = T__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  CATDESC            = "Temperature in MK"
+  FIELDNAM           = "Temperature"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Proton"
+  PROPERTY           = "Temperature"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 4
+  UNITS              = "MK"
+  SI_CONVERSION      = "1e6>K"
+  FILLVAL            = -1e31
+END_VARIABLE         = T__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+
+START_VARIABLE       = T_par__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  CATDESC            = "Parallel temperature in MK"
+  FIELDNAM           = "T_par"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Proton"
+  PROPERTY           = "Temperature"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 4
+  UNITS              = "MK"
+  SI_CONVERSION      = "1e6>K"
+  FILLVAL            = -1e31
+END_VARIABLE         = T_par__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+
+START_VARIABLE       = T_perp__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  CATDESC            = "Perpendicular temperarure in MK"
+  FIELDNAM           = "T_perp"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Proton"
+  PROPERTY           = "Temperature"
+  DEPEND_0           = time_tags__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 4
+  UNITS              = "MK"
+  SI_CONVERSION      = "1e6>K"
+  FILLVAL            = -1e31
+END_VARIABLE         = T_perp__C4_CP_CIS-CODIF_HS_H1_MOMENTS
+
+

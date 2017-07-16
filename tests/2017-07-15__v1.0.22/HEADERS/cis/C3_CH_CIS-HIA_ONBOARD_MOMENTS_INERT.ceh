@@ -1,0 +1,510 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+INCLUDE = "C3_CH_OBS.ceh"
+
+
+!
+!=== Experiment ===
+!
+START_META = EXPERIMENT
+  ENTRY    = "CIS" 
+  ENTRY    = "FGM" 
+END_META   = EXPERIMENT
+!
+! Description of the experiment
+!
+START_META = EXPERIMENT_DESCRIPTION
+  ENTRY    = "See referenced experiments"
+END_META   = EXPERIMENT_DESCRIPTION
+!
+! Name and coordinates of the PI
+!
+START_META = INVESTIGATOR_COORDINATES
+  ENTRY    = "See referenced experiments"
+END_META   = INVESTIGATOR_COORDINATES
+!
+! List of standard reference documents for the experiment
+!
+START_META = EXPERIMENT_REFERENCES
+  ENTRY    = "See referenced experiments"
+END_META   = EXPERIMENT_REFERENCES
+!
+! Name, role and coordinates of experiment key personnel
+!
+START_META = EXPERIMENT_KEY_PERSONNEL
+  ENTRY    = "See referenced experiments"
+END_META   = EXPERIMENT_KEY_PERSONNEL
+!
+! Miscellaneous information concerning the experiment
+!
+START_META = EXPERIMENT_CAVEATS
+  ENTRY    = "See referenced experiments"
+END_META   = EXPERIMENT_CAVEATS
+
+
+!
+!=== Instrument ===
+!
+START_META     =   INSTRUMENT_NAME
+   ENTRY       =   "CIS-HIA3"
+   ENTRY       =   "FGM3"
+END_META       =   INSTRUMENT_NAME
+
+START_META     =   INSTRUMENT_DESCRIPTION
+   ENTRY       =   "See referenced instruments"
+END_META       =   INSTRUMENT_DESCRIPTION
+
+
+START_META     =   INSTRUMENT_TYPE
+   ENTRY       =   "Electrostatic_Analyser"
+   ENTRY       =   "Micro-channel_Plate"
+END_META       =   INSTRUMENT_TYPE
+
+START_META     =   MEASUREMENT_TYPE
+   ENTRY       =   "Thermal_Plasma"
+END_META       =   MEASUREMENT_TYPE
+
+START_META     =   INSTRUMENT_CAVEATS
+   ENTRY       =   "See referenced instruments"
+END_META       =   INSTRUMENT_CAVEATS
+
+
+
+!
+!=== Dataset ===
+!
+START_META     =   DATASET_ID
+   ENTRY       =   "C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT"
+END_META       =   DATASET_ID
+
+START_META     =   DATA_TYPE
+   ENTRY       =   "CP>CAA_Parameter"
+END_META       =   DATA_TYPE
+
+START_META     =   DATASET_TITLE
+   ENTRY       =   "3D ion velocity (Inertial frame ISR2 and GSE)"
+END_META       =   DATASET_TITLE
+
+START_META     	=   DATASET_DESCRIPTION
+   ENTRY	= "This dataset has been derived from C3_CP_CIS-HIA_ONBOARD_MOMENTS dataset."
+   ENTRY	= " The velocity moments in the present dataset are given in both GSE and ISR2"
+   ENTRY	= " coordinate systems in inertial frame whereas in C3_CP_CIS-HIA_ONBOARD_MOMENTS "
+   ENTRY	= " they are in GSE in spacecraft frame. In addition spin-averaged E-field is given in"
+   ENTRY	= " both ISR2 and GSE in inertial frame."
+   ENTRY       	= " NOTE: PI has not validated this product. "
+END_META       	=   DATASET_DESCRIPTION
+
+START_META     =   CONTACT_COORDINATES
+   ENTRY       =   "caateam>Non-PI>Harri Laakso (Harri.Laakso@esa.int)"
+END_META       =   CONTACT_COORDINATES
+
+START_META     =   TIME_RESOLUTION
+   ENTRY       =   "4"
+END_META       =   TIME_RESOLUTION
+
+START_META     =   MAX_TIME_RESOLUTION
+   ENTRY       =   "4"
+END_META       =   MAX_TIME_RESOLUTION
+
+START_META     =   MIN_TIME_RESOLUTION
+   ENTRY       =   "16"
+END_META       =   MIN_TIME_RESOLUTION
+    
+START_META     =   PROCESSING_LEVEL
+   ENTRY       =   "Calibrated"
+END_META       =   PROCESSING_LEVEL
+
+START_META     =   ACKNOWLEDGEMENT
+   ENTRY	=  " Please acknowledge the ESA Cluster Active Archive and the CIS instrument team  "
+   ENTRY	=  " in any publication based upon use of this data."
+END_META       =   ACKNOWLEDGEMENT
+
+START_META     =   DATASET_CAVEATS
+   ENTRY       =   "This dataset has been calculated using the following products:"
+   ENTRY       =   " - C3_CP_CIS-HIA_ONBOARD_MOMENTS"
+   ENTRY       =   " - C3_CP_FGM_5VPS"
+   ENTRY       =   " - CL_SP_AUX"
+   ENTRY       =   " - C3_CP_AUX_POSGSE_1M"
+END_META       =   DATASET_CAVEATS
+
+
+START_META     =   METADATA_TYPE
+   ENTRY       =   "CAA"
+END_META       =   METADATA_TYPE
+
+START_META     =   METADATA_VERSION
+   ENTRY       =   "2.0"
+END_META       =   METADATA_VERSION
+
+
+START_VARIABLE       = time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Support_Data"
+	ENTITY			=	Instrument
+	CATDESC			=	"Universal Time"
+	FIELDNAM		=	"Universal Time"
+	LABLAXIS		=	"UT"
+	SIZES			=	1
+	VALUE_TYPE		=	ISO_TIME
+	UNITS			=	"s"
+	FILLVAL			=	"9999-99-99T99:99:99Z"
+	DELTA_PLUS    		= 	duration__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+  	DELTA_MINUS    		= 	duration__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE         = time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE       = duration__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Support_Data"
+	CATDESC			=	"Half interval duration"
+	FIELDNAM		=	"Half interval duration"
+	LABLAXIS		=	"dT"
+	SIZES			=	1
+	VALUE_TYPE		=	FLOAT
+	UNITS			=	"s"
+	SI_CONVERSION 		= 	"1.0>s"	
+	FILLVAL			=	"0.0"
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE         = duration__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE       = velocity_gse_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Ion"
+	PROPERTY		=	"Velocity"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Ion Velocity (GSE) in inertial frame (units: km/s), calculated from CIS-HIA_ONBOARD_MOMENTS"
+	FIELDNAM		=	"Ion Velocity (GSE)"
+	LABLAXIS		=	"Ion velocity"
+	COORDINATE_SYSTEM	=	"GSE"
+	FRAME_VELOCITY		=	"Inertial"
+	SIZES			=	3
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	4
+	UNITS			=	"km s^-1"
+	SI_CONVERSION		=	"1e3>m s^-1"
+	FILLVAL			=	-1e31
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Vx","Vy","Vz"
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE         = velocity_gse_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE       = velocity_isr2_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Ion"
+	PROPERTY		=	"Velocity"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Ion Velocity (ISR2) in inertial frame (units: km/s), calculated from CIS-HIA_ONBOARD_MOMENTS "
+	FIELDNAM		=	"Ion Velocity (ISR2)"
+	LABLAXIS		=	"Ion velocity"
+	COORDINATE_SYSTEM	=	"ISR2"
+	FRAME_VELOCITY		=	"Inertial"
+	SIZES			=	3
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	4
+	UNITS			=	"km s^-1"
+	SI_CONVERSION		=	"1e3>m s^-1"
+	FILLVAL			=	-1e31
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Vx","Vy","Vz"
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE         = velocity_isr2_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE       = velocity_perp_gse_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Ion"
+	PROPERTY		=	"Velocity"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Perpendicular Ion Velocity (GSE) in inertial frame (units: km/s), calculated from CIS-HIA_ONBOARD_MOMENTS "
+	FIELDNAM		=	"Perpendicular Ion Velocity (GSE)"
+	LABLAXIS		=	"Ion perp velocity"
+	COORDINATE_SYSTEM	=	"GSE"
+	FRAME_VELOCITY		=	"Inertial"
+	SIZES			=	3
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	4
+	UNITS			=	"km s^-1"
+	SI_CONVERSION		=	"1e3>m s^-1"
+	FILLVAL			=	-1e31
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Vx","Vy","Vz"
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE         = velocity_perp_gse_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE       = velocity_perp_isr2_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Ion"
+	PROPERTY		=	"Velocity"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Perpendicular Ion Velocity (ISR2) in inertial frame (units: km/s), calculated from CIS-HIA_ONBOARD_MOMENTS "
+	FIELDNAM		=	"Perpendicular Ion Velocity (ISR2)"
+	LABLAXIS		=	"Ion perp velocity"
+	COORDINATE_SYSTEM	=	"ISR2"
+	FRAME_VELOCITY		=	"Inertial"
+	SIZES			=	3
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	4
+	UNITS			=	"km s^-1"
+	SI_CONVERSION		=	"1e3>m s^-1"
+	FILLVAL			=	-1e31
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Vx","Vy","Vz"
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE         = velocity_perp_isr2_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE       = velocity_par_gse_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Ion"
+	PROPERTY		=	"Velocity"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Parallel Ion Velocity (GSE) in inertial frame (units: km/s), calculated from CIS-HIA_ONBOARD_MOMENTS "
+	FIELDNAM		=	"Parallel Ion Velocity (GSE)"
+	LABLAXIS		=	"Ion par velocity"
+	COORDINATE_SYSTEM	=	"GSE"
+	FRAME_VELOCITY		=	"Inertial"
+	SIZES			=	3
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	4
+	UNITS			=	"km s^-1"
+	SI_CONVERSION		=	"1e3>m s^-1"
+	FILLVAL			=	-1e31
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Vx","Vy","Vz"
+	QUALITY			=	3
+        DEPEND_0                =       time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE         = velocity_par_gse_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE       = velocity_par_isr2_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Ion"
+	PROPERTY		=	"Velocity"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Parallel Ion Velocity (ISR2) in inertial frame (units: km/s), calculated from CIS-HIA_ONBOARD_MOMENTS "
+	FIELDNAM		=	"Parallel Ion Velocity (ISR2)"
+	LABLAXIS		=	"Ion par velocity"
+	COORDINATE_SYSTEM	=	"ISR2"
+	FRAME_VELOCITY		=	"Inertial"
+	SIZES			=	3
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	4
+	UNITS			=	"km s^-1"
+	SI_CONVERSION		=	"1e3>m s^-1"
+	FILLVAL			=	-1e31
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Vx","Vy","Vz"
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE         = velocity_par_isr2_inert__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE	=	Efield_GSE_INERT__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Electric_Field"
+	PROPERTY		=	"Vector"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"3D Perpendicular Electric Field (GSE) in inertial frame (units: mV/m), calculated from CIS-HIA_ONBOARD_MOMENTS "
+	FIELDNAM		=	"Electric Field (GSE)"
+	LABLAXIS			=	"E-field"
+	COORDINATE_SYSTEM	=	"GSE"
+	FRAME_VELOCITY		=	"Inertial"
+	SIZES			=	3
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	6
+	UNITS			=	"km s^-1"
+	SI_CONVERSION		=	"1.0e-3>V m^-1"
+	FILLVAL			=	-1e+31
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Ex","Ey","Ez"
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE	=	Efield_GSE_INERT__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE	=	Efield_ISR2_INERT__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Electric_Field"
+	PROPERTY		=	"Vector"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"3D Perpendicular Electric Field (ISR2) in inertial frame (units: mV/m), calculated from CIS-HIA_ONBOARD_MOMENTS "
+	FIELDNAM		=	"Electric Field (ISR2)"
+	LABLAXIS			=	"E-field"
+	COORDINATE_SYSTEM	=	"ISR2"
+	FRAME_VELOCITY		=	"Inertial"
+	SIZES			=	3
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	6
+	UNITS			=	"km s^-1"
+	SI_CONVERSION		=	"1.0e-3>V m^-1"
+	FILLVAL			=	-1e+31
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Ex","Ey","Ez"
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE	=	Efield_ISR2_INERT__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+START_VARIABLE       = velocity_isr2__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT	
+	PARAMETER_TYPE		=	"Data"	
+	ENTITY			=	"Ion"	
+	PROPERTY		=	"Velocity"	
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Ion Velocity (ISR2) in spacecraft frame (units: km/s), same as in CIS- HIA_ONBOARD_MOMENTS"
+	FIELDNAM		=	"Ion Velocity (ISR2)"	
+	LABLAXIS		=	"Ion velocity"
+	COORDINATE_SYSTEM	=	"ISR2"	
+	FRAME_VELOCITY		=	"Observatory"	
+	SIZES			=	3	
+	TENSOR_ORDER		=	1	
+	VALUE_TYPE		=	FLOAT	
+	SIGNIFICANT_DIGITS	=	4	
+	UNITS			=	"km s^-1"	
+	SI_CONVERSION		=	"1e3>m s^-1"	
+	FILLVAL			=	-1e31	
+	REPRESENTATION_1	=	"x","y","z"	
+	LABEL_1			=	"Vx","Vy","Vz"	
+	QUALITY			=	3	
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE       		= velocity_isr2__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+START_VARIABLE       = velocity_gse__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT	
+	PARAMETER_TYPE		=	"Data"	
+	ENTITY			=	"Ion"	
+	PROPERTY		=	"Velocity"	
+	FLUCTUATIONS		=	"Waveform"	
+	CATDESC			=	"Ion Velocity (GSE) in spacecraft frame (units: km/s), same as in CIS- HIA_ONBOARD_MOMENTS"	
+	FIELDNAM		=	"Ion Velocity (GSE)"	
+	LABLAXIS		=	"Ion velocity"
+	COORDINATE_SYSTEM	=	"GSE"	
+	FRAME_VELOCITY		=	"Observatory"	
+	SIZES			=	3	
+	TENSOR_ORDER		=	1	
+	VALUE_TYPE		=	FLOAT	
+	SIGNIFICANT_DIGITS	=	4	
+	UNITS			=	"km s^-1"	
+	SI_CONVERSION		=	"1e3>m s^-1"	
+	FILLVAL			=	-1e31	
+	REPRESENTATION_1	=	"x","y","z"	
+	LABEL_1			=	"Vx","Vy","Vz"	
+	QUALITY			=	3	
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE         = velocity_gse__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE  =  B_vec_xyz_gse__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Magnetic_Field"
+	PROPERTY		=	"Vector"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"3D Magnetic Field (GSE) spin-averages, 5VPS dataset is used as input "
+	FIELDNAM		=	"Magnetic Field (GSE)"
+	LABLAXIS		=	"B-field"
+	COORDINATE_SYSTEM	=	"GSE"
+	SIZES			=	3
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	6
+	UNITS			=	"km s^-1"
+	SI_CONVERSION		=	"1.0e-3>V m^-1"
+	FILLVAL			=	-1e30
+	REPRESENTATION_1	=	"x","y","z"
+	LABEL_1			=	"Bx","By","Bz"
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE    =  B_vec_xyz_gse__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE	=	B_number__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Support_Data"
+	ENTITY			=	"Instrument"
+	PROPERTY		=	"Status"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Number of B-field values used to calculate spin-average, 5VPS dataset is used as input"
+	FIELDNAM		=	"Number of B-field values used to calculate spin-average "
+	LABLAXIS		=	"Nr of points"
+	SIZES			=	1
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	INT
+	SIGNIFICANT_DIGITS	=	1
+	SI_CONVERSION		=	"1>unitless"
+	UNITS			=	"unitless"
+	FILLVAL			=	0
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE	=	B_number__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE = sc_v_xyz_gse__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Observatory"
+	PROPERTY		=	"Velocity"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Spacecraft Velocity (GSE)"
+	FIELDNAM		=	"Spacecraft Velocity (GSE)"
+	LABLAXIS		=	"velocity"
+	COORDINATE_SYSTEM	=	"GSE"
+	FRAME_VELOCITY		=	"Inertial"
+	SIZES			=	3
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	6
+	UNITS			=	"km s^-1"
+	SI_CONVERSION		=	"1.0e-3>V m^-1"
+	FILLVAL			=	-1e+31
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE   = sc_v_xyz_gse__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+
+START_VARIABLE = sc_at1_lat__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Observatory"
+	PROPERTY		=	"Magnitude"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Latitude of spacecraft spin axis, angle from Ecliptic Plane (GSE), taken from CSDS SP "
+	FIELDNAM		=	"Latitude of spacecraft spin axis, angle from Ecliptic Plane (GSE)"
+	LABLAXIS		=	"latitude"
+	COORDINATE_SYSTEM	=	"GSE"
+	SIZES			=	1
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	6
+	UNITS			=	"deg"
+	SI_CONVERSION		=	"1.0>degree"
+	FILLVAL			=	-1e+31
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE   = sc_at1_lat__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+START_VARIABLE = sc_at1_long__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+	PARAMETER_TYPE		=	"Data"
+	ENTITY			=	"Observatory"
+	PROPERTY		=	"Magnitude"
+	FLUCTUATIONS		=	"Waveform"
+	CATDESC			=	"Longitude of spacecraft spin axis, angle from Ecliptic Plane (GSE), taken from CSDS SP "
+	FIELDNAM		=	"Longitude of spacecraft spin axis, angle from Ecliptic Plane (GSE)"
+	LABLAXIS		=	"longitude"
+	COORDINATE_SYSTEM	=	"GSE"
+	SIZES			=	1
+	TENSOR_ORDER		=	1
+	VALUE_TYPE		=	FLOAT
+	SIGNIFICANT_DIGITS	=	6
+	UNITS			=	"deg"
+	SI_CONVERSION		=	"1.0>degree"
+	FILLVAL			=	-1e+31
+	QUALITY			=	3
+	DEPEND_0		=	time_tags__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+END_VARIABLE   = sc_at1_long__C3_CP_CIS-HIA_ONBOARD_MOMENTS_INERT
+
+

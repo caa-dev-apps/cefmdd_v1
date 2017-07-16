@@ -1,0 +1,249 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C1_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C1_CH_CIS-HIA.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C1_CP_CIS-HIA_ONBOARD_MOMENTS"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "HIA onboard moments"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "CIS-HIA onboard computed moments on Cluster C1"
+END_META     = Dataset_description
+
+START_META   = Processing_level
+  ENTRY      = Calibrated
+END_META     = Processing_level
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C1_CQ_CIS-HIA_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_VARIABLE       = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Interval centred time tag"
+  FIELDNAM           = "Center time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  LABLAXIS           = "UT"
+  DELTA_PLUS         = delta_time__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  DELTA_MINUS        = delta_time__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  FILLVAL            = "9999-99-99T99:99:99Z"
+END_VARIABLE         = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = delta_time__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Half interval duration"
+  FIELDNAM           = "Halt interval duration"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  FILLVAL            = 0.0
+END_VARIABLE         = delta_time__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = sensitivity__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Sensitivity (0 : Low; 1:High)"
+  FIELDNAM           = "Sensitivity"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  UNITS              = "unitless"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  FILLVAL            = -1
+END_VARIABLE         = sensitivity__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = cis_mode__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "CIS Operational Mode"
+  FIELDNAM           = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+END_VARIABLE         = cis_mode__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = density__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Density (in cm^-3)"
+  FIELDNAM           = "Density"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Ion"
+  PROPERTY           = "Mass_Density"
+  UNITS              = "particles cm^-3"
+  SI_CONVERSION      = "1e6>(particles) m^-3"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 6
+  FILLVAL            = -1e31
+END_VARIABLE         = density__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = velocity_isr2__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Velocity in km s^-1 (ISR2)"
+  FIELDNAM           = "Velocity (SR2)"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 3
+  ENTITY             = "Ion"
+  PROPERTY           = "Velocity"
+  TENSOR_ORDER       = 1
+  COORDINATE_SYSTEM  = "ISR2"
+  REPRESENTATION_1   = "x","y","z"
+  UNITS              = "km s^-1"
+  SI_CONVERSION      = "1e3>m s^-1"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 6
+  FILLVAL            = -1e31
+END_VARIABLE         = velocity_isr2__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = velocity_gse__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Velocity in km s^-1 (GSE)"
+  FIELDNAM           = "Velocity (GSE)"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 3
+  ENTITY             = "Ion"
+  PROPERTY           = "Velocity"
+  TENSOR_ORDER       = 1
+  COORDINATE_SYSTEM  = "GSE"
+  REPRESENTATION_1   = "x","y","z"
+  UNITS              = "km s^-1"
+  SI_CONVERSION      = "1e3>m s^-1"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 6
+  FILLVAL            = -1e31
+END_VARIABLE         = velocity_gse__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = temperature__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Temperature in MK"
+  FIELDNAM           = "Temperature"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Ion"
+  PROPERTY           = "Temperature"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 6
+  UNITS              = "MK"
+  SI_CONVERSION      = "1e6>K"
+  FILLVAL            = -1e31
+END_VARIABLE         = temperature__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = temp_par__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Temperature parallel to B in MK"
+  FIELDNAM           = "T_par"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Ion"
+  PROPERTY           = "Temperature"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 6
+  UNITS              = "MK"
+  SI_CONVERSION      = "1e6>K"
+  FILLVAL            = -1e31
+END_VARIABLE         = temp_par__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = temp_perp__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Temperature perpendicular to B in MK"
+  FIELDNAM           = "T_perp"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Ion"
+  PROPERTY           = "Temperature"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  QUALITY            = 3
+  SIGNIFICANT_DIGITS = 6
+  UNITS              = "MK"
+  SI_CONVERSION      = "1e6>K"
+  FILLVAL            = -1e31
+END_VARIABLE         = temp_perp__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = pressure__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Total Pressure"
+  FIELDNAM           = "Total Pressure"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Ion"
+  PROPERTY           = "Pressure"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  UNITS              = "nPa"
+  SI_CONVERSION      = "1e-9>Pa"
+  SIGNIFICANT_DIGITS = 6
+  FILLVAL            = -1e+31
+  QUALITY            = 3
+END_VARIABLE         = pressure__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+START_VARIABLE       = pressure_tensor__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  CATDESC            = "Pressure Tensor (GSE)"
+  FIELDNAM           = "Pressure Tensor (GSE)"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  ENTITY             = "Ion"
+  PROPERTY           = "Pressure_Tensor"
+  SIZES              = 3,3
+  TENSOR_ORDER       = 2
+  COORDINATE_SYSTEM  = "GSE"
+  REPRESENTATION_1   = "x","y","z"
+  REPRESENTATION_2   = "x","y","z"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+  UNITS              = "nPa"
+  SI_CONVERSION      = "1e-9>Pa"
+  SIGNIFICANT_DIGITS = 6
+  FILLVAL            = -1e+31
+  QUALITY            = 3
+  ! Added for CEFpass compatibility
+  FRAME              = "GSE"
+  LABEL_1            = "x","y","z"
+  LABEL_2            = "x","y","z"
+  ! Added for CEFpass compatibility (end)
+END_VARIABLE         = pressure_tensor__C1_CP_CIS-HIA_ONBOARD_MOMENTS
+
+

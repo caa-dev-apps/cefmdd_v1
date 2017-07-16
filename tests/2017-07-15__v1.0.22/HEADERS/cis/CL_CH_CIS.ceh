@@ -1,0 +1,44 @@
+! File : CL_CH_CIS.ceh
+!
+! Experiment level metadata
+!
+START_META = Experiment
+  ENTRY    = "CIS"
+END_META   = Experiment
+
+START_META = Experiment_description
+  ENTRY    = "Cluster Ion Spectrometry."
+  ENTRY    = "The CIS (Cluster Ion Spectrometry) experiment is a comprehensive"
+  ENTRY    = "ionic plasma spectrometry package onboard the Cluster spacecraft,"
+  ENTRY    = "capable of obtaining full three-dimentional ion distributions"
+  ENTRY    = "(about 0 to 40 KeV/e) with a time resolution of one spacecraft spin (4 sec)"
+  ENTRY    = "and with mass-per-charge composition determination."
+  ENTRY    = "The CIS package consists of two different instruments,"
+  ENTRY    = "a time-of-flight ion Composition and Distribution Function analyser (CODIF, or CIS-1)"
+  ENTRY    = "and a Hot Ion Analyser (HIA, or CIS-2)."
+END_META   = Experiment_description
+
+START_META = Investigator_coordinates
+  ENTRY    = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+END_META   = Investigator_coordinates
+
+START_META = Experiment_key_personnel
+  ENTRY    = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY    = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+  ENTRY    = "Claude Aoustin>Experiment Engineer>Claude.Aoustin@irap.omp.eu"
+  ENTRY    = "Alain Barthe>Archival Engineer>Alain.Barthe@irap.omp.eu"
+END_META   = Experiment_key_personnel
+
+START_META = Experiment_references
+  ENTRY	   = "*CL_CD_CIS_CAAICD"
+  ENTRY    = "*CL_CD_CIS_USERMAN"
+  ENTRY    = "http://www.rssd.esa.int/index.php?project=CLUSTER&page=documentation"
+  ENTRY    = "http://cluster.irap.omp.eu"
+  ENTRY    = "Reme, H et al.>First multispacecraft ion measurements in and near the Earth's magnetosphere with the identical Cluster ion spectrometry (CIS) experiment>Ann. geophys., 19, 1303, 2001"
+END_META   = Experiment_references
+
+START_META = Experiment_caveats
+  ENTRY    = "http://cluster.irap.omp.eu/index.php?page=caveats"
+END_META   = Experiment_caveats
+
+

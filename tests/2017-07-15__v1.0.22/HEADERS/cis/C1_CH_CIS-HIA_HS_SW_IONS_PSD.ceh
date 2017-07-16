@@ -1,0 +1,240 @@
+INCLUDE = "CL_CH_MISSION.ceh"
+
+INCLUDE = "C1_CH_OBS.ceh"
+
+INCLUDE = "CL_CH_CIS.ceh"
+
+INCLUDE = "C1_CH_CIS-HIA.ceh"
+
+START_META   = File_type
+  ENTRY      = "cef"
+END_META     = File_type
+
+START_META   = Dataset_ID
+  ENTRY      = "C1_CP_CIS-HIA_HS_SW_IONS_PSD"
+END_META     = Dataset_ID
+
+START_META   = Dataset_version
+  ENTRY      = "V2.4 - 2015/11/23"
+END_META     = Dataset_version
+
+START_META   = Data_type
+  ENTRY      = "CP>CAA Parameter"
+END_META     = Data_type
+
+START_META   = Dataset_title
+  ENTRY      = "CIS-HIA 3D Ion distributions on C1, High-Sensitivity, Solar-Wind mode, in Phase_Space_Density"
+END_META     = Dataset_title
+
+START_META   = Dataset_description
+  ENTRY      = "This dataset contains CIS-HIA 3D Ion distributions"
+  ENTRY      = "for the High-sensitivity side on spacecraft C1"
+  ENTRY      = "in Solar-Wind mode and in Phase_Space_Density units"
+END_META     = Dataset_description
+
+START_META   = Dataset_caveats
+  ENTRY      = "*C1_CQ_CIS-HIA_CAVEATS"
+END_META     = Dataset_caveats
+
+START_META   = Contact_coordinates
+  ENTRY      = "Iannis Dandouras>PI>Iannis.Dandouras@irap.omp.eu"
+  ENTRY      = "Henri Reme>Deputy-PI>Henri.Reme@irap.omp.eu"
+END_META     = Contact_coordinates
+
+START_META   = Processing_level
+  ENTRY      = "Calibrated"
+END_META     = Processing_level
+
+START_META   = Time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Time_resolution
+
+START_META   = Min_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 16.0
+END_META     = Min_time_resolution
+
+START_META   = Max_time_resolution
+  VALUE_TYPE = FLOAT
+  ENTRY      = 4.0
+END_META     = Max_time_resolution
+
+START_META   = Acknowledgement
+  ENTRY      = "Please acknowledge the CIS team and ESA Cluster Science Archive when using this data."
+END_META     = Acknowledgement
+
+START_VARIABLE       = time_tags__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "Acquisition interval start time"
+  FIELDNAM           = "Universal Time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = ISO_TIME
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "UT"
+  FILLVAL            = "9999-99-99T99:99:99Z"
+  DELTA_PLUS         = duration__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  DELTA_MINUS        = 0.0
+END_VARIABLE         = time_tags__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = duration__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "Interval duration"
+  FIELDNAM           = "Accumulation time"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = 0.0
+  UNITS              = "s"
+  SI_CONVERSION      = "1.0>s"
+  LABLAXIS           = "dT"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+END_VARIABLE         = duration__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = cis_mode__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "CIS Operational Mode"
+  FIELDNAM           = "CIS Operational Mode"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Mode"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+END_VARIABLE         = cis_mode__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = tm_product__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "CIS Telemetry Product"
+  FIELDNAM           = "Telemetry Product Number"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = INT
+  FILLVAL            = 99
+  SIGNIFICANT_DIGITS = 2
+  UNITS              = "unitless"
+  LABLAXIS           = "Product"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+END_VARIABLE         = tm_product__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = geom_factor__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "Geometric factor"
+  FIELDNAM           = "Geometric factor"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "cm2^2 sr KeV KeV^-1"
+  SI_CONVERSION      = "1.0E-4>m^2 sr"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+END_VARIABLE         = geom_factor__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = hia_mcp_hv__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "HIA MCP High-Voltage"
+  FIELDNAM           = "HIA MCP High-Voltage"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "volt"
+  SI_CONVERSION      = "1>V"
+  LABLAXIS           = "MCP HV"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+END_VARIABLE         = hia_mcp_hv__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = hia_discri__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "HIA Discriminator level"
+  FIELDNAM           = "HIA Discriminator level"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  FILLVAL            = -1e+31
+  UNITS              = "volt"
+  SI_CONVERSION      = "1>V"
+  LABLAXIS           = "Discri"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+END_VARIABLE         = hia_discri__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = 3d_ions__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "CIS-HIA 3D ion distribution"
+  FIELDNAM           = "CIS-HIA 3D ion distribution"
+  PARAMETER_TYPE     = "Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 8,16,31
+  QUALITY            = 3
+  FILLVAL            = -1e+31
+  SIGNIFICANT_DIGITS = 10
+  ENTITY             = "Ion"
+  PROPERTY           = "Phase_Space_Density"
+  UNITS              = "Particles s^3 km^-6"
+  SI_CONVERSION      = "1.0E-18>(particles) s^3 m^-6"
+  DEPEND_0           = time_tags__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  DEPEND_1           = theta__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  DEPEND_2           = phi__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  DEPEND_3           = energy_table__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+END_VARIABLE         = 3d_ions__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = theta__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "Polar bin edges (particle arrival direction)"
+  FIELDNAM           = "Polar bin edges"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 8
+  FILLVAL            = -1e+31
+  LABLAXIS           = "Polar bin"
+  UNITS              = "deg"
+  SI_CONVERSION      = "1>degree"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = -78.750, -56.250, -33.750, -11.250, 11.250, 33.750, 56.250, 78.750
+  DELTA_PLUS         = 11.250
+  DELTA_MINUS        = 11.250
+END_VARIABLE         = theta__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = phi__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "Azimuthal bin edges (particle arrival direction)"
+  FIELDNAM           = "Azimuthal bin edges"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 16
+  FILLVAL            = -1e+31
+  LABLAXIS           = "Azimuthal bin"
+  UNITS              = "deg"
+  SI_CONVERSION      = "1>degree"
+  COORDINATE_SYSTEM  = "ISR2"
+  DATA               = 11.184, -11.316, -33.816, -56.316, -78.816, -101.316, -123.816, -146.316, -168.816, 168.684, 146.184, 123.684, 101.184, 78.684, 56.184, 33.684
+  DELTA_PLUS         = 11.250
+  DELTA_MINUS        = 11.250
+END_VARIABLE         = phi__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = energy_table__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "Energy table"
+  FIELDNAM           = "Energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 28898.33,21728.22,16337.12,12283.63,9235.88,6944.32,5221.33,3925.84,2951.78,2219.40,1668.73,1254.69,943.39,709.32,533.32,401.00,301.50,226.70,170.45,128.16,96.36,72.45,54.48,40.96,30.80,23.16,17.41,13.09,9.84,7.40,5.56
+  DELTA_PLUS         = delta_plus_energy_table__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  DELTA_MINUS        = delta_minus_energy_table__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+END_VARIABLE         = energy_table__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = delta_plus_energy_table__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "Delta plus energy table"
+  FIELDNAM           = "Delta plus energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 5882.71,3246.54,2441.02,1835.37,1379.99,1037.59,780.15,586.58,441.04,331.61,249.33,187.47,140.96,105.98,79.69,59.92,45.05,33.87,25.47,19.15,14.40,10.83,8.14,6.12,4.60,3.46,2.60,1.96,1.47,1.11,0.83
+END_VARIABLE         = delta_plus_energy_table__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+START_VARIABLE       = delta_minus_energy_table__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+  CATDESC            = "Delta minus energy table"
+  FIELDNAM           = "Delta minus energy table"
+  PARAMETER_TYPE     = "Support_Data"
+  VALUE_TYPE         = FLOAT
+  SIZES              = 31
+  FILLVAL            = -1e+31
+  UNITS              = "eV"
+  SI_CONVERSION      = "1.60217646E-19>J"
+  DATA               = 3923.57,2950.08,2218.12,1667.77,1253.97,942.84,708.91,533.02,400.77,301.33,226.57,170.35,128.08,96.31,72.41,54.44,40.94,30.78,23.14,17.40,13.08,9.84,7.40,5.56,4.18,3.14,2.36,1.78,1.34,1.00,0.97
+END_VARIABLE         = delta_minus_energy_table__C1_CP_CIS-HIA_HS_SW_IONS_PSD
+
+
