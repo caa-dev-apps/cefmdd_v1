@@ -1,0 +1,25 @@
+! (From CL_CH_PEA_FILE.ceh which was last generated Mon Jan 26 17:08:55 2015 by Revision : 1591 )
+!
+! Start File Level - the static part
+!
+START_META = FILE_TYPE
+   ENTRY   = "cef"
+END_META   = FILE_TYPE
+!
+START_META = METADATA_TYPE
+   ENTRY   = "CAA"
+END_META   = METADATA_TYPE
+!
+START_META = METADATA_VERSION
+   ENTRY   = "2.0"
+END_META   = METADATA_VERSION
+!
+START_META = FILE_CAVEATS
+   ENTRY   = "The CEF header generation software was written by Rob Wilson at MSSL,"
+   ENTRY   = "with input on content from Andrew Fazakerley and Hina Bacai."
+   ENTRY   = "Software to generate the PEA CEF data files written by Andrew Lahiff"
+   ENTRY   = "and Rob Wilson."
+END_META   = FILE_CAVEATS
+!
+! End of Static File Level
+!

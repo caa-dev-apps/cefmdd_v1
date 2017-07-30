@@ -1,0 +1,40 @@
+! (From C1_CH_PEA_LEEA_HEEA_INST.ceh which was last generated Mon Jan 26 17:08:52 2015 by Revision : 1591 )
+!
+! Start Instrument Level
+!
+START_META = INSTRUMENT_NAME
+   ENTRY   = "PEACE1"
+END_META   = INSTRUMENT_NAME
+!
+START_META = INSTRUMENT_DESCRIPTION
+   ENTRY   = "The LEEA and HEEA sensors of PEACE on Cluster C1."
+   ENTRY   = "The full energy range is divided into 88 levels, however only a subset (60 or 30)"
+   ENTRY   = "of those can be sampled by each sensor in a given spin. Full coverage of the"
+   ENTRY   = "energy range may be achieved by using both HEEA and LEEA sensors together, each"
+   ENTRY   = "sampling a different (possibly overlapping) subset of the energy range."
+   ENTRY   = "HEEA will normally cover the upper part of the energy range, since its larger"
+   ENTRY   = "geometric factor enables it to make better measurements of the more diffuse"
+   ENTRY   = "electron population expected at higher energies."
+   ENTRY   = "LEEA is designed to specialise in the coverage of the lowest electron energies"
+   ENTRY   = "(including below 10 eV) but is also capable of covering the full energy range to"
+   ENTRY   = "26 keV.  The LEEA sensor has a smaller geometric factor appropriate for the"
+   ENTRY   = "higher fluxes of electrons usually found at lower energies, though LEEA does not"
+   ENTRY   = "always sample the lowest energies."
+END_META   = INSTRUMENT_DESCRIPTION
+!
+START_META = INSTRUMENT_TYPE
+   ENTRY   = "Micro-channel_Plate"
+   ENTRY   = "Electrostatic_Analyser"
+END_META   = INSTRUMENT_TYPE
+!
+START_META = MEASUREMENT_TYPE
+   ENTRY   = "Thermal_Plasma"
+END_META   = MEASUREMENT_TYPE
+!
+! If we have any caveats of CL-1...
+START_META = INSTRUMENT_CAVEATS
+   ENTRY   = "*C1_CQ_PEA_CAVEATS"
+END_META   = INSTRUMENT_CAVEATS
+
+! End Instrument Level
+!

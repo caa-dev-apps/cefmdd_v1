@@ -1,0 +1,55 @@
+! (From C1_CH_PEA_PITCH_SPIN_DATASET_DEFlux.ceh which was last generated Mon Jan 26 17:08:51 2015 by Revision : 1591 )
+!
+! Start Dataset Level
+!
+START_META = DATASET_ID
+   ENTRY   = "C1_CP_PEA_PITCH_SPIN_DEFlux"
+END_META   = DATASET_ID
+!
+START_META = DATASET_TITLE
+   ENTRY   = "PEACE PITCH_SPIN data from the HEEA and LEEA sensors"
+END_META   = DATASET_TITLE
+!
+START_META = DATA_TYPE
+   ENTRY   = "CP>CAA Parameter"
+END_META   = DATA_TYPE
+!
+START_META = DATASET_DESCRIPTION
+   ENTRY   = "This data product contains a single pitch angle distribution per spin, obtained by combining"
+   ENTRY   = "rebinned LEEA and HEEA data collected at various times during one spin on the Cluster C1"
+   ENTRY   = "spacecraft."
+END_META   = DATASET_DESCRIPTION
+!
+START_META = CONTACT_COORDINATES
+   ENTRY   = "Andrew Fazakerley>a.fazakerley@ucl.ac.uk>Principal Investigator"
+END_META   = CONTACT_COORDINATES
+!
+!
+START_META = TIME_RESOLUTION
+   ENTRY   = 4
+END_META   = TIME_RESOLUTION
+!
+START_META = MIN_TIME_RESOLUTION
+   ENTRY   = 4
+END_META   = MIN_TIME_RESOLUTION
+!
+START_META = MAX_TIME_RESOLUTION
+   ENTRY   = 4
+END_META   = MAX_TIME_RESOLUTION
+!
+START_META = PROCESSING_LEVEL
+   ENTRY   = "Derived"
+END_META   = PROCESSING_LEVEL
+!
+START_META = ACKNOWLEDGEMENT
+   ENTRY   = "Please acknowledge the PEACE instrument team"
+   ENTRY   = "and ESA Cluster Active Archive"
+   ENTRY   = "in any publication based upon use of this data."
+END_META   = ACKNOWLEDGEMENT
+!
+START_META = DATASET_CAVEATS
+   ENTRY   = "*C1_CQ_PEA_CAVEATS"
+END_META   = DATASET_CAVEATS
+!
+! End Dataset Level
+!

@@ -1,0 +1,887 @@
+! (From C1_CH_PEA_PITCH_SPIN_DEFlux_PARA.ceh which was last generated Mon Jan 26 17:08:51 2015 by Revision : 1591 )
+!
+! Start Parameter Level
+!
+!
+!
+! Record Time info.
+!
+START_VARIABLE = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Epoch Time of PEACE data record (for one PEACE spin)"
+    UNITS              = "s"
+    SI_CONVERSION      = "1.0>s"
+    SIZES              = 1
+    DELTA_PLUS         = time_tags_DeltaUpper__C1_CP_PEA_PITCH_SPIN_DEFlux
+    DELTA_MINUS        = time_tags_DeltaLower__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = ISO_TIME
+    SIGNIFICANT_DIGITS = 24
+    FILLVAL            = 9999-12-31T23:59:59.999Z
+    FIELDNAM           = "Data Epoch"
+    LABLAXIS           = "Data Epoch"
+END_VARIABLE   = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = time_tags_DeltaLower__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Actual Lower Epoch Edge = time_tags - time_tags_DeltaLower"
+    UNITS              = "s"
+    SI_CONVERSION      = "1.0>s"
+    SIZES              = 1
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 4
+    FILLVAL            = -1
+    FIELDNAM           = "Data Epoch Lower Delta"
+    LABLAXIS           = "Data Epoch Lower Delta"
+END_VARIABLE   = time_tags_DeltaLower__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = time_tags_DeltaUpper__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Actual Upper Epoch Edge = time_tags + time_tags_DeltaUpper"
+    UNITS              = "s"
+    SI_CONVERSION      = "1.0>s"
+    SIZES              = 1
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 4
+    FILLVAL            = -1
+    FIELDNAM           = "Data Epoch Upper Delta"
+    LABLAXIS           = "Data Epoch Upper Delta"
+END_VARIABLE   = time_tags_DeltaUpper__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+!
+START_VARIABLE = Angle_SR2phi__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Phi Angle in the SR2 co-ordinate system at the center time of the spin"
+    UNITS              = "Degrees"
+    SI_CONVERSION      = "1.0>degree"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 8
+    FILLVAL            = -1
+    QUALITY            = 0 
+    FIELDNAM           = "SR2 phi angle"
+    LABLAXIS           = "SR2 phi angle"
+    SCALEMIN           = 0
+    SCALEMAX           = 360
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Angle_SR2phi__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+!
+START_VARIABLE = Mode_SunpulseRephaseOffset__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Delay applied to the sun reference pulse in units of spin segment clock pulses"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 5
+    FILLVAL            = -1
+    QUALITY            = 0 
+    FIELDNAM           = "Sunpulse rephase offset"
+    LABLAXIS           = "SPOS"
+    SCALEMIN           = 0
+    SCALEMAX           = 16384
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_SunpulseRephaseOffset__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+!
+!
+! Sensor, Modes, Preset, MCP Level and origin of data info
+!
+START_VARIABLE = Mode_Sensor__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "PEACE Sensor from which Data is collected (0 = LEEA, 1 = HEEA, 2 = Both)"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 1
+    FILLVAL            = -1
+    QUALITY            = 0 
+    FIELDNAM           = "Sensor (0=LEEA,1=HEEA,2=Both)"
+    LABLAXIS           = "Sensor (0=LEEA,1=HEEA,2=Both)"
+    SCALEMIN           = 0
+    SCALEMAX           = 2
+    SCALETYP           = "Linear"
+END_VARIABLE   = Mode_Sensor__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_SweepMode_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "PEACE Sweep Mode ( 0 = Off/Fixed, 1 = LAR, 2 = HAR, 3 = MAR )"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 1
+    FILLVAL            = -1
+    QUALITY            = 0 
+    FIELDNAM           = "Sweep Mode"
+    LABLAXIS           = "Sweep Mode"
+    SCALEMIN           = 0
+    SCALEMAX           = 3
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_SweepMode_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_Preset_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "The Energy level aimed for during flyback (always larger than Mode_EnergyLevelRange)"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 2
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Preset level"
+    LABLAXIS           = "Preset level"
+    SCALEMIN           = 0
+    SCALEMAX           = 91
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_Preset_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_EnergyLevelRange_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Sweep Energy Level range: the subset of the 88 energy bins measured (not including flyback)"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 2
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Start (High)","Stop (Low)"
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 2
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Sweep Energy Levels"
+    LABLAXIS           = "Sweep Energy Levels"
+    SCALEMIN           = 0
+    SCALEMAX           = 88
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_EnergyLevelRange_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_EnergyMaxMin_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "The energy range (in eV) of electrons measured in a spin, expressed as Max. then Min."
+    UNITS              = "eV"
+    SI_CONVERSION      = "1.60217646E-19>J"
+    FRAME              = "array>na"
+    SIZES              = 2
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Max. Energy","Min. Energy"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 8
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Energy Range (eV)"
+    LABLAXIS           = "Energy Range (eV)"
+    SCALEMIN           = 0.1
+    SCALEMAX           = 30000
+    SCALETYP           = "Log"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_EnergyMaxMin_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_MCPlevel_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "MCP Level: Related to sensor gain (i.e. increase level and gain increases)"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 2
+    FILLVAL            = -1
+    QUALITY            = 0 
+    FIELDNAM           = "MCP Level"
+    LABLAXIS           = "MCP Level"
+    SCALEMIN           = 0
+    SCALEMAX           = 31
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_MCPlevel_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_DataOrigin_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Data Origin (4=PAD)"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 2
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Data Origin"
+    LABLAXIS           = "Data Origin"
+    SCALEMIN           = 0
+    SCALEMAX           = 22
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_DataOrigin_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_SweepMode_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "PEACE Sweep Mode ( 0 = Off/Fixed, 1 = LAR, 2 = HAR, 3 = MAR )"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 1
+    FILLVAL            = -1
+    QUALITY            = 0 
+    FIELDNAM           = "Sweep Mode"
+    LABLAXIS           = "Sweep Mode"
+    SCALEMIN           = 0
+    SCALEMAX           = 3
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_SweepMode_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_Preset_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "The Energy level aimed for during flyback (always larger than Mode_EnergyLevelRange)"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 2
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Preset level"
+    LABLAXIS           = "Preset level"
+    SCALEMIN           = 0
+    SCALEMAX           = 91
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_Preset_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_EnergyLevelRange_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Sweep Energy Level range: the subset of the 88 energy bins measured (not including flyback)"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 2
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Start (High)","Stop (Low)"
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 2
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Sweep Energy Levels"
+    LABLAXIS           = "Sweep Energy Levels"
+    SCALEMIN           = 0
+    SCALEMAX           = 88
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_EnergyLevelRange_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_EnergyMaxMin_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "The energy range (in eV) of electrons measured in a spin, expressed as Max. then Min."
+    UNITS              = "eV"
+    SI_CONVERSION      = "1.60217646E-19>J"
+    FRAME              = "array>na"
+    SIZES              = 2
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Max. Energy","Min. Energy"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 8
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Energy Range (eV)"
+    LABLAXIS           = "Energy Range (eV)"
+    SCALEMIN           = 0.1
+    SCALEMAX           = 30000
+    SCALETYP           = "Log"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_EnergyMaxMin_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_MCPlevel_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "MCP Level: Related to sensor gain (i.e. increase level and gain increases)"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 2
+    FILLVAL            = -1
+    QUALITY            = 0 
+    FIELDNAM           = "MCP Level"
+    LABLAXIS           = "MCP Level"
+    SCALEMIN           = 0
+    SCALEMAX           = 31
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_MCPlevel_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_DataOrigin_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Data Origin (4=PAD)"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 2
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Data Origin"
+    LABLAXIS           = "Data Origin"
+    SCALEMIN           = 0
+    SCALEMAX           = 22
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_DataOrigin_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_RealSize__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Subset of Data variable that contains real data"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 2
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "No. of PA bins","No. of 'fly-back and energy' bins per sweep"
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 2
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Valid subset of 'data' array"
+    LABLAXIS           = "Valid subset of 'data' array"
+    SCALEMIN           = 0
+    SCALEMAX           = 64
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_RealSize__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Mode_RealBinNum__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Number of energy bins returned per sweep, not including fly-backs nor windowed-out data"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "scalar>na"
+    SIZES              = 1
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 2
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "No. energy bins returned (no fills)"
+    LABLAXIS           = "No. energy bins returned (no fills)"
+    SCALEMIN           = 0
+    SCALEMAX           = 64
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Mode_RealBinNum__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+!
+!
+! Start on Energies
+!
+START_VARIABLE = Sweep_Energy__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "The representative energy for the accumulation bin."
+    UNITS              = "eV"
+    SI_CONVERSION      = "1.60217646E-19>J"
+    FRAME              = "array>na"
+    SIZES              = 44
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    DELTA_PLUS         = Sweep_Energy_DeltaUpper__C1_CP_PEA_PITCH_SPIN_DEFlux
+    DELTA_MINUS        = Sweep_Energy_DeltaLower__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 8
+    FILLVAL            = -1
+    FIELDNAM           = "Center Energy Values"
+    LABLAXIS           = "Energy"
+    SCALEMIN           = 0.1
+    SCALEMAX           = 30000
+    SCALETYP           = "Log"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE   = Sweep_Energy__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Sweep_Energy_DeltaLower__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Actual Lower Energy Edge of bin = Sweep_Energy - Sweep_Energy_DeltaLower"
+    UNITS              = "eV"
+    SI_CONVERSION      = "1.60217646E-19>J"
+    FRAME              = "array>na"
+    SIZES              = 44
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 8
+    FILLVAL            = -1
+    FIELDNAM           = "Lower delta Energy Values"
+    LABLAXIS           = "Lower E-delta"
+    SCALEMIN           = 0.1
+    SCALEMAX           = 30000
+    SCALETYP           = "Log"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Sweep_Energy_DeltaLower__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Sweep_Energy_DeltaUpper__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Actual Upper Energy Edge of bin = Sweep_Energy + Sweep_Energy_DeltaUpper"
+    UNITS              = "eV"
+    SI_CONVERSION      = "1.60217646E-19>J"
+    FRAME              = "array>na"
+    SIZES              = 44
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 8
+    FILLVAL            = -1
+    FIELDNAM           = "Upper delta Energy Values"
+    LABLAXIS           = "Upper E-delta"
+    SCALEMIN           = 0.1
+    SCALEMAX           = 30000
+    SCALETYP           = "Log"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Sweep_Energy_DeltaUpper__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+!
+!
+! Start on Pitch angle bins
+!
+START_VARIABLE = Sweep_PitchAngle__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Center values of Pitch angle bins that provided the data"
+    UNITS              = "Degrees"
+    SI_CONVERSION      = "1.0>degree"
+    COORDINATE_SYSTEM  = "MFA"
+    FRAME              = "array>na"
+    REPRESENTATION_1   = "t"
+    SIZES              = 12
+    DELTA_PLUS         = Sweep_PitchAngle_DeltaUpper__C1_CP_PEA_PITCH_SPIN_DEFlux
+    DELTA_MINUS        = Sweep_PitchAngle_DeltaLower__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 5
+    FILLVAL            = -1
+    FIELDNAM           = "Pitch angles"
+    LABLAXIS           = "Pitch Angles"
+    SCALEMIN           = 0
+    SCALEMAX           = 180
+    SCALETYP           = "Linear"
+!
+    DATA               = 7.5, 22.5, 37.5, 52.5, 67.5, 82.5, 97.5, 112.5, 127.5, 142.5, 157.5, 172.5
+!
+END_VARIABLE   = Sweep_PitchAngle__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Sweep_PitchAngle_DeltaLower__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Actual Lower Edge of bin = Sweep_PitchAngle - Sweep_PitchAngle_DeltaLower"
+    UNITS              = "Degrees"
+    SI_CONVERSION      = "1.0>degree"
+    COORDINATE_SYSTEM  = "MFA"
+    FRAME              = "array>na"
+    REPRESENTATION_1   = "t"
+    SIZES              = 12
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 5
+    FILLVAL            = -1
+    FIELDNAM           = "Lower delta Pitch Angles"
+    LABLAXIS           = "Lower Pitch-delta"
+    SCALEMIN           = 0
+    SCALEMAX           = 180
+    SCALETYP           = "Linear"
+!
+    DATA               = 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5
+!
+END_VARIABLE   = Sweep_PitchAngle_DeltaLower__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+START_VARIABLE = Sweep_PitchAngle_DeltaUpper__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "Actual Upper Edge of bin = Sweep_PitchAngle + Sweep_PitchAngle_DeltaUpper"
+    UNITS              = "Degrees"
+    SI_CONVERSION      = "1.0>degree"
+    COORDINATE_SYSTEM  = "MFA"
+    FRAME              = "array>na"
+    REPRESENTATION_1   = "t"
+    SIZES              = 12
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 5
+    FILLVAL            = -1
+    FIELDNAM           = "Upper delta Pitch Angles"
+    LABLAXIS           = "Upper Pitch angle-delta"
+    SCALEMIN           = 0
+    SCALEMAX           = 180
+    SCALETYP           = "Linear"
+!
+    DATA               = 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5, 7.5
+!
+END_VARIABLE = Sweep_PitchAngle_DeltaUpper__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+!
+!
+! start on the PEACE Data product that this entire file is for:
+!
+START_VARIABLE = Data__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Data"
+    CATDESC            = "C1 PITCH_SPIN LEEA (DEFlux), 12 PA bins"
+    ENTITY             = "Electron"
+    PROPERTY           = "Differential_Energy_Flux"
+    UNITS              = "keV/cm^2-s-str-keV"
+    SI_CONVERSION      = "6.24150974E+15>m^-2 s^-1 sr^-1"
+    FRAME              = "array>na"
+    SIZES              = 12, 44
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    DEPEND_1           = Sweep_PitchAngle__C1_CP_PEA_PITCH_SPIN_DEFlux
+    DEPEND_2           = Sweep_Energy__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 8
+    FILLVAL            = -1                            
+    QUALITY            = "Status_Quality__C1_CP_PEA_PITCH_SPIN_DEFlux"
+    FIELDNAM           = "PITCH_SPIN"
+    LABLAXIS           = "Diff. Energy Flux"
+    SCALEMIN           = 1.00E+05
+    SCALEMAX           = 1.00E+09
+    SCALETYP           = "Log"
+    DISPLAYTYPE        = "Spectrogram"
+END_VARIABLE = Data__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+!
+!
+! start on the background level data:
+!
+START_VARIABLE = BackgroundLevel__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Data"
+    CATDESC            = "Background level data for 'Data__C1_CP_PEA_PITCH_SPIN_DEFlux'"
+    ENTITY             = "Electron"
+    PROPERTY           = "Differential_Energy_Flux"
+    UNITS              = "keV/cm^2-s-str-keV"
+    SI_CONVERSION      = "6.24150974E+15>m^-2 s^-1 sr^-1"
+    FRAME              = "array>na"
+    SIZES              = 12, 44
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    DEPEND_1           = Sweep_PitchAngle__C1_CP_PEA_PITCH_SPIN_DEFlux
+    DEPEND_2           = Sweep_Energy__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 5
+    FILLVAL            = -1
+    QUALITY            = 0                                      ! See Status variables instead.    
+    FIELDNAM           = "PITCH_SPIN background level"
+    LABLAXIS           = "Diff. Energy Flux"
+    SCALEMIN           = 1.00E+05
+    SCALEMAX           = 1.00E+09
+    SCALETYP           = "Log"
+    DISPLAYTYPE        = "Spectrogram"
+END_VARIABLE = BackgroundLevel__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+!
+!
+! start on Status Values:
+!
+START_VARIABLE = Status_Quality__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  data quality flag"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    VALUE_TYPE         = INT
+    SIGNIFICANT_DIGITS = 1
+    FILLVAL            = -1
+    FIELDNAM           = "Data quality flag"
+    LABLAXIS           = "Quality"
+    SCALEMIN           = 0 
+    SCALEMAX           = 4
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_Quality__C1_CP_PEA_PITCH_SPIN_DEFlux
+!     
+    START_VARIABLE = Status_CountStats_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for HEEA Count Statistics"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 3
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for HEEA Count Statistics"
+    LABLAXIS           = "Status Value for CountStats_HEEA"
+    SCALEMIN           = 0
+    SCALEMAX           = 2
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_CountStats_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_CountStats_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for LEEA Count Statistics"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 3
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for LEEA Count Statistics"
+    LABLAXIS           = "Status Value for CountStats_LEEA"
+    SCALEMIN           = 0
+    SCALEMAX           = 2
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_CountStats_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_ASPOC__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for ASPOC"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 3
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for ASPOC"
+    LABLAXIS           = "Status Value for ASPOC"
+    SCALEMIN           = 0
+    SCALEMAX           = 1
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_ASPOC__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_FGM__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for FGM"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 3
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for FGM"
+    LABLAXIS           = "Status Value for FGM"
+    SCALEMIN           = 0
+    SCALEMAX           = 1
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_FGM__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_InterferenceFromEFW__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for Interference caused by EFW"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 3
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for Interference caused by EFW"
+    LABLAXIS           = "Status Value for InterferenceFromEFW"
+    SCALEMIN           = 0
+    SCALEMAX           = 1
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_InterferenceFromEFW__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_InterferenceFromWHI__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for Interference caused by WHI"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 3
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for Interference caused by WHI"
+    LABLAXIS           = "Status Value for InterferenceFromWHI"
+    SCALEMIN           = 0
+    SCALEMAX           = 1
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_InterferenceFromWHI__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_Eclipse__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for Eclipse"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 3
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for Eclipse"
+    LABLAXIS           = "Status Value for Eclipse"
+    SCALEMIN           = 0
+    SCALEMAX           = 1
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_Eclipse__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_DatastreamErrors__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for DatastreamErrors"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 3
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for DatastreamErrors"
+    LABLAXIS           = "Status Value for DatastreamErrors"
+    SCALEMIN           = 0
+    SCALEMAX           = 2
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_DatastreamErrors__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_CalibrationVersion_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for HEEA Calibration Version"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 11
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for HEEA Calibration Version"
+    LABLAXIS           = "Status Value for CalibrationVersion_HEEA"
+    SCALEMIN           = 0
+    SCALEMAX           = 20123662359
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_CalibrationVersion_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_PEACErawData_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for HEEA PEACE raw data"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 11
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for HEEA PEACE raw data"
+    LABLAXIS           = "Status Value for PEACErawData_HEEA"
+    SCALEMIN           = 0
+    SCALEMAX           = 20123662359
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_PEACErawData_HEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_CalibrationVersion_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for LEEA Calibration Version"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 11
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for LEEA Calibration Version"
+    LABLAXIS           = "Status Value for CalibrationVersion_LEEA"
+    SCALEMIN           = 0
+    SCALEMAX           = 20123662359
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_CalibrationVersion_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_PEACErawData_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for LEEA PEACE raw data"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 11
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for LEEA PEACE raw data"
+    LABLAXIS           = "Status Value for PEACErawData_LEEA"
+    SCALEMIN           = 0
+    SCALEMAX           = 20123662359
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_PEACErawData_LEEA__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+    START_VARIABLE = Status_PADSelectionQuality__C1_CP_PEA_PITCH_SPIN_DEFlux
+    PARAMETER_TYPE     = "Support_Data"
+    CATDESC            = "C1  Status Values for PAD Selection Quality"
+    UNITS              = "Unitless"
+    SI_CONVERSION      = "1>unitless"
+    FRAME              = "array>na"
+    SIZES              = 3
+    DEPEND_0           = time_tags__C1_CP_PEA_PITCH_SPIN_DEFlux
+    LABEL_1            = "Status Value","Source of Status Value","Version Number of Source of Status Value"
+    VALUE_TYPE         = FLOAT
+    SIGNIFICANT_DIGITS = 3
+    FILLVAL            = -1
+    QUALITY            = 0
+    FIELDNAM           = "Status Values for PAD Selection Quality"
+    LABLAXIS           = "Status Value for PADSelectionQuality"
+    SCALEMIN           = 0
+    SCALEMAX           = 10
+    SCALETYP           = "Linear"
+    DISPLAYTYPE        = "Time_Series"
+END_VARIABLE = Status_PADSelectionQuality__C1_CP_PEA_PITCH_SPIN_DEFlux
+!
+!
+!
+! End Parameter Level
+!

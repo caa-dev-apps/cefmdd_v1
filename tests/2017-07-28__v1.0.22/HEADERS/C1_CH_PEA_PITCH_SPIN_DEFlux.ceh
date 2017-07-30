@@ -1,0 +1,41 @@
+FILE_FORMAT_VERSION = "CEF-2.0"
+END_OF_RECORD_MARKER = "$"
+!
+! Header created at MSSL by "write_CEF_header_v07_test_cra.pl" (Revision : 1591  ) on Mon Jan 26 17:08:51 2015
+!-------- Cluster Exchange Version 2 ASCII File --------|
+! Free width data entries separated by delimiters       |
+!                                                       |
+! ASCII Format                                          |
+! Native C ordering,                                    |
+! Blank lines are ignored                               |
+! "!" escapes rest of line as comment                   |
+!-------------------------------------------------------|
+!
+!--------------L-E-V-E-L---B-O-U-N-D-A-R-Y---------------
+!
+include = "CL_CH_MISSION.ceh"
+!
+!--------------L-E-V-E-L---B-O-U-N-D-A-R-Y---------------
+!
+include = "C1_CH_OBS.ceh"
+!
+!--------------L-E-V-E-L---B-O-U-N-D-A-R-Y---------------
+!
+include = "CL_CH_PEA_EXP.ceh"
+!
+!--------------L-E-V-E-L---B-O-U-N-D-A-R-Y---------------
+!
+include = "C1_CH_PEA_LEEA_HEEA_INST.ceh"
+!
+!--------------L-E-V-E-L---B-O-U-N-D-A-R-Y---------------
+!
+include = "C1_CH_PEA_PITCH_SPIN_DATASET_DEFlux.ceh"
+!
+!--------------L-E-V-E-L---B-O-U-N-D-A-R-Y---------------
+!
+include = "C1_CH_PEA_PITCH_SPIN_DEFlux_PARA.ceh"
+!
+!--------------L-E-V-E-L---B-O-U-N-D-A-R-Y---------------
+!
+include = "CL_CH_PEA_FILE.ceh"
+!

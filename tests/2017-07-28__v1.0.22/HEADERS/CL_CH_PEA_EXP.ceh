@@ -1,0 +1,41 @@
+! (From CL_CH_PEA_EXP.ceh which was last generated Mon Jan 26 17:08:55 2015 by Revision : 1591 )
+!
+! Start Experiment Level 
+!
+START_META = EXPERIMENT
+   ENTRY   = "PEACE"
+END_META   = EXPERIMENT
+!
+START_META = EXPERIMENT_DESCRIPTION
+   ENTRY   = "The Plasma Electron And Current Experiment (PEACE) instrument is designed to measure"
+   ENTRY   = "the electron velocity distribution in the vicinity of its host spacecraft, covering"
+   ENTRY   = "an energy range of ~1 eV to ~26 keV and detecting electrons arriving from all possible"
+   ENTRY   = "directions. Each PEACE instrument has two sensor heads, LEEA and HEEA, which are"
+   ENTRY   = "mounted on opposite sides of the spacecraft such that the instantaneous field of view"
+   ENTRY   = "of one is the same as that seen by the other half a spacecraft rotation period later."
+   ENTRY   = "LEEA and HEEA differ only in geometric factor (HEEA admits more electrons than LEEA"
+   ENTRY   = "when measuring the same energy range). Both sensors sample 4*pi steradians per spin."
+END_META   = EXPERIMENT_DESCRIPTION
+!
+! make this following one a pointer later
+START_META = INVESTIGATOR_COORDINATES
+   ENTRY   = "Andrew Fazakerley>a.fazakerley@ucl.ac.uk>Principal Investigator"
+END_META   = INVESTIGATOR_COORDINATES
+!
+START_META = EXPERIMENT_REFERENCES
+   ENTRY   = "*CL_CD_PEA_CAAICD"
+   ENTRY   = "*CL_CD_PEA_USERMAN"
+   ENTRY   = "http://www.mssl.ucl.ac.uk/www_plasma/missions/cluster/index.php"
+END_META   = EXPERIMENT_REFERENCES
+!
+START_META = EXPERIMENT_KEY_PERSONNEL
+   ENTRY   = "Andrew Fazakerley>a.fazakerley@ucl.ac.uk>Principal Investigator"
+   ENTRY   = "Natasha Doss>n.doss@ucl.ac.uk>Technical Contact"   
+END_META   = EXPERIMENT_KEY_PERSONNEL
+!
+START_META = EXPERIMENT_CAVEATS
+   ENTRY   = "*CL_CQ_PEA_CAVEATS"
+END_META   = EXPERIMENT_CAVEATS
+!
+! End Experiment Level
+!
