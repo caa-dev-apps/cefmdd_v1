@@ -3,9 +3,9 @@
 # cefmdd v1.1.1, (29 July 2017)
 
 ```
-	App returns added
-    	0   success
-    	-1  failure(s)
+	App return values added
+    	 0   success
+    	-1   failure(s)
 ```
 
 # cefmdd v1.1.0, (15 July 2017)

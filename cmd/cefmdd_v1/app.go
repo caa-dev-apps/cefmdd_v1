@@ -24,5 +24,5 @@ func main() {
 
     diag.Info(diag.Yellow("CAA Rocks!\n"))
 
-    return
+    return 0
 }
