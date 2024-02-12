@@ -6,11 +6,21 @@ import (
 )
 
 var s_trace bool 
+var s_duplicates bool 
+var s_ignore_quotes bool 
 var s_warn bool 
 var s_show_error_line bool
 
 func SetTrace(d bool) {
     s_trace = d
+}
+
+func SetDuplicates(d bool) {
+    s_duplicates = d
+}
+
+func SetIgnoreQuotes(d bool) {
+    s_ignore_quotes = d
 }
 
 func SetWarn(d bool) {
