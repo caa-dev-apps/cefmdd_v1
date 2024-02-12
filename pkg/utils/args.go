@@ -30,6 +30,8 @@ type CefArgs struct {
     m_max_records int
     m_trace bool
     m_warn bool
+    m_duplicates bool
+    m_ignore_quotes bool
     m_show_error_line bool
 }
 
@@ -49,6 +51,14 @@ func (a1s CefArgs) GetInfo() (bool) {
 	return a1s.m_trace
 }
 
+func (a1s CefArgs) GetDuplicateFlag() (bool) {
+	return a1s.m_duplicates
+}
+
+func (a1s CefArgs) GetIgnoreQuotesFlag() (bool) {
+	return a1s.m_ignore_quotes
+}
+
 func (a1s CefArgs) GetMaxRecords() (int) {
 	return a1s.m_max_records
 }
@@ -61,15 +71,21 @@ func (a1s *CefArgs) init() (err error) {
     flag.StringVar(&a1s.m_cefpath , "f", "", "Cef file path (.cef/.cef.gz)")
     flag.BoolVar(&a1s.m_trace , "t", false, "Show trace debug")
     flag.BoolVar(&a1s.m_warn , "w", false, "Show warnings")
+    flag.BoolVar(&a1s.m_duplicates , "d", false, "Allow duplicate timestamps")
+ //   flag.BoolVar(&a1s.m_ignore_quotes , "q", false, "Used for regression testing")
+     flag.BoolVar(&a1s.m_ignore_quotes , "q", false, "")
     flag.BoolVar(&a1s.m_show_error_line , "e", true, "Show error line details")
+//  flag.IntVar(&a1s.m_max_records , "n", 100, "Max number of records to read (all -1)")
 
-    flag.IntVar(&a1s.m_max_records , "n", 100, "Max number of records to read (all -1)")
+    flag.IntVar(&a1s.m_max_records , "n", -1, "Max number of records to read (all -1)")
 
 	flag.Parse()
 
 	diag.SetTrace(a1s.m_trace)
 	diag.SetWarn(a1s.m_warn)
 	diag.SetShowErrorLine(a1s.m_show_error_line)
+	diag.SetDuplicates(a1s.m_duplicates)
+	diag.SetIgnoreQuotes(a1s.m_ignore_quotes)
 
 	if flag.NFlag() == 0 {
 		flag.PrintDefaults()
@@ -101,6 +117,8 @@ func (a1s CefArgs) Dump() {
     diag.Trace(diag.BoldYellow("m_max_records"), a1s.m_max_records)
     diag.Trace(diag.BoldYellow("trace"), a1s.m_trace)
     diag.Trace(diag.BoldYellow("warn"), a1s.m_warn)
+    diag.Trace(diag.BoldYellow("allow duplicates"), a1s.m_duplicates)
+    diag.Trace(diag.BoldYellow("ignore quotes"), a1s.m_ignore_quotes)
     diag.Trace(diag.BoldYellow("show error line"), a1s.m_show_error_line)
 
 }

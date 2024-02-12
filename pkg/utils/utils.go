@@ -95,20 +95,22 @@ func Trim_quoted_string(s string) (string) {
 //
 
 func On_enum_not_found_error(i_keyword string) (err error) {
-    return errors.New("Parser, Enum keyword not found")     
+    return errors.New(fmt.Sprintf("Error: Parser, Enum keyword not found![%s]",i_keyword))
+//    return errors.New("Parser, Enum keyword not found")     
 }
 
 func On_enum_parser_error(i_keyword, i_value string) (err error) {
-    return errors.New("Parser, Enum value not found ")     
+    return errors.New(fmt.Sprintf("Error: Parser, Enum value not found [%s] for [%s]",i_value,i_keyword))     
+
 }
 
 func On_enum_description_error(i_keyword, i_value string) (err error) {
-    return errors.New("Parser, Enum description mismatch ")     
+    return errors.New("Error: Parser, Enum description mismatch ")     
 }
 
 
 func On_parser_error(i_parser, i_value string) (err error) {
-    return errors.New("Parser, " + i_parser + " -> " + i_value)     
+    return errors.New("Error: Parser, " + i_parser + " -> " + i_value)     
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -133,7 +135,7 @@ func Formatted_parser(v string) (err error) {
 }
 
 func Integer_parser(v string) (err error) { 
-    
+
     if _, err = strconv.ParseInt(v, 10, 64); err != nil {
         return On_parser_error("Integer", v)
     }
@@ -143,6 +145,8 @@ func Integer_parser(v string) (err error) {
 
 func Iso_time_parser(v string) (err error) { 
     // "2012-04-11T15:57:15.012345678Z"
+//fmt.Print("INTO ISO TIME PARSER! with " ,v)
+
     if _, err = time.Parse(time.RFC3339Nano, v); err != nil {
         return On_parser_error("ISO Time", v)
     }
@@ -152,22 +156,19 @@ func Iso_time_parser(v string) (err error) {
 
 func Get_time_range(v string) (t0, t1 time.Time, err error) { 
 
-
-
     ts := strings.Split(v, "/")
     if len(ts) == 2 {
         t0, err = time.Parse(time.RFC3339Nano, ts[0])
         if err == nil {
             t1, err = time.Parse(time.RFC3339Nano, ts[1])
             if err == nil {
-                if t0.Before(t1) {
+                if t0.Before(t1) || t0.Equal(t1){  //SMCC 201807 Added Equals so start/stop times can be same
                     return
                 }
             }
-        }
+        } 
     }
-
-    err = On_parser_error("ISO Time Range", v)
+    err = On_parser_error("ISO Time Range1", v)
 
     return 
 }
@@ -184,21 +185,22 @@ func Iso_time_range_parser(v string) (err error) {
         }        
     }
 
-    return On_parser_error("ISO Time Range", v)
+    err =  On_parser_error("ISO Time Range2", v)
+//fmt.Println("Returning ", err)
+    return err
 }
 
 func Iso_time_range_parser_allow_equal(v string) (err error) { 
     // "2011-10-09T00:00:00Z/2011-10-10T00:00:00Z"
 
     t0, t1, err := Get_time_range(v)
-    
     if err == nil {
         if t0.Before(t1) || t0.Equal(t1) {
             return
         }        
     } 
 
-    return On_parser_error("ISO Time Range", v)
+    return On_parser_error("ISO Time Range3", v)
 }
 
 func Numerical_parser(v string) (err error) { 
@@ -287,3 +289,32 @@ func GetFirst3CefFilenameParts() (observatory, data_type, experiment string, err
 
     return 
 }
+
+
+///////////////////////////////////
+//SMCC, first Go Function 
+//RETURN ERR IF SECOND ISO_TIME_RANGE (v1) IS GREATER THAN FIRST TIME_TIME_RANGE (v0)
+//
+
+
+func Compare_ISO_Ranges(v0 string, v1 string, v2 string, v3 string) (err error){
+
+    ts0 := strings.Split(v0, "/")
+    t0start, _ := Iso_time(ts0[0])
+    t0stop, _ := Iso_time(ts0[1])
+
+    ts1 := strings.Split(v1, "/")
+    t1start, _ := Iso_time(ts1[0])
+    t1stop, _ := Iso_time(ts1[1])
+
+   if t1start.Before(t0start) || t0stop.Before(t1stop){
+//        err = errors.New(fmt.Sprintf("Error in %s, value %s outside range of %s %s",v2, ts1,v3,ts0))
+        err = errors.New(fmt.Sprintf("Error in %s, value %s outside range of %s %s",v3, ts1,v2,ts0))
+	return err
+   } 
+
+return 
+}
+
+
+
