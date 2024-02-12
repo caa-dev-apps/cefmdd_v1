@@ -31,6 +31,12 @@ func EachLine(i_path string) chan Line {
 
 		diag.Info("File Open", i_path)
 
+		info, err := os.Stat(i_path)
+		if (os.IsNotExist(err) || info.IsDir() ){
+			diag.Error("Unable to open file:", i_path)
+		        return 
+		    }	
+
 		fi, err := os.Open(i_path)
 		if err != nil {
 			diag.Error("File Open:", i_path)

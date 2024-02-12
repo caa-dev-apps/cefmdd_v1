@@ -74,7 +74,7 @@ func NewMetaKeyVal(k string, v []string) (*KeyVal) {
 }
 
 
-func EachKeyVal(i_lines chan Line) chan KeyVal {
+func EachKeyVal(i_lines chan Line) chan KeyVal{
 	output := make(chan KeyVal, 16)
 
 	state := B4_KEY
@@ -95,7 +95,6 @@ func EachKeyVal(i_lines chan Line) chan KeyVal {
 	}
 
 	parse_line := func(i_line string) (in_err error) {
-
 	skip_comment:
 		for _, ch := range i_line {
 			//debug state_0 := state
@@ -235,7 +234,6 @@ func EachKeyVal(i_lines chan Line) chan KeyVal {
 					return
 				}
 			}
-
 
 
 

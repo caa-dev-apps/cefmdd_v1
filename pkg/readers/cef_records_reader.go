@@ -5,6 +5,7 @@ import (
     "errors"
     "unicode"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
     "strings"
 )
 
@@ -41,6 +42,17 @@ func (s ROWState)state_diag(ch rune, s2 ROWState, tok string) {
     diag.Println(string(ch), s.state_str(), s2.state_str(), tok)
 }
 
+//smcc 20210531
+func isASCII(s string) bool {
+    for i := 0; i < len(s); i++ {
+        if s[i] > unicode.MaxASCII {
+            return false
+        }
+    }
+    return true
+}
+//smcc
+
 
 type CefRecord struct {
     Err error
@@ -66,20 +78,27 @@ func NewCefRecord(l Line) (*CefRecord) {
 
 func DataRecords(i_lines chan Line, i_len int, i_data_until, i_end_of_line_marker string) chan CefRecord {
     //x diag.Info("LINE-LENGTH = ", i_len)
+// fmt.Println("LINE-LENGTH = ", i_len)
+
+    i_data_until = strings.TrimSpace(i_data_until)
     output := make(chan CefRecord, 16)
     l_running_len := 0
     l_check_eolm := len(i_end_of_line_marker) == 1
 
+
     parse_line_v2 := func(i_line string) (r_tokens []string, in_err error) {
-        
+
         state := STX
         l_tok := ""
-
+   	intDataLines := 0
         for _, ch := range i_line {
             //debug 
-            //d diag.Printf("%c", ch)
-            //d state_0 := state
 
+//             fmt.Println("HERE:", i_line)
+//             fmt.Println("%c", ch)
+//             state_0 := state
+
+    intDataLines ++
             switch state {
 
             case STX:                  
@@ -176,11 +195,12 @@ func DataRecords(i_lines chan Line, i_len int, i_data_until, i_end_of_line_marke
 
         return
     }
-
     go func() {
         defer close(output)
 
+	intEmptyLine:=0
         ix := 0
+
         var l_rowTokens *CefRecord = nil
         
 //..    type Line struct {
@@ -191,12 +211,35 @@ func DataRecords(i_lines chan Line, i_len int, i_data_until, i_end_of_line_marke
 //..    i_lines chan readers.Line
 
         for l_line := range i_lines {
+	    intEmptyLine=0
 
             if l_running_len == 0 {
                 l_rowTokens = NewCefRecord(l_line)
             }
 
             l_tokens, err := parse_line_v2(l_line.line)
+	    l_line_orig := l_line.line
+//20210610 smcc added
+clean := strings.Map(func(r rune) rune {
+    if unicode.IsGraphic(r) {
+        return r
+    }
+    return -1
+}, l_line.line)
+if (len(l_line_orig) - len(clean) > 2){
+
+//fmt.Println("LEN ORIG",len(l_line_orig))
+//fmt.Println("LEN AFTER",len(clean))
+//fmt.Println("LINE ORIG:",l_line_orig)
+//fmt.Println("LINE AFTER:",clean)
+
+            l_rowTokens.Err = errors.New(fmt.Sprint(`Line reader - unexpected characters detected in line`,l_line_orig))
+            output <- *l_rowTokens
+	return 
+}
+
+            l_line.line = strings.TrimSpace(l_line.line)
+//fmt.Println("Updated: ", l_line.line)
             l_rowTokens.Tokens = append(l_rowTokens.Tokens, l_tokens...)
 
             if err != nil {
@@ -204,31 +247,70 @@ func DataRecords(i_lines chan Line, i_len int, i_data_until, i_end_of_line_marke
                 output <- *l_rowTokens
                 return
             }
-
             l_running_len = len(l_rowTokens.Tokens)
 
             if l_running_len == i_len {
-                output <- *l_rowTokens
-                l_running_len = 0
+                 if (strings.Contains(l_line_orig,"\n") == true){
+	                output <- *l_rowTokens
+	                l_running_len = 0
+		}else{
+            	  	l_rowTokens.Err = errors.New(fmt.Sprint("Missing EOR ", l_line.line))
+	            	output <- *l_rowTokens
+			return
+		}
             } else if  l_running_len > i_len {
                 l_rowTokens.Err = errors.New(fmt.Sprint(`Line reader - Too many tokens - expected : `, i_len, " actual : ", l_running_len))
                 output <- *l_rowTokens
                 break
-            }
+            } else if l_running_len == 0 {
+		if (len(i_data_until) > 2){
+		 if (len(strings.TrimSpace(l_line.line))==0){
+		    intEmptyLine = 1
+		} else  if ((len(strings.TrimSpace(l_line.line))==0) &&  (l_line.line[0]!= 33)){ //it is a space
+		    intEmptyLine = 1
+	}
+
+		}
+
+	    }
 
             ix++
+
+//	if (len(i_data_until) > 2) && strings.Contains(utils.Trim_quoted_string(l_line.line),utils.Trim_quoted_string(i_data_until)) {
+//		if (utils.Trim_quoted_string(l_line.line) == utils.Trim_quoted_string(i_data_until)){
+//		intDataUntil_LineNo = l_line.ln
+//
+//		if (i_data_until != l_rowTokens.Tokens[0]){
+//		          diag.Warn("DATA_UNTIL: ", "Actual", l_rowTokens.Tokens[0], " Expected : ", i_data_until)
+//	}
+//		}
+//	}
+
         }
 
         // check if DATA_UNTIL
-        if len(i_data_until) > 0 && l_running_len == 1 && strings.Contains(i_data_until, l_rowTokens.Tokens[0]) {
-            if i_data_until != l_rowTokens.Tokens[0] {
-                diag.Warn("DATA_UNTIL: ", "Actual", l_rowTokens.Tokens[0], " Expected", i_data_until)
-            }
-        } else if l_running_len > 1 {
+
+        if len(i_data_until) > 0 && l_running_len == 1{
+		if (strings.TrimSpace(utils.Trim_quoted_string(l_rowTokens.Tokens[0])) != utils.Trim_quoted_string(i_data_until)) {
+	            l_rowTokens.Err = errors.New(fmt.Sprint("DATA_UNTIL: ", "Actual ", l_rowTokens.Tokens[0], " Expected ", utils.Trim_quoted_string(i_data_until)))
+	            output <- *l_rowTokens
+            }  else if (strings.TrimSpace(utils.Trim_quoted_string(l_rowTokens.Tokens[0])) != strings.TrimSpace(l_rowTokens.Tokens[0])) {
+	            l_rowTokens.Err = errors.New(fmt.Sprint("DATA_UNTIL: ", "Actual ", l_rowTokens.Tokens[0], " Expected ", utils.Trim_quoted_string(l_rowTokens.Tokens[0])))
+	            output <- *l_rowTokens
+		}  else if (utils.Trim_quoted_string(i_data_until) == i_data_until) {
+	            l_rowTokens.Err = errors.New(fmt.Sprint("DATA_UNTIL: ", i_data_until, " should be in quotes"))
+	            output <- *l_rowTokens
+		}
+
+        } else if l_running_len > 0 {  // was 1
             l_rowTokens.Err = errors.New(fmt.Sprint(`Line reader - Too few tokens - expected : `, i_len, " actual : ", l_running_len))
             output <- *l_rowTokens
+
         }
         // else eof
+	if (intEmptyLine==1){
+	            l_rowTokens.Err = errors.New(`DATA_UNTIL0 value undetected, expected value: ` + utils.Trim_quoted_string(i_data_until))
+		    output <- *l_rowTokens}
 
     }()
 
