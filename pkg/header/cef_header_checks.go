@@ -1,8 +1,17 @@
 package header
 
 import (
+"errors"
+"fmt"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
+//    "github.com/caa-dev-apps/cefmdd_v1/pkg/rules"
 )
+
+//var (
+//    s_mdd_data = *rules.NewMddData()
+//)
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -71,6 +80,8 @@ func (h *CefHeaderData) Checks() (err error) {
     diag.Trace(diag.BoldCyan("Start"), "Header ATTR Checks:")
     if h.Attr_Checks() != nil {
         diag.Error("Header ATTR Checks:", "error(s) ")
+	err = errors.New("Exiting with Fatal Error[1 ATTR]") //smcc
+	return err
     } else {
         h.print_results("Header ATTR Checks:", nil)
     }
@@ -78,13 +89,19 @@ func (h *CefHeaderData) Checks() (err error) {
     diag.Trace(diag.BoldCyan("Start"), "Header META Checks:")
     if h.Meta_Checks() != nil {
         diag.Error("Header META Checks:", "error(s) ")
-    } else {
+	err = errors.New("Exiting with Fatal Error[2 META]") //smcc
+	return err //smcc
+
+    } else {	
         h.print_results("Header META Checks:", nil)
     }
+
 
     diag.Trace(diag.BoldCyan("Start"), "Header VAR Checks:")
     if h.Var_Checks() != nil {
         diag.Error("Header VAR Checks:", "error(s) ")
+	err = errors.New("Exiting with Fatal Erorr[3 VAR]") //smcc
+	return err //smcc
     } else {
         h.print_results("Header VAR Checks:", nil)
     }
@@ -92,3 +109,17 @@ func (h *CefHeaderData) Checks() (err error) {
     return
 }
 
+
+func (h *CefHeaderData) CheckMin(strCheck string) (err error){
+
+arrThis := s_mdd_data.BuildMDDCheck(strCheck)
+
+for x,_ := range arrThis{
+   entry,_ := h.getMetaEntry(arrThis[x])
+	if ((len(entry) == 0) || len(utils.Trim_quoted_string(entry[0])) ==0) {
+	err = errors.New(fmt.Sprintf("Missing or empty metadata[%s]",arrThis[x])) //smcc
+	return err //smcc
+	}
+}
+return
+}

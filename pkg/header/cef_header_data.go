@@ -10,6 +10,7 @@ import (
     "github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/rules"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
+    "fmt"
 )
 
 //          Current State	                Key In	            Val In	            Checks	                            Output function	            Next State
@@ -64,13 +65,26 @@ func (a *Attrs) Map() (map[string][]string) {
 func (m *Attrs) push_kv(kv *readers.KeyVal) (err error) {
 
     val, is_present := m.m_map[kv.Key]
+
+//fmt.Println(m.m_map)
+
+//fmt.Println(fmt.Sprintf("VALUE APPENDING kvVal %s to Val %s for Key %s and m_map_var %s", kv.Val,val,  kv.Key, m.m_map))
+
     if is_present == true {
-        val = append(val, kv.Val...)
+
+	if (kv.Key == "ENTRY"){
+	        val = append(val, kv.Val...)
+	} else {
+		err = errors.New(fmt.Sprintf("VARIABLE not unique %s", kv.Line))
+		return err
+	}
+
     } else {
         val = kv.Val
     }
     
     m.m_map[kv.Key] = val
+
     
 	return err
 }
@@ -223,7 +237,6 @@ func (h *CefHeaderData) Dump() (err error) {
 }
 
 func (h *CefHeaderData) getAttr(k string) (v []string, err error) {
-    
     v, present := h.m_attrs.m_map[k]
     if present == false {
         err = errors.New("Error: keyword not present " + k)
@@ -309,8 +322,10 @@ func (h *CefHeaderData) check_mdd(kv *readers.KeyVal) (err error) {
 
 
 func (h *CefHeaderData) check_mdd_meta_etx() (err error) {
-    
     l_kv := readers.NewMetaKeyVal(h.m_name, h.m_cur.m_map[`ENTRY`])
+
+//smcc qwe
+//   fmt.Println(l_kv)
     
     err = s_mdd_data.Test_input(l_kv)
     if err != nil {
@@ -328,15 +343,25 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 	switch {
 	case strings.EqualFold("START_META", kv.Key) == true:
 		//d mooi_log("START_META", kv.Val[0])
-
 		switch h.m_state {
 		case ATTR:
-            h.m_state = META
-            //x h.m_name = kv.Val[0]
-            //i 2017-02-11 h.m_name = kv.Val[0]
-            h.m_name = strings.ToUpper(kv.Val[0])
-            h.m_cur = NewAttrs()
-            diag.Trace(diag.BoldCyan("start-meta"), h.m_name)
+//20180725 SMCC & DH added flgNotUnique
+
+             _, flgNotUnique := h.m_meta.m_map[kv.Val[0]]
+
+		if (flgNotUnique){
+			return errors.New(fmt.Sprintf("METADATA not unique [%s]",kv.Val[0]))
+		} 
+	            h.m_state = META
+
+//fmt.Println("VAL:",kv.Val[0])
+        	    //x h.m_name = kv.Val[0]
+	            //i 2017-02-11 h.m_name = kv.Val[0]
+	            h.m_name = strings.ToUpper(kv.Val[0])
+	//CBT
+	            h.m_cur = NewAttrs()
+	            diag.Trace(diag.BoldCyan("start-meta"), h.m_name)
+	
             
 		default:
 			return errors.New("START_META: invalid State")
@@ -360,6 +385,11 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 	case strings.EqualFold("END_META", kv.Key) == true:
 		//d mooi_log("END_META", kv.Val[0])
 
+             _, flgNotUnique := h.m_vars.m_map[kv.Val[0]]
+
+	if (flgNotUnique){
+		return errors.New(fmt.Sprintf("KEY not unique [%s]",kv.Val[0]))
+	} 
 		switch h.m_state {
 		case META:
 //x 			if h.m_name != kv.Val[0] {
@@ -373,6 +403,8 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
             e := h.check_mdd_meta_etx()
             if e != nil {
                 diag.ErrorLine(kv.Line)
+		return errors.New("END_META: invalid META")
+	
             }
 
             diag.Trace(diag.BoldCyan("end-meta"), h.m_name)
@@ -386,9 +418,12 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 	case strings.EqualFold("END_VARIABLE", kv.Key) == true:
 		//d mooi_log("END_VARIABLE", kv.Val[0])
 
+//fmt.Println("KEY:",kv.Key)
+//fmt.Println("VAL:",kv.Val[0])
 		switch h.m_state {
 		case VAR:
-			if h.m_name != kv.Val[0] {
+
+		if h.m_name != kv.Val[0] {
                 //x diag.Error("=========== END_VARIABLE: invalid Name", kv.Val[0])
                 diag.Error("END_VARIABLE: invalid Name", "\t(START_VARIABLE)", h.m_name, "\t(END_VARIABLE)", kv.Val[0])
 				return errors.New("END_VARIABLE: invalid Name")
@@ -398,6 +433,8 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
             if _, p := h.m_cur.Map()["SIZES"]; p == false {
                 h.m_cur.push_k_v("SIZES", "1")                
             }
+//fmt.Println(kv.Val[0])
+//fmt.Println("XVALUE:" , h.m_vars.m_list)
 
             h.m_cur.push_k_v("variable_name", h.m_name)
 
@@ -414,12 +451,21 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 
 	default:
 
-        h.m_cur.push_kv(kv)
+        ae := h.m_cur.push_kv(kv)
+        if ae != nil {
+//            diag.ErrorLine(ae)
+ 	    return ae
+        }
         
         // key - val tests !!!
+//    fmt.Println("--\nATTR:", h.m_attrs)
+//qwe    diag.Println("--\nMETA:", h.m_meta)
+//    fmt.Println("--\nVAR:", h.m_vars)
+
         e := h.check_mdd(kv)
         if e != nil {
             diag.ErrorLine(kv.Line)
+	    return e
         }
 	}
 
@@ -429,4 +475,5 @@ func (h *CefHeaderData) Add_kv(kv *readers.KeyVal) (err error) {
 func NewKV(k, v string) *readers.KeyVal {
     return &readers.KeyVal { Key: k, Val: []string{ v}}
 }
+
 

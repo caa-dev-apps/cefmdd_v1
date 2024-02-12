@@ -1,7 +1,7 @@
 package header
 
 import (
-//x     "fmt"
+//    "fmt"
     "errors"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
@@ -63,19 +63,26 @@ func (h *CefHeaderData) check_attr_FILE_NAME() (err error) {
     return
 }
 
+//2019smcc
+func (h *CefHeaderData) check_attr_DATA_UNTIL()(err error) {
+    
+    v1, err := h.getAttrFirstQuoted("DATA_UNTIL")
+    v1=v1
+    if err != nil {
+        err = errors.New("DATA_UNTIL required")
+        return 
+    }
+
+   // diag.Todo("Check_attr_DATA_UNTIL")  
+    return
+}
+
 func (h *CefHeaderData) check_attr_FILE_FORMAT_VERSION() (err error) {
 
-    diag.Todo("Check_attr_FILE_FORMAT_VERSION")  
+ //   diag.Todo("Check_attr_FILE_FORMAT_VERSION")  
     
     return
 }
-
-func (h *CefHeaderData) check_attr_DATA_UNTIL() {
-    
-    diag.Todo("Check_attr_DATA_UNTIL")  
-    return
-}
-
         
 func (h *CefHeaderData) Attr_Checks() (err error) {
     
@@ -84,22 +91,21 @@ func (h *CefHeaderData) Attr_Checks() (err error) {
 		"FILE_FORMAT_VERSION",
 		"DATA_UNTIL",
 	}
-
 	for _, k := range aks {
 		if v, err := h.getAttr(k); err == nil {
-            diag.Trace(diag.Cyan(" " +k), v)
+	            diag.Trace(diag.Cyan(" " +k), v)			
 		} else {
-            diag.Error("Attr Checks ", err)   
+	            diag.Error("Attr Checks ", err)   
+			return err
 		}
 	}
 
-    
+  
     err = h.check_attr_FILE_NAME()
     h.print_results("FILE_NAME checks", err) 
-    
     h.check_attr_FILE_FORMAT_VERSION()
-    h.check_attr_DATA_UNTIL()
+//    err = h.check_attr_DATA_UNTIL()
 
-    return
+    return err
 }
 
