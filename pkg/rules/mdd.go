@@ -106,19 +106,19 @@ func (kw *KeywordData) is_range(lo, hi string) (bool) {
 }
 
 func (kw *KeywordData) test_cardinality(kv *readers.KeyVal) (err error) {
-    
+
     l := len(kv.Val)
     ls := strconv.Itoa(l)
     switch {
         case kw.is_range("0", "1") :
             if l > 1 {
-                err = errors.New("Error: Keyword cardinality(0,1) Actual " + ls + " - " + kv.Key)
+                err = errors.New("Error: Keyword cardinality(0,1) Actual " + ls + " - " + kv.Key + fmt.Sprintf(" %s ",kv.Val))
             }
         case kw.is_range("0", "N") :
             // anything is good!
         case kw.is_range("1", "1") :
             if l != 1 {
-                err = errors.New("Error: Keyword cardinality(1,1) Actual " + ls + " - " + kv.Key)
+                err = errors.New("Error: Keyword cardinality(1,1) Actual " + ls + " - " + kv.Key + fmt.Sprintf(" %s ",kv.Val))
             }
         case kw.is_range("1", "N") :    
             if l == 0 {
@@ -135,6 +135,11 @@ func (kw *KeywordData) test_cardinality(kv *readers.KeyVal) (err error) {
             
         default :
     }
+//20191111 smcc added 
+        if err != nil {
+            log.Fatal(err)
+        }
+//20191111 smcc added 
 
     return 
 }
@@ -179,13 +184,15 @@ func NewMddData_Base(i_path_keywords, i_path_enums string) *MddData {
 
     // read Keywords
     for r := range read_csv(i_path_keywords) {
-        
         l_keywordType, l_kw_type_parser, err := mdd_data.getKeywordType(r[0], r[3])
-        
         if err != nil {
             log.Fatal(err)
             break
         }
+
+//SMCC QWE HERE IS WHERE THE CSV FOR CARD IS SETUP        
+
+//fmt.Println("ADDING" , r[0] , r[1], r[2])
         
         mdd_data.add_keyword(r[0], &KeywordData{ lo : r[1], 
                                                  hi : r[2],  
@@ -205,7 +212,10 @@ func (d *MddData) getKeywordType(i_kw, i_kw_type string)  (k KeywordType, f func
     s := strings.ToLower(i_kw_type)
 
     switch s {
-        case "enumerated" :     k = ENUMERATED;           f, err =  d.init_enum_parser(i_kw)
+        case "enumerated" : {
+    k = ENUMERATED;           
+  f, err =  d.init_enum_parser(i_kw)
+}
         case "formatted" :      k = FORMATTED;            f = utils.Formatted_parser
         case "integer" :        k = INTEGER;              f = utils.Integer_parser
         case "iso_time" :       k = ISO_TIME;             f = utils.Iso_time_parser
@@ -216,8 +226,8 @@ func (d *MddData) getKeywordType(i_kw, i_kw_type string)  (k KeywordType, f func
         default : 
             err = errors.New("Error: unknown Keyword value type: [" + i_kw_type + "]")
     }
-    
-    return
+
+    return 
 }
 
 func (d *MddData) add_enum(i_keyword, 
@@ -263,66 +273,119 @@ func (d *MddData) init_enum_parser(i_keyword string) (f func(string) (error), er
         v1 := strings.Trim(v, "\"'`")
 
         if i_keyword == "COORDINATE_SYSTEM" {
-            vs := strings.Split(v1, ">")
-            es, p := enums[vs[0]]
+	if (strings.Contains(v1,">")){
+	            vs := strings.Split(v1, ">")
+	            _, p := enums[vs[0]]
+		 	if (p == false) {
+			      return utils.On_enum_parser_error(i_keyword, v)
+			     }	
+		            if (len(vs[1]) < 1) {
+			        err = errors.New(fmt.Sprintf("Error: Incomplete value %s for %s ",vs, i_keyword))
+				return err	
+		            }
+	}  else {	
+	//This COORD SYSTEM HAS NO DESCRIPTOR ATTACHED
+            _, p := enums[v]
+		 if (p == false) {
+	      return utils.On_enum_parser_error(i_keyword, v)
+	     }	
 
-            if p == false {
-                return utils.On_enum_parser_error(i_keyword, v)
-            }
-
-            if (len(vs) > 1 && es.description != vs[1]) {
-                //return utils.On_enum_description_error(i_keyword, v)
-                diag.Warn("Parser, Enum description mismatch", i_keyword, v)
-            } 
+	}
         } else if i_keyword == "DATA_TYPE" {
             vs := strings.Split(v1, ">")
             _, p := enums[vs[0]]
 
             if p == false {
-                //x return utils.On_enum_parser_error(i_keyword, v)
-                diag.Warn("Parser, Enum description mismatch", i_keyword, v)
+                //x 
+		return utils.On_enum_parser_error(i_keyword, v)
+                //20181009 removed diag.Warn("Parser, Enum description mismatch ", i_keyword, v)
+            }
+
+            //x if (len(vs) > 1 && es.description != vs[1]) {
+            //x     return utils.On_enum_description_error(i_keyword, v)
+            //x } 
+        } else if i_keyword == "TARGET_SYSTEM" {  //20181009 SNCC Added 
+            vs := strings.Split(v1, ">")
+            _, p := enums[vs[0]]
+
+            if p == false {
+                return utils.On_enum_parser_error(i_keyword, v)
+//                diag.Warn("Parser, Enum description mismatch ", i_keyword, v)
             }
 
             //x if (len(vs) > 1 && es.description != vs[1]) {
             //x     return utils.On_enum_description_error(i_keyword, v)
             //x } 
         } else if i_keyword == "SI_CONVERSION" {
+	   v1_orig:=v1
+	   v1 = RemoveCommentInBrackets(v1)
+//	   fmt.Println("SI:",v1)
+
             vs := strings.Split(v1, ">")
             l := len(vs) 
 
             if l==0 || l > 2 {
                 //2017-02-11 return utils.On_enum_parser_error(i_keyword, v)
-                diag.Warn("SI_CONVERSION: ", fmt.Sprintf("%v",v))
-                return
+                err = errors.New("Error: SI_CONVERSION format error ["  + v1_orig + "]")
+		log.Fatal(err)
             }
 
-            ix := 0
-            if l == 2 {
-                ix = 1
-            }
+	   if !(isNumeric(vs[0])){
+                err = errors.New("Error: SI_CONVERSION format error, must have numerical value [" + v1_orig + "]")
+	        log.Fatal(err)
+  	   }
 
-            _, p := enums[vs[ix]]
-            if p == false {
-                //2017-02-11 return utils.On_enum_parser_error(i_keyword, v)
-                diag.Warn("SI_CONVERSION: ", fmt.Sprintf("%v",v))
-                return
-            } 
+	if (l==2){
+	if (len(vs[1]) == 0){
+	// There is no unit given
+	  err = errors.New("Error: SI_CONVERSION invalid, no unit given [" + v1_orig + "]")
+	  log.Fatal(err)
+	
+	}else {
+		arrUnits := strings.Split(strings.TrimSpace(vs[1])," ")  // This should be each SI unit
 
-            if l == 2 {
+		for _, element := range arrUnits {
+			a := strings.FieldsFunc(element,Split)
+			if (len(a) <=2 ){
+//				fmt.Println("Correct number of values in ", element)			
+			} else{
+		                err = errors.New("Error: SI_CONVERSION invalid, incorrect number of values [" + v1_orig + "]")
+			        log.Fatal(err)
+			}
+//	fmt.Println("A:",len(a))
+			//Now validate unit
 
-                if e1 := utils.Numerical_parser(vs[0]); e1 != nil {
-                    //2017-02-11 return utils.On_enum_parser_error(i_keyword, v)
-                    diag.Warn("SI_CONVERSION: ", fmt.Sprintf("%v",v))
-                    return
-                }
-            }
+	            	 _, p := enums[a[0]]
+	            	if p == false {
+	                	err= utils.On_enum_parser_error(i_keyword, a[0])
+			        log.Fatal(err)
+		            }
+			//if it is in the format 1>x^123
+			if (len(a) ==2){		
+			   if !(isNumeric(a[1])){
+		                err = errors.New("Error:  SI_CONVERSION must have numerical value [" + v1_orig + "]")
+			        log.Fatal(err)
+		  	   }
+			} 
+	
+		}
+	}
+}
+//            ix := 0
+//            if l == 2 {
+//                ix = 1
+//            }
+
+//2019 smcc			 fmt.Println("V:[", v, "]","IX:[", vs[ix])
+
         } else if strings.EqualFold(v, "MULTIPLE") && (i_keyword == "EXPERIMENT" || i_keyword == "INSTRUMENT_NAME" || i_keyword == "OBSERVATORY") {
             // pass
         } else {
             _, p := enums[v1]
 
             if p == false {
-                return utils.On_enum_parser_error(i_keyword, v)
+	            log.Fatal(utils.On_enum_parser_error(i_keyword, v))
+
             } 
         }
 
@@ -338,8 +401,22 @@ func (d *MddData) dump() {
     diag.Trace(fmt.Sprintf("%#v", d.m_enums))
 }
 
-/////////////////////////////////////////////////////////////////////////////// -------------------------------------------------------------------------------
-//
+
+func (d *MddData) BuildMDDCheck(strType string) (arrReturn []string) {
+
+	for k, v := range d.m_keywords {
+		if ((v.scope == strType) && (v.lo == "1")){
+			arrReturn = append(arrReturn,k)
+		}
+//		fmt.Println(fmt.Sprintf("K %s MIN:%s MAX:%s SCOPE:%s",k,v.lo,v.hi,v.scope))
+	}
+//	fmt.Println("******************BEGIN***************")
+//	fmt.Println("******************END***************")
+return arrReturn
+}
+
+//    fmt.Println(fmt.Sprintf("%#v", d.m_keywords))
+//    fmt.Println(fmt.Sprintf("%#v", d.m_enums))
 
 // keyword 
 
@@ -359,8 +436,14 @@ func (d *MddData) Test_input(kv *readers.KeyVal) (err error) {
     //- cardinality (lo, hi)
     //- kw_type
     //- check if already registered
-    
+
+//2018    fmt.Println("KEYV: " , kv.Key)
+
     l_kw_data, present := d.m_keywords[kv.Key]
+
+
+//fmt.Println("DATA", d.m_keywords[kv.Key])
+
     if present == false {
         return errors.New("Error: keyword not found: " + kv.Key)
     } 
@@ -380,7 +463,6 @@ func (d *MddData) Test_input(kv *readers.KeyVal) (err error) {
 
 func (d *MddData) Test_input_kv1(k, 
                                  v string) (err error) {
-    
     kv := &readers.KeyVal{ Key: k, Val: []string{v}}
     err = d.Test_input(kv)
     
@@ -389,7 +471,6 @@ func (d *MddData) Test_input_kv1(k,
 
 func (d *MddData) Test_input_kv2(k string, 
                                  v []string) (err error) {
-    
     kv := &readers.KeyVal{ Key: k, Val: v}
     err = d.Test_input(kv)
     
@@ -400,4 +481,20 @@ func NewMddData() *MddData {
    
     return NewMddData_Base(utils.CefMddDir() + `/Keywords.csv`, 
                            utils.CefMddDir() + `/Enums.csv`)
+}
+
+func RemoveCommentInBrackets(inStr string)(string){
+	for (strings.Contains(inStr,"(")) {
+		inStr = string(inStr[0:strings.Index(inStr,"(")]) + string(inStr[strings.Index(inStr,")")+1:len(inStr)])
+	}
+	return inStr
+}
+
+func isNumeric(s string) bool {
+    _, err := strconv.ParseFloat(s, 64)
+    return err == nil
+}
+
+func Split(r rune) bool {
+    return r =='^' 
 }
