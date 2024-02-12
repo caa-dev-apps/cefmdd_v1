@@ -16,7 +16,7 @@ func main() {
 //20200207 updated observatory from context to cluster-context
 //20210615    diag.Info(diag.Yellow("cefmdd v1.2.5 BETA, (20200702)"))
 //20230929    diag.Info(diag.Yellow("cefmdd v1.2.7 BETA, (20230301)"))
-
+//2024 test
         diag.Info(diag.Yellow("cefmdd v1.2.7b, (20230929)"))
 	s_args, err := utils.NewCefArgs()
 	if err != nil {
