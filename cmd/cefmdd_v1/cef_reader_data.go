@@ -4,6 +4,7 @@ import (
 	"errors"
     "fmt"
     "time"
+    "strings"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/data"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/header"
@@ -50,6 +51,7 @@ func ReadData(i_header header.CefHeaderData,
 
 
 	ts0, ts1, err := i_header.Get_FILE_TIME_SPAN()
+
 	if err != nil {
 		diag.Error("Invalid FILE_TIME_SPAN", "")
 		return
@@ -58,7 +60,7 @@ func ReadData(i_header header.CefHeaderData,
 
     du, p := i_header.Attrs().Map()["DATA_UNTIL"];
     if p == true {
-    	if du[0] != "EOFx" {
+    	if du[0] != "EOF" {
     		l_data_until = du[0]
     	}
     }
@@ -80,25 +82,34 @@ func ReadData(i_header header.CefHeaderData,
 		return
 	}
 
+
 	is_cell_0_ISO_TIME := l_cellTypes[0].VariableType == "ISO_TIME" 
+	is_cell_0_ISO_TIME_RANGE := l_cellTypes[0].VariableType == "ISO_TIME_RANGE" 
 
 	var t0 time.Time
+	var t1 time.Time
+	var t2 time.Time
+	var recStart time.Time
+	var recStop time.Time
+	var intCount = -1
 
+	 _, data_type, _, err := utils.GetFirst3CefFilenameParts()
+
+	l_flg_duplicates := utils.GetCefArgs().GetDuplicateFlag()
 	l_max_records := utils.GetCefArgs().GetMaxRecords()
 	r_ix := 0
 	for l_record := range readers.DataRecords(i_lines, len(l_cellTypes), l_data_until, l_end_of_record_marker)  {
+	intCount++
 
 		if l_record.Err != nil {
 			err = l_record.Err
 			diag.Errorf("Reading data record ", "%v", l_record.Line)
 			return
 		}
-
 		for ix, ct := range l_cellTypes {
 			rd := l_record.Tokens[ix]
 			err = ct.VariableParser(rd) 
 			if err != nil {
-
 				diag.Errorf("In data record, incorrect data type\n",
 							"%s\n" +
 							"Error Token %s\n" +
@@ -112,11 +123,41 @@ func ReadData(i_header header.CefHeaderData,
 			}
 		}
 
-		if is_cell_0_ISO_TIME == true {
-			t1, _ := utils.Iso_time(l_record.Tokens[0])
+		if is_cell_0_ISO_TIME == true || is_cell_0_ISO_TIME_RANGE {
 
+			if is_cell_0_ISO_TIME == true {
+				t1, _ = utils.Iso_time(l_record.Tokens[0])
+			}else {
+				    recTS := strings.Split(l_record.Tokens[0], "/")
+				    recStart, _ = utils.Iso_time(recTS[0])
+				    recStop, _ = utils.Iso_time(recTS[1])
+
+			if recStop.After(ts1) {
+				return errors.New(fmt.Sprintf("Error in Record Date/Time stamp: Out of Range of FILE_TIME_SPAN t(%v) span(%v %v) %v", recTS, ts0, ts1, l_record.Line))
+			}
+		
+
+				t1 = recStart
+			}
+//fmt.Println("t0:", t0)
+//fmt.Println("t1:", t1)
+//fmt.Println("ts0:", ts0)
+//fmt.Println("ts1:", ts1)
+	
 			if(t1.Sub(t0) < 0) {
-				return errors.New(fmt.Sprintf("Error in Record Date/Time stamp predating previous record value t0(%#v) t1(%#v) %#v", t0, t1, l_record.Line))
+				return errors.New(fmt.Sprintf("Errors in Record Date/Time stamp predating previous record value t0(%#v) %#v", l_record.Tokens[0], l_record.Line))
+			}
+
+			if (t1.Sub(t0) == 0) {
+				if (l_flg_duplicates==true) {
+					//Nothing, we dont care
+					} else {
+				if ((data_type == "CQ") || (data_type == "CT")) {
+
+				} else{
+					return errors.New(fmt.Sprintf("Duplicate Record Date/Time stamp record value t0(%#v) %#v", l_record.Tokens[0], l_record.Line))
+					}
+				}
 			}
 
 			// FILE_TIME_SPAN checks
@@ -124,7 +165,9 @@ func ReadData(i_header header.CefHeaderData,
 			if t1.Before(ts0) || t1.After(ts1) {
 				return errors.New(fmt.Sprintf("Error in Record Date/Time stamp: Out of Range of FILE_TIME_SPAN t(%v) span(%v %v) %v", t1, ts0, ts1, l_record.Line))
 			}
-
+			_=t2
+			_=recStart
+			_=recStop
 			t0 = t1
 		}
 
