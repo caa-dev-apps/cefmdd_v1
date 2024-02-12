@@ -82,7 +82,9 @@ func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, e
 		}
 
 		// not official - but should get added for convenience
+
 		vn, p := vmap["variable_name"] 
+
 		if p == false {
 			err = errors.New(`error variable_name missing from Variable index: ` + strconv.Itoa(ix))
 			return
@@ -109,7 +111,6 @@ func RecordCellTypes(i_header header.CefHeaderData) (r_cells []RecordCellType, e
 			err = errors.New(fmt.Sprintf(`error VALUE_TYPE missing from Variable %v`, vn))
 			return
 		}
-
 		f, err2 := utils.ValueTypeParserFunc(vt[0])
 		if err2 != nil {
 			err = errors.New(fmt.Sprintf(`error VALUE_TYPE unknown type : %v  -  variable : %v`, vt, vn))
