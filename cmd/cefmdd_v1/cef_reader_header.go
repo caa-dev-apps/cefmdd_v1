@@ -3,11 +3,18 @@ package main
 import (
 	"errors"
 	"strings"
+	"fmt"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/diag"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/header"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/readers"
     "github.com/caa-dev-apps/cefmdd_v1/pkg/utils"
+    "github.com/caa-dev-apps/cefmdd_v1/pkg/rules"
 )
+
+var (
+    s_mdd_data = *rules.NewMddData()
+)
+
 
 func ReadHeader(args *utils.CefArgs,
 			    i_lines_in chan readers.Line) (r_header header.CefHeaderData, r_err error) {
@@ -35,8 +42,8 @@ func ReadHeader(args *utils.CefArgs,
 
 			_, included := includedMap[r_path]
 			if included == true {
-				diag.Error("Attempt to include duplcate ceh", i_filename)
-				return r_path, errors.New("Attempt to include duplcate ceh")
+				diag.Error("Attempt to include duplicate ceh", i_filename)
+				return r_path, errors.New("Attempt to include duplicate ceh")
 			}
 
 			done, _ = utils.FileExists(r_path)
@@ -53,7 +60,16 @@ func ReadHeader(args *utils.CefArgs,
 	doProcess = func(i_lines chan readers.Line) (data_until bool, err error) {
 
 		for kv := range readers.EachKeyVal(i_lines) {
+//202001 smcc added begin
+		count:=strings.Count(fmt.Sprintf("%s",kv.Line),"\"")
 
+		if (count%2 == 0){
+			//This string either has one or none quotes
+		}else{
+			err = errors.New(fmt.Sprintf("Value mismatched quotes %s", kv.Line))
+			return
+		}
+//202001 smcc added end
 			if strings.EqualFold("include", kv.Key) == true {
 				v := strings.Trim(kv.Val[0], `" `)
 
@@ -74,8 +90,8 @@ func ReadHeader(args *utils.CefArgs,
 
 				nestedLevel--
 			} else {
-				err2 := r_header.Add_kv(&kv)
 
+				err2 := r_header.Add_kv(&kv)
 				if err2 != nil {
 					return false, err2
 				}
@@ -83,10 +99,11 @@ func ReadHeader(args *utils.CefArgs,
 				data_until = strings.EqualFold("DATA_UNTIL", kv.Key)
 			}
 
+//		fmt.Println(kv)
 			ix++
 		}
 
-		return
+	return false,err //2019
 	}
 
 	data_until, r_err := doProcess(i_lines_in)
@@ -94,15 +111,19 @@ func ReadHeader(args *utils.CefArgs,
 	if r_err != nil {
 		return
 	}
-
 	if data_until == false {
 		r_err = errors.New("Error: data_until = false")
-		return
 	}
 
-    r_header.Checks()
+	r_err = r_header.CheckMin("m")  // Check mission level
+	  if r_err == nil{
+	    r_err = r_header.Checks()  //smcc
+	}
 
 	diag.Info("Header Lines read:", ix)
 
-	return
+	return  
 }
+
+
+
